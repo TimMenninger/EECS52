@@ -1,0 +1,35 @@
+Change Component Designator: OldDesignator=R1 NewDesignator=R21
+Change Component Designator: OldDesignator=R21 NewDesignator=R1
+Change Component Designator: OldDesignator=U1 NewDesignator=CPU
+Change Component Designator: OldDesignator=U11 NewDesignator=U1
+Change Net Name : Old Net Name=NetOSC_3 New Net Name=NetCPU_59
+Change Net Name : Old Net Name=NetR1_2 New Net Name=NetCPU_55
+Change Net Name : Old Net Name=NetR2_1 New Net Name=NetCPU_24
+Change Net Name : Old Net Name=NetR5_2 New Net Name=NetCPU_18
+Change Net Name : Old Net Name=NetR11_2 New Net Name=NetCPU_19
+Change Net Name : Old Net Name=NetR12_2 New Net Name=NetCPU_45
+Change Net Name : Old Net Name=NetR13_2 New Net Name=NetCPU_44
+Change Net Name : Old Net Name=NetR14_2 New Net Name=NetCPU_42
+Change Net Name : Old Net Name=NetR15_2 New Net Name=NetCPU_41
+Change Net Name : Old Net Name=NetR16_2 New Net Name=NetCPU_49
+Change Net Name : Old Net Name=NetR18_2 New Net Name=NetCPU_50
+Change Net Name : Old Net Name=NetR21_2 New Net Name=NetR1_2
+Change Net Name : Old Net Name=NetR22_2 New Net Name=NetCPU_51
+Change Net Name : Old Net Name=NetR23_2 New Net Name=NetCPU_20
+Change Net Name : Old Net Name=NetR24_2 New Net Name=NetCPU_21
+Change Net Name : Old Net Name=NetU1_2 New Net Name=NetCPU_2
+Change Net Name : Old Net Name=NetU1_4 New Net Name=NetCPU_4
+Change Net Name : Old Net Name=NetU1_6 New Net Name=NetCPU_6
+Change Net Name : Old Net Name=NetU1_8 New Net Name=NetCPU_8
+Change Net Name : Old Net Name=NetU1_11 New Net Name=NetCPU_11
+Change Net Name : Old Net Name=NetU1_13 New Net Name=NetCPU_13
+Change Net Name : Old Net Name=NetU1_15 New Net Name=NetCPU_15
+Change Net Name : Old Net Name=NetU1_17 New Net Name=NetCPU_17
+Change Net Name : Old Net Name=NetU1_39 New Net Name=NetCPU_39
+Change Net Name : Old Net Name=NetU1_40 New Net Name=NetCPU_40
+Change Net Name : Old Net Name=NetU1_46 New Net Name=NetCPU_46
+Change Net Name : Old Net Name=NetU1_47 New Net Name=NetCPU_47
+Change Net Name : Old Net Name=NetU1_56 New Net Name=NetCPU_56
+Change Net Name : Old Net Name=NetU1_61 New Net Name=NetCPU_61
+Change Net Name : Old Net Name=NetU1_62 New Net Name=NetCPU_62
+Change Net Name : Old Net Name=NetU1_63 New Net Name=NetCPU_63

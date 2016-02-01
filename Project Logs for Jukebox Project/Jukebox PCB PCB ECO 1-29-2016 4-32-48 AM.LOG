@@ -1,0 +1,101 @@
+Removed Pin From Net: NetName=VCC Pin=R3-1
+Removed Pin From Net: NetName=GND Pin=U2-1
+Removed Pin From Net: NetName=NetR3_2 Pin=U4-44
+Removed Pin From Net: NetName=GND Pin=U6-1
+Removed Pin From Net: NetName=VCC Pin=U6-4
+Change Component Designator: OldDesignator=C1 NewDesignator=C2
+Change Component Designator: OldDesignator=C2 NewDesignator=C3
+Change Component Designator: OldDesignator=C3 NewDesignator=C4
+Change Component Designator: OldDesignator=C4 NewDesignator=C5
+Change Component Designator: OldDesignator=C5 NewDesignator=C6
+Change Component Designator: OldDesignator=C6 NewDesignator=C7
+Change Component Designator: OldDesignator=C7 NewDesignator=C8
+Change Component Designator: OldDesignator=C8 NewDesignator=C9
+Change Component Designator: OldDesignator=C9 NewDesignator=C10
+Change Component Designator: OldDesignator=C10 NewDesignator=C11
+Change Component Designator: OldDesignator=C11 NewDesignator=C1
+Change Component Designator: OldDesignator=R1 NewDesignator=R2
+Change Component Designator: OldDesignator=R2 NewDesignator=R12
+Change Component Designator: OldDesignator=R4 NewDesignator=R6
+Change Component Designator: OldDesignator=R5 NewDesignator=R14
+Change Component Designator: OldDesignator=R6 NewDesignator=R15
+Change Component Designator: OldDesignator=R7 NewDesignator=R1
+Change Component Designator: OldDesignator=R8 NewDesignator=R16
+Change Component Designator: OldDesignator=R9 NewDesignator=R18
+Change Component Designator: OldDesignator=R10 NewDesignator=R22
+Change Component Designator: OldDesignator=R11 NewDesignator=R5
+Change Component Designator: OldDesignator=R12 NewDesignator=R11
+Change Component Designator: OldDesignator=R13 NewDesignator=R23
+Change Component Designator: OldDesignator=R14 NewDesignator=R24
+Change Component Designator: OldDesignator=R15 NewDesignator=R7
+Change Component Designator: OldDesignator=R16 NewDesignator=R17
+Change Component Designator: OldDesignator=R17 NewDesignator=R4
+Change Component Designator: OldDesignator=R18 NewDesignator=R8
+Change Component Designator: OldDesignator=R19 NewDesignator=R9
+Change Component Designator: OldDesignator=R20 NewDesignator=R19
+Change Component Designator: OldDesignator=R21 NewDesignator=R10
+Change Component Designator: OldDesignator=R22 NewDesignator=R20
+Change Component Designator: OldDesignator=U1 NewDesignator=U5
+Change Component Designator: OldDesignator=U2 NewDesignator=U3
+Change Component Designator: OldDesignator=U3 NewDesignator=U2
+Change Component Designator: OldDesignator=U4 NewDesignator=U1
+Change Component Designator: OldDesignator=U5 NewDesignator=U6
+Change Component Designator: OldDesignator=U7 NewDesignator=U4
+Change Component Designator: OldDesignator=U8 NewDesignator=U7
+Change Component Designator: OldDesignator=U9 NewDesignator=U8
+Change Component Designator: OldDesignator=U10 NewDesignator=U9
+Change Component Designator: OldDesignator=U11 NewDesignator=U10
+Change Component Designator: OldDesignator=X1 NewDesignator=OSC
+Added Component: Designator=R13(AXIAL-0.3)
+Added Component: Designator=R21(AXIAL-0.3)
+Added Pin To Net: NetName=GND Pin=R3-1
+Added Pin To Net: NetName=VCC Pin=R3-1
+Added Pin To Net: NetName=GND Pin=R21-1
+Added Pin To Net: NetName=NetR3_2 Pin=U3-1
+Change Net Name : Old Net Name=NetR1_1 New Net Name=NetR2_1
+Change Net Name : Old Net Name=NetR2_2 New Net Name=NetR12_2
+Change Net Name : Old Net Name=NetR4_2 New Net Name=NetR6_2
+Change Net Name : Old Net Name=NetR5_2 New Net Name=NetR14_2
+Change Net Name : Old Net Name=NetR6_2 New Net Name=NetR15_2
+Change Net Name : Old Net Name=NetR7_2 New Net Name=NetR1_2
+Change Net Name : Old Net Name=NetR8_2 New Net Name=NetR16_2
+Change Net Name : Old Net Name=NetR9_2 New Net Name=NetR18_2
+Change Net Name : Old Net Name=NetR10_2 New Net Name=NetR22_2
+Change Net Name : Old Net Name=NetR11_2 New Net Name=NetR5_2
+Change Net Name : Old Net Name=NetR12_2 New Net Name=NetR11_2
+Change Net Name : Old Net Name=NetR13_2 New Net Name=NetR23_2
+Change Net Name : Old Net Name=NetR14_2 New Net Name=NetR24_2
+Change Net Name : Old Net Name=NetR15_2 New Net Name=NetR7_2
+Change Net Name : Old Net Name=NetR16_2 New Net Name=NetR17_2
+Change Net Name : Old Net Name=NetR17_1 New Net Name=NetR4_1
+Change Net Name : Old Net Name=NetR18_2 New Net Name=NetR8_2
+Change Net Name : Old Net Name=NetR19_2 New Net Name=NetR9_2
+Change Net Name : Old Net Name=NetR20_2 New Net Name=NetR19_2
+Change Net Name : Old Net Name=NetR21_2 New Net Name=NetR10_2
+Change Net Name : Old Net Name=NetR22_2 New Net Name=NetR20_2
+Change Net Name : Old Net Name=NetU1_1 New Net Name=NetU1_40
+Change Net Name : Old Net Name=NetU1_2 New Net Name=NetU1_17
+Change Net Name : Old Net Name=NetU1_3 New Net Name=NetU1_15
+Change Net Name : Old Net Name=NetU1_4 New Net Name=NetU1_13
+Change Net Name : Old Net Name=NetU1_5 New Net Name=NetU1_11
+Change Net Name : Old Net Name=NetU1_6 New Net Name=NetU1_8
+Change Net Name : Old Net Name=NetU1_7 New Net Name=NetU1_6
+Change Net Name : Old Net Name=NetU1_8 New Net Name=NetU1_4
+Change Net Name : Old Net Name=NetU1_9 New Net Name=NetU1_2
+Change Net Name : Old Net Name=NetU1_19 New Net Name=NetU1_39
+Change Net Name : Old Net Name=NetU4_47 New Net Name=NetU1_47
+Change Net Name : Old Net Name=NetU4_56 New Net Name=NetU1_56
+Change Net Name : Old Net Name=NetU4_59 New Net Name=NetOSC_3
+Change Net Name : Old Net Name=NetU4_61 New Net Name=NetU1_61
+Change Net Name : Old Net Name=NetU4_62 New Net Name=NetU1_62
+Change Net Name : Old Net Name=NetU4_63 New Net Name=NetU1_63
+Added Pin To Net: NetName=NetR2_2 Pin=R2-2
+Added Pin To Net: NetName=NetR2_2 Pin=U1-24
+Added Net: Name=NetR2_2
+Added Pin To Net: NetName=NetR13_2 Pin=R3-2
+Added Pin To Net: NetName=NetR13_2 Pin=U1-44
+Added Net: Name=NetR13_2
+Added Pin To Net: NetName=NetR21_2 Pin=R21-2
+Added Net: Name=NetR21_2
+Added Member To Class: ClassName=Jukebox Schematic Member=Component R23 Res1
+Added Member To Class: ClassName=Jukebox Schematic Member=Component R24 Res1

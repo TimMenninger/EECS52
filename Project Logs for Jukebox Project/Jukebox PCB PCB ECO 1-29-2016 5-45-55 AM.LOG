@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=VCC Pin=R3-1
+Removed Pin From Net: NetName=NetR13_2 Pin=R3-2
+Removed Pin From Net: NetName=NetR2_2 Pin=U1-24
+Removed Pin From Net: NetName=NetR2_1 Pin=U2-7
+Added Component: Designator=R13(AXIAL-0.3)
+Added Pin To Net: NetName=GND Pin=R3-1
+Added Pin To Net: NetName=NetR3_2 Pin=R3-2
+Added Pin To Net: NetName=VCC Pin=R3-1
+Added Pin To Net: NetName=NetR13_2 Pin=R3-2
+Added Pin To Net: NetName=NetR2_1 Pin=U1-24
+Added Pin To Net: NetName=NetR2_2 Pin=U2-7
+Added Pin To Net: NetName=NetR2_1 Pin=U11-19
+Added Pin To Net: NetName=NetPB1_2 Pin=PB1-2
+Added Pin To Net: NetName=NetPB1_2 Pin=U11-2
+Added Net: Name=NetPB1_2
+Added Pin To Net: NetName=NetPB2_2 Pin=PB2-2
+Added Pin To Net: NetName=NetPB2_2 Pin=U11-3
+Added Net: Name=NetPB2_2
+Added Pin To Net: NetName=NetU1_46 Pin=U1-46
+Added Pin To Net: NetName=NetU1_46 Pin=U11-18
+Added Net: Name=NetU1_46
+Added Member To Class: ClassName=Jukebox Schematic Member=Component R13 Res1

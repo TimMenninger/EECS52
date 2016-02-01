@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=VCC Pin=R3-1
+Removed Pin From Net: NetName=NetR13_2 Pin=R3-2
+Change Component Footprint: Designator=S1 Old Footprint=SPST-2 New Footprint=BOURNS7914G
+Change Component Footprint: Designator=S2 Old Footprint=SPST-2 New Footprint=BOURNS7914G
+Added Component: Designator=R13(AXIAL-0.3)
+Added Pin To Net: NetName=GND Pin=R3-1
+Added Pin To Net: NetName=NetR3_2 Pin=R3-2
+Added Pin To Net: NetName=VCC Pin=R3-1
+Added Pin To Net: NetName=NetR13_2 Pin=R3-2
+Added Member To Class: ClassName=Jukebox Schematic Member=Component R13 Res1
+Added Member To Class: ClassName=Jukebox Schematic Member=Component R21 Res1
+Added Member To Class: ClassName=Jukebox Schematic Member=Component U11 MAX6818
