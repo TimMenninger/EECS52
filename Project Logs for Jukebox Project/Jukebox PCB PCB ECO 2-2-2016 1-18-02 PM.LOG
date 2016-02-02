@@ -1,0 +1,67 @@
+Removed Pin From Net: NetName=NetCPU_46 Pin=U1-18
+Removed Pin From Net: NetName=NetCPU_24 Pin=U1-19
+Change Component Footprint: Designator=PB1 Old Footprint=SPST-2 New Footprint=PB_EG4791
+Change Component Footprint: Designator=PB2 Old Footprint=SPST-2 New Footprint=PB_EG4791
+Added Component: Designator=JP1(3P_JP)
+Added Component: Designator=PB3(PB_EG4791)
+Added Component: Designator=PB4(PB_EG4791)
+Added Component: Designator=PB5(PB_EG4791)
+Added Component: Designator=PB6(PB_EG4791)
+Added Component: Designator=PB7(PB_EG4791)
+Added Component: Designator=PB8(PB_EG4791)
+Added Component: Designator=R25(AXIAL-0.3)
+Added Component: Designator=RE1(VR4)
+Added Component: Designator=RE2(VR4)
+Added Component: Designator=W1(RAD-0.2)
+Added Pin To Net: NetName=NetCPU_46 Pin=JP1-2
+Added Pin To Net: NetName=GND Pin=PB3-1
+Added Pin To Net: NetName=GND Pin=PB4-1
+Added Pin To Net: NetName=GND Pin=PB5-1
+Added Pin To Net: NetName=GND Pin=PB6-1
+Added Pin To Net: NetName=GND Pin=PB7-1
+Added Pin To Net: NetName=GND Pin=PB8-1
+Added Pin To Net: NetName=GND Pin=R25-1
+Added Pin To Net: NetName=GND Pin=RE1-2
+Added Pin To Net: NetName=GND Pin=RE2-2
+Added Pin To Net: NetName=NetCPU_24 Pin=W1-2
+Change Net Name : Old Net Name=NetPB1_2 New Net Name=RES_RAW
+Change Net Name : Old Net Name=NetPB2_2 New Net Name=TRAP_RAW
+Added Pin To Net: NetName=NetJP1_1 Pin=JP1-1
+Added Pin To Net: NetName=NetJP1_1 Pin=R25-2
+Added Net: Name=NetJP1_1
+Added Pin To Net: NetName=NetPB3_2 Pin=PB3-2
+Added Pin To Net: NetName=NetPB3_2 Pin=U1-4
+Added Net: Name=NetPB3_2
+Added Pin To Net: NetName=NetPB4_2 Pin=PB4-2
+Added Pin To Net: NetName=NetPB4_2 Pin=U1-5
+Added Net: Name=NetPB4_2
+Added Pin To Net: NetName=NetPB5_2 Pin=PB5-2
+Added Pin To Net: NetName=NetPB5_2 Pin=U1-6
+Added Net: Name=NetPB5_2
+Added Pin To Net: NetName=NetPB6_2 Pin=PB6-2
+Added Pin To Net: NetName=NetPB6_2 Pin=U1-7
+Added Net: Name=NetPB6_2
+Added Pin To Net: NetName=NetPB7_2 Pin=PB7-2
+Added Pin To Net: NetName=NetPB7_2 Pin=U1-8
+Added Net: Name=NetPB7_2
+Added Pin To Net: NetName=NetPB8_2 Pin=PB8-2
+Added Pin To Net: NetName=NetPB8_2 Pin=U1-9
+Added Net: Name=NetPB8_2
+Added Pin To Net: NetName=RES_DB Pin=U1-19
+Added Pin To Net: NetName=RES_DB Pin=W1-1
+Added Net: Name=RES_DB
+Added Pin To Net: NetName=TRAP_DB Pin=JP1-3
+Added Pin To Net: NetName=TRAP_DB Pin=U1-18
+Added Net: Name=TRAP_DB
+Added Member To Class: ClassName=Jukebox Schematic Member=Component JP1 3P_JP
+Added Member To Class: ClassName=Jukebox Schematic Member=Component PB3 SW-PB
+Added Member To Class: ClassName=Jukebox Schematic Member=Component PB4 SW-PB
+Added Member To Class: ClassName=Jukebox Schematic Member=Component PB5 SW-PB
+Added Member To Class: ClassName=Jukebox Schematic Member=Component PB6 SW-PB
+Added Member To Class: ClassName=Jukebox Schematic Member=Component PB7 SW-PB
+Added Member To Class: ClassName=Jukebox Schematic Member=Component PB8 SW-PB
+Added Member To Class: ClassName=Jukebox Schematic Member=Component R25 Res1
+Added Member To Class: ClassName=Jukebox Schematic Member=Component RE1 SW-ROTARY
+Added Member To Class: ClassName=Jukebox Schematic Member=Component RE2 SW-ROTARY
+Added Member To Class: ClassName=Jukebox Schematic Member=Component W1 Jumper
+Added Rule: Name=Schematic Width Constraint

@@ -71,7 +71,7 @@ GenerateClassCluster=0
 DocumentUniqueId=ELQEJXMR
 
 [Document3]
-DocumentPath=Jukebox Schematic.Harness
+DocumentPath=Misc\AS5115.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -85,11 +85,41 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=RGKWBRJO
 
-[GeneratedDocument1]
-DocumentPath=Jukebox PCB 1-29-2016 1-13-33 AM.WAS
+[Document4]
+DocumentPath=Misc\eecs52_Tim.PcbLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
 DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=TRLQHKNE
+
+[Document5]
+DocumentPath=Misc\eecs52_Tim.SchLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=PEBCKHPG
 
 [Configuration1]
 Name=Default Configuration
