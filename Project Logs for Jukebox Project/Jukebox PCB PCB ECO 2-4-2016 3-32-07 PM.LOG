@@ -1,0 +1,11 @@
+Added Component: Designator=JP?(3P_JP)
+Added Pin To Net: NetName=NetJP?_1 Pin=JP?-1
+Added Pin To Net: NetName=NetJP?_1 Pin=R25-2
+Added Net: Name=NetJP?_1
+Added Pin To Net: NetName=NetJP?_2 Pin=JP?-2
+Added Pin To Net: NetName=NetJP?_2 Pin=U1-46
+Added Net: Name=NetJP?_2
+Added Pin To Net: NetName=NetJP?_3 Pin=JP?-3
+Added Pin To Net: NetName=NetJP?_3 Pin=U13-3
+Added Net: Name=NetJP?_3
+Added Member To Class: ClassName=Jukebox Schematic Member=Component JP? 3P_JP

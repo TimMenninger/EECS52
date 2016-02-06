@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<!DOCTYPE timing.diagram PUBLIC "-//TDML WorkingGroup//DTD XML-PCISTDML.DTD 1.1//EN" "xml-pcistdml.dtd">
+<timing.diagram default.time.units="1e-12" delay.rule="first" font.ptr="TT1" line.thickness="1" show.delays="1" show.holds="1" show.samples="1" show.setups="1" show.uncertainty="ALL">
+  <tdml.admin.info>
+    <tool.info id="TT2">
+      <tool.name id="TT3">TimingTool from www.timingtool.com</tool.name>
+      <tool.type id="TT4">Timing Diagram Editor</tool.type>
+    </tool.info>
+  </tdml.admin.info>
+  <sources>
+    <conn.source id="TT5">
+      <connection id="TT6" conn.type="O">
+        <conn.name id="TT7">clk</conn.name>
+      </connection>
+      <connection id="TT18" conn.type="O">
+        <conn.name id="TT19">CPU_ALE</conn.name>
+      </connection>
+      <connection id="TT26" conn.type="O">
+        <conn.name id="TT27">CPU_A7-0</conn.name>
+      </connection>
+      <connection id="TT92" conn.type="O">
+        <conn.name id="TT93">ALatch_A7-0</conn.name>
+      </connection>
+      <connection id="TT38" conn.type="O">
+        <conn.name id="TT39">CPU_A17-8</conn.name>
+      </connection>
+      <connection id="TT103" conn.type="O">
+        <conn.name id="TT104">Buffer_A17-8</conn.name>
+      </connection>
+      <connection id="TT125" conn.type="O">
+        <conn.name id="TT126">CPU_<not>UCS</not></conn.name>
+      </connection>
+      <connection id="TT134" conn.type="O">
+        <conn.name id="TT135">Buffer_<not>UCS</not></conn.name>
+      </connection>
+      <connection id="TT64" conn.type="O">
+        <conn.name id="TT65">CPU_<not>RD</not></conn.name>
+      </connection>
+      <connection id="TT114" conn.type="O">
+        <conn.name id="TT115">Buffer_<not>RD</not></conn.name>
+      </connection>
+      <connection id="TT145" conn.type="O">
+        <conn.name id="TT146">ROM_Dout</conn.name>
+      </connection>
+      <connection id="TT60" conn.type="O">
+        <conn.name id="TT70">Buffer_ROM</conn.name>
+      </connection>
+      <connection id="TT50" conn.type="O">
+        <conn.name id="TT51">CPU_D7-0</conn.name>
+      </connection>
+    </conn.source>
+  </sources>
+  <signal id="TT9" clock="1" inverted="1" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT6">clk</conn.ptr>
+    <clock.info>
+      <period>
+        <number id="TT11">41667</number>
+      </period>
+      <duty.cycle>
+        <number id="TT12">50</number>
+      </duty.cycle>
+      <time.offset>
+        <number id="TT13">0</number>
+      </time.offset>
+      <jitter.falling>
+        <number id="TT14">0</number>
+      </jitter.falling>
+      <jitter.rising>
+        <number id="TT15">0</number>
+      </jitter.rising>
+      <uncertainty.falling>
+        <number id="TT16">0</number>
+      </uncertainty.falling>
+      <uncertainty.rising>
+        <number id="TT17">0</number>
+      </uncertainty.rising>
+    </clock.info>
+    <waveform id="TT8" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT10" driven="1" s="0" show.uncertainty="ALL"/>
+      <e id="TT35" driven="1" s="0" show.uncertainty="ALL" te="0" tl="0"/>
+      <e id="TT24" driven="1" s="1" show.uncertainty="ALL" te="20833" tl="20833"/>
+      <e id="TT143" driven="1" s="0" show.uncertainty="ALL" te="41667" tl="41667"/>
+      <e id="TT61" driven="1" s="0" show.uncertainty="ALL" te="125001" tl="125001"/>
+      <e id="TT90" driven="1" s="1" show.uncertainty="ALL" te="145834" tl="145834"/>
+      <e id="TT48" driven="1" s="0" show.uncertainty="ALL" te="166668" tl="166668"/>
+    </waveform>
+  </signal>
+  <signal id="TT21" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT18">CPU_ALE</conn.ptr>
+    <waveform id="TT20" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT22" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT23" driven="1" s="0" show.uncertainty="ALL" te="45833"/>
+    </waveform>
+  </signal>
+  <signal id="TT29" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT26">CPU_A7-0</conn.ptr>
+    <waveform id="TT28" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT30" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT33" driven="1" locked="0" s="V" show.uncertainty="ALL" te="36000"/>
+      <e id="TT34" driven="1" s="X" show.uncertainty="ALL" te="51666"/>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT31">7</number>
+      </msb>
+      <lsb>
+        <number id="TT32">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <signal id="TT95" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT92">ALatch_A7-0</conn.ptr>
+    <waveform id="TT94" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT96" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT97" driven="1" s="V" show.uncertainty="ALL" te="50000" vs="16&apos;hffff"/>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT98">15</number>
+      </msb>
+      <lsb>
+        <number id="TT99">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <signal id="TT41" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT38">CPU_A17-8</conn.ptr>
+    <waveform id="TT40" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT42" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT45" driven="1" s="V" show.uncertainty="ALL" te="36000"/>
+      <e id="TT47" driven="1" s="X" show.uncertainty="ALL" te="169668"/>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT43">17</number>
+      </msb>
+      <lsb>
+        <number id="TT44">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <signal id="TT106" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT103">Buffer_A17-8</conn.ptr>
+    <waveform id="TT105" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT107" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT110" driven="1" s="V" show.uncertainty="ALL" te="46000"/>
+      <e id="TT111" driven="1" s="X" show.uncertainty="ALL" te="172668"/>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT108">15</number>
+      </msb>
+      <lsb>
+        <number id="TT109">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <signal id="TT128" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT125">CPU_<not>UCS</not></conn.ptr>
+    <waveform id="TT127" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT129" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT130" driven="1" s="0" show.uncertainty="ALL" te="33000"/>
+      <e id="TT131" driven="1" s="1" show.uncertainty="ALL" te="148834"/>
+    </waveform>
+  </signal>
+  <signal id="TT137" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT134">Buffer_<not>UCS</not></conn.ptr>
+    <waveform id="TT136" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT138" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT139" driven="1" s="0" show.uncertainty="ALL" te="43000"/>
+      <e id="TT140" driven="1" s="1" show.uncertainty="ALL" te="151834"/>
+    </waveform>
+  </signal>
+  <signal id="TT67" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT64">CPU_<not>RD</not></conn.ptr>
+    <waveform id="TT66" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT68" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT69" driven="1" locked="0" s="0" show.uncertainty="ALL" te="78667"/>
+      <e id="TT72" driven="1" s="1" show.uncertainty="ALL" te="137001"/>
+    </waveform>
+  </signal>
+  <signal id="TT117" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT114">Buffer_<not>RD</not></conn.ptr>
+    <waveform id="TT116" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT118" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT121" driven="1" s="0" show.uncertainty="ALL" te="88667"/>
+      <e id="TT122" driven="1" s="1" show.uncertainty="ALL" te="140001"/>
+    </waveform>
+  </signal>
+  <signal id="TT148" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT145">ROM_Dout</conn.ptr>
+    <waveform id="TT147" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT149" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT152" driven="1" s="V" show.uncertainty="ALL" te="123667"/>
+      <e id="TT153" driven="1" locked="0" s="X" show.uncertainty="ALL" te="140001">
+        <e.label label.type="text"/>
+      </e>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT150">15</number>
+      </msb>
+      <lsb>
+        <number id="TT151">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <signal id="TT74" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT60">Buffer_ROM</conn.ptr>
+    <waveform id="TT71" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT75" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT78" driven="1" s="V" show.uncertainty="ALL" te="133667"/>
+      <e id="TT79" driven="1" s="X" show.uncertainty="ALL" te="143001"/>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT76">15</number>
+      </msb>
+      <lsb>
+        <number id="TT77">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <signal id="TT53" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT50">CPU_D7-0</conn.ptr>
+    <waveform id="TT52" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT54" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT55" driven="1" s="V" show.uncertainty="ALL" te="110001" vs="16&apos;hffff"/>
+      <e id="TT58" driven="1" locked="0" s="X" show.uncertainty="ALL" te="128001"/>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT56">7</number>
+      </msb>
+      <lsb>
+        <number id="TT57">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <edge.relationships>
+    <relationship id="TT25" containing.signal.ptr="TT21" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT24" target.e="TT23"/>
+      <relationship.label label.type="text">T<sub>CHLL</sub></relationship.label>
+    </relationship>
+    <relationship id="TT36" containing.signal.ptr="TT29" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT35" target.e="TT33"/>
+      <relationship.label label.type="text">T<sub>CLAV</sub></relationship.label>
+    </relationship>
+    <relationship id="TT37" containing.signal.ptr="TT29" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT23" target.e="TT34"/>
+      <relationship.label label.type="text">T<sub>LLAX</sub></relationship.label>
+    </relationship>
+    <relationship id="TT46" containing.signal.ptr="TT41" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT35" target.e="TT45"/>
+      <relationship.label label.type="text">T<sub>CLAV</sub></relationship.label>
+    </relationship>
+    <relationship id="TT49" containing.signal.ptr="TT41" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT48" target.e="TT47"/>
+      <relationship.label label.type="text">T<sub>CLDOX</sub></relationship.label>
+    </relationship>
+    <relationship id="TT62" containing.signal.ptr="TT53" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT55" target.e="TT61"/>
+      <relationship.label label.type="text">T<sub>DVCL</sub></relationship.label>
+    </relationship>
+    <relationship id="TT63" containing.signal.ptr="TT53" show="1" slot="2" type="measure" user.created="0">
+      <two.edge source.e="TT61" target.e="TT58"/>
+      <relationship.label label.type="text">T<sub>CLDX</sub></relationship.label>
+    </relationship>
+    <relationship id="TT73" containing.signal.ptr="TT67" show="1" slot="2" type="measure" user.created="0">
+      <two.edge source.e="TT69" target.e="TT72"/>
+      <relationship.label label.type="text">T<sub>RLRH</sub></relationship.label>
+    </relationship>
+    <relationship id="TT101" containing.signal.ptr="TT95" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT33" target.e="TT97"/>
+      <relationship.label label.type="text">t<sub>PLHmax</sub></relationship.label>
+    </relationship>
+    <relationship id="TT112" containing.signal.ptr="TT106" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT45" target.e="TT110"/>
+      <relationship.label label.type="text">t<sub>PLHmax</sub></relationship.label>
+    </relationship>
+    <relationship id="TT113" containing.signal.ptr="TT106" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT47" target.e="TT111"/>
+      <relationship.label label.type="text">t<sub>PLHmin</sub></relationship.label>
+    </relationship>
+    <relationship id="TT123" containing.signal.ptr="TT117" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT69" target.e="TT121"/>
+      <relationship.label label.type="text">t<sub>PLHmax</sub></relationship.label>
+    </relationship>
+    <relationship id="TT124" containing.signal.ptr="TT117" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT72" target.e="TT122"/>
+      <relationship.label label.type="text">t<sub>PLHmin</sub></relationship.label>
+    </relationship>
+    <relationship id="TT132" containing.signal.ptr="TT128" show="1" slot="1" type="measure" user.created="1">
+      <two.edge source.e="TT35" target.e="TT130"/>
+      <relationship.label label.type="text">T<sub>CLCSVmax</sub></relationship.label>
+    </relationship>
+    <relationship id="TT133" containing.signal.ptr="TT128" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT90" target.e="TT131"/>
+      <relationship.label label.type="text">T<sub>CHCSXmin</sub></relationship.label>
+    </relationship>
+    <relationship id="TT141" containing.signal.ptr="TT137" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT130" target.e="TT139"/>
+      <relationship.label label.type="text">t<sub>PLHmax</sub></relationship.label>
+    </relationship>
+    <relationship id="TT142" containing.signal.ptr="TT137" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT131" target.e="TT140"/>
+      <relationship.label label.type="text">t<sub>PLHmin</sub></relationship.label>
+    </relationship>
+    <relationship id="TT144" containing.signal.ptr="TT67" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT143" target.e="TT69"/>
+      <relationship.label label.type="text">T<sub>CLRL</sub></relationship.label>
+    </relationship>
+    <relationship id="TT154" containing.signal.ptr="TT148" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT121" target.e="TT152"/>
+      <relationship.label label.type="text">t<sub>OE</sub></relationship.label>
+    </relationship>
+    <relationship id="TT59" containing.signal.ptr="TT148" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT122" target.e="TT153"/>
+      <relationship.label label.type="text">t<sub>OH</sub></relationship.label>
+    </relationship>
+    <relationship id="TT80" containing.signal.ptr="TT74" show="1" slot="1" type="measure" user.created="1">
+      <two.edge source.e="TT152" target.e="TT78"/>
+      <relationship.label label.type="text">t<sub>PLHmax</sub></relationship.label>
+    </relationship>
+    <relationship id="TT82" containing.signal.ptr="TT74" show="1" slot="2" type="measure" user.created="0">
+      <two.edge source.e="TT153" target.e="TT79"/>
+      <relationship.label label.type="text">t<sub>PLHmin</sub></relationship.label>
+    </relationship>
+  </edge.relationships>
+  <view.group>
+    <view begin.time="-80000" end.time="250000"/>
+  </view.group>
+  <font.list>
+    <font id="TT1" color="ff000080" face.name="Lucida Sans" point.size="11"/>
+  </font.list>
+  <user.defined>
+    <key>document.title</key>
+    <user.value>ROM_RD</user.value>
+  </user.defined>
+</timing.diagram>
