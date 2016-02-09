@@ -340,6 +340,14 @@
       <two.edge source.e="TT150" target.e="TT175"/>
       <relationship.label label.type="text">t<sub>DH</sub></relationship.label>
     </relationship>
+    <relationship id="TT25" containing.signal.ptr="TT54" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT84" target.e="TT57"/>
+      <relationship.label label.type="text">T<sub>CHCSX</sub></relationship.label>
+    </relationship>
+    <relationship id="TT44" containing.signal.ptr="TT40" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT84" target.e="TT43"/>
+      <relationship.label label.type="text">T<sub>CHDX</sub></relationship.label>
+    </relationship>
   </edge.relationships>
   <view.group>
     <view begin.time="-10000" end.time="400000"/>

@@ -56,7 +56,7 @@
       </connection>
     </conn.source>
   </sources>
-  <signal id="TT9" clock="1" inverted="1" show="1" show.grid="0">
+  <signal id="TT9" clock="1" inverted="1" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT6">clk</conn.ptr>
     <clock.info>
       <period>
@@ -81,30 +81,30 @@
         <number id="TT17">0</number>
       </uncertainty.rising>
     </clock.info>
-    <waveform id="TT8" locked="0">
-      <e id="TT75" driven="1" s="0" te="0" tl="0"/>
-      <e id="TT73" driven="1" s="1" te="41666" tl="41666"/>
-      <e id="TT78" driven="1" s="0" te="83333" tl="83333"/>
-      <e id="TT123" driven="1" s="1" te="124999" tl="124999"/>
-      <e id="TT81" driven="1" s="0" te="249999" tl="249999"/>
-      <e id="TT84" driven="1" s="1" te="291665" tl="291665"/>
-      <e id="TT86" driven="1" s="0" te="333332" tl="333332"/>
+    <waveform id="TT8" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT75" driven="1" s="0" show.uncertainty="ALL" te="0" tl="0"/>
+      <e id="TT73" driven="1" s="1" show.uncertainty="ALL" te="41666" tl="41666"/>
+      <e id="TT78" driven="1" s="0" show.uncertainty="ALL" te="83333" tl="83333"/>
+      <e id="TT123" driven="1" s="1" show.uncertainty="ALL" te="124999" tl="124999"/>
+      <e id="TT81" driven="1" s="0" show.uncertainty="ALL" te="249999" tl="249999"/>
+      <e id="TT84" driven="1" s="1" show.uncertainty="ALL" te="291665" tl="291665"/>
+      <e id="TT86" driven="1" s="0" show.uncertainty="ALL" te="333332" tl="333332"/>
     </waveform>
   </signal>
-  <signal id="TT40" clock="0" show="1" show.grid="0">
+  <signal id="TT40" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT37">CPU_ALE</conn.ptr>
-    <waveform id="TT39" locked="0">
-      <e id="TT41" driven="1" s="1"/>
-      <e id="TT42" driven="1" s="0" te="59484"/>
-      <e id="TT43" driven="1" s="1" te="312636"/>
+    <waveform id="TT39" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT41" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT42" driven="1" s="0" show.uncertainty="ALL" te="59484"/>
+      <e id="TT43" driven="1" s="1" show.uncertainty="ALL" te="312636"/>
     </waveform>
   </signal>
-  <signal id="TT21" clock="0" show="1" show.grid="0">
+  <signal id="TT21" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT18">CPU_A7-0</conn.ptr>
-    <waveform id="TT20" locked="0">
-      <e id="TT22" driven="1" s="X"/>
-      <e id="TT26" driven="1" s="V" te="20000"/>
-      <e id="TT27" driven="1" s="X" te="99842"/>
+    <waveform id="TT20" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT22" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT26" driven="1" s="V" show.uncertainty="ALL" te="20000"/>
+      <e id="TT27" driven="1" s="X" show.uncertainty="ALL" te="99842"/>
     </waveform>
     <width>
       <msb>
@@ -115,12 +115,12 @@
       </lsb>
     </width>
   </signal>
-  <signal id="TT97" clock="0" show="1" show.grid="0">
+  <signal id="TT97" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT94">Latch_A7-0</conn.ptr>
-    <waveform id="TT96" locked="0">
-      <e id="TT98" driven="1" s="X"/>
-      <e id="TT101" driven="1" s="V" te="70000"/>
-      <e id="TT102" driven="1" s="X" te="325639"/>
+    <waveform id="TT96" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT98" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT101" driven="1" s="V" show.uncertainty="ALL" te="70000"/>
+      <e id="TT102" driven="1" s="X" show.uncertainty="ALL" te="325639"/>
     </waveform>
     <width>
       <msb>
@@ -131,12 +131,12 @@
       </lsb>
     </width>
   </signal>
-  <signal id="TT31" clock="0" show="1" show.grid="0">
+  <signal id="TT31" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT28">CPU_A15-8</conn.ptr>
-    <waveform id="TT30" locked="0">
-      <e id="TT32" driven="1" s="X"/>
-      <e id="TT35" driven="1" s="V" te="20000"/>
-      <e id="TT36" driven="1" s="X" te="350019"/>
+    <waveform id="TT30" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT32" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT35" driven="1" s="V" show.uncertainty="ALL" te="20000"/>
+      <e id="TT36" driven="1" s="X" show.uncertainty="ALL" te="350019"/>
     </waveform>
     <width>
       <msb>
@@ -147,12 +147,12 @@
       </lsb>
     </width>
   </signal>
-  <signal id="TT108" clock="0" show="1" show.grid="0">
+  <signal id="TT108" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT105">Buffer_A15-8</conn.ptr>
-    <waveform id="TT107" locked="0">
-      <e id="TT109" driven="1" s="X"/>
-      <e id="TT112" driven="1" s="V" te="27122"/>
-      <e id="TT113" driven="1" s="X" te="358340"/>
+    <waveform id="TT107" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT109" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT112" driven="1" s="V" show.uncertainty="ALL" te="27122"/>
+      <e id="TT113" driven="1" s="X" show.uncertainty="ALL" te="358340"/>
     </waveform>
     <width>
       <msb>
@@ -163,59 +163,59 @@
       </lsb>
     </width>
   </signal>
-  <signal id="TT54" clock="0" show="1" show.grid="0">
+  <signal id="TT54" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT51">CPU_<not>UCS</not></conn.ptr>
-    <waveform id="TT53" locked="0">
-      <e id="TT55" driven="1" s="1"/>
-      <e id="TT56" driven="1" s="0" te="30000"/>
-      <e id="TT57" driven="1" s="1" te="310000"/>
+    <waveform id="TT53" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT55" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT56" driven="1" s="0" show.uncertainty="ALL" te="30000"/>
+      <e id="TT57" driven="1" s="1" show.uncertainty="ALL" te="310000"/>
     </waveform>
   </signal>
-  <signal id="TT135" clock="0" show="1" show.grid="0">
+  <signal id="TT135" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT132">Buffer_<not>UCS</not></conn.ptr>
-    <waveform id="TT134" locked="0">
-      <e id="TT136" driven="1" s="1"/>
-      <e id="TT137" driven="1" s="0" te="39909"/>
-      <e id="TT138" driven="1" s="1" te="320392"/>
+    <waveform id="TT134" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT136" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT137" driven="1" s="0" show.uncertainty="ALL" te="39909"/>
+      <e id="TT138" driven="1" s="1" show.uncertainty="ALL" te="320392"/>
     </waveform>
   </signal>
-  <signal id="TT47" clock="0" show="1" show.grid="0">
+  <signal id="TT47" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT44">CPU_<not>RD</not></conn.ptr>
-    <waveform id="TT46" locked="0">
-      <e id="TT48" driven="1" s="1"/>
-      <e id="TT49" driven="1" s="0" te="100000"/>
-      <e id="TT50" driven="1" s="1" te="275000"/>
+    <waveform id="TT46" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT48" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT49" driven="1" s="0" show.uncertainty="ALL" te="115000"/>
+      <e id="TT50" driven="1" s="1" show.uncertainty="ALL" te="275000"/>
     </waveform>
   </signal>
-  <signal id="TT144" clock="0" show="1" show.grid="0">
+  <signal id="TT144" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT141">Buffer_<not>RD</not></conn.ptr>
-    <waveform id="TT143" locked="0">
-      <e id="TT145" driven="1" s="1"/>
-      <e id="TT146" driven="1" s="0" te="110030"/>
-      <e id="TT147" driven="1" s="1" te="280000"/>
+    <waveform id="TT143" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT145" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT146" driven="1" s="0" show.uncertainty="ALL" te="125000"/>
+      <e id="TT147" driven="1" s="1" show.uncertainty="ALL" te="280000"/>
     </waveform>
   </signal>
-  <signal id="TT61" clock="0" show="1" show.grid="0">
+  <signal id="TT61" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT58">CPU_<not>R</not></conn.ptr>
-    <waveform id="TT60" locked="0">
-      <e id="TT62" driven="1" s="0"/>
-      <e id="TT63" driven="1" s="1" te="320000"/>
+    <waveform id="TT60" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT62" driven="1" s="0" show.uncertainty="ALL"/>
+      <e id="TT63" driven="1" s="1" show.uncertainty="ALL" te="320000"/>
     </waveform>
   </signal>
-  <signal id="TT119" clock="0" show="1" show.grid="0">
+  <signal id="TT119" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT116">CPU_<not>DEN</not></conn.ptr>
-    <waveform id="TT118" locked="0">
-      <e id="TT120" driven="1" s="1"/>
-      <e id="TT121" driven="1" s="0" te="136428"/>
-      <e id="TT122" driven="1" s="1" te="278319"/>
+    <waveform id="TT118" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT120" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT121" driven="1" s="0" show.uncertainty="ALL" te="136428"/>
+      <e id="TT122" driven="1" s="1" show.uncertainty="ALL" te="278319"/>
     </waveform>
   </signal>
-  <signal id="TT153" clock="0" show="1" show.grid="0">
+  <signal id="TT153" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT150">ROM_D7-0</conn.ptr>
-    <waveform id="TT152" locked="0">
-      <e id="TT154" driven="1" s="X"/>
-      <e id="TT157" driven="1" s="V" te="128591"/>
-      <e id="TT158" driven="1" s="X" te="300000"/>
+    <waveform id="TT152" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT154" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT157" driven="1" s="V" show.uncertainty="ALL" te="180000"/>
+      <e id="TT158" driven="1" s="X" show.uncertainty="ALL" te="300000"/>
     </waveform>
     <width>
       <msb>
@@ -226,12 +226,12 @@
       </lsb>
     </width>
   </signal>
-  <signal id="TT164" clock="0" show="1" show.grid="0">
+  <signal id="TT164" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT161">Buffer_D7-0</conn.ptr>
-    <waveform id="TT163" locked="0">
-      <e id="TT165" driven="1" s="X"/>
-      <e id="TT168" driven="1" s="V" te="146327"/>
-      <e id="TT169" driven="1" s="X" te="291106"/>
+    <waveform id="TT163" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT165" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT168" driven="1" s="V" show.uncertainty="ALL" te="190000"/>
+      <e id="TT169" driven="1" s="X" show.uncertainty="ALL" te="291106"/>
     </waveform>
     <width>
       <msb>
@@ -242,12 +242,12 @@
       </lsb>
     </width>
   </signal>
-  <signal id="TT67" clock="0" show="1" show.grid="0">
+  <signal id="TT67" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT64">CPU_D7-0</conn.ptr>
-    <waveform id="TT66" locked="0">
-      <e id="TT68" driven="1" s="X"/>
-      <e id="TT71" driven="1" s="V" te="225000"/>
-      <e id="TT72" driven="1" s="X" te="265000"/>
+    <waveform id="TT66" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT68" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT71" driven="1" s="V" show.uncertainty="ALL" te="225000"/>
+      <e id="TT72" driven="1" s="X" show.uncertainty="ALL" te="265000"/>
     </waveform>
     <width>
       <msb>

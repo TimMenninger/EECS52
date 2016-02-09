@@ -46,7 +46,7 @@
         <conn.name id="TT117">CPU_<not>DEN</not></conn.name>
       </connection>
       <connection id="TT150" conn.type="O">
-        <conn.name id="TT151">SRAM_D7-0</conn.name>
+        <conn.name id="TT151">SRAM_Dout</conn.name>
       </connection>
       <connection id="TT161" conn.type="O">
         <conn.name id="TT162">Buffer_D7-0</conn.name>
@@ -211,7 +211,7 @@
     </waveform>
   </signal>
   <signal id="TT153" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT150">SRAM_D7-0</conn.ptr>
+    <conn.ptr conn.id="TT150">SRAM_Dout</conn.ptr>
     <waveform id="TT152" e.label.type="default" locked="0" show.uncertainty="ALL">
       <e id="TT154" driven="1" s="X" show.uncertainty="ALL"/>
       <e id="TT157" driven="1" s="V" show.uncertainty="ALL" te="128591"/>
@@ -219,7 +219,7 @@
     </waveform>
     <width>
       <msb>
-        <number id="TT155">15</number>
+        <number id="TT155">7</number>
       </msb>
       <lsb>
         <number id="TT156">0</number>
