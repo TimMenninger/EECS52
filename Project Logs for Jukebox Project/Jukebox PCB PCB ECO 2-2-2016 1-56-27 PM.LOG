@@ -1,8 +1,0 @@
-Removed Pin From Net: NetName=RES_RAW Pin=U1-2
-Removed Pin From Net: NetName=TRAP_RAW Pin=U1-3
-Removed Pin From Net: NetName=NetPB7_2 Pin=U1-8
-Removed Pin From Net: NetName=NetPB8_2 Pin=U1-9
-Added Pin To Net: NetName=NetPB7_2 Pin=U1-2
-Added Pin To Net: NetName=NetPB8_2 Pin=U1-3
-Added Pin To Net: NetName=RES_RAW Pin=U1-8
-Added Pin To Net: NetName=TRAP_RAW Pin=U1-9
