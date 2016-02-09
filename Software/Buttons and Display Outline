@@ -1,0 +1,932 @@
+DEFINE DISP_COLON_CODE 00111010 		; Colon on display
+DEFINE DISP_BLANK_CODE 00010000			; Clear display segment
+DEFINE OFFSET_DISP_COLON 0x65			; Where to put the colon on display
+DEFINE OFFSET_DISP_MINS 0x64			; Where to put the minutes on display
+DEFINE OFFSET_DISP_SECS 0x67			; Where to put the seconds on display
+DEFINE OFFSET_DISP_STATUS 0x14			; Where to put the status on display
+DEFINE OFFSET_DISP_TITLE 0x00			; Where to put the title on display
+DEFINE OFFSET_DISP_ARTIST 0x40			; Where to put the artist on display
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; key_available
+;
+; Description:		Checks for keys pressed.  If a key is pressed, it will
+;					return true, prompting the system to get and handle a key
+;					press.  Otherwise, it returns false.
+;
+; Operation:		The keys are debounced in hardware and the debounced value
+;					is put on the data bus.  This writes to the address
+;					responsible for enabling the debouncer and then checks the
+;					data bus for high values.  If the data is nonzero, a key
+;					has been pressed and this can return TRUE.
+;
+; Arguments:        None.
+;
+; Return Values:    Boolean - TRUE if a key has been pressed and is ready to
+;						be processed.  FALSE otherwise.
+;
+; Global Variables: None.
+;
+; Shared Variables: None.
+;
+; Local Variables:  Keys - The data obtained from the button debouncer and used
+;						to determine the return value.
+;
+; Inputs:           Buttons - This reads the values of the buttons.
+;
+; Outputs:			None.
+;
+; Error Handling:   None.
+;
+; Algorithms:		None.
+;
+; Data Structures:	None.
+;
+; Limitations:		None.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History: 2016-02-05 - Tim Menninger: Outline created
+;
+
+bool key_available(void) {
+	keys = Read data from button debouncer;
+	return (keys != 0);
+}
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; getkey
+;
+; Description:		This function searches for a key and returns the associated
+;					key code.  If there is no valid key, then this function
+;					will not return.  The caller is responsible for ensuring
+;					there is a key available before calling this function.
+;
+; Operation:		This function reads from the button debouncer what key(s)
+;					are being pressed and returns the associated key.  If there
+;					is more than one key being pressed, the key corresponding
+;					to the leftmost high bit will be returned.
+;
+; Arguments:		None.
+;
+; Return Values:	int - The key code associated with the button(s) pressed.
+;
+; Global Variables: None.
+;
+; Shared Variables: ButtonTable - Indexed by the data received while reading
+;						the buttons being pressed.
+;
+; Local Variables:  keys - The value read from the debouncer corresponding to
+;						the keys currently being pressed.
+;
+; Inputs:			Buttons - This function reads which buttons are being
+;						pressed.
+;
+; Outputs:			None.
+;
+; Error Handling:	If no valid key is being pressed, this function does not
+;						return.
+;
+; Algorithms:		None.
+;
+; Data Structures:  None.
+;
+; Limitations:		None.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History: 2016-02-05 - Tim Menninger: Outline created
+;
+
+int getkey(void) {
+	keys = 0;
+	while (!keys) {
+		keys = Read keys from debouncer;
+		// Loops infinitely if no keys pressed
+	}
+	
+	return ButtonTable[keys];
+}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; ButtonTable
+;
+; Description: 		Table of possible values read from buttons and the key
+;					value that it should be interpreted as.
+;
+
+		DB		KEY_ILLEGAL		; 00000000
+		DB		KEY_PLAY		; 00000001
+		DB		KEY_STOP		; 0000001x
+		DB		KEY_STOP		; 0000001x
+		DB		KEY_TRACKDOWN	; 000001xx
+		DB		KEY_TRACKDOWN	; 000001xx
+		DB		KEY_TRACKDOWN	; 000001xx
+		DB		KEY_TRACKDOWN	; 000001xx
+		DB 		KEY_TRACKUP		; 00001xxx
+		DB 		KEY_TRACKUP		; 00001xxx
+		DB 		KEY_TRACKUP		; 00001xxx
+		DB 		KEY_TRACKUP		; 00001xxx
+		DB 		KEY_TRACKUP		; 00001xxx
+		DB 		KEY_TRACKUP		; 00001xxx
+		DB 		KEY_TRACKUP		; 00001xxx
+		DB 		KEY_TRACKUP		; 00001xxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_RPTPLAY		; 0001xxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_SCAN		; 001xxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 01xxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		DB		KEY_ILLEGAL		; 1xxxxxxx
+		
+		
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; initEncoder
+;
+; Description:		Initializes an Encoder data structure with the argued
+;					parameters.
+;
+; Operation:		Sets the attributes of the Encoder instance according to
+;					the arguments.  The initial state of the encoder is set to
+;					the reading from hardware taken in this function.
+;
+; Arguments:		enc - Pointer to the Encoder being initialized.
+;					addr - Address of the rotary encoder in hardware.
+;					clkwsFunc - Function pointer to set the Encoder's clockwise
+;						function pointer to
+;					ctrclkwsFunc - Function pointer to set the Encoder's
+;						counterclockwise function pointer to.
+;
+; Return Values:	None.
+;
+; Global Variables: None.
+;
+; Shared Variables: None.
+;
+; Local Variables:	None.
+;
+; Inputs:			Rotary Encoder - The initial state of the data structure
+;						is the current state of the encoder.
+;
+; Outputs:			None.
+;
+; Error Handling:	None.
+;
+; Algorithms:		None.
+;
+; Data Structures:	Encoder - Initializes an Encoder instance.
+;
+; Limitations:		None.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History: 2016-02-05 - Tim Menninger: Outline created.
+;
+
+void initEncoder (Encoder *enc, void *addr,
+						void *clkwsFunc, void *ctrclkwsFunc) {
+	// Set the initial value of the encoder state.
+	enc->state = Read state at address addr;
+	
+	enc->address = addr;
+	enc->clkwsFunc = clkwsFunc;
+	enc->ctrclkwsFunc = ctrclkwsFunc;
+	
+	return;
+}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; get_encoder
+;
+; Description:		This evaluates the current state of the argued rotary
+;					encoder and compares it to the last known state of the
+;					argued rotary encoder.  If the state has changed, it
+;					decides which way (clockwise or counterclockwise) the
+;					encoder was rotated and returns an associated value.
+;
+; Operation:		This function first reads the value of the rotary encoder
+;					at the argued address (in case there is more than one).
+;					It then compares that to the last known value of that
+;					encoder.  The four values the encoder would see in four
+;					consecutive clockwise turns are: HH HL LL LH.  This is
+;					used to decide what to return if a turn has been made.
+;					The function called in response to a rotation is part of
+;					the encoder data structure.  If the state is two off from
+;					the last known, it is impossible to know which direction
+;					it was turned and thus nothing happens.
+;
+; Arguments:		encoder (void *) - A pointer to the encoder structure
+;						that helps define behavior associated with this
+;						encoder.
+;
+; Return Values:	None.
+;
+; Global Variables: None.
+;
+; Shared Variables: None.
+;
+; Local Variables:  None.
+;
+; Inputs:			Rotary Encoder - Read from to respond to rotations.
+;
+; Outputs:			None.
+;
+; Error Handling:	If the argued pointer is NULL, nothing is done.
+;
+; Algorithms:		None.
+;
+; Data Structures:  Encoder - Updates the encoder structure pointed to by
+;						the argument and uses its attributes to decide how to
+;						handle rotations in the encoder.
+;
+; Limitations:		None.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History: 2016-02-05 - Tim Menninger: Outline created.
+;
+
+void get_encoder (Encoder *enc) {
+	// Do nothing if NULL pointer argued.
+	if (enc == NULL) {
+		return;
+	}
+	
+	int currState = get state from address enc->address (HH HL LL or LH);
+	
+	// If no change, nothing to do.
+	if (currState == enc->state) {
+		return;
+	}
+	
+	// State moved clockwise
+	if (currState == ((enc->state + 1) MOD 4)) {
+		enc->state = (enc->state + 1) MOD 4;
+		CALL enc->clkwsFunc;
+		return;
+	}
+	
+	// State moved counterclockwise
+	if (currState == ((enc->state - 1) MOD 4)) {
+		enc->state = (enc->state - 1) MOD 4;
+		CALL enc->ctrclkwsFunc;
+		return;
+	}
+	
+	// Otherwise, do nothing because we don't know which way the encoder turned
+	return;
+}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Encoder
+;
+; Description: 		Data structure used to manage rotary encoders and the
+;					methods called when the user interfaces with them.
+;
+
+STRUCT	Encoder
+
+	DB		state			; State the rotary encoder was last in
+	DW		address			; Address in hardware of the encoder
+	DW		clkwsFunc		; Function called when rotated clockwise
+	DW		ctrclkwsFunc	; Function called when rotated counterclockwise
+		
+		
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; initDisplay
+;
+; Description:		Initializes the display by clearing its contents.
+;
+; Operation:		The display controller has a command that clears the
+;					display.  This function calls that command.
+;
+; Arguments:		None.
+;
+; Return Values:	None.
+;
+; Global Variables:	None.
+;
+; Shared Variables:	None.
+;
+; Local Variables:	None.
+;
+; Inputs:			None.
+;
+; Outputs:			Display - This function clears the display.
+;
+; Error Handling:	None.
+;
+; Algorithms:		None.
+;
+; Data Structures:	None.
+;
+; Limitations:		None.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History:	2016-02-05 - Tim Menninger: Outline created.
+;
+
+void initDisplay (void) {
+	Call command to clear display
+}
+
+		
+		
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; display_time 
+;
+; Description:		Takes a time in tenths of a second and puts it on the
+;					display in min:sec format.  If TIME_NONE is argued, no
+;					time should be displayed.
+;
+; Operation:		This first clears the segments where time displays.  Then,
+;					if the argument is TIME_NONE, it returns immediately. Else,
+;					this takes the time and decrements ten from it continuously
+;					in a loop, each time adding to the total number of seconds.
+;					Each time seconds gets to 60, it resets and adds to the
+;					minutes.  When the input number reaches <10, we have a
+;					minute and second to write to the display.
+;
+; Arguments:		decisecs (unsigned int) - The number of tenths of a second
+;						to display.
+;
+; Return Values:	None.
+;
+; Global Variables: None.
+;
+; Shared Variables: DigitCodes - A table of display codes for digits 0 - 9
+;						indexed by the digit they represent.
+;
+; Local Variables:  secs - The number of seconds in a minute to display.  This
+;						is between 0 and 59, inclusive.
+;					mins - The number of minutes to display.  This must be
+;						between 0 and 999.  Larger values will not be written.
+;
+; Inputs:			None.
+;
+; Outputs:			Display - The time is written onto the display.
+;
+; Error Handling: 	If the argued number exceeds 999 minutes and 59 seconds,
+;					then 999 minutes and 59 seconds is displayed.
+;
+; Algorithms:		To get to seconds and minutes, the argued value is looped
+;					over and 10 is subtracted continuously until it reaches
+;					zero.  In each iteration, one second is added.
+;
+; Data Structures:  None.
+;
+; Limitations:		Does not display larger than 999:59 on the display.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History: 2016-02-05 - Tim Menninger: Outline Created
+;
+
+void display_time(unsigned int decisecs) {
+	// Clear the display
+	for (int i = 0; i < 6 /* Max time digits */; i++) {
+		write DISP_BLANK_CODE at display offset (OFFSET_DISP_SECS - i);
+	}
+	
+	// If the argument is TIME_NONE, return with the display cleared.
+	if (decisecs == TIME_NONE) {
+		return;
+	}
+	
+	// Values that will be displayed
+	int secs = 0;
+	int mins = 0;
+	
+	// Convert from decisecs to mins and secs
+	while (decisecs >= 10) {
+		decisecs -= 10;
+		secs++;
+		
+		// Wrap around seconds
+		if (secs >= 60) {
+			mins++;
+			secs = 0;
+		}
+	}
+	
+	// Check the boundary case so we don't overflow the display
+	if (mins > 999) {
+		mins = 999;
+		secs = 59;
+	}
+	
+	int nextDigit;
+	// Write the number of seconds to the display.
+	for (int i = 0; i < 2 /* Seconds digits */; i++) {
+		nextDigit = secs MOD 10;
+		write DigitCodes[nextDigit] at display offset (OFFSET_DISP_SECS - i);
+		secs /= 10;
+	}
+	
+	// Write a colon to the display
+	write DISP_COLON_CODE at display offset OFFSET_DISP_COLON;
+	
+	// Write the number of minutes to the display.  Iterating here instead
+	//    of while mins != 0 so that if there are zero minutes, we show 
+	//    exactly one '0'
+	for (int i = 0; i < 3 /* Minutes digits */; i++) {
+		nextDigit = mins MOD 10;
+		write DigitCodes[nextDigit] at display offset (OFFSET_DISP_MINS - i);
+		mins /= 10;
+		
+		// It would be pointless to display any more zeroes at this point.
+		if (mins == 0) {
+			break;
+		}
+	}
+	
+	return;
+}
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; DigitCodes
+;
+; Description:		Display codes for digits 0 through 9 to put on the display.
+;					These are indexed by the digit they represent.
+;
+
+	DB		00110000		; '0' on the display
+	DB		00110001		; '1' on the display
+	DB		00110010		; '2' on the display
+	DB		00110011		; '3' on the display
+	DB		00110100		; '4' on the display
+	DB		00110101		; '5' on the display
+	DB		00110110		; '6' on the display
+	DB		00110111		; '7' on the display
+	DB		00111000		; '8' on the display
+	DB		00111001		; '9' on the display
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; display_status
+;
+; Description:		Takes a status code and displays the associated status.
+;					The status generally describes the state of the system.
+;					For example, this may be "play".
+;
+; Operation:		This checks the argued status and uses it to index a table
+;					and put a string on the display.  It then iterates over the
+;					characters and writes them to the display.
+;
+; Arguments:		status (unsigned int) - The status to be displayed.
+;
+; Return Values:	None.
+;
+; Global Variables: None.
+;
+; Shared Variables: StatusStrings - Table of status strings indexed by the 
+;						argued status.
+;					ASCIIToDisplay - Table indexed by ASCII character codes
+;						and contains the display code for the associated
+;						ASCII character.
+;
+; Local Variables:  None.
+;
+; Inputs:			None.
+;
+; Outputs:			Display - The status is written to the display.
+;
+; Error Handling:	None.
+;
+; Algorithms:		None.
+;
+; Data Structures:	None.
+;
+; Limitations:		None.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History: 2016-02-05 - Tim Menninger: Outline Created
+;
+
+void display_status (unsigned int status) {
+	// Display each character in the string found in the status table.
+	for (int i = 0; i < STATUS_STR_LEN; i++) {
+		write ASCIIToDisplay[*(StatusStrings[status] + i)]
+									at display offset (OFFSET_DISP_STATUS + i);
+	}
+	
+	return;
+}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; StatusStrings
+;
+; Description:		Table of strings that correspond to each status.
+;
+
+	DB		"Play        "		; STATUS_PLAY
+	DB		"Fast Forward"		; STATUS_FASTFWD
+	DB		"Rewind      "		; STATUS_REVERSE
+	DB		"Idle        "		; STATUS_IDLE
+	DB		"Error		 "		; STATUS_ILLEGAL
+	DB		"Scan		 "		; STATUS_SCAN
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; display_title
+;
+; Description:		Takes a NULL-terminated string representing the title of
+;					the song playing and puts it on the display.
+;
+; Operation:		This clears the digits in the display and then displays
+;					the title of the song, pointed to by the argument.  If the
+;					title is too long, it will only show as many characters as
+;					fit on the screen.
+;
+; Arguments:		title (char far *) - The title to be displayed.
+;
+; Return Values:	None.
+;
+; Global Variables: None.
+;
+; Shared Variables: ASCIIToDisplay - Table indexed by ASCII character codes
+;						and contains the display code for the associated
+;						ASCII character.
+;
+; Local Variables:  None.
+;
+; Inputs:			None.
+;
+; Outputs:			Display - The title is written to the display.
+;
+; Error Handling:	None.
+;
+; Algorithms:		None.
+;
+; Data Structures:	None.
+;
+; Limitations:		None.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History: 2016-02-05 - Tim Menninger: Outline Created
+;
+
+void display_title (char far *title) {
+	// Clear the display.
+	for (int i = 0; i < DISPLAY_WIDTH; i++) {
+		Write DISP_BLANK_CODE at display offset (OFFSET_DISP_TITLE + i);
+	}
+	
+	// Display each character in the title until NULL found.
+	for (int i = 0; i < DISPLAY_WIDTH; i++) {
+		// If NULL reached, stop displaying.
+		if (*(title + i) == 0) {
+			break;
+		}
+		
+		Write ASCIIToDisplay[*(title + i)] at display offset
+											(OFFSET_DISP_TITLE + i);
+	}
+	
+	return;
+}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; display_artist
+;
+; Description:		Takes a NULL-terminated string representing the artist of
+;					the song playing and puts it on the display.
+;
+; Operation:		This clears the digits in the display and then displays
+;					the artist of the song, pointed to by the argument.  If the
+;					name is too long, it will only show as many characters as
+;					fit on the screen.
+;
+; Arguments:		artist (char far *) - The artist to be displayed.
+;
+; Return Values:	None.
+;
+; Global Variables: None.
+;
+; Shared Variables: ASCIIToDisplay - Table indexed by ASCII character codes
+;						and contains the display code for the associated
+;						ASCII character.
+;
+; Local Variables:  None.
+;
+; Inputs:			None.
+;
+; Outputs:			Display - The artist is written to the display.
+;
+; Error Handling:	None.
+;
+; Algorithms:		None.
+;
+; Data Structures:	None.
+;
+; Limitations:		None.
+;
+; Known Bugs:		None.
+;
+; Special Notes:	None.
+;
+; Revision History: 2016-02-05 - Tim Menninger: Outline Created
+;
+
+void display_title (char far *artist) {
+	// Clear the display.
+	for (int i = 0; i < DISPLAY_WIDTH; i++) {
+		Write DISP_BLANK_CODE at display offset (OFFSET_DISP_TITLE + i);
+	}
+	
+	// Display each character in the artist until NULL found.
+	for (int i = 0; i < DISPLAY_WIDTH; i++) {
+		// If NULL reached, stop displaying.
+		if (*(artist + i) == 0) {
+			break;
+		}
+		
+		Write ASCIIToDisplay[*(artist + i)] at display offset
+											(OFFSET_DISP_TITLE + i);
+	}
+	
+	return;
+}
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; ASCIIToDisplay
+;
+; Description:		Table indexed by ASCII characters to get the code to be
+;					written to the display to show that character.
+;
