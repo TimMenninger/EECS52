@@ -71,7 +71,7 @@ GenerateClassCluster=0
 DocumentUniqueId=ELQEJXMR
 
 [Document3]
-DocumentPath=Misc\AS5115.SchLib
+DocumentPath=Libs\eecs52_Tim.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -85,10 +85,10 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=RGKWBRJO
+DocumentUniqueId=
 
 [Document4]
-DocumentPath=Misc\eecs52_Tim.PcbLib
+DocumentPath=Libs\eecs52_Tim.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -102,24 +102,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=TRLQHKNE
-
-[Document5]
-DocumentPath=Misc\eecs52_Tim.SchLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=PEBCKHPG
+DocumentUniqueId=
 
 [Configuration1]
 Name=Default Configuration

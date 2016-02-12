@@ -94,7 +94,8 @@
   <signal id="TT40" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
     <conn.ptr conn.id="TT37">CPU_ALE</conn.ptr>
     <waveform id="TT39" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT41" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT41" driven="1" s="0" show.uncertainty="ALL"/>
+      <e id="TT127" driven="1" s="1" show.uncertainty="ALL" te="-25000"/>
       <e id="TT42" driven="1" s="0" show.uncertainty="ALL" te="59484"/>
       <e id="TT43" driven="1" s="1" show.uncertainty="ALL" te="312636"/>
     </waveform>
@@ -259,7 +260,7 @@
     </width>
   </signal>
   <edge.relationships>
-    <relationship id="TT74" containing.signal.ptr="TT40" show="1" slot="1" type="delay" user.created="0">
+    <relationship id="TT74" containing.signal.ptr="TT40" show="1" slot="2" type="delay" user.created="0">
       <two.edge source.e="TT73" target.e="TT42"/>
       <relationship.label label.type="text">T<sub>CHLL</sub></relationship.label>
     </relationship>
@@ -371,9 +372,13 @@
       <two.edge source.e="TT122" target.e="TT169"/>
       <relationship.label label.type="text">t<sub>PHZ</sub></relationship.label>
     </relationship>
+    <relationship id="TT128" containing.signal.ptr="TT40" show="1" slot="1" type="measure" user.created="0">
+      <two.edge source.e="TT127" target.e="TT42"/>
+      <relationship.label label.type="text">T<sub>LHLL</sub></relationship.label>
+    </relationship>
   </edge.relationships>
   <view.group>
-    <view begin.time="-10000" end.time="400000"/>
+    <view begin.time="-120000" end.time="290000"/>
   </view.group>
   <font.list>
     <font id="TT1" color="ff000080" face.name="Lucida Sans" point.size="11"/>
