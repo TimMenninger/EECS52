@@ -1,0 +1,136 @@
+
+[Device]
+Family = plsi1k;
+PartNumber = ispLSI1016-110LJ44;
+Package = 44PLCC;
+PartType = ispLSI1016;
+Speed = 110;
+Operating_condition = COM;
+Status = Production;
+
+[Revision]
+Parent = lc1k.lci;
+DATE = 2002;
+TIME = 0:00:00;
+Source_Format = ABEL_Schematic;
+Synthesis = Synplify;
+
+[Ignore Assignments]
+
+[Clear Assignments]
+
+[Backannotate Assignments]
+
+[Global Constraints]
+
+[Location Assignments]
+layer = OFF;
+DSPCS = pin, 3, -, -;
+DATAE = pin, 4, -, -;
+MCS0 = pin, 9, -, -;
+Clock = pin, 11, -, -;
+PCS1 = pin, 15, -, -;
+AD0 = pin, 16, -, -;
+SAB = pin, 21, -, -;
+IDECS1 = pin, 22, -, -;
+DIR = pin, 25, -, -;
+SCLK = pin, 26, -, -;
+WR = pin, 27, -, -;
+RD = pin, 28, -, -;
+PCS5 = pin, 29, -, -;
+IDEE = pin, 31, -, -;
+IDEE2 = pin, 32, -, -;
+SRDY = pin, 37, -, -;
+ORD = pin, 38, -, -;
+RESET = pin, 39, -, -;
+IDECS = pin, 40, -, -;
+DA2 = pin, 41, -, -;
+DA1 = pin, 42, -, -;
+DA0 = pin, 43, -, -;
+POTCS = pin, 44, -, -;
+
+[Group Assignments]
+layer = OFF;
+
+[Resource Reservations]
+layer = OFF;
+
+[Fitter Report Format]
+
+[Power]
+
+[Source Constraint Option]
+
+[Fast Bypass]
+
+[OSM Bypass]
+
+[Input Registers]
+
+[Netlist/Delay Format]
+
+[IO Types]
+layer = OFF;
+
+[Pullup]
+
+[Slewrate]
+
+[Region]
+
+[Timing Constraints]
+
+[HSI Attributes]
+
+[Input Delay]
+
+[opt global constraints list]
+
+[Explorer User Settings]
+
+[Pin attributes list]
+
+[global constraints list]
+
+[Global Constraints Process Update]
+
+[pin lock limitation]
+
+[LOCATION ASSIGNMENTS LIST]
+
+[RESOURCE RESERVATIONS LIST]
+
+[individual constraints list]
+
+[Attributes list setting]
+
+[Timing Analyzer]
+
+[PLL Assignments]
+
+[Dual Function Macrocell]
+
+[Explorer Results]
+
+[VHDL synplify constraints]
+
+[VHDL spectrum constraints]
+
+[verilog synplify constraints]
+
+[verilog spectrum constraints]
+
+[VHDL synplify constraints list]
+
+[VHDL spectrum constraints list]
+
+[verilog synplify constraints list]
+
+[verilog spectrum constraints list]
+
+[symbol/module attribute]
+layer = OFF;
+
+[symbol/module attribute list]
+
+[Node attribute list]

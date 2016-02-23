@@ -1,0 +1,18 @@
+Tpd Path Report:
+---------------
+
+Design Name: JUKEBOX
+Part Name: ispLSI1016-110LJ44
+  This report contains the path delays between the
+  primary inputs and primary outputs of the design
+  with no register in the path.
+
+Tpd Paths:
+
+  Source                   Destination              Path Delay
+  (Input)                  (Output)                   [ns]
+==------------------------------------------------------------------------------
+  RESET                    DA2                      13.60 
+  AD0                      DA2                      13.40 
+  PCS1                     DA2                      13.20 
+==----------------------------------------------------------------------------

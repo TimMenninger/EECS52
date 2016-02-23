@@ -1,0 +1,29 @@
+// PART: 	ispLSI1016-110LJ44
+// FORMAT: 	PINNAME		PINTYPE	LOCK	PULLUP	SLOWSLEW	OPENDRAIN	OUTDELAY	VOLTAGE	CRIT
+		DSPCS			-		3	-1		-1		-1		-1		-1		-1
+		DATAE			-		4	-1		-1		-1		-1		-1		-1
+		MCS0			-		9	-1		-1		-1		-1		-1		-1
+		Clock			-		11	-1		-1		-1		-1		-1		-1
+		PCS1			-		15	-1		-1		-1		-1		-1		-1
+		AD0			-		16	-1		-1		-1		-1		-1		-1
+		SAB			-		21	-1		-1		-1		-1		-1		-1
+		IDECS1		-		22	-1		-1		-1		-1		-1		-1
+		DIR			-		25	-1		-1		-1		-1		-1		-1
+		SCLK			-		26	-1		-1		-1		-1		-1		-1
+		WR			-		27	-1		-1		-1		-1		-1		-1
+		RD			-		28	-1		-1		-1		-1		-1		-1
+		PCS5			-		29	-1		-1		-1		-1		-1		-1
+		IDEE			-		31	-1		-1		-1		-1		-1		-1
+		IDEE2			-		32	-1		-1		-1		-1		-1		-1
+		SRDY			-		37	-1		-1		-1		-1		-1		-1
+		ORD			-		38	-1		-1		-1		-1		-1		-1
+		RESET			-		39	-1		-1		-1		-1		-1		-1
+		IDECS			-		40	-1		-1		-1		-1		-1		-1
+		DA2			-		41	-1		-1		-1		-1		-1		-1
+		DA1			-		42	-1		-1		-1		-1		-1		-1
+		DA0			-		43	-1		-1		-1		-1		-1		-1
+		POTCS			-		44	-1		-1		-1		-1		-1		-1
+
+// FORMAT: 	NETNAME		CLK		PRESERVE	ECP	GROUP		XOR	ELP	ETP
+
+// FORMAT: 	SYMNAME		PROTECT	REGTYPE

@@ -1,0 +1,66 @@
+Setup and Hold Report:
+---------------------
+
+Design Name: JUKEBOX
+Part Name: ispLSI1016-110LJ44
+
+  This report lists the setup/hold requirements for all the boundary
+  registers in the design
+
+
+Required Setup and Hold
+
+  Register Name         Data                Clock               Setup(ns)      Hold(ns)
+==-------------------------------------------------------------------------------------
+  GLB_ST2_PIN           MCS0                CLOCK               6.50           -2.50   
+  GLB_ST2_PIN           WR                  CLOCK               7.00           -3.00   
+  GLB_ST2_PIN           RESET               CLOCK               7.00           -3.00   
+  GLB_ST2_PIN           PCS1                CLOCK               6.60           -2.60   
+  GLB_ST2_PIN           AD0                 CLOCK               6.40           -2.80   
+  GLB_ST2_PIN           RD                  CLOCK               7.00           -3.40   
+  GLB_ST2_PIN           PCS5                CLOCK               7.00           -3.00   
+  GLB_ST1_PIN           WR                  CLOCK               6.60           -3.00   
+  GLB_ST1_PIN           RESET               CLOCK               7.00           -3.00   
+  GLB_ST1_PIN           PCS1                CLOCK               6.60           -3.00   
+  GLB_ST1_PIN           AD0                 CLOCK               6.80           -3.20   
+  GLB_ST1_PIN           RD                  CLOCK               6.60           -3.00   
+  GLB_ST1_PIN           PCS5                CLOCK               6.60           -3.00   
+  GLB_ST0_PIN           WR                  CLOCK               6.60           -3.00   
+  GLB_ST0_PIN           RESET               CLOCK               7.00           -3.00   
+  GLB_ST0_PIN           PCS1                CLOCK               6.20           -2.60   
+  GLB_ST0_PIN           AD0                 CLOCK               6.40           -2.80   
+  GLB_ST0_PIN           RD                  CLOCK               7.00           -3.40   
+  GLB_ST0_PIN           PCS5                CLOCK               7.00           -3.00   
+  GLB_ST3_PIN           MCS0                CLOCK               6.50           -2.50   
+  GLB_ST3_PIN           WR                  CLOCK               7.00           -3.00   
+  GLB_ST3_PIN           RESET               CLOCK               7.00           -3.00   
+  GLB_ST3_PIN           PCS1                CLOCK               6.20           -2.60   
+  GLB_ST3_PIN           AD0                 CLOCK               6.80           -2.80   
+  GLB_ST3_PIN           RD                  CLOCK               7.00           -3.40   
+  GLB_ST3_PIN           PCS5                CLOCK               7.00           -3.00   
+  GLB_...art2 *1        WR                  CLOCK               7.00           -3.00   
+  GLB_...art2 *1        RESET               CLOCK               7.00           -3.00   
+  GLB_...art2 *1        RD                  CLOCK               6.60           -3.00   
+  GLB_...art2 *1        PCS5                CLOCK               7.00           -3.00   
+  GLB_...art1 *2        WR                  CLOCK               7.00           -3.00   
+  GLB_...art1 *2        RESET               CLOCK               7.00           -3.00   
+  GLB_...art1 *2        RD                  CLOCK               6.60           -3.00   
+  GLB_...art1 *2        PCS5                CLOCK               7.00           -3.00   
+  GLB_RDWR_PIN          WR                  CLOCK               6.10           -2.50   
+  GLB_RDWR_PIN          RESET               CLOCK               6.10           -2.50   
+  GLB_RDWR_PIN          RD                  CLOCK               6.10           -2.50   
+  GLB_RDWR_PIN          PCS5                CLOCK               6.10           -2.50   
+  GLB_ST4_PIN           MCS0                CLOCK               4.40           -0.40   
+  GLB_ST4_PIN           WR                  CLOCK               4.90           -1.30   
+  GLB_ST4_PIN           RESET               CLOCK               4.90           -0.90   
+  GLB_ST4_PIN           AD0                 CLOCK               4.70           -0.70   
+  GLB_ST4_PIN           RD                  CLOCK               4.90           -1.30   
+  GLB_ST4_PIN           PCS5                CLOCK               4.50           -0.90   
+==-----------------------------------------------------------------------------------
+
+Index Name Table
+==----------------------------------------
+    *1  GLB_ST5_PIN_part2
+    *2  GLB_ST5_PIN_part1
+==----------------------------------------
+

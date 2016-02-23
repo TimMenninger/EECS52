@@ -1,0 +1,104 @@
+Frequency Analysis Report:
+-------------------------
+
+Design Name: JUKEBOX
+Part Name: ispLSI1016-110LJ44
+
+This report contains the maximum frequency at which the design
+can be operated. It also lists the path that determines the
+maximum frequency and the number of GLB levels. 
+The remaining internal register paths and their frequencies
+are also listed, if the source and the registers are driven
+by the same reference clock.
+
+
+Maximum Operating Frequency:    91 MHz
+
+The clock period is 11.00.
+Clock period = path delay + clock-to-output delay + setup time
+  path delay:              8.80
+  clock-to-output delay:   0.90
+  setup time:              1.30
+
+
+The following path determines the frequency: 
+
+  Startpoint: GLB_ST1_PIN/Q0
+              (edge-triggered flip-flop)
+  Endpoint: GLB_ST0_PIN/D0
+              (edge-triggered flip-flop)
+  No. of GLB Levels: 1
+
+Internal Register  Paths and Frequencies:
+
+  Source              Source                  Destination       Destination             Clock     Frequency   # of GLB     
+  Reference           Register                Reference         Register                Period      [MHz]     Levels       
+  Clock               Name                    Clock             Name                     [ns]     
+==----------------------------------------------------------------------------------------------------------------
+  CLOCK               GLB_ST1_PIN/Q0          CLOCK             GLB_ST0_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST2_PIN/Q0          CLOCK             GLB_ST0_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST4_PIN/Q0          CLOCK             GLB_ST0_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST0_PIN/Q0          CLOCK             GLB_ST1_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST2_PIN/Q0          CLOCK             GLB_ST1_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST3_PIN/Q0          CLOCK             GLB_ST1_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST4_PIN/Q0          CLOCK             GLB_ST1_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST0_PIN/Q0          CLOCK             GLB_ST2_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST1_PIN/Q0          CLOCK             GLB_ST2_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST3_PIN/Q0          CLOCK             GLB_ST2_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST4_PIN/Q0          CLOCK             GLB_ST2_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST0_PIN/Q0          CLOCK             GLB_ST3_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST1_PIN/Q0          CLOCK             GLB_ST3_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST2_PIN/Q0          CLOCK             GLB_ST3_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST4_PIN/Q0          CLOCK             GLB_ST3_PIN/D0           11.00     91        1    
+  CLOCK               GLB_ST0_PIN/Q0          CLOCK             GLB_...art1 *1/D0        11.00     91        1    
+  CLOCK               GLB_ST1_PIN/Q0          CLOCK             GLB_...art1 *1/D0        11.00     91        1    
+  CLOCK               GLB_ST2_PIN/Q0          CLOCK             GLB_...art1 *1/D0        11.00     91        1    
+  CLOCK               GLB_ST3_PIN/Q0          CLOCK             GLB_...art1 *1/D0        11.00     91        1    
+  CLOCK               GLB_ST4_PIN/Q0          CLOCK             GLB_...art1 *1/D0        11.00     91        1    
+  CLOCK               GLB_ST0_PIN/Q0          CLOCK             GLB_...art2 *2/D0        11.00     91        1    
+  CLOCK               GLB_ST1_PIN/Q0          CLOCK             GLB_...art2 *2/D0        11.00     91        1    
+  CLOCK               GLB_ST2_PIN/Q0          CLOCK             GLB_...art2 *2/D0        11.00     91        1    
+  CLOCK               GLB_ST3_PIN/Q0          CLOCK             GLB_...art2 *2/D0        11.00     91        1    
+  CLOCK               GLB_ST4_PIN/Q0          CLOCK             GLB_...art2 *2/D0        11.00     91        1    
+  CLOCK               GLB_ST3_PIN/Q0          CLOCK             GLB_ST0_PIN/D0           10.60     94        1    
+  CLOCK               GLB_ST0_PIN/Q0          CLOCK             GLB_RDWR_PIN/D0          10.10     99        1    
+  CLOCK               GLB_ST1_PIN/Q0          CLOCK             GLB_RDWR_PIN/D0          10.10     99        1    
+  CLOCK               GLB_ST2_PIN/Q0          CLOCK             GLB_RDWR_PIN/D0          10.10     99        1    
+  CLOCK               GLB_ST4_PIN/Q0          CLOCK             GLB_RDWR_PIN/D0          10.10     99        1    
+  CLOCK               GLB_...art1 *1/Q0       CLOCK             GLB_ST0_PIN/D0           10.10     99        1    
+  CLOCK               GLB_...art1 *1/Q0       CLOCK             GLB_ST1_PIN/D0           10.10     99        1    
+  CLOCK               GLB_...art1 *1/Q0       CLOCK             GLB_ST2_PIN/D0           10.10     99        1    
+  CLOCK               GLB_...art1 *1/Q0       CLOCK             GLB_ST3_PIN/D0           10.10     99        1    
+  CLOCK               GLB_...art1 *1/Q0       CLOCK             GLB_RDWR_PIN/D0          9.20      109       1    
+  CLOCK               GLB_ST0_PIN/Q0          CLOCK             GLB_ST0_PIN/D0           8.90      112       1    
+  CLOCK               GLB_ST1_PIN/Q0          CLOCK             GLB_ST1_PIN/D0           8.90      112       1    
+  CLOCK               GLB_ST2_PIN/Q0          CLOCK             GLB_ST2_PIN/D0           8.90      112       1    
+  CLOCK               GLB_ST3_PIN/Q0          CLOCK             GLB_ST3_PIN/D0           8.90      112       1    
+  CLOCK               GLB_ST0_PIN/Q0          CLOCK             GLB_ST4_PIN/D0           8.90      112       1    
+  CLOCK               GLB_ST1_PIN/Q0          CLOCK             GLB_ST4_PIN/D0           8.90      112       1    
+  CLOCK               GLB_ST2_PIN/Q0          CLOCK             GLB_ST4_PIN/D0           8.90      112       1    
+  CLOCK               GLB_ST3_PIN/Q0          CLOCK             GLB_ST4_PIN/D0           8.90      112       1    
+  CLOCK               GLB_...art2 *2/Q0       CLOCK             GLB_...art1 *1/D0        8.90      112       1    
+  CLOCK               GLB_...art2 *2/Q0       CLOCK             GLB_...art2 *2/D0        8.90      112       1    
+  CLOCK               GLB_ST3_PIN/Q0          CLOCK             GLB_RDWR_PIN/D0          8.00      125       1    
+  CLOCK               GLB_...art1 *1/Q0       CLOCK             GLB_ST4_PIN/D0           8.00      125       1    
+  CLOCK               GLB_ST4_PIN/Q0          CLOCK             GLB_ST4_PIN/D0           6.40      156       1    
+==-------------------------------------------------------------------------------------------
+
+Index Name Table
+==----------------------------------------
+    *1  GLB_ST5_PIN_part1
+    *2  GLB_ST5_PIN_part2
+==----------------------------------------
+
+Information for flip-flop:
+
+  Global reset-to-output delay:   1.70
+  Clock-to-output delay:          0.90
+  User reset-to-output delay:     1.70
+  Data-to-output delay:           0.00
+  Setup time:                     1.30
+  Hold time:                      2.30
+  Pulse-width time:               4.00
+
+

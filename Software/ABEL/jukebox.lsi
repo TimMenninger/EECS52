@@ -1,0 +1,25 @@
+[LOCATION ASSIGNMENTS]
+DSPCS=pin,3,-,-;
+DATAE=pin,4,-,-;
+MCS0=pin,9,-,-;
+Clock=pin,11,-,-;
+PCS1=pin,15,-,-;
+AD0=pin,16,-,-;
+SAB=pin,21,-,-;
+IDECS1=pin,22,-,-;
+DIR=pin,25,-,-;
+SCLK=pin,26,-,-;
+WR=pin,27,-,-;
+RD=pin,28,-,-;
+PCS5=pin,29,-,-;
+IDEE=pin,31,-,-;
+IDEE2=pin,32,-,-;
+SRDY=pin,37,-,-;
+ORD=pin,38,-,-;
+RESET=pin,39,-,-;
+IDECS=pin,40,-,-;
+DA2=pin,41,-,-;
+DA1=pin,42,-,-;
+DA0=pin,43,-,-;
+POTCS=pin,44,-,-;
+

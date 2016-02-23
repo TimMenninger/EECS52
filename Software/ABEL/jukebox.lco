@@ -1,0 +1,93 @@
+[DEVICE]
+Family = plsi1k;
+PartNumber = ispLSI1016-110LJ44;
+PartType = ispLSI1016;
+Package = 44PLCC;
+Speed = 110;
+Operating_condition = COM;
+Default_Device_Io_Types = LVCMOS50,-;
+
+[REVISION]
+RCS = ;
+Parent = lc1k.lci;
+Design = jukebox;
+DATE = 02/17/2016;
+TIME = 14:04:10;
+Source_Format = ;
+Type = ;
+Pre_Fit_Time = ;
+
+[IGNORE ASSIGNMENTS]
+
+[CLEAR ASSIGNMENTS]
+
+[BACKANNOTATE ASSIGNMENTS]
+
+[GLOBAL CONSTRAINTS]
+Security = Off;
+PULLUP = Up;
+Y1_AS_RESET = On;
+ISP = On;
+ISP_EXCEPT_Y2 = Off;
+
+[FITTER REPORT FORMAT]
+
+[LOCATION ASSIGNMENTS]
+WR = pin, 27, -, -, -;
+RESET = pin, 39, -, -, -;
+RD = pin, 28, -, -, -;
+PCS5 = pin, 29, -, -, -;
+PCS1 = pin, 15, -, -, -;
+MCS0 = pin, 9, -, -, -;
+CLOCK = pin, 11, -, -, -;
+AD0 = pin, 16, -, -, -;
+ST5 = pin, 30, -, -, -;
+ST4 = pin, 19, -, -, -;
+ST3 = pin, 20, -, -, -;
+ST2 = pin, 6, -, -, -;
+ST1 = pin, 5, -, -, -;
+ST0 = pin, 10, -, -, -;
+SRDY = pin, 37, -, -, -;
+SCLK = pin, 26, -, -, -;
+SAB = pin, 21, -, -, -;
+RDWR = pin, 18, -, -, -;
+POTCS = pin, 44, -, -, -;
+ORD = pin, 38, -, -, -;
+IDEE2 = pin, 32, -, -, -;
+IDEE = pin, 31, -, -, -;
+IDECS1 = pin, 22, -, -, -;
+IDECS = pin, 40, -, -, -;
+DSPCS = pin, 3, -, -, -;
+DIR = pin, 25, -, -, -;
+DATAE = pin, 4, -, -, -;
+DA2 = pin, 41, -, -, -;
+DA1 = pin, 42, -, -, -;
+DA0 = pin, 43, -, -, -;
+
+[PULLUP]
+Up = WR, RESET, RD, PCS5, PCS1, MCS0, CLOCK, AD0, ST5, ST4, ST3, ST2, ST1, ST0, SRDY, SCLK, SAB, RDWR, POTCS, ORD, IDEE2, IDEE, IDECS1, IDECS, DSPCS, DIR, DATAE, DA2, DA1, DA0; 
+
+[SLEWRATE]
+FAST = ST5, ST4, ST3, ST2, ST1, ST0, SRDY, SCLK, SAB, RDWR, POTCS, ORD, IDEE2, IDEE, IDECS1, IDECS, DSPCS, DIR, DATAE, DA2, DA1, DA0; 
+
+[IO TYPES]
+
+[OSM Bypass]
+
+[CLK]
+CLK0 = CLOCKX; 
+
+[PTSABYPASS]
+Bypass = SRDY_D, ST4_PIN; 
+
+[Fitter Results]
+I/O_Pin_Util = 90;
+I/O_Pin = 29;
+Logic_PT_Util = 32;
+Logic_PT = 103;
+Logic_MC_Util = 35;
+Logic_MC = 23;
+Occupied_PT_Util = 3;
+Occupied_PT = 12;
+GLB_input_Util = 37;
+GLB_input = 109;

@@ -1,0 +1,6349 @@
+(DELAYFILE
+  (SDFVERSION "2.1")
+  (DESIGN "jukebox")
+  (DATE "Wed Feb 17 14:04:12 2016")
+  (VENDOR "Lattice Semiconductor Inc.")
+  (PROGRAM "SDFWRITER")
+  (VERSION "v2.0")
+  (DIVIDER .)
+  (VOLTAGE 5:5:5)
+  (PROCESS "worst")
+  (TEMPERATURE 25:25:25)
+  (TIMESCALE 100ps)
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A1_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_A1_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND9")
+    (INSTANCE GLB_A1_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A8 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND10")
+    (INSTANCE GLB_A1_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A9 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A8 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF74")
+    (INSTANCE GLB_ST4_PIN_D0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (19:0:19) (19:0:19))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (19:0:19) (19:0:19))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (19:0:19) (19:0:19))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (19:0:19) (19:0:19))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A1_CLK)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A1_IN16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A1_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A1_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A1_IN11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A1_IN10)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGDFFR")
+    (INSTANCE GLB_ST4_PIN)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH (posedge CLK) Q0 (9:0:9) (9:0:9))
+       )
+       (ABSOLUTE
+         (IOPATH (posedge CD) Q0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH (negedge RNESET) Q0 (17:0:17) (17:0:17))
+       )
+    )
+    (TIMINGCHECK
+       (SETUP D0 (posedge CLK) (13:0:13))
+       (HOLD D0 (posedge CLK) (23:0:23))
+       (WIDTH  (posedge CLK) (40:0:40))
+       (WIDTH  (negedge CLK) (40:0:40))
+       (RECOVERY
+         (posedge CLK) (negedge CD) (0:0:0)
+       )
+       (RECOVERY
+         (posedge CLK) (posedge RNESET) (0:0:0)
+       )
+       (RECOVERY
+         (negedge CD) (posedge CLK) (0:0:0)
+       )
+       (RECOVERY
+         (posedge RNESET) (posedge CLK) (0:0:0)
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A1_IN15B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A1_IN14B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A1_IN13B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A1_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A1_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A1_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A1_IN2B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A1_IN1B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A2_P19)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A2_P18)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A2_P17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND3")
+    (INSTANCE GLB_A2_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_A2_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_A2_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_A2_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_A2_P8)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_A2_P4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_G3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_G2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_G1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_G0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF77")
+    (INSTANCE GLB_A2_F5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_IDECS1_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_P4_xa)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (28:0:28) (28:0:28))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_AND_1300)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_P8_xa)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (28:0:28) (28:0:28))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_SCLK_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_GND_1342)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_IN15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_IN4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A2_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_A2_X3O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_A2_X2O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_A2_X1O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_A2_X0O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A2_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A2_IN15B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A2_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A2_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A2_IN4B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A2_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A3_P17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND3")
+    (INSTANCE GLB_A3_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_A3_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A3_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A3_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_A3_P12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_A3_P11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_A3_P10)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_A3_P9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_A3_P8)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_G3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_G2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_G1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF75")
+    (INSTANCE GLB_A3_F5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF75")
+    (INSTANCE GLB_A3_F4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_CLK)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_OR_1321)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_IN16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_IN15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A3_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_A3_X2O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_ST5_PIN_part1_D0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_ST5_PIN_part2_D0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGDFFR")
+    (INSTANCE GLB_ST5_PIN_part1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH (posedge CLK) Q0 (9:0:9) (9:0:9))
+       )
+       (ABSOLUTE
+         (IOPATH (posedge CD) Q0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH (negedge RNESET) Q0 (17:0:17) (17:0:17))
+       )
+    )
+    (TIMINGCHECK
+       (SETUP D0 (posedge CLK) (13:0:13))
+       (HOLD D0 (posedge CLK) (23:0:23))
+       (WIDTH  (posedge CLK) (40:0:40))
+       (WIDTH  (negedge CLK) (40:0:40))
+       (RECOVERY
+         (posedge CLK) (negedge CD) (0:0:0)
+       )
+       (RECOVERY
+         (posedge CLK) (posedge RNESET) (0:0:0)
+       )
+       (RECOVERY
+         (negedge CD) (posedge CLK) (0:0:0)
+       )
+       (RECOVERY
+         (posedge RNESET) (posedge CLK) (0:0:0)
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGDFFR")
+    (INSTANCE GLB_ST5_PIN_part2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH (posedge CLK) Q0 (9:0:9) (9:0:9))
+       )
+       (ABSOLUTE
+         (IOPATH (posedge CD) Q0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH (negedge RNESET) Q0 (17:0:17) (17:0:17))
+       )
+    )
+    (TIMINGCHECK
+       (SETUP D0 (posedge CLK) (13:0:13))
+       (HOLD D0 (posedge CLK) (23:0:23))
+       (WIDTH  (posedge CLK) (40:0:40))
+       (WIDTH  (negedge CLK) (40:0:40))
+       (RECOVERY
+         (posedge CLK) (negedge CD) (0:0:0)
+       )
+       (RECOVERY
+         (posedge CLK) (posedge RNESET) (0:0:0)
+       )
+       (RECOVERY
+         (negedge CD) (posedge CLK) (0:0:0)
+       )
+       (RECOVERY
+         (posedge RNESET) (posedge CLK) (0:0:0)
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN16B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN15B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN10B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN4B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A3_IN2B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A4_P19)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A4_P18)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A4_P17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND3")
+    (INSTANCE GLB_A4_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_A4_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_A4_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_A4_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A4_G0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF77")
+    (INSTANCE GLB_A4_F5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_IDEE2_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A4_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A4_IN4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A4_IN15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A4_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A4_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A4_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_A4_X3O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A4_IN15B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A4_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A4_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A4_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A4_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A4_IN4B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_A6_P19)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_A6_P18)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_A6_P17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_A6_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_A6_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND9")
+    (INSTANCE GLB_A6_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A8 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND10")
+    (INSTANCE GLB_A6_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A9 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A8 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_A6_P12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_A6_P11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_A6_P10)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_A6_P9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_A6_P8)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND10")
+    (INSTANCE GLB_A6_P0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A9 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A8 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF72")
+    (INSTANCE GLB_A6_G2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (7:0:7) (7:0:7))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_G0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF77")
+    (INSTANCE GLB_A6_F5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF75")
+    (INSTANCE GLB_A6_F4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_CLK)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_P0_xa)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (28:0:28) (28:0:28))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN10)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_RDWR_PIN_D0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_ST3_PIN_D0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGDFFR")
+    (INSTANCE GLB_RDWR_PIN)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH (posedge CLK) Q0 (9:0:9) (9:0:9))
+       )
+       (ABSOLUTE
+         (IOPATH (posedge CD) Q0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH (negedge RNESET) Q0 (17:0:17) (17:0:17))
+       )
+    )
+    (TIMINGCHECK
+       (SETUP D0 (posedge CLK) (13:0:13))
+       (HOLD D0 (posedge CLK) (23:0:23))
+       (WIDTH  (posedge CLK) (40:0:40))
+       (WIDTH  (negedge CLK) (40:0:40))
+       (RECOVERY
+         (posedge CLK) (negedge CD) (0:0:0)
+       )
+       (RECOVERY
+         (posedge CLK) (posedge RNESET) (0:0:0)
+       )
+       (RECOVERY
+         (negedge CD) (posedge CLK) (0:0:0)
+       )
+       (RECOVERY
+         (posedge RNESET) (posedge CLK) (0:0:0)
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGDFFR")
+    (INSTANCE GLB_ST3_PIN)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH (posedge CLK) Q0 (9:0:9) (9:0:9))
+       )
+       (ABSOLUTE
+         (IOPATH (posedge CD) Q0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH (negedge RNESET) Q0 (17:0:17) (17:0:17))
+       )
+    )
+    (TIMINGCHECK
+       (SETUP D0 (posedge CLK) (13:0:13))
+       (HOLD D0 (posedge CLK) (23:0:23))
+       (WIDTH  (posedge CLK) (40:0:40))
+       (WIDTH  (negedge CLK) (40:0:40))
+       (RECOVERY
+         (posedge CLK) (negedge CD) (0:0:0)
+       )
+       (RECOVERY
+         (posedge CLK) (posedge RNESET) (0:0:0)
+       )
+       (RECOVERY
+         (negedge CD) (posedge CLK) (0:0:0)
+       )
+       (RECOVERY
+         (posedge RNESET) (posedge CLK) (0:0:0)
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN0B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN10B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN14B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN16B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN15B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN13B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN4B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_A6_IN2B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B1_P18)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B1_P17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B1_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B1_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B1_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B1_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND3")
+    (INSTANCE GLB_B1_P12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B1_P11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B1_P10)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B1_P9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B1_P8)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B1_P7)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B1_P6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B1_P3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B1_P2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B1_P1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_G3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_G2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_G1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_G0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF76")
+    (INSTANCE GLB_B1_F5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF75")
+    (INSTANCE GLB_B1_F4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF72")
+    (INSTANCE GLB_B1_F1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF73")
+    (INSTANCE GLB_B1_F0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_IDECS_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_DA0_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_ORD_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_DSPCS_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_IN4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_IN11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B1_IN0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_B1_X3O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_B1_X2O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_B1_X1O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_B1_X0O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B1_IN0B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B1_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B1_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B1_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B1_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B1_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B1_IN4B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B2_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B2_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B2_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF73")
+    (INSTANCE GLB_B2_F3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (19:0:19) (19:0:19))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (19:0:19) (19:0:19))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (19:0:19) (19:0:19))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_SRDY_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B2_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B2_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B2_IN0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B2_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B2_IN11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B2_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B2_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B2_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B2_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B2_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B2_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B2_IN0B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND9")
+    (INSTANCE GLB_B3_P18)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A8 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_B3_P17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B3_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B3_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B3_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_B3_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B3_G0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF76")
+    (INSTANCE GLB_B3_F5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B3_CLK)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B3_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B3_IN11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B3_IN17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B3_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B3_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B3_IN2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_ST0_PIN_D0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGDFFR")
+    (INSTANCE GLB_ST0_PIN)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH (posedge CLK) Q0 (9:0:9) (9:0:9))
+       )
+       (ABSOLUTE
+         (IOPATH (posedge CD) Q0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH (negedge RNESET) Q0 (17:0:17) (17:0:17))
+       )
+    )
+    (TIMINGCHECK
+       (SETUP D0 (posedge CLK) (13:0:13))
+       (HOLD D0 (posedge CLK) (23:0:23))
+       (WIDTH  (posedge CLK) (40:0:40))
+       (WIDTH  (negedge CLK) (40:0:40))
+       (RECOVERY
+         (posedge CLK) (negedge CD) (0:0:0)
+       )
+       (RECOVERY
+         (posedge CLK) (posedge RNESET) (0:0:0)
+       )
+       (RECOVERY
+         (negedge CD) (posedge CLK) (0:0:0)
+       )
+       (RECOVERY
+         (posedge RNESET) (posedge CLK) (0:0:0)
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN17B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN15B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN14B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN5B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN2B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN13B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN4B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B3_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_B4_P19)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_B4_P18)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_B4_P17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_B4_P16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_B4_P15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND9")
+    (INSTANCE GLB_B4_P14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A8 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND10")
+    (INSTANCE GLB_B4_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A9 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A8 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B4_P3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B4_P2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_B4_P1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND7")
+    (INSTANCE GLB_B4_P0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF72")
+    (INSTANCE GLB_B4_G0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (7:0:7) (7:0:7))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF77")
+    (INSTANCE GLB_B4_F5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A6 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF74")
+    (INSTANCE GLB_B4_F0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_CLK)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN17)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B4_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_ST2_PIN_D0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGDFFR")
+    (INSTANCE GLB_ST2_PIN)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH (posedge CLK) Q0 (9:0:9) (9:0:9))
+       )
+       (ABSOLUTE
+         (IOPATH (posedge CD) Q0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH (negedge RNESET) Q0 (17:0:17) (17:0:17))
+       )
+    )
+    (TIMINGCHECK
+       (SETUP D0 (posedge CLK) (13:0:13))
+       (HOLD D0 (posedge CLK) (23:0:23))
+       (WIDTH  (posedge CLK) (40:0:40))
+       (WIDTH  (negedge CLK) (40:0:40))
+       (RECOVERY
+         (posedge CLK) (negedge CD) (0:0:0)
+       )
+       (RECOVERY
+         (posedge CLK) (posedge RNESET) (0:0:0)
+       )
+       (RECOVERY
+         (negedge CD) (posedge CLK) (0:0:0)
+       )
+       (RECOVERY
+         (posedge RNESET) (posedge CLK) (0:0:0)
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN4B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN5B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN14B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN1B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN15B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN17B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN13B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN2B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B4_IN0B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND3")
+    (INSTANCE GLB_B5_P13)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B5_P12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B5_P11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_B5_P10)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_B5_P9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND9")
+    (INSTANCE GLB_B5_P8)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A8 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A7 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B5_P3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B5_P2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND8")
+    (INSTANCE GLB_B5_P1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A7 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A6 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A5 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_G3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_G1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF75")
+    (INSTANCE GLB_B5_F4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF73")
+    (INSTANCE GLB_B5_F0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_CLK)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_P13_xa)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (28:0:28) (28:0:28))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_DA2_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_IN14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_IN2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_IN0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_IN16)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B5_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_ST1_PIN_D0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_B5_X0O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGDFFR")
+    (INSTANCE GLB_ST1_PIN)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH (posedge CLK) Q0 (9:0:9) (9:0:9))
+       )
+       (ABSOLUTE
+         (IOPATH (posedge CD) Q0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH (negedge RNESET) Q0 (17:0:17) (17:0:17))
+       )
+    )
+    (TIMINGCHECK
+       (SETUP D0 (posedge CLK) (13:0:13))
+       (HOLD D0 (posedge CLK) (23:0:23))
+       (WIDTH  (posedge CLK) (40:0:40))
+       (WIDTH  (negedge CLK) (40:0:40))
+       (RECOVERY
+         (posedge CLK) (negedge CD) (0:0:0)
+       )
+       (RECOVERY
+         (posedge CLK) (posedge RNESET) (0:0:0)
+       )
+       (RECOVERY
+         (negedge CD) (posedge CLK) (0:0:0)
+       )
+       (RECOVERY
+         (posedge RNESET) (posedge CLK) (0:0:0)
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN4B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN5B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN16B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN15B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN14B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN13B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN2B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B5_IN0B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B6_P12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B6_P11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B6_P10)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B6_P9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B6_P8)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B6_P3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B6_P2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B6_P1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B6_P0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF72")
+    (INSTANCE GLB_B6_G2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (7:0:7) (7:0:7))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF75")
+    (INSTANCE GLB_B6_F4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF74")
+    (INSTANCE GLB_B6_F0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_DATAE_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B6_IN11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B6_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B6_IN0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B6_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B6_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B6_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_B6_X1O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B6_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B6_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B6_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B6_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B6_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B6_IN0B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND6")
+    (INSTANCE GLB_B7_P8)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A5 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A4 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B7_P7)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND5")
+    (INSTANCE GLB_B7_P6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A4 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B7_P5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (13:0:13) (13:0:13))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND3")
+    (INSTANCE GLB_B7_P4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGAND4")
+    (INSTANCE GLB_B7_P0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (17:0:17) (17:0:17))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_G2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_G0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGORF74")
+    (INSTANCE GLB_B7_F1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A3 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A2 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A1 Z0 (30:0:30) (30:0:30))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (30:0:30) (30:0:30))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_P0_xa)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (28:0:28) (28:0:28))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_POTCS_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_P8_xa)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (28:0:28) (28:0:28))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_DA1_D)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_IN9)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_IN0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_IN12)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_IN6)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_IN11)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_B7_IN3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_B7_X3O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_B7_X1O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B7_IN12B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B7_IN6B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B7_IN11B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B7_IN9B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B7_IN3B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE GLB_B7_IN0B)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_L2L_KEYWD_RESET)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (78:0:78) (78:0:78))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO10_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (14:0:14) (14:0:14))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO18_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (14:0:14) (14:0:14))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO11_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (14:0:14) (14:0:14))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO12_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (14:0:14) (14:0:14))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO0_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (14:0:14) (14:0:14))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO30_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (14:0:14) (14:0:14))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_CLOCKX)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO1_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (14:0:14) (14:0:14))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_ST5)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO13_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_ST4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO4_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_ST3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO5_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_ST2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO27_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_ST1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO26_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_ST0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO31_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_SRDY)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO16_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_SCLK)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO9_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_SAB)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO6_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_RDWR)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO3_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_POTCS)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO23_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_ORD)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO17_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_IDEE2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO15_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_IDEE)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO14_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_IDECS1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO7_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_IDECS)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO19_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_DSPCS)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO24_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_DIR)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO8_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_DATAE)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO25_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_DA2)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO20_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_DA1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO21_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_DA0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE IOC_IO22_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST4_PIN_ffb)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST4_PIN_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (24:0:24) (24:0:24))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST4_PIN_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_AD0X_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (15:0:15) (15:0:15))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_MCS0X_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (12:0:12) (12:0:12))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_PCS5X_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_RDX_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_RESETX_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST0_PIN_ffb)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST0_PIN_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (24:0:24) (24:0:24))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST0_PIN_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST1_PIN_ffb)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST1_PIN_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (24:0:24) (24:0:24))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST1_PIN_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST2_PIN_ffb)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST2_PIN_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (24:0:24) (24:0:24))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST2_PIN_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST3_PIN_ffb)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST3_PIN_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (24:0:24) (24:0:24))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST3_PIN_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST5_PIN_part1_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (15:0:15) (15:0:15))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST5_PIN_part1_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_WRX_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE GRP_CLOCKX_clk0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (24:0:24) (24:0:24))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_SCLK_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_IDECS1_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_GND_1342_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_AND_1300_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST5_PIN_part2_ffb)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ST5_PIN_part2_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_OR_1321_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_IDEE2_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_RDWR_PIN_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (10:0:10) (10:0:10))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_RDWR_PIN_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_PCS1X_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ORD_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_IDECS_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_DSPCS_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_DA0_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_SRDY_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_DA2_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_DATAE_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_POTCS_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_DA1_D_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (18:0:18) (18:0:18))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE GRP_L2L_KEYWD_RESET_glb)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (7:0:7) (7:0:7))
+       )
+    )
+  )
+)

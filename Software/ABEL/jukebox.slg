@@ -1,0 +1,10 @@
+ticksize 100 ps
+stepsize 100000 ps
+mode max
+mode transport
+Loading netlist......
+Loading netlist successfully.
+run 15,000.0 ns
+Simulating to time 139100 ......
+Operation RUN ends.
+quit
