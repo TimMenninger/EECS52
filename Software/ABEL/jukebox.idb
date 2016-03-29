@@ -1,35 +1,22 @@
 1 2.0.00.17.20.15
 -i c:\users\tim\desktop\classes\eecs52\software\abel\jukebox.laf -if laf -p ispLSI1016-110LJ44 -of vhdl -of verilog -s d -e 2 -z -m 16 -n 4 -ta on -y c:\users\tim\desktop\classes\eecs52\software\abel\Jukebox.xpn -r c:\users\tim\desktop\classes\eecs52\software\abel\ispxpert.par 
-c:\users\tim\desktop\classes\eecs52\software\abel\ispxpert.par 1455746649 Wed Feb 17 14:04:09 2016
-jukebox.ppn 1455746650 Wed Feb 17 14:04:10 2016
-jukebox.fxp 1455746650 Wed Feb 17 14:04:10 2016
-c:\users\tim\desktop\classes\eecs52\software\abel\jukebox.laf 1455746647 Wed Feb 17 14:04:07 2016
+c:\users\tim\desktop\classes\eecs52\software\abel\ispxpert.par 1457592698 Wed Mar 09 22:51:38 2016
+jukebox.ppn 1457592699 Wed Mar 09 22:51:39 2016
+jukebox.fxp 1457592699 Wed Mar 09 22:51:39 2016
+c:\users\tim\desktop\classes\eecs52\software\abel\jukebox.laf 1457592697 Wed Mar 09 22:51:37 2016
 >  c:\users\tim\desktop\classes\eecs52\software\abel\Jukebox.xpn
 // PART: 	ispLSI1016-110LJ44
 // FORMAT: 	PINNAME		PINTYPE	LOCK	PULLUP	SLOWSLEW	OPENDRAIN	OUTDELAY	VOLTAGE	CRIT
-		DSPCS			-		3	-1		-1		-1		-1		-1		-1
-		DATAE			-		4	-1		-1		-1		-1		-1		-1
-		MCS0			-		9	-1		-1		-1		-1		-1		-1
+		DTR			-		4	-1		-1		-1		-1		-1		-1
+		SRDY			-		9	-1		-1		-1		-1		-1		-1
 		Clock			-		11	-1		-1		-1		-1		-1		-1
-		PCS1			-		15	-1		-1		-1		-1		-1		-1
-		AD0			-		16	-1		-1		-1		-1		-1		-1
-		SAB			-		21	-1		-1		-1		-1		-1		-1
-		IDECS1		-		22	-1		-1		-1		-1		-1		-1
-		DIR			-		25	-1		-1		-1		-1		-1		-1
-		SCLK			-		26	-1		-1		-1		-1		-1		-1
-		WR			-		27	-1		-1		-1		-1		-1		-1
-		RD			-		28	-1		-1		-1		-1		-1		-1
-		PCS5			-		29	-1		-1		-1		-1		-1		-1
-		IDEE			-		31	-1		-1		-1		-1		-1		-1
-		IDEE2			-		32	-1		-1		-1		-1		-1		-1
-		SRDY			-		37	-1		-1		-1		-1		-1		-1
-		ORD			-		38	-1		-1		-1		-1		-1		-1
-		RESET			-		39	-1		-1		-1		-1		-1		-1
-		IDECS			-		40	-1		-1		-1		-1		-1		-1
-		DA2			-		41	-1		-1		-1		-1		-1		-1
-		DA1			-		42	-1		-1		-1		-1		-1		-1
-		DA0			-		43	-1		-1		-1		-1		-1		-1
-		POTCS			-		44	-1		-1		-1		-1		-1		-1
+		MUX			-		18	-1		-1		-1		-1		-1		-1
+		CAS			-		19	-1		-1		-1		-1		-1		-1
+		DRAM			-		20	-1		-1		-1		-1		-1		-1
+		RAS			-		22	-1		-1		-1		-1		-1		-1
+		MCS1			-		37	-1		-1		-1		-1		-1		-1
+		MCS2			-		38	-1		-1		-1		-1		-1		-1
+		RESET			-		41	-1		-1		-1		-1		-1		-1
 
 // FORMAT: 	NETNAME		CLK		PRESERVE	ECP	GROUP		XOR	ELP	ETP
 

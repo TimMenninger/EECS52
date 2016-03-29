@@ -7,12 +7,4 @@ Part Name: ispLSI1016-110LJ44
   primary inputs and primary outputs of the design
   with no register in the path.
 
-Tpd Paths:
-
-  Source                   Destination              Path Delay
-  (Input)                  (Output)                   [ns]
-==------------------------------------------------------------------------------
-  RESET                    DA2                      13.60 
-  AD0                      DA2                      13.40 
-  PCS1                     DA2                      13.20 
-==----------------------------------------------------------------------------
+43123 WARNING: There are no Tpd paths for this mode of analysis in this design

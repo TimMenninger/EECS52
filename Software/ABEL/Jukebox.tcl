@@ -9242,3 +9242,6266 @@ if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTI
 
 ########## Tcl recorder end at 02/17/16 14:57:56 ###########
 
+
+########## Tcl recorder starts at 03/06/16 02:46:03 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 02:46:03 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:01:48 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:01:48 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:16:19 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:16:19 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:28:04 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:28:04 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:54:43 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:54:43 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:54:50 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:54:50 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:55:41 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:55:41 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:55:45 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:55:45 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:59:06 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:59:06 ###########
+
+
+########## Tcl recorder starts at 03/06/16 03:59:33 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 03:59:33 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:00:38 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:00:38 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:00:48 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:00:48 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:01:17 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:01:17 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:01:20 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:01:20 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:01:28 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:01:28 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:01:31 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:01:31 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:02:36 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:02:36 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:02:37 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:02:37 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:03:01 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:03:01 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:03:03 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:03:03 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:03:14 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:03:14 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:03:18 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:03:18 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:03:45 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:03:45 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:03:47 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:03:47 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:05:35 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:05:35 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:05:36 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:05:36 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:06:43 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:06:43 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:06:53 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:06:53 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:06:56 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:06:56 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:07:09 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:07:09 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:20:18 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:20:18 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:20:22 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:20:22 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:20:41 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:20:41 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:20:42 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:20:42 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:20:52 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:20:52 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:21:57 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:21:57 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:22:13 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:22:13 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:22:18 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:22:18 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:22:27 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:22:27 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:22:45 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:22:45 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:32:46 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:32:46 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:33:13 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:33:13 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:33:47 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:33:47 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:33:49 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:33:49 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:34:38 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:34:38 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:34:39 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:34:39 ###########
+
+
+########## Tcl recorder starts at 03/06/16 04:34:50 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 04:34:50 ###########
+
+
+########## Tcl recorder starts at 03/06/16 20:35:27 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 20:35:27 ###########
+
+
+########## Tcl recorder starts at 03/06/16 20:53:43 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 20:53:43 ###########
+
+
+########## Tcl recorder starts at 03/06/16 21:57:46 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 21:57:46 ###########
+
+
+########## Tcl recorder starts at 03/06/16 21:59:06 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 21:59:06 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:01:32 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:01:32 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:01:39 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:01:39 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:01:54 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:01:54 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:04:33 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:04:33 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:54:35 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:54:35 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:54:38 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:54:38 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:55:40 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:55:40 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:56:10 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:56:10 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:56:19 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:56:19 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:56:33 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:56:33 ###########
+
+
+########## Tcl recorder starts at 03/06/16 22:56:37 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/06/16 22:56:37 ###########
+
+
+########## Tcl recorder starts at 03/09/16 12:58:49 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 12:58:49 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:00:15 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:00:15 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:00:21 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:00:21 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:00:37 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:00:37 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:00:54 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:00:54 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:02:45 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:02:45 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:02:51 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:02:51 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:03:02 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:03:02 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:04:20 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:04:20 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:10:33 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:10:33 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:16:12 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:16:12 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:16:23 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:16:23 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:17:22 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:17:22 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:21:48 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:21:48 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:22:01 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:22:01 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:22:36 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:22:36 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:23:34 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:23:34 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:23:38 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:23:38 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:24:01 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:24:01 ###########
+
+
+########## Tcl recorder starts at 03/09/16 13:54:09 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 13:54:09 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:16:04 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:16:04 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:16:06 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:16:06 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:16:24 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:16:24 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:16:36 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:16:36 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:16:40 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:16:40 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:17:12 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:17:12 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:17:18 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:17:18 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:17:59 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:17:59 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:18:02 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:18:02 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:18:18 ##########
+
+# Commands to make the Process: 
+# Timing Simulation
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\" -sim Jukebox  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+# Application to view the Process: 
+# Timing Simulation
+if [catch {open simcp._sp w} rspFile] {
+	puts stderr "Cannot create response file simcp._sp: $rspFile"
+} else {
+	puts $rspFile "simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg plsi.fdk \"jukebox.lts\" -map \"Jukebox.lsi\"
+"
+	close $rspFile
+}
+if [runCmd "\"$cpld_bin/simcp\" @simcp._sp"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:18:18 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:46:45 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:46:45 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:47:00 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:47:00 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:47:03 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:47:03 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:49:34 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:49:34 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:51:30 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:51:30 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:51:35 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:51:35 ###########
+
+
+########## Tcl recorder starts at 03/09/16 22:58:49 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 22:58:49 ###########
+
+
+########## Tcl recorder starts at 03/09/16 23:04:17 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 23:04:17 ###########
+
+
+########## Tcl recorder starts at 03/09/16 23:04:49 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 23:04:49 ###########
+
+
+########## Tcl recorder starts at 03/09/16 23:06:04 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 23:06:04 ###########
+
+
+########## Tcl recorder starts at 03/09/16 23:20:59 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 23:20:59 ###########
+
+
+########## Tcl recorder starts at 03/09/16 23:30:02 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 23:30:02 ###########
+
+
+########## Tcl recorder starts at 03/09/16 23:39:27 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 23:39:27 ###########
+
+
+########## Tcl recorder starts at 03/09/16 23:48:55 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 23:48:55 ###########
+
+
+########## Tcl recorder starts at 03/09/16 23:56:15 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/09/16 23:56:15 ###########
+
+
+########## Tcl recorder starts at 03/10/16 00:07:54 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 00:07:54 ###########
+
+
+########## Tcl recorder starts at 03/10/16 00:08:10 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 00:08:10 ###########
+
+
+########## Tcl recorder starts at 03/10/16 00:53:30 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 00:53:30 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:04:11 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:04:11 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:04:36 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:04:36 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:05:25 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:05:25 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:05:27 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:05:27 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:06:14 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:06:14 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:06:16 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:06:16 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:07:16 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:07:16 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:07:28 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:07:28 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:07:45 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:07:45 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:07:55 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:07:55 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:08:05 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:08:05 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:25:57 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:25:57 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:26:47 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:26:47 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:26:52 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:26:52 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:27:29 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:27:29 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:27:31 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:27:31 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:27:44 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:27:44 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:27:45 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:27:45 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:27:54 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:27:54 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:28:00 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -vec -ovec \"jukebox.tmv\"  -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [catch {open copytmv.bat w} rspFile] {
+	puts stderr "Cannot create response file copytmv.bat: $rspFile"
+} else {
+	puts $rspFile "Copy jukebox.tmv jukebox.dtv
+if \"jukebox.tmv\"==\"jukebox.tmv\" goto end
+Copy jukebox.tmv jukebox.tmv
+:end
+"
+	close $rspFile
+}
+if [runCmd "\"copytmv\""] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+file delete copytmv.bat
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"jukebox.abl\" -mod Jukebox -ojhd compile -prj jukebox -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"Jukebox.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"Jukebox.bl1\" -o \"jukebox.bl2\" -omod Jukebox -propadd -family PLSI -ues jukebox.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" jukebox.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i jukebox.bl3 -o jukebox.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.tt2 -if pla -p ispLSI1016-110LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj jukebox -log jukebox.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:28:00 ###########
+
+
+########## Tcl recorder starts at 03/10/16 01:48:24 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/syndpm\" -i jukebox.laf -if laf -p ispLSI1016-110LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj jukebox -if jukebox.jed -j2s -log jukebox.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 03/10/16 01:48:24 ###########
+

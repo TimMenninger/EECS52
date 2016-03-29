@@ -11,8 +11,8 @@ Default_Device_Io_Types = LVCMOS50,-;
 RCS = ;
 Parent = lc1k.lci;
 Design = jukebox;
-DATE = 02/17/2016;
-TIME = 14:04:10;
+DATE = 03/09/2016;
+TIME = 22:51:39;
 Source_Format = ;
 Type = ;
 Pre_Fit_Time = ;
@@ -33,42 +33,24 @@ ISP_EXCEPT_Y2 = Off;
 [FITTER REPORT FORMAT]
 
 [LOCATION ASSIGNMENTS]
-WR = pin, 27, -, -, -;
-RESET = pin, 39, -, -, -;
-RD = pin, 28, -, -, -;
-PCS5 = pin, 29, -, -, -;
-PCS1 = pin, 15, -, -, -;
-MCS0 = pin, 9, -, -, -;
+RESET = pin, 41, -, -, -;
+MCS2 = pin, 38, -, -, -;
+MCS1 = pin, 37, -, -, -;
+DTR = pin, 4, -, -, -;
 CLOCK = pin, 11, -, -, -;
-AD0 = pin, 16, -, -, -;
-ST5 = pin, 30, -, -, -;
-ST4 = pin, 19, -, -, -;
-ST3 = pin, 20, -, -, -;
-ST2 = pin, 6, -, -, -;
-ST1 = pin, 5, -, -, -;
-ST0 = pin, 10, -, -, -;
-SRDY = pin, 37, -, -, -;
-SCLK = pin, 26, -, -, -;
-SAB = pin, 21, -, -, -;
-RDWR = pin, 18, -, -, -;
-POTCS = pin, 44, -, -, -;
-ORD = pin, 38, -, -, -;
-IDEE2 = pin, 32, -, -, -;
-IDEE = pin, 31, -, -, -;
-IDECS1 = pin, 22, -, -, -;
-IDECS = pin, 40, -, -, -;
-DSPCS = pin, 3, -, -, -;
-DIR = pin, 25, -, -, -;
-DATAE = pin, 4, -, -, -;
-DA2 = pin, 41, -, -, -;
-DA1 = pin, 42, -, -, -;
-DA0 = pin, 43, -, -, -;
+SRDY = pin, 9, -, -, -;
+RAS = pin, 22, -, -, -;
+MUX = pin, 18, -, -, -;
+DRAM = pin, 20, -, -, -;
+DR1 = pin, 28, -, -, -;
+DR0 = pin, 15, -, -, -;
+CAS = pin, 19, -, -, -;
 
 [PULLUP]
-Up = WR, RESET, RD, PCS5, PCS1, MCS0, CLOCK, AD0, ST5, ST4, ST3, ST2, ST1, ST0, SRDY, SCLK, SAB, RDWR, POTCS, ORD, IDEE2, IDEE, IDECS1, IDECS, DSPCS, DIR, DATAE, DA2, DA1, DA0; 
+Up = RESET, MCS2, MCS1, DTR, CLOCK, SRDY, RAS, MUX, DRAM, DR1, DR0, CAS; 
 
 [SLEWRATE]
-FAST = ST5, ST4, ST3, ST2, ST1, ST0, SRDY, SCLK, SAB, RDWR, POTCS, ORD, IDEE2, IDEE, IDECS1, IDECS, DSPCS, DIR, DATAE, DA2, DA1, DA0; 
+FAST = SRDY, RAS, MUX, DRAM, DR1, DR0, CAS; 
 
 [IO TYPES]
 
@@ -78,16 +60,16 @@ FAST = ST5, ST4, ST3, ST2, ST1, ST0, SRDY, SCLK, SAB, RDWR, POTCS, ORD, IDEE2, I
 CLK0 = CLOCKX; 
 
 [PTSABYPASS]
-Bypass = SRDY_D, ST4_PIN; 
+Bypass = DR1_PIN, MUX_PIN; 
 
 [Fitter Results]
-I/O_Pin_Util = 90;
-I/O_Pin = 29;
-Logic_PT_Util = 32;
-Logic_PT = 103;
-Logic_MC_Util = 35;
-Logic_MC = 23;
+I/O_Pin_Util = 34;
+I/O_Pin = 11;
+Logic_PT_Util = 10;
+Logic_PT = 34;
+Logic_MC_Util = 10;
+Logic_MC = 7;
 Occupied_PT_Util = 3;
-Occupied_PT = 12;
-GLB_input_Util = 37;
-GLB_input = 109;
+Occupied_PT = 10;
+GLB_input_Util = 14;
+GLB_input = 43;

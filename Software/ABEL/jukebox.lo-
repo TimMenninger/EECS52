@@ -7,22 +7,30 @@ All Rights Reserved.
 Design Process Management 
 
 Renaming existing log file to jukebox.lo-
-Renaming existing parameter file to jukebox.pa-
 Renaming existing rpt file to jukebox.rp-
 
 Preprocessing design 'jukebox'...
 
+Processing design 'jukebox'...
 
-PLA Reading and Translation 
+
+Logical LAF Reading and Translation 
   
-Reading design 'jukebox'... 
+Reading file 'c:\users\tim\desktop\classes\eecs52\software\abel\jukebox-
+      .laf'... 
   
 Checking design rules... 
+Selected part is 'ispLSI1016-110LJ44' 
+32581 WARNING: Option 'SLOWSLEW OFF' is not valid for part 
+      'ispLSI1016-110LJ44'; option 'SLOWSLEW OFF' is ignored 
+32345 ERROR: Number of pins required, 38, exceeds maximum number of 
+      available pins, 35, in part 'ispLSI1016-110LJ44' 
+32346 ERROR: Number of output pins and bidirectional pins (not including
+      those BIDI pins locked to device input pins), 29, exceeds number 
+      of IOC pins available for use in output mode, 24, in part 
+      'ispLSI1016-110LJ44' 
   
-Writing output files(ddf)... 
-  
-Writing output files(laf)... 
-  
-PLA reading and translation completed successfully 
+Logical LAF reading and translation completed with errors 
 
 
+Design process management completed with errors

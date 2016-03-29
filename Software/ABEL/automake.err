@@ -1,6 +1,64 @@
-AHDL2BLF  ABEL-HDL Processor
-ispLEVER Classic 2.0 Copyright(C), 1992-2005, Lattice Semiconductor Corporation. All rights reserved
-Portions Copyright(c), 1992-1999, Vantis Corporation
-Portions Copyright(C), 1993-1998, Data I/O Corporation
-Portions Copyright(C), 1997-1998, MINC Washington Corporation
-Portions Copyright(C), Alan Phillips, Lancaster University Computer Centre 1992-1998
+arg[0] = C:\ispLEVER_Classic2_0\ispcomp\bin\dpm.exe
+arg[1] = -i
+arg[2] = "c:\users\tim\desktop\classes\eecs52\software\abel\jukebox.laf"
+arg[3] = -if
+arg[4] = laf
+arg[5] = -p
+arg[6] = ispLSI1016-110LJ44
+arg[7] = -of
+arg[8] = vhdl
+arg[9] = -of
+arg[10] = verilog
+arg[11] = -s
+arg[12] = d
+arg[13] = -e
+arg[14] = 2
+arg[15] = -z
+arg[16] = -m
+arg[17] = 16
+arg[18] = -n
+arg[19] = 4
+arg[20] = -ta
+arg[21] = on
+arg[22] = -y
+arg[23] = "c:\users\tim\desktop\classes\eecs52\software\abel\Jukebox.xpn"
+arg[24] = -r
+arg[25] = "c:\users\tim\desktop\classes\eecs52\software\abel\ispxpert.par"
+cmd line = C:\ispLEVER_Classic2_0\ispcomp\bin\dpm.exe -i "c:\users\tim\desktop\classes\eecs52\software\abel\jukebox.laf" -if laf -p ispLSI1016-110LJ44 -of vhdl -of verilog -s d -e 2 -z -m 16 -n 4 -ta on -y "c:\users\tim\desktop\classes\eecs52\software\abel\Jukebox.xpn" -r "c:\users\tim\desktop\classes\eecs52\software\abel\ispxpert.par" 
+ispEXPERT Compiler Release 2.0.00.17.20.15, May 20 2002 13:06:40
+
+Copyright (C) 1994-2000 by Lattice Semiconductor Corporation.
+All Rights Reserved.
+
+
+Design Process Management 
+
+Renaming existing log file to jukebox.lo-
+Renaming existing rpt file to jukebox.rp-
+
+Preprocessing design 'jukebox'...
+
+Processing design 'jukebox'...
+
+
+Logical LAF Reading and Translation 
+  
+Reading file 'c:\users\tim\desktop\classes\eecs52\software\abel\jukebox-
+      .laf'... 
+  
+Checking design rules... 
+Selected part is 'ispLSI1016-110LJ44' 
+32581 WARNING: Option 'SLOWSLEW OFF' is not valid for part 
+      'ispLSI1016-110LJ44'; option 'SLOWSLEW OFF' is ignored 
+32345 ERROR: Number of pins required, 38, exceeds maximum number of 
+      available pins, 35, in part 'ispLSI1016-110LJ44' 
+32346 ERROR: Number of output pins and bidirectional pins (not including
+      those BIDI pins locked to device input pins), 29, exceeds number 
+      of IOC pins available for use in output mode, 24, in part 
+      'ispLSI1016-110LJ44' 
+  
+Logical LAF reading and translation completed with errors 
+
+
+Design process management completed with errors
+

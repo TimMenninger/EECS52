@@ -459,10 +459,6 @@
       <two.edge source.e="TT251" target.e="TT253"/>
       <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
     </relationship>
-    <relationship id="TT261" show="1" slot="0" tdml.cc.ptr="TT257" type="break" user.created="0">
-      <one.edge/>
-      <relationship.label label.type="default"/>
-    </relationship>
     <relationship id="TT268" containing.signal.ptr="TT76" show="1" slot="1" type="delay" user.created="0">
       <two.edge source.e="TT280" target.e="TT266"/>
       <relationship.label label.type="text">T<sub>CHLL</sub></relationship.label>
@@ -574,7 +570,7 @@
   <annotation e.ptr="TT323" signal.ptr="TT9" x.offset="24382" y.offset="-0.84">1 wait state</annotation>
   <annotation e.ptr="TT334" signal.ptr="TT9" x.offset="20461" y.offset="-0.96">1 wait state</annotation>
   <view.group>
-    <view begin.time="940000" end.time="1350000"/>
+    <view begin.time="-900000" end.time="1700000"/>
   </view.group>
   <cc.list>
     <title id="TT195">General Data</title>

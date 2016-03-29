@@ -26,13 +26,14 @@ TITLE 'Jukebox CPLD'
 "               Digital Potentiometer: This increases and decreases the voltage
 "               at the wiper terminal using the data input from the CPU.  The
 "               data is the low bit.  1 increments and 0 decrements.  This 
-"		machine works by always sending a 1 and a 0.  Which comes first
-"		is determined by the operation (inc or dec).
+"               machine works by always sending a 1 and a 0.  Which comes first
+"               is determined by the operation (inc or dec).
 "
 
 " Revision History:
 " 02/12/16      Created with functionality for 4x20 Display, IDE interface and
 "                   digital potentiometer.
+" 03/06/16      Added functionality for DRAM refresh, read and write
 
 
 
@@ -40,69 +41,80 @@ TITLE 'Jukebox CPLD'
 
 "GND   pin   1;                  supply  power ground
 "      pin   2;                  input   unused (IN3)
-DSPCS  pin   3   ISTYPE 'com';  "output  Chip select to display
-DATAE  pin   4   ISTYPE 'com';  "output  Enable of CPU-Display data latch (active low)
-"      pin   5                   unused  (I/O26)  
-"      pin   6                   unused  (I/O27)
-"      pin   7                   unused  (I/O28)
-"      pin   8                   unused  (I/O29)
-!MCS0  pin   9;                 "input   IDE chip select from 80C188
-"      pin   10                  unused  (I/O31)
+ALE    pin   3;                 "input   Address latch enable (Active low from 80C188)
+DTR    pin   4;                 "input   DT/R signal (from 80C188)
+A0     pin   5;                 "input   LSB from address bus  
+CLKBA  pin   6   ISTYPE 'com';  "output  IDE decoder 2CLKBA signal
+!OE1   pin   7   ISTYPE 'com';  "output  IDE decoder 1OE signal
+DIR1   pin   8   ISTYPE 'com';  "output  IDE decoder 1DIR signal
+SRDY   pin   9   ISTYPE 'com';  "output  synchronous ready to 80C188
+!POT   pin   10  ISTYPE 'com';  "output  Pot chip select
 Clock  pin   11;                "input   24 MHz clock
 "VCC   pin   12                  supply  power Vcc
 "ISPEN pin   13                  input   Tied high
 "      pin   14                  unused  (IN0/SDI)
-!PCS1  pin   15;                "input   Digital potentiometer chip select from 80C188
-AD0    pin   16;                "input   Tells us even or odd address, used for digital pot
-"      pin   17;                 unused  (I/O2)
-"      pin   18;                 unused  (I/O3)
-"      pin   19;                 unused  (I/O4)
-"      pin   20;                 unused  (I/O5)
-SAB    pin   21  ISTYPE 'com';  "output  xSAB and xSBA for IDE interface
-IDECS1 pin   22  ISTYPE 'com';  "input   IDE CS1 pin
+DIOR   pin   15  ISTYPE 'com';  "output  DIOR signal to IDE
+!OE2   pin   16  ISTYPE 'com';  "output  IDE decoder 2OE signal
+!CS0   pin   17  ISTYPE 'com';  "output  IDE CS0 signal
+MUX    pin   18  ISTYPE 'reg';  "output  MUX selector signal
+!CAS   pin   19  ISTYPE 'reg';  "output  DRAM CAS signal
+!DRAM  pin   20  ISTYPE 'reg';  "output  DRAM write enable signal
+DIOW   pin   21  ISTYPE 'com';  "output  DIOW signal to IDE
+!RAS   pin   22  ISTYPE 'reg';  "output  DRAM RAS signal
 "GND   pin   23                  supply  power ground
 "      pin   24                  unused  (IN1/SD0)
-DIR    pin   25  ISTYPE 'com';  "output  DIR for IDE interface
-SCLK   pin   26  ISTYPE 'com';  "output  CLK for IDE latching
-!WR    pin   27;                "input   Write (active low from 80C188)
-!RD    pin   28;                "input   Read (active low from 80C188)
-!PCS5  pin   29;                "input   Display chip select from 80C188
-"      pin   30                  unused  (I/O13)
-IDEE   pin   31  ISTYPE 'com';  "output  E1 to 74FCT16646
-IDEE2  pin   32  ISTYPE 'com';  "output  E2 to 74FCT16646
+"!XCS   pin   25  ISTYPE 'com';  output  XCS signal to MP3 decoder
+"!XDCS  pin   26  ISTYPE 'com';  output  XDCS signal to MP3 decoder
+!DISPE pin   27  ISTYPE 'com';  "output  Enable signal to display
+CLKUD  pin   28  ISTYPE 'com';  "output  Serial clock to MP3 decoder, U/D to digital pot
+!DATA  pin   29  ISTYPE 'com';  "output  Data enable to display buffer
+DDIR   pin   30  ISTYPE 'com';  "output  Data direction for display
+DRW    pin   31  ISTYPE 'com';  "output  R/W signal to display
+!DISP  pin   32  ISTYPE 'com';  "output  Chip select to display
 "      pin   33                  unused  (Y2/SCLK)
 "VCC   pin   34                  supply  power Vcc
 "RESET pin   35;                 input   Reset (active high from 80C188)
-SRDY   pin   37  ISTYPE 'com';  "output  synchronous ready to 80C188
-ORD    pin   38  ISTYPE 'com';  "output  Read signal sent to peripheral chips
-RESET  pin   39;		"input   Active high reset from 80C188
-IDECS  pin   40  ISTYPE 'com';  "output  CS0 to IDE
-DA2    pin   41  ISTYPE 'com';  "output  DA2 to IDE, E to Display
-DA1    pin   42  ISTYPE 'com';  "output  DA1 to IDE, xSAB xSBA to 74FCT16646
-DA0    pin   43  ISTYPE 'com';  "output  DA0 to IDE, xDIR to 74FCT16646, DIR to Display Data Latch,
-                                "            Data to Digital Potentiometer
-POTCS  pin   44  ISTYPE 'com';  "output  Chip select to digital potentiometer
+MCS1   pin   37;                "input   DRAM Refresh (Active low from 80C188)
+MCS2   pin   38;                "input   DRAM access (Active low from 80C188)
+MCS0   pin   39;                "input   IDE chip select (Active low from 80C188)
+PCS6   pin   40;                "input   Display brightness (Active low from 80C188)
+RESET  pin   41;                "input   Reset from 80C188
+PCS5   pin   42;                "input   Display (Active low from 80C188)
+PCS3   pin   43;                "input   MP3 SCI (Active low from 80C188)
+PCS2   pin   44;                "input   MP3 SDI (Active low from 80C188)
 
+
+" State bits for DRAM state machine
+DR0    pin       ISTYPE 'reg';  "output  state bit 0
+DR1    pin       ISTYPE 'reg';  "output  state bit 1
+
+" Temporary SRDY so only one state machine writes to SRDY
+tSRDY  pin       ISTYPE 'reg';  "output  SRDY
 
 " General registers
 RDWR   pin       ISTYPE 'reg';  "keeps track of whether we are reading (0) or writing (1)
 
 
-" State bits
+
+"################################################
+"#
+"# Display, IDE, Digital Pot, MP3 State bits
+"#
+"#
 
 St0    pin       ISTYPE 'reg';  "output  state bit 0
 St1    pin       ISTYPE 'reg';  "output  state bit 1
 St2    pin       ISTYPE 'reg';  "output  state bit 2
-St3    pin    	 ISTYPE 'reg';  "output  state bit 3
+St3    pin       ISTYPE 'reg';  "output  state bit 3
 St4    pin       ISTYPE 'reg';  "output  state bit 4
 St5    pin       ISTYPE 'reg';  "output  state bit 5
 
 
 
-"the states
+" Display, IDE, Digital Pot, MP3
 
 StateBits  =  [ St5, St4, St3, St2, St1, St0 ]; " state bits
-                                      		" state assignments
+                                                " state assignments
 " Start state
 Idle       =  [   0,   0,   0,   0,   0,   0 ]; " idle state (waiting for a cycle to start)
 
@@ -132,33 +144,83 @@ DigPotUp   =  [   0,   0,   1,   1,   1,   0 ]; " pulses a 1 to the potentiomete
 DigPotDown =  [   0,   0,   1,   1,   0,   1 ]; " pulses a 0 to the potentiometer data pin
 
 
+"################################################
+"#
+"# DRAM State bits
+"#
+"#
+
+" No-output encoding:
+DRAM_bits      =  [ DR0, DR1, MUX, CAS, RAS, DRAM ]; " state bits for DRAM refresh state machine
+
+" Start state
+DRAM_Idle      =  [   0,   0,   0,   0,   0,    0 ]; " idle state (waiting for a cycle to start)
+
+" Refresh state machine
+DRAMRfshStart  =  [   0,   0,   0,   1,   0,    0 ]; " CAS-before-RAS; start CAS
+DRAMRfshFinish =  [   0,   0,   0,   1,   1,    0 ]; " RAS part of refresh
+
+" Read state machine
+DRAMReadStart  =  [   0,   1,   1,   0,   1,    0 ]; " Start read with MUX for row address
+DRAMReadRow    =  [   0,   1,   0,   0,   1,    0 ]; " Read row, change MUX for col address
+DRAMReadCol    =  [   0,   1,   0,   1,   1,    0 ]; " Read col
+DRAMReadWait   =  [   0,   1,   0,   0,   0,    0 ]; " Wait state after reading
+
+" Write state machine
+DRAMWriteStart =  [   0,   0,   1,   0,   1,    1 ]; " Start write with MUX for row address
+DRAMWriteRow   =  [   0,   0,   0,   0,   1,    1 ]; " Get row addr, change MUX for col addr
+DRAMWriteCol   =  [   0,   0,   0,   1,   1,    1 ]; " Get col addr
+DRAMWrite      =  [   1,   0,   0,   1,   1,    0 ]; " Clear WE to perform actual write
+
+
 
 
 EQUATIONS
 
 
-" Output enables - enable the used outputs (registered outputs enabled by OE\ pin)
+" Output enables - enable the used outputs (registered outputs enabled by OE pin)
+CLKBA.OE = 1;
+OE1.OE   = 1;
+DIR1.OE  = 1;
 SRDY.OE  = 1;
-DSPCS.OE = 1;
-POTCS.OE = 1;
-DATAE.OE = 1;
-IDEE.OE  = 1;
-IDEE2.OE = 1;
-ORD.OE   = 1;
-IDECS.OE = 1;
-IDECS1.OE= 1;
-DA2.OE   = 1;
-DA1.OE   = 1;
-DA0.OE   = 1;
-SCLK.OE	 = 1;
-DIR.OE   = 1;
-SAB.OE   = 1;
+POT.OE   = 1;
+DIOR.OE  = 1;
+OE2.OE   = 1;
+CS0.OE   = 1;
+DIOW.OE  = 1;
+"XCS.OE   = 1;
+"XDCS.OE  = 1;
+DISPE.OE = 1;
+CLKUD.OE = 1;
+DATA.OE  = 1;
+DDIR.OE  = 1;
+DRW.OE   = 1;
+DISP.OE  = 1;
 
 
 " clocks for the registered outputs
+DRAM_bits.CLK  =  Clock;        " use the global clock pin
 StateBits.CLK  =  Clock;        " use the global clock pin
-RDWR.CLK = Clock;		" use global clock
+tSRDY.CLK      =  Clock;        " use the global clock pin
+RDWR.CLK       =  Clock;        " use the global clock pin
 
+
+
+
+
+
+
+"#############################################################################
+"#
+"# Everything Else State Machine:
+"#      Display
+"#      IDE
+"#      Digital Pot
+"#      MP3
+"#
+"#
+"#
+"#
 
 
 STATE_DIAGRAM  StateBits        " a Mealy state machine
@@ -167,31 +229,31 @@ STATE_DIAGRAM  StateBits        " a Mealy state machine
 STATE  Idle:                    " Wait idly with nothing enabled
 
     " Turn off all chip selects
-    DSPCS = 0;                  " Disable chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Disable latching data
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant without DISP
+    DDIR  = 0; 			" Default direction toward display
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    " Define these for good measure, but are disregarded by peripherals w/o CS
-    ORD = 0;                    " Read output used as active low write by Display
-    DA2 = 0;                    " Data to IDE
-    DA1 = 0;                    " Data to IDE
-    DA0 = 0;			" Data to IDE
-    SCLK = 0;
-    DIR = 0;
-    SAB = 0;
-    
-    SRDY = 1;                   " SRDY always 'ready' in this state
+    tSRDY = 1;                  " SRDY always 'ready' in this state
  
-  	 IF (RESET)	    THEN Idle      WITH RDWR = 0  " On reset do nothing
-    ELSE IF (PCS5 & WR)     THEN DispSt    WITH RDWR = 0  " DA0 puts latch direction toward display
-    ELSE IF (PCS5 & RD)     THEN DispSt    WITH RDWR = 1  " DA0 puts latch direction toward CPU
-    ELSE IF (MCS0 & AD0)    THEN IDERdHigh WITH RDWR = 0  " Odd address, read high byte
-    ELSE IF (MCS0 & !AD0)   THEN IDERdLow  WITH RDWR = 0  " Even address, read low byte
-    ELSE IF (PCS1)	    THEN DigPotSt  WITH RDWR = 0  " Increment or decrement digital pot
+         IF (RESET)         THEN Idle      WITH RDWR = 0  " On reset do nothing
+    ELSE IF (PCS5 & DTR)    THEN DispSt    WITH RDWR = 0  " DA0 puts latch direction toward display
+    ELSE IF (PCS5 & !DTR)   THEN DispSt    WITH RDWR = 1  " DA0 puts latch direction toward CPU
+    ELSE IF (MCS0 & A0)     THEN IDERdHigh WITH RDWR = 0  " Odd address, read high byte
+    ELSE IF (MCS0 & !A0)    THEN IDERdLow  WITH RDWR = 0  " Even address, read low byte
+    ELSE IF (PCS6)          THEN DigPotSt  WITH RDWR = 0  " Increment or decrement digital pot
     ELSE                         Idle      WITH RDWR = 0; " otherwise just stay here
     
 
@@ -200,21 +262,25 @@ STATE  Idle:                    " Wait idly with nothing enabled
     
 STATE DispSt:                   " Begin display write cycle
 
-    " Turn off all chip selects except one for display.
-    DSPCS = 0;                  " Chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 0;                  " Begin latching data for display
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 1;			" Enable display data
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 1;                    " Used by display as enable
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Define the direction of data on the latch
-    
-    SRDY = 0;                   " Not ready when writing to display
+    tSRDY = 0;                  " SRDY not ready while displaying
     
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt1    "Next state enables data latch
@@ -222,21 +288,25 @@ STATE DispSt:                   " Begin display write cycle
     
 STATE DispWt1:                  " Begin waiting while display sets up
 
-    " Turn off all chip selects except one for display.
-    DSPCS = 0;                  " Chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Latch data from 80C188
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 1;			" Enable display data
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus if reading, display if writing
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 1;                    " Used by display as enable
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Define direction of display data latch
-    
-    SRDY = 0;                   " Not ready when writing to display
+    tSRDY = 0;                  " SRDY not ready while displaying
     
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt2    "Continue waiting
@@ -244,21 +314,25 @@ STATE DispWt1:                  " Begin waiting while display sets up
     
 STATE DispWt2:                  " Continue waiting while display sets up
 
-    " Turn off all chip selects except one for display.
-    DSPCS = 0;                  " Chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Data latched from 80C188
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 1;			" Enable display data
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus if reading, display if writing
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 1;                    " Used by display as enable
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Define direction of display data latch
-    
-    SRDY = 0;                   " Not ready when writing to display
+    tSRDY = 0;                  " SRDY not ready while displaying
     
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt3    "Continue waiting
@@ -266,21 +340,25 @@ STATE DispWt2:                  " Continue waiting while display sets up
     
 STATE DispWt3:                  " Continue waiting while display sets up
 
-    " Turn off all chip selects except one for display.
-    DSPCS = 0;                  " Chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Data latched from 80C188
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 1;			" Enable display data
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus if reading, display if writing
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 1;                    " Used by display as enable
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Define direction of display data latch
-    
-    SRDY = 0;                   " Not ready when writing to display
+    tSRDY = 0;                  " SRDY not ready while displaying
     
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt4    "Continue waiting
@@ -288,21 +366,25 @@ STATE DispWt3:                  " Continue waiting while display sets up
     
 STATE DispWt4:                  " Continue waiting while display sets up
 
-    " Turn off all chip selects except one for display.
-    DSPCS = 0;                  " Chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Data latched from 80C188
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 1;			" Enable display data
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus if reading, display if writing
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 1;                    " Used by display as enable
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Define direction of display data latch
-    
-    SRDY = 0;                   " Not ready when writing to display
+    tSRDY = 0;                  " SRDY not ready while displaying
     
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt5    "Continue waiting
@@ -310,21 +392,25 @@ STATE DispWt4:                  " Continue waiting while display sets up
     
 STATE DispWt5:                  " Continue waiting while display sets up
 
-    " Turn off all chip selects except one for display.
-    DSPCS = 0;                  " Chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Data latched from 80C188
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 1;			" Enable display data
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus if reading, display if writing
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 1;                    " Used by display as enable
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Define direction of display data latch
-    
-    SRDY = 0;                   " Not ready when writing to display
+    tSRDY = 0;                  " SRDY not ready while displaying
     
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt6    "Continue waiting
@@ -332,21 +418,25 @@ STATE DispWt5:                  " Continue waiting while display sets up
     
 STATE DispWt6:                  " Continue waiting while display sets up
 
-    " Turn off all chip selects except one for display.
-    DSPCS = 0;                  " Chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Data latched from 80C188
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 1;			" Enable display data
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus if reading, display if writing
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 1;                    " Used by display as enable
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Define direction of display data latch
-    
-    SRDY = 0;                   " Not ready when writing to display
+    tSRDY = 0;                  " SRDY not ready while displaying
     
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispDisE   "Disable display to start data hold
@@ -354,21 +444,25 @@ STATE DispWt6:                  " Continue waiting while display sets up
     
 STATE DispDisE:                 " Disable display to start data hold
 
-    " Turn off all chip selects except one for display.
-    DSPCS = 0;                  " Chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Data latched from 80C188
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus if reading, display if writing
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 0;                    " Used by display as enable.  Disabling here
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Define direction of display data latch
-    
-    SRDY = 0;                   " Not ready when writing to display
+    tSRDY = 0;                  " SRDY not ready while displaying
     
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispStop   "Done displaying other than enable cycle
@@ -376,349 +470,476 @@ STATE DispDisE:                 " Disable display to start data hold
     
 STATE DispStop:                 " Stops display cycle.  Enable cycle assumed to be observed by CPU
 
-    " Turn off all chip selects
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Data still latched from 80C188
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Display
+    DISP  = 1;                  " Enable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = !RDWR;		" Display read/write
+    DDIR  = !RDWR;		" Direction toward data bus if reading, display if writing
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Value irrelevant with CS0 inactive
+    DIR1  = 0;			" IDE direction irrelevant without CS0
+    DIOW  = 0; 			" IDE write inactive (irrelevant without CS0)
+    DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = !RDWR;                " Read output is active low write for display
-    DA2 = 0;                    " Used by display as enable.  Disabling here
-    DA1 = 0;                    " Data to IDE not used
-    DA0 = RDWR;			" Keep data at latch for reference
+    tSRDY = 0;                  " SRDY not ready while displaying
     
-    SRDY = 1;                   " SRDY can be set now that we are done accessing display
-    
-         IF (RESET)            	THEN Idle       "Reset, stop displaying.
-    ELSE IF (PCS5 & (RD # WR)) 	THEN DispStop   "Require PCS rising edge to start cycle
-    ELSE                     	     Idle       "Go back to beginning
+         IF (RESET)             THEN Idle       "Reset, stop displaying.
+    ELSE IF (PCS5)              THEN DispStop   "Require PCS rising edge to start cycle
+    ELSE                             Idle       "Go back to beginning
 
 
 
 
 " State definitions for IDE operations
 
-STATE IDERdLow:			" Starts IDE read cycle to read low byte
+STATE IDERdLow:                 " Starts IDE read cycle to read low byte
 
-    " Turn off all chip selects except IDE to get info from hard drive
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 0;                  " IDE Decoder passes low byte through while enabled
-    IDEE2 = 1;			" IDE Decoder stores high byte while disabled
-    IDECS = 0;                  " Chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Read low byte from IDE
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 1;                  " Enable IDE chip select
+    OE1   = 1;			" Enable IDE output 1 for reading low byte
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE direction away from IDE, toward data bus
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 0;			" IDE read inactive for first clock
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = 0;                    " Not high yet because delay after valid address before expected
-    DA2 = 0;                    " DA2 = 0 for read
-    DA1 = 0;                    " DA1 = 0 for read
-    DA0 = 0;			" DA0 = 0 for read
-    DIR = 0;			" Direction from IDE to CPU
-    SCLK = 0;			" Do not latch yet
-    SAB = 0;			" Real time low byte data to bus
-    
-    SRDY = 0;                   " Not ready when reading from HD
+    tSRDY = 0;                  " SRDY not ready while reading
     
          IF (RESET)     THEN Idle       "Reset, stop reading.
     ELSE                     HDRdSt     "Want to send read signal to HD
 
 
-STATE HDRdSt:			" Sends read signal to hard drive
+STATE HDRdSt:                   " Sends read signal to hard drive
 
-    " Turn off all chip selects except IDE to get info from hard drive
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 0;                  " IDE Decoder passes low byte through while enabled
-    IDEE2 = 1;			" IDE Decoder stores high byte while disabled
-    IDECS = 0;                  " Enable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Read low byte from IDE
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 1;                  " Enable IDE chip select
+    OE1   = 1;			" Enable IDE output 1 for reading low byte
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE direction away from IDE, toward data bus
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 1;			" IDE read active
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = 1;                    " Want to send read signal to hard drive.
-    DA2 = 0;                    " DA2 = 0 for read
-    DA1 = 0;                    " DA1 = 0 for read
-    DA0 = 0;			" DA0 = 0 for read
-    DIR = 0;
-    SCLK = 0;
-    SAB = 0;
-    
-    SRDY = 0;                   " Not ready when reading from HD
+    tSRDY = 0;                  " SRDY not ready while reading
     
          IF (RESET)     THEN Idle       "Reset, stop reading.
     ELSE                     HDLatchRd  "IDE only needs one state to latch data
 
 
-STATE HDLatchRd:		" Latches the high byte of data
+STATE HDLatchRd:                " Latches the high byte of data
 
-    " Turn off all chip selects except IDE to get info from hard drive
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 0;                  " IDE Decoder passes low byte through while enabled
-    IDEE2 = 1;			" IDE Decoder stores high byte while disabled
-    IDECS = 0;                  " Enable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Read low byte from IDE
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 1;                  " Enable IDE chip select
+    OE1   = 1;			" Enable IDE output 1 for reading low byte
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 1;			" Latch high byte
+    DIR1  = 0;			" IDE direction away from IDE, toward data bus
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 1;			" IDE read active
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = 1;                    " Want to send read signal to hard drive.
-    DA2 = 0;                    " DA2 = 0 for read
-    DA1 = 0;                    " DA1 = 0 for read
-    DA0 = 0;			" DA0 = 0 for read
-    DIR = 0;
-    SCLK = 1;
-    SAB = 0;
-    
-    SRDY = 0;                   " Not ready when reading from HD
+    tSRDY = 0;                  " SRDY not ready while reading
     
          IF (RESET)     THEN Idle       "Reset, stop reading.
     ELSE                     HDStopRd   "IDE only needs one state to latch data
 
 
-STATE HDStopRd:	         	" Stops read signal now that data is latched
+STATE HDStopRd:                 " Stops read signal now that data is latched
 
-    " Turn off all chip selects except IDE to get info from hard drive
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 0;                  " IDE Decoder passes low byte through while enabled
-    IDEE2 = 1;			" IDE Decoder stores high byte while disabled
-    IDECS = 0;                  " Enable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Read low byte from IDE
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 1;                  " Enable IDE chip select
+    OE1   = 1;			" Enable IDE output 1 for reading low byte
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE direction away from IDE, toward data bus
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 0;			" Done with access directly to IDE
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = 0;                    " Want to send read signal to hard drive.
-    DA2 = 0;                    " DA2 = 0 for read
-    DA1 = 0;                    " DA1 = 0 for read
-    DA0 = 0;			" DA0 = 0 for read
-    DIR = 0;
-    SCLK = 0;
-    SAB = 0;
-    
-    SRDY = 0;
+    tSRDY = 0;                  " SRDY not ready while reading
 
          IF (RESET) THEN Idle     " Reset system and state machine
     ELSE                 HDWaitSt " Wait for data hold time
 
 
-STATE HDWaitSt:			" Waits to satisfy the data hold time requirement
+STATE HDWaitSt:                 " Waits to satisfy the data hold time requirement
 
-    " Turn off all chip selects except IDE to get info from hard drive
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 0;                  " IDE Decoder passes low byte through while enabled
-    IDEE2 = 1;			" IDE Decoder stores high byte while disabled
-    IDECS = 0;                  " Enable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Read low byte from IDE
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 1;                  " Enable IDE chip select
+    OE1   = 1;			" Enable IDE output 1 for reading low byte
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE direction away from IDE, toward data bus
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 0;			" Done with access directly to IDE
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = 0;                    " Want to send read signal to hard drive.
-    DA2 = 0;                    " DA2 = 0 for read
-    DA1 = 0;                    " DA1 = 0 for read
-    DA0 = 0;			" DA0 = 0 for read
-    DIR = 0;
-    SCLK = 0;
-    SAB = 0;
-    
-    SRDY = 1;
+    tSRDY = 1;                  " SRDY ready now that we're done reading
 
          IF (RESET)       THEN Idle      "Reset, stop reading.
-    ELSE IF (MCS0 & AD0)  THEN IDERdHigh "Want to read odd address now
-    ELSE IF (MCS0 & !AD0) THEN HDWaitSt  "Still reading low byte with even address
-    ELSE		       Idle      "Nothing to do
+    ELSE IF (MCS0 & A0)   THEN IDERdHigh "Want to read odd address now
+    ELSE IF (MCS0 & !A0)  THEN HDWaitSt  "Still reading low byte with even address
+    ELSE                       Idle      "Nothing to do
 
 
-STATE IDERdHigh:		" Read high byte from latch
+STATE IDERdHigh:                " Read high byte from latch
 
-    " Turn off all chip selects except IDE latches
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 1;                  " Disable chip select to digital potentiometer
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 1;                  " Don't want low byte from decoder
-    IDEE2 = 0;			" Read high byte from decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Read high byte from IDE decoder
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Value irrelevant without POT or XCS/XDCS
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1 for reading high byte
+    OE2   = 1;			" Enable IDE output 2 for reading high byte
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE directio irrelevant without OE1
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 0;			" Done with access directly to IDE
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = 0;                    " Want to send read signal to hard drive.
-    DA2 = 0;                    " IDE DA2 not used
-    DA1 = 1;                    " Used to read from IDE latch
-    DA0 = 0;			" IDE DA0 not used
-    DIR = 0;
-    SCLK = 0;
-    SAB = 1;
+    tSRDY = 0;                  " SRDY ready now that we're done reading
     
-    SRDY = 0;                   " Not ready when reading from HD
-    
-         IF (RESET)     	THEN Idle       "Reset, stop reading.
-    ELSE IF (MCS0 & AD0) 	THEN IDERdHigh  "Continue reading
-    ELSE                     	     Idle       "Nothing to do
+         IF (RESET)             THEN Idle       "Reset, stop reading.
+    ELSE IF (MCS0 & A0)         THEN IDERdHigh  "Continue reading
+    ELSE                             Idle       "Nothing to do
 
 
 
 
 " Following states for digital potentiometer
 
-STATE DigPotSt:			" Start digital potentiometer increment/decrement
+STATE DigPotSt:                 " Start digital potentiometer increment/decrement
 
-    " Turn off all chip selects except digital pot
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 1;                  " Don't enable yet.  Want to establish baseline
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    " Alter digital potentiometer voltage
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 0;                  " Disable chip select to digital potentiometer
+    CLKUD = 0;			" Start low and pulse high
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE directio irrelevant without OE1
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 0;			" Done with access directly to IDE
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    ORD = 0;                    " Want to send read signal to hard drive.
-   "DA2 =                         IDE DA2 used to inc/dec. Inc starts low, dec starts high
-    DA1 = 0;                    " IDE DA1 not used
-    DA0 = 0;			" IDE DA0 not used
+    tSRDY = 0;                  " SRDY ready now that we're done reading
     
-    SRDY = 0;                   " Not ready when updating brightness
+         IF (RESET)             THEN Idle       WITH CLKUD = 0 "Reset, stop incrementing/decrementing
+    ELSE IF (PCS6 & A0)         THEN DigPotEna  WITH CLKUD = 0 "Want to increment
+    ELSE IF (PCS6 & !A0)        THEN DigPotEna  WITH CLKUD = 1 "Want to decrement
+    ELSE                             Idle       WITH CLKUD = 0 "Nothing to do
+
+
+STATE DigPotEna:                " Now that steadystate has been defined, can enable potentiometer CS
+
+    " Alter digital potentiometer voltage
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 1;                  " Enable chip select to digital potentiometer
+    "CLKUD = 0;			  Set in IF statement
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE directio irrelevant without OE1
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 0;			" Done with access directly to IDE
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-         IF (RESET)     	THEN Idle 	WITH DA2 = 0 "Reset, stop incrementing/decrementing
-    ELSE IF (PCS1 & AD0) 	THEN DigPotEna  WITH DA2 = 0 "Want to increment
-    ELSE IF (PCS1 & !AD0)	THEN DigPotEna  WITH DA2 = 1 "Want to decrement
-    ELSE                     	     Idle 	WITH DA2 = 0 "Nothing to do
-
-
-STATE DigPotEna:		" Now that steadystate has been defined, can enable potentiometer CS
-
-    " Turn off all chip selects except digital pot
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 0;                  " Don't enable yet.  Want to establish baseline
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+    tSRDY = 0;                  " SRDY ready now that we're done reading
     
-    ORD = 0;                    " Want to send read signal to hard drive.
-   "DA2 =                         IDE DA2 used to inc/dec. Inc starts low, dec starts high
-    DA1 = 0;                    " IDE DA1 not used
-    DA0 = 0;			" IDE DA0 not used
+         IF (RESET)             THEN Idle       WITH CLKUD = 0 "Reset, stop incrementing/decrementing
+    ELSE IF (PCS6 & A0)         THEN DigPotUp   WITH CLKUD = 0 "Want to increment
+    ELSE IF (PCS6 & !A0)        THEN DigPotDown WITH CLKUD = 1 "Want to decrement
+    ELSE                             Idle       WITH CLKUD = 0 "Nothing to do
+
+
+
+STATE DigPotUp:                 " Pulse a 1
+
+    " Alter digital potentiometer voltage
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 1;                  " Enable chip select to digital potentiometer
+    CLKUD = 1;			" Pulse high
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE directio irrelevant without OE1
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 0;			" Done with access directly to IDE
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-    SRDY = 0;                   " Not ready when updating brightness
+    tSRDY = 0;                  " SRDY ready now that we're done reading
+
+         IF (RESET)             THEN Idle          " Reset, start over
+    ELSE                             DigPotEna;    " Continue incrementing/decrementing
+
+
+STATE DigPotDown:               " Pulse a 0
+
+    " Alter digital potentiometer voltage
+    DISP  = 0;                  " Disable chip select to display
+    DISPE = 0;			" Disable display (irrelevant without DISP)
+    DRW   = 0;			" Display read/write irrelevant
+    DDIR  = 0;			" Default direction away from data bus.
+    POT   = 1;                  " Enable chip select to digital potentiometer
+    CLKUD = 0;			" Pulse low
+    DATA  = 0;                  " Disable latching data
+    CS0   = 0;                  " Disable IDE chip select
+    OE1   = 0;			" Disable IDE output 1
+    OE2   = 0;			" Disable IDE output 2
+    CLKBA = 0;			" Rising edge will latch high byte
+    DIR1  = 0;			" IDE directio irrelevant without OE1
+    DIOW  = 0; 			" IDE write inactive
+    DIOR  = 0;			" Done with access directly to IDE
+    "XCS   = 0;                   Disable MP3 SCI
+    "XDCS  = 0;                   Disable MP3 SDI
     
-         IF (RESET)     	THEN Idle 	WITH DA2 = 0 "Reset, stop incrementing/decrementing
-    ELSE IF (PCS1 & AD0) 	THEN DigPotUp   WITH DA2 = 0 "Want to increment
-    ELSE IF (PCS1 & !AD0)	THEN DigPotDown WITH DA2 = 1 "Want to decrement
-    ELSE                     	     Idle 	WITH DA2 = 0 "Nothing to do
+    tSRDY = 0;                  " SRDY ready now that we're done reading
+
+         IF (RESET)             THEN Idle          " Reset, start over
+    ELSE                             DigPotEna;    " Continue incrementing/decrementing
 
 
 
-STATE DigPotUp:  		" Pulse a 1
 
-    " Turn off all chip selects except digital pot
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 0;                  " Enable digital potentiometer
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
+
+
+"#############################################################################
+"#
+"# DRAM State Machine
+"#
+"#
+"#
+"#
+
+
+
+STATE_DIAGRAM  DRAM_bits        " a Mealy state machine
+
+
+STATE  DRAM_Idle:               " Wait idly with nothing enabled
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 1;                   " SRDY always 'ready' in this state
+ 
+         IF (RESET)          THEN DRAM_Idle      " On reset do nothing
+    ELSE IF (!MCS1)          THEN DRAMRfshStart  " Start refresh cycle
+    ELSE IF (!MCS2 & DTR)    THEN DRAMWriteStart " Start writing to DRAM
+    ELSE IF (!MCS2 & !DTR)   THEN DRAMReadStart  " Start reading from DRAM
+    ELSE                          DRAM_Idle;     " otherwise just stay here
+
+
+STATE DRAMRfshStart:            " Start refresh cycle
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)     THEN DRAM_Idle          " On reset, go to start state
+    ELSE                     DRAMRfshFinish;    " Finish refresh cycle
+
+
+STATE DRAMRfshFinish:           " Finish refresh cycle
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)     THEN DRAM_Idle          " On reset, go to start state
+    ELSE                     DRAM_Idle;         " Done, can go back to idle
+
+STATE DRAMWriteStart:           " Starts access to DRAM with MUX set to transmit row
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)     THEN DRAM_Idle          " On reset, go to start state
+    ELSE                     DRAMWriteRow;      " Get row address for read
+
+
+STATE DRAMWriteRow:             " Sets RAS and WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)     THEN DRAM_Idle          " On reset, go to start state
+    ELSE                     DRAMWriteCol;      " Get column address for write
+
+
+STATE DRAMWriteCol:             " Sets CAS and WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)     THEN DRAM_Idle          " On reset, go to start state
+    ELSE                     DRAMWrite;         " Clear WE which will perform write
+
+
+STATE DRAMWrite:                " Deactivates WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)             THEN DRAM_Idle          " On reset, go to start state
+    ELSE                             DRAM_Idle;         " Go to start state, done writing
+
+
+STATE DRAMReadStart:            " Starts access to DRAM with MUX set to transmit row
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)     THEN DRAM_Idle          " On reset, go to start state
+    ELSE                     DRAMReadRow;       " Get row address for read
+
+
+
+STATE DRAMReadRow:              " Sets RAS for read
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)     THEN DRAM_Idle          " On reset, go to start state
+    ELSE                     DRAMReadCol;       " Sets CAS for column addr
+
+
+STATE DRAMReadCol:              " Sets CAS for read
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)     THEN DRAM_Idle          " On reset, go to start state
+    ELSE                     DRAMReadWait;      " Wait state to satisfy read cycle time
+
+
+STATE DRAMReadWait:             " Wait to satisfy read cycle time
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    SRDY = 0;                   " SRDY not ready while refreshing
+
+         IF (RESET)             THEN DRAM_Idle          " On reset, go to start state
+    ELSE IF (!MCS2 & !DTR)      THEN DRAMReadStart      " Another read cycle
+    ELSE                             DRAM_Idle;         " Done reading
+
+
+
+
+
+
+
+
+
     
-    ORD = 0;                    " Want to send read signal to hard drive.
-    DA2 = 1;                    " IDE DA2 used to pulse 1 and increment
-    DA1 = 0;                    " IDE DA1 not used
-    DA0 = 0;			" IDE DA0 not used
-    
-    SRDY = 0;                   " Not ready when updating brightness
-
-	 IF (RESET)		THEN Idle          " Reset, start over
-    ELSE 			     DigPotEna;	   " Continue incrementing/decrementing
-
-
-STATE DigPotDown:		" Pulse a 0
-
-    " Turn off all chip selects except digital pot
-    DSPCS = 1;                  " Disable chip select to display
-    POTCS = 0;                  " Enable digital potentiometer
-    DATAE = 1;                  " Disable data latch from display
-    IDEE  = 1;                  " Disable IDE decoder
-    IDEE2 = 1;			" Disable IDE decoder
-    IDECS = 1;                  " Disable chip select CS0 to IDE
-    IDECS1= 1;			" Disable chip select CS1 to IDE
-    
-    ORD = 0;                    " Want to send read signal to hard drive.
-    DA2 = 0;                    " IDE DA2 used to pulse 1 and increment
-    DA1 = 0;                    " IDE DA1 not used
-    DA0 = 0;			" IDE DA0 not used
-    
-    SRDY = 0;                   " Not ready when updating brightness
-
-	 IF (RESET)		THEN Idle          " Reset, start over
-    ELSE 			     DigPotEna;	   " Continue incrementing/decrementing
-
 
 
 TEST_VECTORS
+"                                              St3, St2, St1,  St0
+( [ Clock, RESET, MCS1, MCS2, DTR ] -> [ SRDY, MUX, CAS, RAS, DRAM ])
 
-( [ Clock, RESET, AD0, !PCS1, !MCS0, !PCS5, !RD, !WR ] -> [ SRDY, ORD, DSPCS, DATAE, POTCS, IDECS, IDEE, IDEE2, SCLK, SAB, DA0, DA1, DA2, St0, St1, St2, St3, St4, St5 ] )
+" Refresh cycle
+  [   .C.,     0,    1,    1, .X. ] -> [    1,   0,   0,   0,    1 ]; " Nothing happening
+  [   .C.,     0,    0,    1, .X. ] -> [    0,   0,   1,   0,    1 ]; " CAS-before-RAS (CAS)
+  [   .C.,     0,    0,    1, .X. ] -> [    0,   0,   1,   1,    1 ]; " CAS-before-RAS (both)
+  [   .C.,     0,    0,    1, .X. ] -> [    1,   0,   0,   0,    1 ]; " Done refresh, idle
+  [   .C.,     0,    0,    1, .X. ] -> [    0,   0,   1,   0,    1 ]; " Another refresh
+  [   .C.,     0,    0,    1, .X. ] -> [    0,   0,   1,   1,    1 ]; " Still refreshing
+  [   .C.,     0,    1,    1, .X. ] -> [    1,   0,   0,   0,    1 ]; " Idle
 
-" Show reset works
-  [   .C.,     0,   0,     0,     1,     1,   0,   0 ] -> [    0, .X.,   .X.,   .X.,   .X.,   .X.,  .X.,   .X.,  .X., .X., .X., .X., .X.,   0,   0,   0,   1,   0,   0 ];
-  [   .C.,     1,   0,     0,     0,     0,   0,   0 ] -> [    1, .X.,   .X.,   .X.,   .X.,   .X.,  .X.,   .X.,  .X., .X., .X., .X., .X.,   0,   0,   0,   0,   0,   0 ]; " Reset
-  [   .C.,     1,   0,     0,     0,     0,   0,   0 ] -> [    1, .X.,   .X.,   .X.,   .X.,   .X.,  .X.,   .X.,  .X., .X., .X., .X., .X.,   0,   0,   0,   0,   0,   0 ];
-  [   .C.,     0,   0,     1,     1,     0,   1,   1 ] -> [    0, .X.,   .X.,   .X.,   .X.,   .X.,  .X.,   .X.,  .X., .X., .X., .X., .X.,   0,   0,   0,   0,   0,   0 ]; " PCS but no RD or WR
-  [   .C.,     0,   0,     1,     1,     1,   1,   0 ] -> [    1, .X.,   .X.,   .X.,   .X.,   .X.,  .X.,   .X.,  .X., .X., .X., .X., .X.,   0,   0,   0,   0,   0,   0 ]; " No PCS but WR
+" Read cycle
+  [   .C.,     0,    1,    0,   0 ] -> [    0,   1,   0,   1,    1 ]; " Start mux direction
+  [   .C.,     0,    1,    0,   0 ] -> [    0,   0,   0,   1,    1 ]; " Reading, WE inactive, RAS
+  [   .C.,     0,    1,    0,   0 ] -> [    0,   0,   1,   1,    1 ]; " RAS and CAS
+  [   .C.,     0,    1,    0,   0 ] -> [    0,   0,   0,   0,    1 ]; " Wait state
+  [   .C.,     0,    1,    0,   0 ] -> [    0,   1,   0,   1,    1 ]; " Start mux direction
+  [   .C.,     0,    1,    0,   0 ] -> [    0,   0,   0,   1,    1 ]; " Reading, WE inactive, RAS
+  [   .C.,     0,    1,    0,   0 ] -> [    0,   0,   1,   1,    1 ]; " RAS and CAS
+  [   .C.,     0,    1,    0,   0 ] -> [    0,   0,   0,   0,    1 ]; " Wait state
+  [   .C.,     0,    1,    1, .X. ] -> [    1,   0,   0,   0,    1 ]; " Done
 
-" IDE Read low byte (even address)
-  [   .C.,     1,   0,     0,     0,     0,   0,   0 ] -> [    1, .X.,   .X.,   .X.,   .X.,   .X.,  .X.,   .X.,    0,   0, .X., .X., .X.,   0,   0,   0,   0,   0,   0 ]; " Reset
-  [   .C.,     0,   0,     1,     0,     1,   0,   1 ] -> [    0,   0,   .X.,   .X.,   .X.,     1,    1,     0,    0,   0,   0,   0,   0,   0,   0,   0,   0,   1,   0 ]; " Start reading IDE low byte
-  [   .C.,     0,   0,     1,     0,     1,   0,   1 ] -> [    0,   1,   .X.,   .X.,   .X.,     1,    1,     0,    0,   0,   0,   0,   0,   0,   1,   0,   0,   1,   0 ]; " Read signal strobes
-  [   .C.,     0,   0,     1,     0,     1,   0,   1 ] -> [    0,   1,   .X.,   .X.,   .X.,     1,    1,     0,    1,   0,   0,   0,   0,   0,   1,   0,   0,   1,   0 ]; " Latch with SCLK
-  [   .C.,     0,   0,     1,     0,     1,   0,   1 ] -> [    0,   0,   .X.,   .X.,   .X.,     1,    1,     0,    0,   0,   0,   0,   0,   0,   1,   0,   1,   1,   0 ]; " Read signal ceases
-  [   .C.,     0,   0,     1,     0,     1,   0,   1 ] -> [    1,   0,   .X.,   .X.,   .X.,     1,    1,     0,    0,   0,   0,   0,   0,   0,   0,   0,   1,   1,   0 ]; " Wait state
-  [   .C.,     0,   0,     1,     0,     1,   0,   1 ] -> [    1,   0,   .X.,   .X.,   .X.,     1,    1,     0,    0,   0,   0,   0,   0,   0,   0,   0,   1,   1,   0 ]; " Nothing should change
-  [   .C.,     0,   1,     1,     0,     1,   0,   1 ] -> [    0,   0,   .X.,   .X.,   .X.,     0,    0,     1,    0,   0,   0,   1,   0,   0,   0,   0,   1,   0,   0 ]; " Now want to read high byte
+" Write cycle
+  [   .C.,     0,    1,    0,   1 ] -> [    0,   1,   0,   1,    0 ]; " Start mux direction
+  [   .C.,     0,    1,    0,   1 ] -> [    0,   0,   0,   1,    0 ]; " Writing, RAS
+  [   .C.,     0,    1,    0,   1 ] -> [    0,   0,   1,   1,    0 ]; " CAS and RAS
+  [   .C.,     0,    1,    0,   1 ] -> [    0,   0,   1,   1,    1 ]; " WE goes inactive
+  [   .C.,     0,    1,    0,   1 ] -> [    1,   0,   0,   0,    1 ]; " Goes to idle for one clk
+  [   .C.,     0,    1,    0,   1 ] -> [    0,   1,   0,   1,    0 ]; " Start mux direction
+  [   .C.,     0,    1,    0,   1 ] -> [    0,   0,   0,   1,    0 ]; " Writing, RAS
+  [   .C.,     0,    1,    0,   1 ] -> [    0,   0,   1,   1,    0 ]; " CAS and RAS
+  [   .C.,     0,    1,    0,   1 ] -> [    0,   0,   1,   1,    1 ]; " WE goes inactive
+  [   .C.,     0,    1,    1,   1 ] -> [    1,   0,   0,   0,    1 ]; " Done
 
-" IDE Read high byte (odd address)
-  [   .C.,     0,   1,     1,     0,     1,   0,   1 ] -> [    0,   0,   .X.,   .X.,   .X.,     0,    0,     1,    0,   1,   0,   1,   0,   0,   0,   0,   0,   1,   0 ]; " Just enable latch
-  [   .C.,     0,   1,     1,     0,     1,   0,   1 ] -> [    0,   0,   .X.,   .X.,   .X.,     0,    0,     1,    0,   1,   0,   1,   0,   0,   0,   0,   0,   1,   0 ]; " Nothing should change
-  [   .C.,     0,   0,     1,     1,     1,   0,   1 ] -> [    1, .X.,   .X.,   .X.,   .X.,   .X.,  .X.,   .X.,    0,   1, .X., .X., .X.,   0,   0,   0,   0,   0,   0 ]; " Inactivate chip select
-
-" Display read
-  [   .C.,     0,   0,     1,     1,     0,   0,   1 ] -> [    0,   1,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   0,   0,   0,   0,   0,   1 ]; " Enters state machine
-  [   .C.,     0,   0,     1,     1,     0,   0,   1 ] -> [    0,   1,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   1,   0,   0,   0,   0,   1 ]; " Noise does not affect it
-  [   .C.,     0,   0,     0,     1,     0,   0,   1 ] -> [    0,   1,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   1,   1,   0,   0,   0,   1 ]; "    Other PCS active
-  [   .C.,     0,   0,     1,     0,     0,   0,   1 ] -> [    0,   1,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   0,   1,   0,   0,   0,   1 ]; "    Other PCS active
-  [   .C.,     0,   0,     1,     1,     1,   0,   1 ] -> [    0,   1,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   0,   1,   1,   0,   0,   1 ]; "    Disp PCS inactive
-  [   .C.,     0,   0,     1,     1,     0,   0,   0 ] -> [    0,   1,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   0,   0,   1,   0,   0,   1 ]; "    WR inactive
-  [   .C.,     0,   0,     1,     1,     0,   1,   1 ] -> [    0,   1,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   1,   0,   1,   0,   0,   1 ]; "    RD active
-  [   .C.,     0,   0,     1,     1,     0,   0,   1 ] -> [    0,   1,     1,     0,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   1,   1,   1,   0,   0,   1 ];
-  [   .C.,     0,   0,     1,     1,     0,   0,   1 ] -> [    1,   1,     0,     0,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   0, .X.,   0,   1,   1,   1,   0,   0,   1 ];
-  [   .C.,     1,   0,     1,     1,     0,   0,   1 ] -> [    1,   0,     0,     0,   .X.,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   0,   0,   0,   0,   0,   0 ]; " Reset
-
-" Display write
-  [   .C.,     0,   0,     1,     1,     0,   1,   0 ] -> [    0,   0,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   0,   0,   0,   0,   0,   1 ]; " Enters state machine
-  [   .C.,     0,   0,     1,     1,     0,   1,   0 ] -> [    0,   0,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   1,   0,   0,   0,   0,   1 ]; " Noise does not affect it
-  [   .C.,     0,   0,     0,     1,     0,   1,   0 ] -> [    0,   0,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   1,   1,   0,   0,   0,   1 ]; "    Other PCS active
-  [   .C.,     0,   0,     1,     0,     0,   1,   0 ] -> [    0,   0,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   0,   1,   0,   0,   0,   1 ]; "    Other PCS active
-  [   .C.,     0,   0,     1,     1,     1,   1,   0 ] -> [    0,   0,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   0,   1,   1,   0,   0,   1 ]; "    Disp PCS inactive
-  [   .C.,     0,   0,     1,     1,     0,   1,   1 ] -> [    0,   0,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   0,   0,   1,   0,   0,   1 ]; "    RD inactive
-  [   .C.,     0,   0,     1,     1,     0,   0,   0 ] -> [    0,   0,     1,     1,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   1,   0,   1,   0,   0,   1 ]; "    WR active
-  [   .C.,     0,   0,     1,     1,     0,   1,   0 ] -> [    0,   0,     1,     0,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   1,   1,   1,   0,   0,   1 ];
-  [   .C.,     0,   0,     1,     1,     0,   1,   0 ] -> [    1,   0,     0,     0,   .X.,   .X.,  .X.,   .X.,  .X., .X.,   1, .X.,   0,   1,   1,   1,   0,   0,   1 ];
-  [   .C.,     1,   0,     1,     1,     0,   1,   0 ] -> [    1,   0,     0,     0,   .X.,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   0,   0,   0,   0,   0,   0 ]; " Reset
-
-" Increment digital pot
-  [   .C.,     0,   1,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     0,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   0,   0,   1,   0,   0,   0 ]; " Start increment
-  [   .C.,     0,   1,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   0,   0,   1,   1,   0,   0 ]; " Enable digital pot
-  [   .C.,     0,   1,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   1,   0,   1,   1,   1,   0,   0 ]; " Pulse upward
-  [   .C.,     0,   1,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   0,   0,   1,   1,   0,   0 ]; " Back to level (0)
-  [   .C.,     0,   1,     0,     1,     1,   1,   0 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   1,   0,   1,   1,   1,   0,   0 ]; " Pulse upward. Resilient to RD/WR
-  [   .C.,     0,   1,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   0,   0,   1,   1,   0,   0 ]; " Back to level (0)
-  [   .C.,     1,   1,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     0,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   0,   0,   0,   0,   0,   0 ]; " Reset
-
-" Decrement digital pot
-  [   .C.,     0,   0,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     0,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   1,   0,   0,   1,   0,   0,   0 ]; " Start increment
-  [   .C.,     0,   0,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   1,   0,   0,   1,   1,   0,   0 ]; " Enable digital pot
-  [   .C.,     0,   0,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   1,   0,   1,   1,   0,   0 ]; " Pulse upward
-  [   .C.,     0,   0,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   1,   0,   0,   1,   1,   0,   0 ]; " Back to level (0)
-  [   .C.,     0,   0,     0,     1,     1,   1,   0 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   1,   0,   1,   1,   0,   0 ]; " Pulse upward. Resilient to RD/WR
-  [   .C.,     0,   0,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     1,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   1,   0,   0,   1,   1,   0,   0 ]; " Back to level (0)
-  [   .C.,     1,   0,     0,     1,     1,   0,   1 ] -> [    0, .X.,   .X.,   .X.,     0,   .X.,  .X.,   .X.,  .X., .X., .X., .X.,   0,   0,   0,   0,   0,   0,   0 ]; " Reset
+" Wait
+  [   .C.,     0,    1,    1, .X. ] -> [    1,   0,   0,   0,    1 ]; " Idle
+  [   .C.,     0,    1,    1, .X. ] -> [    1,   0,   0,   0,    1 ]; " Idle
 
 END
 

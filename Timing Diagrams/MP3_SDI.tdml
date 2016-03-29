@@ -591,7 +591,7 @@
   <annotation e.ptr="TT383" signal.ptr="TT9" x.offset="25540" y.offset="-0.76">1 wait state</annotation>
   <annotation e.ptr="TT394" signal.ptr="TT9" x.offset="19398" y.offset="-0.92">1 wait state</annotation>
   <view.group>
-    <view begin.time="1100000" end.time="1510000"/>
+    <view begin.time="-1" end.time="409999"/>
   </view.group>
   <cc.list>
     <title id="TT195">General Data</title>
