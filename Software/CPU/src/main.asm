@@ -87,7 +87,7 @@ Start:
         MOV     DS, AX
 
         CALL    InitCS                  ;initialize chip selects
-        CALL    InitIRQ                 ;initialize IRQ vectors
+        CALL    InitIRQ                 ;initialize and clear IRQ vectors
 		CALL	InitIVT					;Initializes interrupt vector table
 		CALL	InitButtons				;Initializes buttonpress queue
 		CALL	InitEncoder				;Initializes encoder state variable
@@ -102,4 +102,4 @@ CODE    ENDS
 
 
 
-        END
+        END Start

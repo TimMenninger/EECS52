@@ -34,7 +34,7 @@
 
 
 ;local include files
-$INCLUDE(chipslct.inc)
+$INCLUDE(src\chipslct.inc)
 
 
 

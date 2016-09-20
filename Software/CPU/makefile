@@ -49,8 +49,12 @@ GLENOBJS= lib188.obj \
 		  ffrev.obj \
 		  playmp3.obj
 # Written code
-JUKEOBJS= chipslct.obj \
+JUKEOBJS= buttons.obj \
+          encoder.obj \
+          chipslct.obj \
 		  irqvects.obj \
+          ivt.obj \
+          queues.obj \
 		  main.obj
 
 
@@ -59,18 +63,22 @@ JUKEOBJS= chipslct.obj \
 # Should be all of the same object files, but now we need the directory and
 # comma-separation.  The first list can have a maximum of 6 and the rest
 # can have a maximum of 5 .obj files.
-LNKOBJS1= $(OBJDIR)\lib188.obj, \
+LNKOBJS1= $(OBJDIR)\encoder.obj, \
+          $(OBJDIR)\queues.obj, \
+          $(OBJDIR)\buttons.obj, \
+          $(OBJDIR)\lib188.obj, \
 		  $(OBJDIR)\simide.obj, \
-		  $(OBJDIR)\fatutil.obj, \
-		  $(OBJDIR)\keyupdat.obj, \
-		  $(OBJDIR)\trakutil.obj, \
-		  $(OBJDIR)\ffrev.obj
-LNKOBJS2= $(OBJDIR)\playmp3.obj, \
-		  $(OBJDIR)\stubfncs.obj, \
-		  $(OBJDIR)\mainloop.obj, \
-		  $(OBJDIR)\chipslct.obj, \
-		  $(OBJDIR)\irqvects.obj
-LNKOBJS3= $(OBJDIR)\main.obj
+		  $(OBJDIR)\fatutil.obj
+LNKOBJS2= $(OBJDIR)\keyupdat.obj, \
+          $(OBJDIR)\trakutil.obj, \
+		  $(OBJDIR)\ffrev.obj, \
+          $(OBJDIR)\playmp3.obj, \
+		  $(OBJDIR)\stubfncs.obj
+LNKOBJS3= $(OBJDIR)\mainloop.obj, \
+          $(OBJDIR)\chipslct.obj, \
+          $(OBJDIR)\irqvects.obj, \
+          $(OBJDIR)\ivt.obj, \
+          $(OBJDIR)\main.obj
 # ROMOBJS= c0smrom.obj $(SYSOBJS)
 
 	
@@ -78,10 +86,15 @@ LNKOBJS3= $(OBJDIR)\main.obj
 
 # Target for building debug version of code
 juke: $(JUKEOBJS) $(GLENOBJS)
-	$(LINK) $(LNKOBJS1) to $(EXENAME).lnk
-	$(LINK) $(EXENAME).lnk, $(LNKOBJS2) to $(EXENAME)1.lnk
-	$(LINK) $(EXENAME)1.lnk, $(LNKOBJS3), $(GLENDIR)\ic86.lib to $(EXENAME).lnk
+	$(LINK) $(LNKOBJS1) to $(EXENAME)1.lnk
+	$(LINK) $(EXENAME)1.lnk, $(LNKOBJS2) to $(EXENAME)2.lnk
+	$(LINK) $(EXENAME)2.lnk, $(LNKOBJS3) to $(EXENAME)3.lnk
+    $(LINK) $(EXENAME)3.lnk, $(GLENDIR)\ic86.lib to $(EXENAME).lnk
 	$(LOC) $(EXENAME).lnk $(LOCFLAGS)
+    del $(EXENAME).lnk
+    del $(EXENAME)1.lnk
+    del $(EXENAME)2.lnk
+    del $(EXENAME)3.lnk
 
 
 # Target for building ROM version of code
@@ -156,10 +169,22 @@ lib188.obj	 : $(GLENDIR)\lib188.asm
 
 # Targets for Jukebox Code (Created by me)
 
+irqvects.obj : $(SRCDIR)\irqvects.asm $(SRCDIR)\irqvects.inc
+	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
+
 chipslct.obj : $(SRCDIR)\chipslct.asm $(SRCDIR)\chipslct.inc
 	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
 
-irqvects.obj : $(SRCDIR)\irqvects.asm $(SRCDIR)\irqvects.inc
+ivt.obj      : $(SRCDIR)\ivt.asm $(SRCDIR)\ivt.inc
+	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
+
+queues.obj   : $(SRCDIR)\queues.asm $(SRCDIR)\queues.inc
+	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
+
+buttons.obj  : $(SRCDIR)\buttons.asm $(SRCDIR)\buttons.inc
+	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
+
+encoder.obj  : $(SRCDIR)\encoder.asm $(SRCDIR)\encoder.inc
 	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
 
 main.obj	 : $(SRCDIR)\main.asm

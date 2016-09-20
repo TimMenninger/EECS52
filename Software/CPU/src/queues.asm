@@ -13,7 +13,7 @@
 ;Description:      This code contains routines related to the queue struct.  The struct
 ;                  itself is not in this file, but is included.
 ;
-;Contents:			QueueInit - initializes the queue attributes
+;Contents:		   QueueInit - initializes the queue attributes
 ;
 ;                  QueueFull - returns TRUE if the queue is full, FALSE otherwise
 ;
@@ -38,9 +38,9 @@
 ;Data Structures:  None.
 ;
 ;Revision History:
-;    1/26/06  Glen George      initial revision
+;    01/26/06  Glen George      initial revision
 ;	 10/31/14  Tim Menninger	added TODOs
-;   11/29/14  Tim Menninger    cleaned up comments
+;    11/29/14  Tim Menninger    cleaned up comments
 ;	 12/11/14  Tim Menninger	renamed from que_rout.asm to queues.asm
 ;
 
@@ -54,8 +54,8 @@ CODE	SEGMENT PUBLIC 'CODE'
         ASSUME  CS:CGROUP
 
 
-$INCLUDE(queues.inc)        ;includes the queue struct
-$INCLUDE(boolean.inc)       ;includes boolean constants
+$INCLUDE(src\queues.inc)        ;includes the queue struct
+$INCLUDE(src\common.inc)        ;includes constants not specific to any project
 
 
 ;

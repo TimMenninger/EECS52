@@ -50,7 +50,8 @@ CODE    SEGMENT PUBLIC 'CODE'
 
 
 
-$INCLUDE(buttons.inc)           ;Constants related to buttons
+$INCLUDE(src\buttons.inc)           ;Constants related to buttons
+$INCLUDE(src\queues.inc)            ;Contains the queue struct used for buttons
 
 
 
@@ -85,7 +86,7 @@ $INCLUDE(buttons.inc)           ;Constants related to buttons
 ;
 ;Data Structures:   None.
 ;
-;Registers Changed: AX
+;Registers Changed: AX, DX
 ;
 ;Revision History:  05/14/16   Tim Menninger   Created
 ;
@@ -101,7 +102,11 @@ ButtonQueueInit:
     MOV     AL, BTN_QUEUE_LEN   ;QueueInit expects queue length in AL
     XOR     BL, BL              ;False indicates queue values are bytes
     CALL    QueueInit           ;Initialize queue with above parameters
+   
+ButtonPCSReset:                 ;Need to reset MAX6818 by reading from it
+    IN      AL, BUTTON_PORT     ;Read the value of the buttons
 
+DoneButtonInit:
     POP		SI                  ;Restore registers
 	POP		BX
     RET
@@ -167,9 +172,9 @@ ButtonHandler   PROC        NEAR
 
 ButtonHandlerInit:              ;Set variables used in this function
     PUSHA                       ;Store registers
-    MOV     AX, BUTTON_PORT     ;Retrieve the buttons address so we can read it
-    IN      DL, AX              ;Retrieve which buttons are pressed
-    NOT     DL, DL              ;For iteration to work well, we want 1 to be
+    IN      AL, BUTTON_PORT     ;Retrieve which buttons are pressed
+    MOV     DL, AL              ;Putting in DL to reserve AL for Enqueue call
+    NOT     DX                  ;For iteration to work well, we want 1 to be
                                 ;  pushed buttons' bits.
     XOR     BX, BX              ;Will be our counter for accessing table with
                                 ;  button keys/values
@@ -189,7 +194,7 @@ CheckButton:                    ;Enqueues keys for button(s) are pressed
 EnqueueButtonCode:              ;Enqueues the button code corresponding to iter
     MOV     AL, CS:[DI]         ;Put key code in AL for us to enqueue
     XOR     AH, AH              ;Clear AH so we can use whole AX as argument
-    CMP     AL, KEY_INVALID     ;Don't want to enqueue invalid key
+    CMP     AL, KEY_ILLEGAL     ;Don't want to enqueue invalid key
     JZ      CheckButton		    ;If key invalid, don't enqueue
     CALL    Enqueue             ;Enqueue the button code
     JMP     CheckButton		    ;Check next button
@@ -273,7 +278,7 @@ key_available   ENDP
 ;Operation:         This loads the queue into the register specified by Dequeue
 ;                   and dequeues.  Dequeue blocks, so this function doesn't
 ;                   return until a key is returned.  It then checks the dequeued
-;                   key against KEY_INVALID and, if they are equal, tries again.
+;                   key against KEY_ILLEGAL and, if they are equal, tries again.
 ;                   The key pressed is returned in AX by Dequeue and thus not
 ;                   moved so that it is also in AX when get_key returns.
 ;
@@ -292,7 +297,7 @@ key_available   ENDP
 ;
 ;Output:            None.
 ;
-;Error Handling:    If the key dequeued is KEY_INVALID, this dequeues the next
+;Error Handling:    If the key dequeued is KEY_ILLEGAL, this dequeues the next
 ;                   key.  If the queue is empty, this blocks until there is a
 ;                   key is dequeued (the Dequeue function blocks).
 ;
@@ -311,7 +316,7 @@ getkey          PROC        NEAR
 DequeueKey:                     ;Get the oldest key pressed
     LEA     SI, KeyPresses      ;Dequeue needs key queue in SI
     CALL    Dequeue             ;Puts key in AX.  Blocks until !QueueEmpty
-    CMP     AX, KEY_INVALID     ;Check whether the dequeued key was invalid
+    CMP     AX, KEY_ILLEGAL     ;Check whether the dequeued key was invalid
     JZ      DequeueKey          ;If the key was invalid, try again
 
     RET
@@ -336,7 +341,7 @@ ButtonTable     LABEL   BYTE
                 PUBLIC  ButtonTable
 
 ;   DB      Button Num      ;Button
-    DB      KEY_INVALID     ;Should never be indexed
+    DB      KEY_ILLEGAL     ;Should never be indexed
     DB      KEY_TRACKUP     ;Track Forward
     DB      KEY_TRACKDOWN   ;Track Backward
     DB      KEY_PLAY        ;Play
@@ -344,7 +349,7 @@ ButtonTable     LABEL   BYTE
     DB      KEY_FASTFWD     ;Fast Forward
     DB      KEY_REVERSE     ;Rewind
     DB      KEY_RPTPLAY     ;Repeat Play
-    DB      KEY_INVALID     ;Should never be indexed
+    DB      KEY_ILLEGAL     ;Should never be indexed
 
 CODE    ENDS
 

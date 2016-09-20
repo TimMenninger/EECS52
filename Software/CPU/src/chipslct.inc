@@ -26,8 +26,8 @@ LMCSval         EQU     01FC0H	;128k LCS, use RDY, 0 wait states
 								;---- ---- --00 0---  reserved
                                 ;---- ---- ---- -0--  wait for RDY inputs (0)
                                 ;---- ---- ---- --00  number of wait states
-PACSval         EQU     0A000H	;PCS base at 0, 0 wait states
-                                ;1010 0000 00-- ----  starts at address 0A0000H
+PACSval         EQU     00000H	;PCS base at 0, 0 wait states
+                                ;0000 0000 00-- ----  starts at address 000000H
                                 ;---- ---- --00 0---  reserved
                                 ;---- ---- ---- -0--  wait for RDY inputs (0)
                                 ;---- ---- ---- --00  number of wait states

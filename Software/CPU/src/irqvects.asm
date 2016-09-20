@@ -10,9 +10,8 @@
 
 ;Description:      This code initializes the interrupt vector table.
 ;
-;Contents:         ClrIRQVectors - installs illegal event handler for all interrupt
+;Contents:         InitIRQ - installs illegal event handler for all interrupt
 ;                                  vectors that are not reserved
-;                  IllegalEventHandler - event handler for uninitialized interrupts
 ;
 ;Input:            None.
 ;
@@ -31,11 +30,12 @@
 ;   11/11/92  Glen George		initial revision (originally ISRDEMO.ASM)
 ;   11/07/14  Tim Menninger		adapted to supplement RoboTrike processes
 ;   04/21/16  Tim Menninger		adapted to 80188 MP3 player
+;   09/20/16  Tim Menninger     removed IllegalEventHandler
 ;
 
 
 
-$INCLUDE(intrpts.inc)           ;constants and addresses related to interrupt
+$INCLUDE(src\intrpts.inc)           ;constants and addresses related to interrupt
                                 ;  vectors
 
 CGROUP  GROUP   CODE
@@ -46,10 +46,9 @@ CODE    SEGMENT PUBLIC 'CODE'
         ASSUME  CS:CGROUP
 
 
-;ClrIRQVectors
+;InitIRQ
 ;
-;Description:      This functions installs the IllegalEventHandler for all
-;                  interrupt vectors in the interrupt vector table.  Note
+;Description:      This functions clears all IRQ vectors.  Note
 ;                  that all 256 vectors are initialized so the code must be
 ;                  located above 400H.  The initialization skips  (does not
 ;                  initialize vectors) from vectors FIRST_RESERVED_VEC to
@@ -73,8 +72,8 @@ CODE    SEGMENT PUBLIC 'CODE'
 ;
 ;Registers Used:   flags, AX, CX, SI, ES
 
-ClrIRQVectors   PROC    NEAR
-                PUBLIC  ClrIRQVectors
+InitIRQ         PROC    NEAR
+                PUBLIC  InitIRQ
 
 
 InitClrVectorLoop:              ;setup to store the same handler 256 times
@@ -102,14 +101,14 @@ DoneStore:                      ;done storing the vector
         ADD     SI, VECTOR_SIZE ;update pointer to next vector
 
         LOOP    ClrVectorLoop   ;loop until have cleared all vectors
-        ;JMP    EndClrIRQVectors;and all done
+        ;JMP    EndInitIRQ;and all done
 
 
-EndClrIRQVectors:               ;all done, return
+EndInitIRQ:               ;all done, return
         RET
 
 
-ClrIRQVectors   ENDP
+InitIRQ   ENDP
 
 
 

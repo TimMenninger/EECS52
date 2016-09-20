@@ -75,6 +75,7 @@ int  elapsed_time()
 
 /* keypad functions */
 
+/*
 unsigned char  key_available()
 {
     return  FALSE;
@@ -84,6 +85,7 @@ int  getkey()
 {
     return  KEY_ILLEGAL;
 }
+*/
 
 
 

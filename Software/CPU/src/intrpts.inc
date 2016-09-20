@@ -29,15 +29,15 @@ NonSpecEOI      EQU     08000H          	;Non-specific EOI command
 SpecEOI         EQU     00000H          	;0--- ---- ---- ----	0 for specific EOI
 											;-000 0000 000- ----	reserved
 											;---- ---- ---X XXXX	Relative to INT type
-MASK_INTS		EQU		000FDH				;0000 0000 ---- ----	reserved
-											;---- ---- 1--- ----	mask INT3
-											;---- ---- -1-- ----	mask INT2
-											;---- ---- --1- ----	mask INT1
-											;---- ---- ---1 ----	mask INT0
-											;---- ---- ---- 1---	mask DMA1
-											;---- ---- ---- -1--	mask DMA0
-											;---- ---- ---- --0-	reserved
-											;---- ---- ---- ---1	mask timer
+UNMASK_INT_MASK EQU		0FF0FH				;1111 1111 ---- ----	maintainreserved
+											;---- ---- 0--- ----	unmask INT3
+											;---- ---- -0-- ----	unmask INT2
+											;---- ---- --0- ----	unmask INT1
+											;---- ---- ---0 ----	unmask INT0
+											;---- ---- ---- 1---	maintain DMA1
+											;---- ---- ---- -1--	maintain DMA0
+											;---- ---- ---- --1-	maintain reserved
+											;---- ---- ---- ---1	maintain timer
 
 ;Interrupt values specified
 INT0Cntrl       EQU     PCB_BASE + 38H     	;address of INT0 control register
@@ -55,28 +55,23 @@ INT1EOI         EQU     SpecEOI + INT1_VECTOR	;INT0 is type 12
 INT2EOI         EQU     SpecEOI + INT2_VECTOR	;INT0 is type 12
 INT3EOI			EQU		SpecEOI + INT3_VECTOR	;INT3 is type 15
 
-UNMASK0			EQU		MASK_INTS & 0FFEFH	;unmask INT0
-UNMASK1			EQU		MASK_INTS & 0FFDFH	;unmask INT1
-UNMASK2			EQU		MASK_INTS & 0FFBFH	;unmask INT2
-UNMASK3			EQU		MASK_INTS & 0FF7FH	;unmask INT3
-
-INT0CtrlrCVal   EQU     00003H          	;set priority for INT0 enable
+INT0CtrlrCVal   EQU     00013H          	;set priority for INT0 enable
                                         	;0000 0000 000- ----	reserved
-                                  			;---- ---- ---0 ----	0 for edge triggering
+                                  			;---- ---- ---1 ----	1 for edge triggering
  											;---- ---- ---- 0---	enable INT0 interrupts
  											;---- ---- ---- -011	INT0 priority
-INT1CtrlrCVal   EQU     00003H          	;set priority for INT1 enable
+INT1CtrlrCVal   EQU     00013H          	;set priority for INT1 enable
                                         	;0000 0000 000- ----	reserved
-                                  			;---- ---- ---0 ----	0 for edge triggering
+                                  			;---- ---- ---1 ----	1 for edge triggering
  											;---- ---- ---- 0---	enable INT1 interrupts
  											;---- ---- ---- -011	INT1 priority
-INT2CtrlrCVal   EQU     00003H          	;set priority for INT2 enable
+INT2CtrlrCVal   EQU     00013H          	;set priority for INT2 enable
                                         	;0000 0000 000- ----	reserved
-                                  			;---- ---- ---0 ----	0 for edge triggering
+                                  			;---- ---- ---1 ----	1 for edge triggering
  											;---- ---- ---- 0---	enable INT2 interrupts
  											;---- ---- ---- -011	INT2 priority
-INT3CtrlrCVal   EQU     00003H          	;set priority for INT3 enable
+INT3CtrlrCVal   EQU     00013H          	;set priority for INT3 enable
                                         	;0000 0000 000- ----	reserved
-                                  			;---- ---- ---0 ----	0 for edge triggering
+                                  			;---- ---- ---1 ----	1 for edge triggering
  											;---- ---- ---- 0---	enable INT3 interrupts
  											;---- ---- ---- -011	INT3 priority

@@ -38,7 +38,7 @@ CODE    SEGMENT PUBLIC 'CODE'
         ASSUME  CS:CGROUP, DS:DGROUP
 
 
-$INCLUDE(encoder.inc)           ;Constants related to buttons
+$INCLUDE(src\encoder.inc)           ;Constants related to buttons
 
 ;
 ;InitEncoder
@@ -145,7 +145,7 @@ ReadEncoderState:
 	XOR		AX, AX				;clear high byte because only reading byte
 	IN		AL, DX				;read encoder state
 	MOV		DI, AX				;make copy to retain next value
-	XCHG	AX, EncoderState	;get encoder state to check which direction it moved
+	XCHG	EncoderState, AL	;get encoder state to check which direction it moved
 
 DecideEncoderMotion:
 	AND		AX, STATE_MASK		;mask out bits that don't relate to last encoder state
@@ -209,3 +209,6 @@ DATA    SEGMENT PUBLIC  'DATA'
 	EncoderState	DB	?  ;Keeps state of encoder so we know rotation direction
 
 DATA	ENDS
+
+
+        END
