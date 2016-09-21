@@ -109,7 +109,9 @@ InitEncoder		ENDP
 ;
 ;Return Value:      None.
 ;
-;Local Variables:   None.
+;Local Variables:   DI - contains current encoder state, then both states in different
+;						bits
+;					AX - contains previous encoder state
 ;
 ;Shared Variables:  EncoderState (WRITE) - The value in this is read as the previous
 ;						value, then the value read from the encoder is stored in its
@@ -138,12 +140,11 @@ InitEncoder		ENDP
 EncoderHandler	PROC		NEAR
 				PUBLIC		EncoderHandler
 
-	PUSH	DI
+	PUSH	DI					;store callee-saved register
 
 ReadEncoderState:
-	MOV 	DX, ENCODER_PORT	;need port to read new encoder state
 	XOR		AX, AX				;clear high byte because only reading byte
-	IN		AL, DX				;read encoder state
+	IN		AL, ENCODER_PORT	;read encoder state
 	MOV		DI, AX				;make copy to retain next value
 	XCHG	EncoderState, AL	;get encoder state to check which direction it moved
 
@@ -152,12 +153,18 @@ DecideEncoderMotion:
 	AND		DI, STATE_MASK		;mask out bits that don't relate to current encoder state
 	SHL		AX, STATE_BITS		;shift last state so we can combine the two states
 	OR		DI, AX				;combine two states to use as table lookup
+
+	MOV		DX, POT_PORT		;port for digital potentiometer to change brightness
 	JMP		CS:EncoderFunctions[DI];handle function accordingly
 
 HandleClockwise:
+	MOV		AX, BRIGHT_UP		;value to send to digital pot to turn up brightness
+	OUT		DX, AL				;turn up display brightness
 	JMP		EncoderHandled
 
 HandleCounterclockwise:
+	MOV		AX, BRIGHT_DOWN		;value to send to digital pot to turn down brightness
+	OUT		DX, AL				;turn down display brightness
 	JMP		EncoderHandled
 
 EncoderHandled:

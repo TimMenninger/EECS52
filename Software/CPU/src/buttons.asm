@@ -69,7 +69,7 @@ $INCLUDE(src\queues.inc)            ;Contains the queue struct used for buttons
 ;
 ;Return Value:      None.
 ;
-;Local Variables:   None.
+;Local Variables:   SI - address of KeyPresses
 ;
 ;Shared Variables:  KeyPresses (WRITE) - Initializes an empty queue at this
 ;                      address
@@ -102,7 +102,7 @@ ButtonQueueInit:
     MOV     AL, BTN_QUEUE_LEN   ;QueueInit expects queue length in AL
     XOR     BL, BL              ;False indicates queue values are bytes
     CALL    QueueInit           ;Initialize queue with above parameters
-   
+
 ButtonPCSReset:                 ;Need to reset MAX6818 by reading from it
     IN      AL, BUTTON_PORT     ;Read the value of the buttons
 
@@ -138,7 +138,10 @@ InitButtons      ENDP
 ;
 ;Return Value:      None.
 ;
-;Local Variables:   None.
+;Local Variables:   AL - contains key code corresponding to button
+;					BX - iteration variable counting bits
+;					DL - contains which buttons are pressed
+;					DI - address within key table, indexed by button number
 ;
 ;Shared Variables:  KeyPresses (WRITE) - Enqueues key events into this queue
 ;						when key presses are detected.

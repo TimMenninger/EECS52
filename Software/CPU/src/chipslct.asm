@@ -11,12 +11,12 @@
 ;
 ;Description:      This code initializes the chip selects.
 ;
-;Contents:			InitCS - initializes chip selects
+;Contents:		   InitCS - initializes chip selects
 ;
 ;Input:            None.
 ;
 ;Output:           The ports relating to the keypads and displays are written
-;					values so we can access them.
+;				   values so we can access them.
 ;
 ;User Interface:   None.
 ;
