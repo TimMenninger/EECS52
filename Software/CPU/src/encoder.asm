@@ -133,14 +133,14 @@ InitEncoder		ENDP
 ;
 ;Data Structures:   None.
 ;
-;Registers Changed: AX, DX
+;Registers Changed: None.
 ;
 ;Revision History:  09/19/16   Tim Menninger   Created
 ;
 EncoderHandler	PROC		NEAR
 				PUBLIC		EncoderHandler
 
-	PUSH	DI					;store callee-saved register
+	PUSHA						;store registers
 
 ReadEncoderState:
 	XOR		AX, AX				;clear high byte because only reading byte
@@ -168,8 +168,8 @@ HandleCounterclockwise:
 	JMP		EncoderHandled
 
 EncoderHandled:
-	POP		DI
-	RET
+	POPA
+	IRET
 
 EncoderHandler	ENDP
 

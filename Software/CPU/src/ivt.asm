@@ -92,7 +92,7 @@ InstallINTHandlers  PROC    NEAR
 InstallINT0:				;store the INT0 vector
 	MOV     ES: WORD PTR (4 * INT0_VECTOR), OFFSET(ButtonHandler)        ;function offset
 	MOV     ES: WORD PTR (4 * INT0_VECTOR + 2), SEG(ButtonHandler)       ;function segment
-    
+
 InstallINT1:				;store the INT1 vector
 	MOV     ES: WORD PTR (4 * INT1_VECTOR), OFFSET(IllegalEventHandler)  ;function offset
 	MOV     ES: WORD PTR (4 * INT1_VECTOR + 2), SEG(IllegalEventHandler) ;function segment
@@ -104,7 +104,7 @@ InstallINT2:				;store the INT2 vector
 InstallINT3:				;store the INT3 vector
 	MOV     ES: WORD PTR (4 * INT3_VECTOR), OFFSET(EncoderHandler)       ;function offset
 	MOV     ES: WORD PTR (4 * INT3_VECTOR + 2), SEG(EncoderHandler)      ;function segment
-    
+
 	RET                     ;all done, return
 
 
@@ -155,7 +155,7 @@ InstallINTHandlers  ENDP
 ;
 InitIVT				PROC    NEAR
 			   		PUBLIC  InitIVT
-                    
+
 	XOR		CX, CX			;Will be iteration counter
 
 InitINT0Vector:
@@ -208,6 +208,7 @@ DoneInit:
 InitIVT		ENDP
 
 
+;
 ;IllegalEventHandler
 ;
 ;Description:       This procedure is the event handler for illegal

@@ -139,7 +139,7 @@ InitButtons      ENDP
 ;Return Value:      None.
 ;
 ;Local Variables:   AL - contains key code corresponding to button
-;					BX - iteration variable counting bits
+;					CX - iteration variable counting bits
 ;					DL - contains which buttons are pressed
 ;					DI - address within key table, indexed by button number
 ;
@@ -179,20 +179,18 @@ ButtonHandlerInit:              ;Set variables used in this function
     MOV     DL, AL              ;Putting in DL to reserve AL for Enqueue call
     NOT     DX                  ;For iteration to work well, we want 1 to be
                                 ;  pushed buttons' bits.
-    XOR     BX, BX              ;Will be our counter for accessing table with
+	MOV		CX, NUM_BUTTONS-1	;Will be our counter for accessing table with
                                 ;  button keys/values
 	LEA     DI, ButtonTable     ;Get address of button table so we can read it
 	LEA     SI, KeyPresses      ;Get the address of the key queue for Enqueue
 
 CheckButton:                    ;Enqueues keys for button(s) are pressed
-    CMP     BX, NUM_BUTTONS     ;See if we have checked all of the buttons
-    JZ      DoneButtonHandler   ;We are done iterating if here.
-	INC     BX                  ;Increment the button index we are looking at
 	INC		DI					;Address of button action (useful if button is pressed)
-
 	ROR     DL, 1               ;Rotate so we can check the next bit at bit 7
 	TEST    DL, 80H 			;Check if highest bit is set
-	JZ      CheckButton		    ;Button not pressed--check next button
+	JNZ     EnqueueButtonCode	;Button not pressed--check next button
+	LOOP	CheckButton			;check next button
+	JMP		DoneButtonHandler
 
 EnqueueButtonCode:              ;Enqueues the button code corresponding to iter
     MOV     AL, CS:[DI]         ;Put key code in AL for us to enqueue
@@ -200,11 +198,11 @@ EnqueueButtonCode:              ;Enqueues the button code corresponding to iter
     CMP     AL, KEY_ILLEGAL     ;Don't want to enqueue invalid key
     JZ      CheckButton		    ;If key invalid, don't enqueue
     CALL    Enqueue             ;Enqueue the button code
-    JMP     CheckButton		    ;Check next button
+    LOOP    CheckButton		    ;Check next button
 
 DoneButtonHandler:              ;Wrap up process
     POPA                        ;Restore registers
-    RET
+    IRET
 
 ButtonHandler   ENDP
 

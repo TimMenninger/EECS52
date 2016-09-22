@@ -55,23 +55,23 @@ INT1EOI         EQU     SpecEOI + INT1_VECTOR	;INT0 is type 12
 INT2EOI         EQU     SpecEOI + INT2_VECTOR	;INT0 is type 12
 INT3EOI			EQU		SpecEOI + INT3_VECTOR	;INT3 is type 15
 
-INT0CtrlrCVal   EQU     00013H          	;set priority for INT0 enable
+INT0CtrlrCVal   EQU     00003H          	;set priority for INT0 enable
                                         	;0000 0000 000- ----	reserved
-                                  			;---- ---- ---1 ----	1 for edge triggering
+                                  			;---- ---- ---0 ----	0 for edge triggering
  											;---- ---- ---- 0---	enable INT0 interrupts
  											;---- ---- ---- -011	INT0 priority
-INT1CtrlrCVal   EQU     00013H          	;set priority for INT1 enable
+INT1CtrlrCVal   EQU     00003H          	;set priority for INT1 enable
                                         	;0000 0000 000- ----	reserved
-                                  			;---- ---- ---1 ----	1 for edge triggering
+                                  			;---- ---- ---0 ----	0 for edge triggering
  											;---- ---- ---- 0---	enable INT1 interrupts
  											;---- ---- ---- -011	INT1 priority
-INT2CtrlrCVal   EQU     00013H          	;set priority for INT2 enable
+INT2CtrlrCVal   EQU     00003H          	;set priority for INT2 enable
                                         	;0000 0000 000- ----	reserved
-                                  			;---- ---- ---1 ----	1 for edge triggering
+                                  			;---- ---- ---0 ----	0 for edge triggering
  											;---- ---- ---- 0---	enable INT2 interrupts
  											;---- ---- ---- -011	INT2 priority
-INT3CtrlrCVal   EQU     00013H          	;set priority for INT3 enable
+INT3CtrlrCVal   EQU     00003H          	;set priority for INT3 enable
                                         	;0000 0000 000- ----	reserved
-                                  			;---- ---- ---1 ----	1 for edge triggering
+                                  			;---- ---- ---0 ----	0 for edge triggering
  											;---- ---- ---- 0---	enable INT3 interrupts
  											;---- ---- ---- -011	INT3 priority

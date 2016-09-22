@@ -42,6 +42,7 @@ CODE    SEGMENT PUBLIC 'CODE'
 
 
 $INCLUDE(src\display.inc)           ;Constants related to buttons
+$INCLUDE(src\converts.inc)          ;Contains length of converted dec string
 
 
 
@@ -81,7 +82,7 @@ $INCLUDE(src\display.inc)           ;Constants related to buttons
 ;
 ;Data Structures:   None.
 ;
-;Registers Changed:	AX, DX
+;Registers Changed:	AX, BX, DX
 ;
 ;Revision History:  09/20/16   Tim Menninger   Created
 ;
@@ -89,7 +90,6 @@ $INCLUDE(src\display.inc)           ;Constants related to buttons
 InitDisplay     PROC        NEAR
                 PUBLIC      InitDisplay
 
-	PUSH	BX						;save callee-saved register
 	PUSH	SI
 	XOR		BX, BX					;clear BX to be iterator
 
@@ -130,7 +130,6 @@ SendSpecialCharacters:				;puts special characters in display's CGRAM
 	CALL	InitSpecialCharacter	;place the character in CGRAM
 
 DoneInitDisplay:
-	POP		BX						;restore callee-saved register
 	POP		SI
 	RET
 
@@ -231,7 +230,6 @@ PlaceCharacter	PROC		NEAR
 	MOV		BP, SP					;store base pointer to get arguments relative to it
 
 SetDDRAMAddress:					;tell display data will be a character to display
-	PUSH	BX						;save callee-saved register
 	MOV		BX, [BP+6]				;get character location from argument list
 	MOV		DX, CharOffsetTable[BX]	;get address offset for char location
 	MOV		AX, DDRAM_BASE_ADDR		;base address of display's character DDRAM
@@ -249,7 +247,7 @@ SendCharacter:
 	OUT		DX, AX					;send character
 
 CharacterPlaced:
-	POP		BX						;restore callee-saved register
+	MOV		SP, BP					;restore stack
 	POP		BP						;restore base pointer
 	RET
 
@@ -270,7 +268,7 @@ PlaceCharacter	ENDP
 ;					If that character exceeds the number of characters in the display,
 ;					then printing ceases.
 ;
-;Arguments:         SP+2 - Pointer to string
+;Arguments:         SP+2 - Pointer to null-terminated string
 ;					SP+4 - Index on display to put first character in string
 ;
 ;Return Value:      None.
@@ -299,9 +297,6 @@ PlaceCharacter	ENDP
 ;
 ;Revision History:  09/20/16   Tim Menninger   Created
 ;
-;Expect string pointer first on stack
-;expect location of first character second on stack
-;string null terminated
 PlaceString		PROC		NEAR
 				PUBLIC		PlaceString
 
@@ -336,6 +331,7 @@ PutCharacter:
 StringPlaced:
 	POP		DI						;restore callee-saved registers
 	POP		SI
+	MOV		SP, BP					;restore stack
 	POP		BP						;restore base pointer
 	RET
 
@@ -361,7 +357,7 @@ PlaceString		ENDP
 ;
 ;Return Value:      None.
 ;
-;Local Variables:  	DI - iteration variable
+;Local Variables:  	CX - iteration variable
 ;					AX - Alternates between CGRAM address and pixel row value
 ;
 ;Shared Variables:	None.
@@ -385,18 +381,13 @@ PlaceString		ENDP
 InitSpecialCharacter	PROC	NEAR
 						PUBLIC	InitSpecialCharacter
 
-	PUSH	DI						;save callee-saved register
-
 SetCGRAMBaseAddress:
 	MOV		DX, CMD_DISPLAY_PORT	;display port being written to
 	MOV		AX, CGRAM_BASE_ADDR		;get address within display for CGRAM
 	ADD		AX, BX					;add in offset to CGRAM address
-	XOR		DI, DI					;will be iteration variable when drawing pixels
+	MOV		CX, PIXEL_HEIGHT-1		;want to iterate for each row in the character
 
 DrawGlyph:
-	CMP		DI, PIXEL_HEIGHT		;only iterate for each row in the image
-	JZ		DoneSpecialChar			;if iteration at bound, done with character
-
 	CALL	BlockDisplay			;block until display ready
 	OUT		DX, AL					;send CGRAM address
 
@@ -408,8 +399,9 @@ DrawGlyph:
 	OUT		DX, AL					;send next line of pixels
 	POP		AX						;restore CGRAM address
 
+	LOOP	DrawGlyph
+
 DoneSpecialChar:
-	POP		DI						;restore callee-saved register
 	RET
 
 InitSpecialCharacter	ENDP
@@ -420,7 +412,55 @@ InitSpecialCharacter	ENDP
 display_time	PROC		NEAR
 				PUBLIC		display_time
 
-	NOP
+	PUSH	BP
+	MOV		BP, SP					;store original stack pointer
+
+	PUSH	SI						;save callee-saved register
+	LEA		SI, Title				;get address of buffer to fill it
+
+RemoveTenthOfSecond:
+	MOV		AX, 10					;remove tenths from time
+	MOV		BX, [BP+4]				;get time in seconds to nearest tenth
+	XOR		DX, DX					;clear DX in prep for dividing
+	DIV		BX						;AX now contains time to nearest second
+
+GetMinsAndSecs:
+	MOV		AX, 60					;dividing by 60 will separate mins and secs to AX/DX
+	MOV		BX, AX					;move the time out of AX so we can divide again
+	XOR		DX, DX					;clear DX in prep for dividing
+	DIV		BX						;AX contains mins, DX contains secs
+
+BuildTimeString:
+	PUSH	AX						;store so we can do seconds first
+	MOV		DX, AX					;doing seconds first because it will overwrite minutes
+									;	otherwise
+	ADD		SI, TIME_SIZE-DEC2STR_CHARS;where to start the seconds string
+	CALL	Dec2String				;load seconds string into time buffer
+
+	SUB		SI, TIME_SIZE-DEC2STR_CHARS;move SI back to beginning of buffer
+	MOV		SI[COLON_IDX], ':'		;put colon into time buffer
+
+	POP		AX						;restore minutes value
+	CALL	Dec2String				;place minutes string into time buffer
+
+	XOR		BX, BX					;iterator to remove leading zeroes
+
+RemoveLeadingZeroes:
+	CMP		BX, MINUTE_SIZE-1		;don't want to remove last zero if minutes were zero
+	JZ		DoneTimeString
+
+	CMP		SI[BX], '0'				;if leading zero, replace with space
+	JNZ		DoneTimeString			;if not a zero, no more leading zeroes
+
+	MOV		SI[BX], ' '				;clear the buffer character
+	INC		BX
+	JMP		RemoveLeadingZeroes
+
+DoneTimeString:
+	POP		SI						;callee-saved register restored
+	MOV		SP, BP					;restore stack
+	POP		BP
+	RET
 
 display_time	ENDP
 
@@ -645,6 +685,10 @@ CODE    ENDS
 DATA    SEGMENT PUBLIC  'DATA'
 
     Displaying	DB	DISPLAY_SIZE	DUP(?) 	;array of characters being displayed
+	Title		DB	TITLE_SIZE		DUP(?)	;buffer for writing song title
+	Artist		DB	ARTIST_SIZE		DUP(?)	;buffer for writing artist
+	Time		DB	TIME_SIZE		DUP(?)	;buffer for writing time
+	Status		DB	STATUS_SIZE		DUP(?)	;buffer for displaying status
 
 DATA    ENDS
 

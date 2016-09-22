@@ -1,4 +1,14 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                                                                                        ;
+;                                       DISPLAY.INC                                      ;
+;                             Constants for display routines                             ;
+;                                      Tim Menninger                                     ;
+;                                                                                        ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;This contains constants for use with the 80188 MP3 player display, found in display.asm
+;Revision History:
+;	09/20/16	Tim Menninger	Created
 
 ;display addresses on board
 DISPLAY_PORT				EQU		240H	;port when writing char to display
@@ -25,3 +35,11 @@ SQUARE_IDX					EQU		2		;index of square in CGRAM
 BARS_IDX					EQU		3		;index of pause bars in CGRAM
 
 BUSY_FLAG_MASK				EQU		80H		;masks everything but busy flag
+
+TITLE_SIZE					EQU		20		;maximum length of title string
+ARTIST_SIZE					EQU		20		;maximum length of artist string
+STATUS_SIZE					EQU		3		;maximum length of status string
+MINUTE_SIZE					EQU		5		;maximum length of minutes string
+COLON_IDX					EQU		MINUTE_SIZE	;index of colon in time string
+SECOND_SIZE					EQU		2		;length of seconds string
+TIME_SIZE					EQU		MINUTE_SIZE+1+SECOND_SIZE	;maximum length of time
