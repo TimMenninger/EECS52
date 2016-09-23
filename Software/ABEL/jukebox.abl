@@ -25,7 +25,7 @@ TITLE 'Jukebox CPLD'
 "
 "               Digital Potentiometer: This increases and decreases the voltage
 "               at the wiper terminal using the data input from the CPU.  The
-"               data is the low bit.  1 increments and 0 decrements.  This 
+"               data is the low bit.  1 increments and 0 decrements.  This
 "               machine works by always sending a 1 and a 0.  Which comes first
 "               is determined by the operation (inc or dec).
 "
@@ -43,7 +43,7 @@ TITLE 'Jukebox CPLD'
 "      pin   2;                  input   unused (IN3)
 ALE    pin   3;                 "input   Address latch enable (Active low from 80C188)
 DTR    pin   4;                 "input   DT/R signal (from 80C188)
-A0     pin   5;                 "input   LSB from address bus  
+A0     pin   5;                 "input   LSB from address bus
 CLKBA  pin   6   ISTYPE 'com';  "output  IDE decoder 2CLKBA signal
 !OE1   pin   7   ISTYPE 'com';  "output  IDE decoder 1OE signal
 DIR1   pin   8   ISTYPE 'com';  "output  IDE decoder 1DIR signal
@@ -245,9 +245,9 @@ STATE  Idle:                    " Wait idly with nothing enabled
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 1;                  " SRDY always 'ready' in this state
- 
+
          IF (RESET)         THEN Idle      WITH RDWR = 0  " On reset do nothing
     ELSE IF (PCS5 & DTR)    THEN DispSt    WITH RDWR = 0  " DA0 puts latch direction toward display
     ELSE IF (PCS5 & !DTR)   THEN DispSt    WITH RDWR = 1  " DA0 puts latch direction toward CPU
@@ -255,11 +255,11 @@ STATE  Idle:                    " Wait idly with nothing enabled
     ELSE IF (MCS0 & !A0)    THEN IDERdLow  WITH RDWR = 0  " Even address, read low byte
     ELSE IF (PCS6)          THEN DigPotSt  WITH RDWR = 0  " Increment or decrement digital pot
     ELSE                         Idle      WITH RDWR = 0; " otherwise just stay here
-    
+
 
 
 " Following states correspond to writing to display
-    
+
 STATE DispSt:                   " Begin display write cycle
 
     " Display
@@ -279,13 +279,13 @@ STATE DispSt:                   " Begin display write cycle
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt1    "Next state enables data latch
-    
-    
+
+
 STATE DispWt1:                  " Begin waiting while display sets up
 
     " Display
@@ -305,13 +305,13 @@ STATE DispWt1:                  " Begin waiting while display sets up
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt2    "Continue waiting
-    
-    
+
+
 STATE DispWt2:                  " Continue waiting while display sets up
 
     " Display
@@ -331,13 +331,13 @@ STATE DispWt2:                  " Continue waiting while display sets up
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt3    "Continue waiting
-    
-    
+
+
 STATE DispWt3:                  " Continue waiting while display sets up
 
     " Display
@@ -357,13 +357,13 @@ STATE DispWt3:                  " Continue waiting while display sets up
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt4    "Continue waiting
-    
-    
+
+
 STATE DispWt4:                  " Continue waiting while display sets up
 
     " Display
@@ -383,13 +383,13 @@ STATE DispWt4:                  " Continue waiting while display sets up
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt5    "Continue waiting
-    
-    
+
+
 STATE DispWt5:                  " Continue waiting while display sets up
 
     " Display
@@ -409,13 +409,13 @@ STATE DispWt5:                  " Continue waiting while display sets up
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispWt6    "Continue waiting
-    
-    
+
+
 STATE DispWt6:                  " Continue waiting while display sets up
 
     " Display
@@ -435,13 +435,13 @@ STATE DispWt6:                  " Continue waiting while display sets up
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispDisE   "Disable display to start data hold
-    
-    
+
+
 STATE DispDisE:                 " Disable display to start data hold
 
     " Display
@@ -461,13 +461,13 @@ STATE DispDisE:                 " Disable display to start data hold
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)     THEN Idle       "Reset, stop displaying.
     ELSE                     DispStop   "Done displaying other than enable cycle
-    
-    
+
+
 STATE DispStop:                 " Stops display cycle.  Enable cycle assumed to be observed by CPU
 
     " Display
@@ -487,9 +487,9 @@ STATE DispStop:                 " Stops display cycle.  Enable cycle assumed to 
     DIOR  = 0;			" IDE read inactive (irrelevant without CS0)
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while displaying
-    
+
          IF (RESET)             THEN Idle       "Reset, stop displaying.
     ELSE IF (PCS5)              THEN DispStop   "Require PCS rising edge to start cycle
     ELSE                             Idle       "Go back to beginning
@@ -518,9 +518,9 @@ STATE IDERdLow:                 " Starts IDE read cycle to read low byte
     DIOR  = 0;			" IDE read inactive for first clock
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while reading
-    
+
          IF (RESET)     THEN Idle       "Reset, stop reading.
     ELSE                     HDRdSt     "Want to send read signal to HD
 
@@ -544,9 +544,9 @@ STATE HDRdSt:                   " Sends read signal to hard drive
     DIOR  = 1;			" IDE read active
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while reading
-    
+
          IF (RESET)     THEN Idle       "Reset, stop reading.
     ELSE                     HDLatchRd  "IDE only needs one state to latch data
 
@@ -570,9 +570,9 @@ STATE HDLatchRd:                " Latches the high byte of data
     DIOR  = 1;			" IDE read active
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while reading
-    
+
          IF (RESET)     THEN Idle       "Reset, stop reading.
     ELSE                     HDStopRd   "IDE only needs one state to latch data
 
@@ -596,7 +596,7 @@ STATE HDStopRd:                 " Stops read signal now that data is latched
     DIOR  = 0;			" Done with access directly to IDE
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY not ready while reading
 
          IF (RESET) THEN Idle     " Reset system and state machine
@@ -622,7 +622,7 @@ STATE HDWaitSt:                 " Waits to satisfy the data hold time requiremen
     DIOR  = 0;			" Done with access directly to IDE
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 1;                  " SRDY ready now that we're done reading
 
          IF (RESET)       THEN Idle      "Reset, stop reading.
@@ -650,9 +650,9 @@ STATE IDERdHigh:                " Read high byte from latch
     DIOR  = 0;			" Done with access directly to IDE
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY ready now that we're done reading
-    
+
          IF (RESET)             THEN Idle       "Reset, stop reading.
     ELSE IF (MCS0 & A0)         THEN IDERdHigh  "Continue reading
     ELSE                             Idle       "Nothing to do
@@ -681,9 +681,9 @@ STATE DigPotSt:                 " Start digital potentiometer increment/decremen
     DIOR  = 0;			" Done with access directly to IDE
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY ready now that we're done reading
-    
+
          IF (RESET)             THEN Idle       WITH CLKUD = 0 "Reset, stop incrementing/decrementing
     ELSE IF (PCS6 & A0)         THEN DigPotEna  WITH CLKUD = 0 "Want to increment
     ELSE IF (PCS6 & !A0)        THEN DigPotEna  WITH CLKUD = 1 "Want to decrement
@@ -709,9 +709,9 @@ STATE DigPotEna:                " Now that steadystate has been defined, can ena
     DIOR  = 0;			" Done with access directly to IDE
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY ready now that we're done reading
-    
+
          IF (RESET)             THEN Idle       WITH CLKUD = 0 "Reset, stop incrementing/decrementing
     ELSE IF (PCS6 & A0)         THEN DigPotUp   WITH CLKUD = 0 "Want to increment
     ELSE IF (PCS6 & !A0)        THEN DigPotDown WITH CLKUD = 1 "Want to decrement
@@ -738,7 +738,7 @@ STATE DigPotUp:                 " Pulse a 1
     DIOR  = 0;			" Done with access directly to IDE
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY ready now that we're done reading
 
          IF (RESET)             THEN Idle          " Reset, start over
@@ -764,7 +764,7 @@ STATE DigPotDown:               " Pulse a 0
     DIOR  = 0;			" Done with access directly to IDE
     "XCS   = 0;                   Disable MP3 SCI
     "XDCS  = 0;                   Disable MP3 SDI
-    
+
     tSRDY = 0;                  " SRDY ready now that we're done reading
 
          IF (RESET)             THEN Idle          " Reset, start over
@@ -792,7 +792,7 @@ STATE  DRAM_Idle:               " Wait idly with nothing enabled
 
     " No-output state encoding.  Must only set SRDY explicitly
     SRDY = 1;                   " SRDY always 'ready' in this state
- 
+
          IF (RESET)          THEN DRAM_Idle      " On reset do nothing
     ELSE IF (!MCS1)          THEN DRAMRfshStart  " Start refresh cycle
     ELSE IF (!MCS2 & DTR)    THEN DRAMWriteStart " Start writing to DRAM
@@ -898,7 +898,7 @@ STATE DRAMReadWait:             " Wait to satisfy read cycle time
 
 
 
-    
+
 
 
 TEST_VECTORS
@@ -942,4 +942,3 @@ TEST_VECTORS
   [   .C.,     0,    1,    1, .X. ] -> [    1,   0,   0,   0,    1 ]; " Idle
 
 END
-

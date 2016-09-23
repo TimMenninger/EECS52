@@ -1,0 +1,568 @@
+MODULE Jukebox
+
+TITLE 'Jukebox CPLD'
+
+
+" Jukebox Interface  DEVICE  'ISPLSI1016'
+
+
+" Description:  Interfaces the LCD Display, IDE and digital potentiometer.
+"               It assumes the CPU is running on a 24 MHz clock.  CPU assumed
+"               to be 80C188XL.
+"
+"               Display: This interfaces the NHD-0420DZ-FSW-FBW display, which
+"               is 4 lines by 20 characters in size.  To write to the display,
+"               there is a data latch whose enable and direction are controlled
+"               by the CPLD.  The CPLD uses the WR and PCS signals from the CPU
+"               to execute display writing.  To read from the display, the RD
+"               and PCS are used and the CPLD reverses the direction on the
+"               data latch.
+"
+"               IDE: This only reads from IDE.  The IDE sends 16 bits of data
+"               to a 74FCT16646, which latches it all.  The CPLD controls when
+"               the high and low byte of this data are read by dictating the
+"               enable and direction of dataflow on the 74FCT16646.
+"
+"               Digital Potentiometer: This increases and decreases the voltage
+"               at the wiper terminal using the data input from the CPU.  The
+"               data is the low bit.  1 increments and 0 decrements.  This
+"               machine works by always sending a 1 and a 0.  Which comes first
+"               is determined by the operation (inc or dec).
+"
+
+" Revision History:
+" 02/12/16      Created with functionality for 4x20 Display, IDE interface and
+"                   digital potentiometer.
+" 03/06/16      Added functionality for DRAM refresh, read and write
+" 09/23/16      Split into ISPLSI1016 (IDE, DRAM, MP3, interrupts) and GAL16V8
+"               (Display, Digital pot)
+
+
+
+" Pins
+
+"GND   pin    1;                 supply  power ground
+"      pin    2;                 input   unused (IN3)
+!OE1   pin    3  ISTYPE 'com';  "output  IDE decoder 1OE signal
+DIOW   pin    4  ISTYPE 'com';  "output  DIOW signal to IDE
+DIOR   pin    5  ISTYPE 'com';  "output  DIOR signal to IDE
+!CS0   pin    6  ISTYPE 'com';  "output  IDE CS0 signal
+MUX    pin    7  ISTYPE 'reg';  "output  MUX selector signal
+!DRAM  pin    8  ISTYPE 'reg';  "output  DRAM write enable signal
+!CAS   pin    9  ISTYPE 'reg';  "output  DRAM CAS signal
+!RAS   pin   10  ISTYPE 'reg';  "output  DRAM RAS signal
+Clock  pin   11;                "input   24 MHz clock
+"VCC   pin   12                  supply  power Vcc
+"ISPEN pin   13                  input   Tied high
+"      pin   14                  unused  (IN0/SDI)
+SRDY   pin   15  ISTYPE 'com';  "output  synchronous ready to 80C188
+A0     pin   16;                "input   LSB from address bus
+ALE    pin   17;                "input   Address latch enable (Active low from 80C188)
+DEN    pin   18;                "input   DEN signal (from 80C188)
+DTR    pin   19;                "input   DT/R signal (from 80C188)
+PCS2   pin   20;                "input   MP3 SDI (Active low from 80C188)
+PCS3   pin   21;                "input   MP3 SCI (Active low from 80C188)
+PCS4   pin   22;                "input   MP3 Enable (Active low from 80C188)
+"GND   pin   23                  supply  power ground
+"      pin   24                  unused  (IN1/SD0)
+MCS0   pin   25;                "input   IDE chip select (Active low from 80C188)
+MCS1   pin   26;                "input   DRAM access (Active low from 80C188)
+MCS2   pin   27;                "input   DRAM access (Active low from 80C188)
+MCS3   pin   28;                "input   DRAM Refresh (Active low from 80C188)
+"      pin   29                  unused  (I/O 12)
+"      pin   30                  unused  (I/O 13)
+INT3   pin   31  ISTYPE 'com';  "output  Drives 80188 INT3 when ENC goes low
+INT0   pin   32  ISTYPE 'com';  "output  Drives 80188 INT0 when BTN goes low
+"      pin   33                  unused  (Y2/SCLK)
+"VCC   pin   34                  supply  power Vcc
+"RESET pin   35;                 input   Reset (active high from 80C188)
+"      pin   36                  unused  (IN2/MODE)
+BTN    pin   37;                "input   Active low change signal from buttons
+ENC       pin   38;                "input   Active low change signal from encoder
+"MCLK   pin   39  ISTYPE 'com';  output  CLK signal to MP3 decoder
+"!XDCS  pin   40  ISTYPE 'com';  output  XDCS signal to MP3 decoder
+"!XCS   pin   41  ISTYPE 'com';  output  XCS signal to MP3 decoder
+CLKBA  pin   42  ISTYPE 'com';  "output  IDE decoder 2CLKBA signal
+!OE2   pin   43  ISTYPE 'com';  "output  IDE decoder 2OE signal
+DIR1   pin   44  ISTYPE 'com';  "output  IDE decoder 1DIR signal
+
+
+" State bits for DRAM state machine
+DR0    pin       ISTYPE 'reg';  "output  state bit 0
+DR1    pin       ISTYPE 'reg';  "output  state bit 1
+
+" Temporary SRDY so only one state machine writes to SRDY
+iSRDY  pin       ISTYPE 'reg';  "SRDY asserted when IDE not in use
+dSRDY  pin       ISTYPE 'reg';  "SRDY asserted when DRAM not in use
+
+
+
+
+"################################################
+"#
+"# IDE and MP3 State bits
+"#
+"#
+
+St0    pin       ISTYPE 'reg';  "output  state bit 0
+St1    pin       ISTYPE 'reg';  "output  state bit 1
+St2    pin       ISTYPE 'reg';  "output  state bit 2
+St3    pin       ISTYPE 'reg';  "output  state bit 3
+
+
+
+" IDE, MP3
+
+StateBits  =  [ St3, St2, St1, St0 ]; " state bits
+                                                " state assignments
+" Start state
+Idle       =  [   0,   0,   0,   0 ]; " idle state (waiting for a cycle to start)
+
+" IDE read states
+IDERdLow   =  [   1,   0,   0,   0 ]; " starts reading low byte from IDE/hard drive
+HDRdSt     =  [   1,   0,   0,   1 ]; " sets read signal high to start data read
+HDLatchRd  =  [   1,   1,   0,   1 ]; " latches the high byte of data onto IDE decoder
+HDStopRd   =  [   1,   1,   0,   0 ]; " stops read signal to wrap up data transfer from HD to IDE decoder
+HDWaitSt   =  [   1,   1,   1,   0 ]; " waits so the data hold is observed
+IDERdHigh  =  [   0,   1,   0,   0 ]; " starts reading high byte from IDE decoder
+
+
+"################################################
+"#
+"# DRAM State bits
+"#
+"#
+
+" No-output encoding:
+DRAM_bits      =  [ DR0, DR1, MUX, CAS, RAS, DRAM ]; " state bits for DRAM refresh state machine
+
+" Start state
+DRAM_Idle      =  [   0,   0,   0,   0,   0,    0 ]; " idle state (waiting for a cycle to start)
+
+" Refresh state machine
+DRAMRfshStart  =  [   0,   0,   0,   1,   0,    0 ]; " CAS-before-RAS; start CAS
+DRAMRfshFinish =  [   0,   0,   0,   1,   1,    0 ]; " RAS part of refresh
+
+" Read state machine
+DRAMReadStart  =  [   0,   1,   1,   0,   1,    0 ]; " Start read with MUX for row address
+DRAMReadRow    =  [   0,   1,   0,   0,   1,    0 ]; " Read row, change MUX for col address
+DRAMReadCol    =  [   0,   1,   0,   1,   1,    0 ]; " Read col
+DRAMReadWait   =  [   0,   1,   0,   0,   0,    0 ]; " Wait state after reading
+
+" Write state machine
+DRAMWriteStart =  [   0,   0,   1,   0,   1,    1 ]; " Start write with MUX for row address
+DRAMWriteRow   =  [   0,   0,   0,   0,   1,    1 ]; " Get row addr, change MUX for col addr
+DRAMWriteCol   =  [   0,   0,   0,   1,   1,    1 ]; " Get col addr
+DRAMWrite      =  [   1,   0,   0,   1,   1,    0 ]; " Clear WE to perform actual write
+
+"################################################
+"#
+"# Interrupt State bits
+"#
+"#
+
+" No-output encoding because it is a simple negation
+INT_bits       =  [ INT0, INT3 ]; " state bits for driving interrupts
+
+" State definitions
+INT_None       =  [    0,    0 ]; " no interrupts to handle
+INT_Button     =  [    1,    0 ]; " button interrupt
+INT_Encoder    =  [    0,    1 ]; " encoder interrupt
+INT_Both       =  [    1,    1 ]; " both interrupts
+
+################################################
+"#
+"# SRDY State bits
+"#
+"#
+
+" No-output encoding because SRDY is just iSRDY & dSRDY
+SRDY_bits       =  [ SRDY ]; " state bit to drive SRDY
+
+" State definitions
+S_is_RDY        =  [    1 ]; " assert SRDY
+S_not_RDY       =  [    0 ]; " assert !SRDY
+
+
+
+EQUATIONS
+
+" Output enables - enable the used outputs (registered outputs enabled by OE pin)
+" DRAM outputs
+MUX.OE   = 1;
+DRAM.OE  = 1;
+CAS.OE   = 1;
+RAS.OE   = 1;
+" IDE outputs
+CS0.OE   = 1;
+OE1.OE   = 1;
+OE2.OE   = 1;
+DIR1.OE  = 1;
+CLKBA.OE = 1;
+DIOW.OE  = 1;
+DIOR.OE  = 1;
+" MP3 outputs
+"MCLK.OE = 1;
+"XDCS.OE = 1;
+"XCS.OE  = 1;
+" Interrupt outputs
+INT0.OE  = 1;
+INT3.OE  = 1;
+" SRDY
+SRDY.OE  = 1;
+
+" clocks for the registered outputs
+DRAM_bits.CLK  =  Clock;        " use the global clock pin
+INT_bits.CLK   =  Clock;        " use the global clock pin
+StateBits.CLK  =  Clock;        " use the global clock pin
+iSRDY.CLK      =  Clock;        " use the global clock pin
+dSRDY.CLK      =  Clock;        " use the global clock pin
+
+
+
+
+"#############################################################################
+"#
+"# Everything Else State Machine:
+"#      IDE
+"#      Interrupts
+"#      MP3
+"#
+
+
+STATE_DIAGRAM  StateBits        " a Mealy state machine
+
+
+STATE  Idle:           " Wait idly with nothing enabled
+
+    " Turn off all chip selects and signals
+    " IDE outputs
+    CS0   = 0;         " Disable IDE chip select
+    OE1   = 0;         " Not reading low IDE byte
+    OE2   = 0;         " Not reading high IDE byte
+    DIR1  = 0;         " IDE direction irrelevant
+    CLKBA = 0;         " Not recording high IDE byte
+    DIOW  = 0;         " Not writing to IDE
+    DIOR  = 0;         " Not reading from IDE
+    " MP3 outputs
+    "MCLK = 0;           Not recording MP3 data
+    "XCS  = 0;           Disable MP3 SCI
+    "XDCS = 0;           Disable MP3 SDI
+
+    iSRDY = 1;         " SRDY always 'ready' in this state
+
+         IF (!dSRDY)        THEN Idle       " Do nothing because DRAM working
+    ELSE IF (MCS1 & A0)     THEN IDERdHigh  " Odd address, read high byte
+    ELSE IF (MCS1 & !A0)    THEN IDERdLow   " Even address, read low byte
+    ELSE                         Idle;      " otherwise just stay here
+
+
+" State definitions for IDE operations
+
+STATE IDERdLow:        " Starts IDE read cycle to read low byte
+
+    " Read low byte from IDE
+    " IDE outputs
+    CS0   = 1;         " Enable IDE chip select
+    OE1   = 1;         " Read low IDE byte
+    OE2   = 0;         " Not reading high IDE byte
+    DIR1  = 0;         " IDE direction irrelevant
+    CLKBA = 0;         " Not recording high IDE byte
+    DIOW  = 0;         " Not writing to IDE
+    DIOR  = 0;         " Inactive for first read clock
+    " MP3 outputs
+    "MCLK = 0;           Not recording MP3 data
+    "XCS  = 0;           Disable MP3 SCI
+    "XDCS = 0;           Disable MP3 SDI
+
+    iSRDY = 0;         " SRDY not ready while reading
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN HDRdSt;    "Want to send read signal to HD
+
+
+STATE HDRdSt:           " Sends read signal to hard drive
+
+    " Read low byte from IDE
+    " IDE outputs
+    CS0   = 1;         " Enable IDE chip select
+    OE1   = 1;         " Reading low IDE byte
+    OE2   = 0;         " Not reading high IDE byte
+    DIR1  = 0;         " IDE direction irrelevant
+    CLKBA = 0;         " Not recording high IDE byte
+    DIOW  = 0;         " Not writing to IDE
+    DIOR  = 1;         " Reading from IDE
+    " MP3 outputs
+    "MCLK = 0;           Not recording MP3 data
+    "XCS  = 0;           Disable MP3 SCI
+    "XDCS = 0;           Disable MP3 SDI
+
+    iSRDY = 0;            " SRDY not ready while reading
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN HDLatchRd; "IDE only needs one state to latch data
+
+
+STATE HDLatchRd:        " Latches the high byte of data
+
+    " Read low byte from IDE
+    " IDE outputs
+    CS0   = 1;         " Enable IDE chip select
+    OE1   = 1;         " Reading low IDE byte
+    OE2   = 0;         " Not reading high IDE byte
+    DIR1  = 0;         " IDE direction irrelevant
+    CLKBA = 1;         " Latch high IDE byte
+    DIOW  = 0;         " Not writing to IDE
+    DIOR  = 1;         " Reading from IDE
+    " MP3 outputs
+    "MCLK = 0;           Not recording MP3 data
+    "XCS  = 0;           Disable MP3 SCI
+    "XDCS = 0;           Disable MP3 SDI
+
+    iSRDY = 0;          " SRDY not ready while reading
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN HDStopRd;  "IDE only needs one state to latch data
+
+
+STATE HDStopRd:         " Stops read signal now that data is latched
+
+    " Read low byte from IDE
+    " IDE outputs
+    CS0   = 1;         " Enable IDE chip select
+    OE1   = 1;         " Reading low IDE byte
+    OE2   = 0;         " Not reading high IDE byte
+    DIR1  = 0;         " IDE direction irrelevant
+    CLKBA = 0;         " Not recording high IDE byte
+    DIOW  = 0;         " Not writing to IDE
+    DIOR  = 0;         " Done with accessing IDE directly
+    " MP3 outputs
+    "MCLK = 0;           Not recording MP3 data
+    "XCS  = 0;           Disable MP3 SCI
+    "XDCS = 0;           Disable MP3 SDI
+
+    iSRDY = 0;          " SRDY not ready while reading
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)     THEN HDWaitSt; " Wait for data hold time
+
+
+STATE HDWaitSt:         " Waits to satisfy the data hold time requirement
+
+    " Read low byte from IDE
+    " IDE outputs
+    CS0   = 1;         " Enable IDE chip select
+    OE1   = 1;         " Reading low IDE byte
+    OE2   = 0;         " Not reading high IDE byte
+    DIR1  = 0;         " IDE direction irrelevant
+    CLKBA = 0;         " Not recording high IDE byte
+    DIOW  = 0;         " Not writing to IDE
+    DIOR  = 0;         " Not reading from IDE
+    " MP3 outputs
+    "MCLK = 0;           Not recording MP3 data
+    "XCS  = 0;           Disable MP3 SCI
+    "XDCS = 0;           Disable MP3 SDI
+
+    iSRDY = 1;          " SRDY ready now that we're done reading
+
+         IF (MCS0 & A0)   THEN IDERdHigh "Want to read odd address now
+    ELSE IF (MCS0 & !A0)  THEN HDWaitSt  "Still reading low byte with even address
+    ELSE                       Idle;     "Nothing to do
+
+
+STATE IDERdHigh:        " Read high byte from latch
+
+    " Read high byte from IDE decoder
+    " IDE outputs
+    CS0   = 0;         " Not reading from IDE itself
+    OE1   = 0;         " Not reading low IDE byte
+    OE2   = 1;         " Reading high IDE byte from decoder
+    DIR1  = 0;         " IDE direction irrelevant
+    CLKBA = 0;         " Not recording high IDE byte
+    DIOW  = 0;         " Not writing to IDE
+    DIOR  = 0;         " Not reading from IDE
+    " MP3 outputs
+    "MCLK = 0;           Not recording MP3 data
+    "XCS  = 0;           Disable MP3 SCI
+    "XDCS = 0;           Disable MP3 SDI
+
+    iSRDY = 0;          " SRDY ready now that we're done reading
+
+         IF (MCS0 & A0)         THEN IDERdHigh  "Continue reading
+    ELSE                             Idle;      "Nothing to do
+
+
+
+"#############################################################################
+"#
+"# DRAM State Machine
+"#
+"#
+"#
+"#
+
+
+
+STATE_DIAGRAM  DRAM_bits        " a Mealy state machine
+
+
+STATE  DRAM_Idle:               " Wait idly with nothing enabled
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 1;                  " SRDY always 'ready' in this state
+
+         IF (!iSRDY)         THEN DRAM_Idle      " Don't enter state machine
+    ELSE IF (!MCS3)          THEN DRAMRfshStart  " Start refresh cycle
+    ELSE IF (!MCS2 & DTR)    THEN DRAMWriteStart " Start writing to DRAM
+    ELSE IF (!MCS2 & !DTR)   THEN DRAMReadStart  " Start reading from DRAM
+    ELSE                          DRAM_Idle;     " otherwise just stay here
+
+
+STATE DRAMRfshStart:            " Start refresh cycle
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMRfshFinish;    " Finish refresh cycle
+
+
+STATE DRAMRfshFinish:           " Finish refresh cycle
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAM_Idle;         " Done, can go back to idle
+
+STATE DRAMWriteStart:           " Starts access to DRAM with MUX set to transmit row
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMWriteRow;      " Get row address for read
+
+
+STATE DRAMWriteRow:             " Sets RAS and WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMWriteCol;      " Get column address for write
+
+
+STATE DRAMWriteCol:             " Sets CAS and WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMWrite;         " Clear WE which will perform write
+
+
+STATE DRAMWrite:                " Deactivates WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)                 THEN DRAM_Idle;         " Go to start state, done writing
+
+
+STATE DRAMReadStart:            " Starts access to DRAM with MUX set to transmit row
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMReadRow;       " Get row address for read
+
+
+
+STATE DRAMReadRow:              " Sets RAS for read
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMReadCol;       " Sets CAS for column addr
+
+
+STATE DRAMReadCol:              " Sets CAS for read
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMReadWait;      " Wait state to satisfy read cycle time
+
+
+STATE DRAMReadWait:             " Wait to satisfy read cycle time
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+         IF (!MCS2 & !DTR)      THEN DRAMReadStart      " Another read cycle
+    ELSE                             DRAM_Idle;         " Done reading
+
+
+
+
+"#############################################################################
+"#
+"# INT State Machine
+"#
+"# The outputs of each state are the state bits.  This simply inverts the
+"# input signals so that INT0 = !BTN and INT3 = !ENC.
+"#
+"#
+
+STATE_DIAGRAM  INT_bits         " a Mealy state machine
+
+
+STATE INT_None:                 " No interrupts
+         IF ( BTN &  ENC)       THEN INT_None           " Drive neither interrupt
+    ELSE IF ( BTN & !ENC)       THEN INT_Encoder        " Encoder CHG is active
+    ELSE IF (!BTN &  ENC)       THEN INT_Button         " Button CHG is active
+    ELSE                             INT_Both;          " Both CHG are active
+
+STATE INT_Encoder:              " Drive encoder interrupt
+        IF ( BTN &  ENC)        THEN INT_None           " Drive neither interrupt
+   ELSE IF ( BTN & !ENC)        THEN INT_Encoder        " Encoder CHG is active
+   ELSE IF (!BTN &  ENC)        THEN INT_Button         " Button CHG is active
+   ELSE                              INT_Both;          " Both CHG are active
+
+STATE INT_Button:               " Drive buttons interrupt
+        IF ( BTN &  ENC)        THEN INT_None           " Drive neither interrupt
+   ELSE IF ( BTN & !ENC)        THEN INT_Encoder        " Encoder CHG is active
+   ELSE IF (!BTN &  ENC)        THEN INT_Button         " Button CHG is active
+   ELSE                              INT_Both;          " Both CHG are active
+
+STATE INT_Both:                 " Drive both interrupts
+        IF ( BTN &  ENC)        THEN INT_None           " Drive neither interrupt
+   ELSE IF ( BTN & !ENC)        THEN INT_Encoder        " Encoder CHG is active
+   ELSE IF (!BTN &  ENC)        THEN INT_Button         " Button CHG is active
+   ELSE                              INT_Both;          " Both CHG are active
+
+
+"#############################################################################
+"#
+"# SRDY State Machine
+"#
+"# SRDY = iSRDY & dSRDY
+"#
+"#
+
+STATE_DIAGRAM SRDY_bit
+
+STATE S_is_RDY:                 " Assert SRDY
+         IF (iSRDY & dSRDY)      THEN S_is_RDY           " Assert SRDY
+    ELSE                              S_not_RDY          " Assert not SRDY
+
+STATE S_not_RDY:                " Assert !SRDY
+         IF (iSRDY & dSRDY)      THEN S_is_RDY           " Assert SRDY
+    ELSE                              S_not_RDY          " Assert not SRDY
+
+END

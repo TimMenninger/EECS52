@@ -1,0 +1,251 @@
+MODULE      cpld
+TITLE      '80C188 Jukebox CPLD Interface'
+
+
+" LCDInterface  DEVICE  'ISPLSI1016'
+
+
+" Description:  Interfaces the LCD Display, IDE and digital potentiometer.
+"               It assumes the CPU is running on a 24 MHz clock.  CPU assumed
+"               to be 80C188XL.
+"
+"               Display: This interfaces the NHD-0420DZ-FSW-FBW display, which
+"               is 4 lines by 20 characters in size.  To write to the display,
+"               there is a data latch whose enable and direction are controlled
+"               by the CPLD.  The CPLD uses the WR and PCS signals from the CPU
+"               to execute display writing.  To read from the display, the RD
+"               and PCS are used and the CPLD reverses the direction on the
+"               data latch.
+"
+"               IDE: This only reads from IDE.  The IDE sends 16 bits of data
+"               to a 74FCT16646, which latches it all.  The CPLD controls when
+"               the high and low byte of this data are read by dictating the
+"               enable and direction of dataflow on the 74FCT16646.
+"
+"               Digital Potentiometer: This increases and decreases the voltage
+"               at the wiper terminal using the data input from the CPU.  The
+"               data is an 8-bit signed number that represents how many ticks
+"               up or down the potentiometer should be changed by.  The digital
+"               potentiometer observes boundary cases so there is no overload.
+"
+
+" Revision History:
+" 02/12/16      Created with functionality for 4x20 Display, IDE interface and
+"                   digital potentiometer.
+
+
+
+" Pins
+
+"GND   pin   1;                  supply  power ground
+"      pin   2;                  input   unused (IN3)
+DSPCS  pin   3   ISTYPE 'com';  "output  Chip select to display
+DATAE  pin   4   ISTYPE 'com';  "output  Enable of CPU-Display data latch (active low)
+"      pin   5                   unused  (I/O26)  
+"      pin   6                   unused  (I/O27)
+"      pin   7                   unused  (I/O28)
+"      pin   8                   unused  (I/O29)
+"      pin   9                   unused  (I/O30)
+"      pin   10                  unused  (I/O31)
+Clock  pin   11;                "input   24 MHz clock
+"VCC   pin   12                  supply  power Vcc
+"ISPEN pin   13                  input   Tied high
+"      pin   14                  unused  (IN0/SDI)
+IPCS5  pin   15;                "input   Display chip select from 80C188
+IPCS1  pin   16;                "input   Digital potentiometer chip select from 80C188
+D0     pin   17;                "input   Data bit 0 from 80C188
+D1     pin   18;                "input   Data bit 1 from 80C188
+D2     pin   19;                "input   Data bit 2 from 80C188
+D3     pin   20;                "input   Data bit 3 from 80C188
+D4     pin   21;                "input   Data bit 4 from 80C188
+D5     pin   22;                "input   Data bit 5 from 80C188
+"GND   pin   23                  supply  power ground
+"      pin   24                  unused  (IN1/SD0)
+D6     pin   25;                "input   Data bit 6 from 80C188
+D7     pin   26;                "input   Data bit 7 from 80C188
+!WR    pin   27;                "input   Write (active low from 80C188)
+!RD    pin   28;                "input   Read (active low from 80C188)
+IPCS4  pin   29;                "input   IDE chip select from 80C188
+IDEE   pin   30  ISTYPE 'com';  "output  E to 74FCT16646
+SRDY   pin   31  ISTYPE 'com';  "output  synchronous ready to 80C188
+"      pin   32                  unused  (I/O15)
+"      pin   33                  unused  (Y2/SCLK)
+"VCC   pin   34                  supply  power Vcc
+RES    pin   35;                "input   Reset (active high from 80C188)
+"      pin   36                  unused  (IN2/MODE)
+ORD    pin   37  ISTYPE 'com';  "output  Read signal sent to peripheral chips
+OWR    pin   38  ISTYPE 'com';  "output  Write signal sent to peripheral chips
+OCS1   pin   39  ISTYPE 'com';  "output  CS1 to IDE
+OCS0   pin   40  ISTYPE 'com';  "output  CS0 to IDE
+DA2    pin   41  ISTYPE 'com';  "output  DA2 to IDE, E to Display
+DA1    pin   42  ISTYPE 'com';  "output  DA1 to IDE, xSAB xSBA to 74FCT16646
+DA0    pin   43  ISTYPE 'com';  "output  DA0 to IDE, xDIR to 74FCT16646, DIR to Display Data Latch,
+                                "            Data to Digital Potentiometer
+POTCS  pin   44  ISTYPE 'com';  "output  Chip select to digital potentiometer
+
+St0    pin       ISTYPE 'reg';  "output  state bit 0
+St1    pin       ISTYPE 'reg';  "output  state bit 1
+St2    pin       ISTYPE 'reg';  "output  state bit 2
+
+
+
+"the states
+
+StateBits  =  [ St2, St1, St0 ];      " state bits
+                                      " state assignments
+Idle       =  [   0,   0,   0 ];      " idle state (waiting for a cycle to start)
+StCyc      =  [   1,   0,   1 ];      " start of access cycle
+Wait0      =  [   1,   0,   0 ];      " wait state 0 (so E cycle is 500 ns long)
+Wait1      =  [   0,   0,   1 ];      " wait state 1
+Wait2      =  [   0,   1,   0 ];      " wait state 2
+Wait3      =  [   0,   1,   1 ];      " wait state 3
+Wait4      =  [   1,   1,   1 ];      " wait state 4 (only needed if 80C188 oscillator > 18.8 MHz)
+EndCyc     =  [   1,   1,   0 ];      " end of cycle
+
+
+
+
+EQUATIONS
+
+
+" Output enables - enable the used outputs (registered outputs enabled by OE\ pin)
+SRDY.OE  = 1;
+DSPCS.OE = 1;
+POTCS.OE = 1;
+DATAE.OE = 1;
+IDEE.OE  = 1;
+RD.OE    = 1;
+WR.OE    = 1;
+OCS1.OE  = 1;
+OCS0.OE  = 1;
+DA2.OE   = 1;
+DA1.OE   = 1;
+DA0.OE   = 1;
+
+
+" clocks for the registered outputs (state bits)
+StateBits.CLK  =  Clock;        " use the global clock pin
+
+
+
+STATE_DIAGRAM  StateBits         " a Mealy state machine
+
+
+STATE  Idle:                    " Wait idly with nothing enabled
+
+    " Turn off all chip selects
+    DSPCS = 0;                  " Disable chip select to display
+    POTCS = 0;                  " Disable chip select to digital potentiometer
+    DATAE = 0;                  " Disable latching data
+    IDEE = 0;                   " Disable IDE decoder
+    OCS0 = 0;                   " Disable chip select to IDE
+    OCS1 = 0;                   " Disable chip select to IDE
+    
+    " Define these for good measure, but are disregarded by peripherals w/o CS
+    ORD = 0;                    " Read output used as active low write by Display
+    OWR = 0;                    " Write output
+    DA2 = 0;                    " Data to IDE
+    DA1 = 0;                    " Data to IDE
+    DA0 = 0;                    " Data to IDE
+    
+    SRDY = 1;                   " SRDY always 'ready' in this state
+ 
+         IF (DSPCS & WR) THEN DispWr    " LCD access starts the write cycle
+    ELSE                         Idle;     " otherwise just stay here
+    
+    
+STATE DispWrSt                  " Begin display write cycle
+
+    " Turn off all chip selects except one for display.
+
+    " Turn off all chip selects
+    DSPCS = 1;                  " Disable chip select to display
+    POTCS = 0;                  " Disable chip select to digital potentiometer
+    DATAE = 0;                  " Disable latching data
+    IDEE = 0;                   " Disable IDE decoder
+    OCS0 = 0;                   " Disable chip select to IDE
+    OCS1 = 0;                   " Disable chip select to IDE
+    
+    " Define these for good measure, but are disregarded by peripherals w/o CS
+    ORD = 0;                    " Read output is
+    OWR = 0;                    " Write output not used
+    DA2 = 0;                    " Data to IDE
+    DA1 = 0;                    " Data to IDE
+    DA0 = 0;                    " Data to IDE
+    
+    SRDY = 1;                   " SRDY always 'ready' in this state
+    
+    
+    
+    
+    
+    
+
+TEST_VECTORS
+
+( [ Clock, RESET, !PCS, !RD, !WR ] -> [   E, SRDY, St2, St1, St0 ] )
+
+  [     0,     0,    0,   0,   0 ] -> [ .X.,  .X., .X., .X., .X. ];
+
+" reset the system
+  [   .C.,     1,    0,   0,   0 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     1,    0,   0,   0 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     1,    0,   0,   0 ] -> [   0,    1, .X., .X., .X. ];
+
+" remove reset and no access
+  [   .C.,     0,    1,   0,   0 ] -> [   0,    1, .X., .X., .X. ];   " no PCS
+  [   .C.,     0,    1,   0,   0 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     0,    1,   0,   0 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     0,    0,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " PCS, but no RD or WR
+  [   .C.,     0,    0,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     0,    0,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+
+" access the LCD (read)
+  [   .C.,     0,    0,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " nothing yet
+  [   .C.,     0,    0,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   0,    1, .X., .X., .X. ];   " start the read
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    1, .X., .X., .X. ];
+  [     0,     0,    0,   0,   1 ] -> [   1,    1, .X., .X., .X. ];
+  [     0,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " end the read
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+
+" access the LCD (write)
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " no access yet
+  [   .C.,     0,    0,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " no access - PCS only
+  [   .C.,     0,    0,   1,   0 ] -> [   0,    1, .X., .X., .X. ];   " start of write
+  [   .C.,     0,    0,   1,   0 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   1,   0 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   1,   0 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   1,   0 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   1,   0 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   1,   0 ] -> [   1,    1, .X., .X., .X. ];
+  [     0,     0,    0,   1,   0 ] -> [   1,    1, .X., .X., .X. ];
+  [     0,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " end of write cycle
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+
+" access the LCD (long read cycle)
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " no access yet
+  [   .C.,     0,    0,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " still no access, PCS w/o RD
+  [   .C.,     0,    0,   0,   1 ] -> [   0,    1, .X., .X., .X. ];   " start the read cycle
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    0, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    1, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    1, .X., .X., .X. ];
+  [   .C.,     0,    0,   0,   1 ] -> [   1,    1, .X., .X., .X. ];
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];   " end of the read cycle
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+  [   .C.,     0,    1,   1,   1 ] -> [   0,    1, .X., .X., .X. ];
+
+
+
+END  lcdintfs

@@ -1,0 +1,356 @@
+MODULE Jukebox
+
+TITLE 'Jukebox CPLD'
+
+
+" Jukebox Interface  DEVICE  'ISPLSI1016'
+
+
+" Description:
+"
+
+" Revision History:
+" 02/12/16      Created with functionality for 4x20 Display, IDE interface and
+"                   digital potentiometer.
+" 03/06/16      Added functionality for DRAM refresh, read and write
+" 09/23/16      Split into ISPLSI1016 (IDE, DRAM, interrupts) and GAL16V8
+"               (Display and Digital pot)
+
+
+
+" Pins
+
+Clock  pin    1;                "input   24 MHz clock
+iSRDY  pin    2;                "input   SRDY from ISPLSI1016
+!PCS6  pin    3;                "input   PCS6 (active low from 80188, for pot)
+!PCS5  pin    4;                "input   PCS5 (active low from 80188, for display)
+RESET  pin    5;                "input   Reset (active high from 80C188)
+DTR    pin    6;                "input   DTR (from 80C188)
+A0     pin    7;                "input   Address bit 0, used in display
+"      pin    8                  input   unused (I7)
+"      pin    9                  input   unused (I8)
+"GND   pin   10;                 supply  power ground
+"OE    pin   11;                 input   output enable to GAL16v8
+"      pin   12;                "unused  (I/O 8)
+SRDY   pin   13  ISTYPE 'com';  "output  synchronous ready to 80C188
+DISP   pin   14  ISTYPE 'com';  "output  Register select to display
+DDIR   pin   15  ISTYPE 'com';  "output  Data direction for display
+DRW    pin   16  ISTYPE 'com';  "output  R/W signal to display
+!DISPE pin   17  ISTYPE 'com';  "output  Enable signal to display
+!POT   pin   18  ISTYPE 'com';  "output  Pot chip select
+POTUD  pin   19  ISTYPE 'com';  "output  Serial clock to MP3 decoder, U/D to digital pot
+"VCC   pin   20                  supply  power Vcc
+
+" General registers
+RDWR   pin       ISTYPE 'reg';  "keeps track of whether we are reading (0) or writing (1)
+
+
+
+"################################################
+"#
+"# Display, Digital Pot
+"#
+"#
+
+St0    pin       ISTYPE 'reg';  "output  state bit 0
+St1    pin       ISTYPE 'reg';  "output  state bit 1
+St2    pin       ISTYPE 'reg';  "output  state bit 2
+St3    pin       ISTYPE 'reg';  "output  state bit 3
+St4    pin       ISTYPE 'reg';  "output  state bit 4
+
+
+
+" Display, IDE, Digital Pot, MP3
+
+StateBits  =  [ St4, St3, St2, St1, St0 ]; " state bits
+                                                " state assignments
+" Start state
+Idle       =  [   0,   0,   0,   0,   0 ]; " idle state (waiting for a cycle to start)
+
+" Display states
+DispSt     =  [   1,   0,   0,   0,   0 ]; " start of display access cycle
+DispWt1    =  [   1,   0,   0,   0,   1 ]; " wait state 1 (so E cycle is 460 ns long)
+DispWt2    =  [   1,   0,   0,   1,   1 ]; " wait state 2
+DispWt3    =  [   1,   0,   0,   1,   0 ]; " wait state 3
+DispWt4    =  [   1,   0,   1,   1,   0 ]; " wait state 4
+DispWt5    =  [   1,   0,   1,   0,   0 ]; " wait state 5
+DispWt6    =  [   1,   0,   1,   0,   1 ]; " wait state 6
+DispDisE   =  [   1,   0,   1,   1,   1 ]; " begins data hold period
+DispStop   =  [   1,   1,   1,   1,   1 ]; " stops write cycle, CPU responsible for 1200 ns wait
+
+" Digital potentiometer states
+DigPotEna  =  [   0,   0,   1,   0,   0 ]; " enables digital potentiometer/waits to do next pulse
+DigPotUp   =  [   0,   0,   1,   1,   0 ]; " pulses a 1 to the potentiometer data pin
+DigPotDown =  [   0,   0,   1,   0,   1 ]; " pulses a 0 to the potentiometer data pin
+
+
+
+EQUATIONS
+
+" Output enables - enable the used outputs (registered outputs enabled by OE pin)
+SRDY.OE  = 1;
+" Display
+DISP.OE  = 1;
+DDIR.OE  = 1;
+DRW.OE   = 1;
+DISPE.OE = 1;
+" Digital pot
+POT.OE   = 1;
+POTUD.OE = 1;
+
+
+" clocks for the registered outputs
+StateBits.CLK  =  Clock;        " use the global clock pin
+
+
+
+
+
+
+
+"#############################################################################
+"#
+"# Everything Else State Machine:
+"#      Display
+"#      Digital Pot
+"#
+"#
+
+
+STATE_DIAGRAM  StateBits        " a Mealy state machine
+
+
+STATE  Idle:                " Wait idly with nothing enabled
+
+    " Turn off all chip selects
+    " Display
+    DISP  = 0;              " Disable display RS
+    DDIR  = 0;              " Direction is irrelevant
+    DRW   = 0;              " Read/Write is irrelevant
+    DISPE = 0;              " Disable display
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = iSRDY;           " SRDY depends on signal from LSI1016
+
+         IF (RESET)         THEN Idle      WITH POTUD = 0  " stay here
+    ELSE IF (!iSRDY)        THEN Idle      WITH POTUD = 0  " stay here
+    ELSE IF (PCS5)          THEN DispSt    WITH POTUD = 0  " write/read to display
+    ELSE IF (PCS6 & A0)     THEN DigPotEna WITH POTUD = 0  " digital pot
+    ELSE IF (PCS6 & !A0)    THEN DigPotEna WITH POTUD = 1  " digital pot
+    ELSE                         Idle      WITH POTUD = 0; " stay here
+
+
+
+" Following states correspond to writing to display
+
+STATE DispSt:               " Begin display write cycle
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Send data towar display
+    DRW   = 1;              " Writing to display
+    DISPE = 1;              " Enable display data
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispWt1    "Next state enables data latch
+
+
+STATE DispWt1:              " Begin waiting while display sets up
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Data toward display
+    DRW   = !A0;            " Waiting could be for command or write
+    DISPE = 1;              " Enable display data
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispWt2    "Continue waiting
+
+
+STATE DispWt2:              " Continue waiting while display sets up
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Data toward display
+    DRW   = !A0;            " Waiting could be for command or write
+    DISPE = 1;              " Enable display data
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispWt3    "Continue waiting
+
+
+STATE DispWt3:              " Continue waiting while display sets up
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Data toward display
+    DRW   = !A0;            " Waiting could be for command or write
+    DISPE = 1;              " Enable display data
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispWt4    "Continue waiting
+
+
+STATE DispWt4:              " Continue waiting while display sets up
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Data toward display
+    DRW   = !A0;            " Waiting could be for command or write
+    DISPE = 1;              " Enable display data
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispWt5    "Continue waiting
+
+
+STATE DispWt5:              " Continue waiting while display sets up
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Data toward display
+    DRW   = !A0;            " Waiting could be for command or write
+    DISPE = 1;              " Enable display data
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispWt6    "Continue waiting
+
+
+STATE DispWt6:              " Continue waiting while display sets up
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Data toward display
+    DRW   = !A0;            " Waiting could be for command or write
+    DISPE = 1;              " Enable display data
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispDisE   "Disable display to start data hold
+
+
+STATE DispDisE:             " Disable display to start data hold
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Data toward display
+    DRW   = !A0;            " Writing to display
+    DISPE = 0;              " Display enable must deactivate before RS
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispStop   "Done displaying other than enable cycle
+
+
+STATE DispStop:             " Stops display cycle.  Enable cycle assumed to be observed by CPU
+
+    " Display
+    DISP  = 1;              " Enable display RS
+    DDIR  = DTR;            " Data toward display
+    DRW   = !A0;            " Writing to display
+    DISPE = 0;              " Display enable must deactivate before RS
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE IF (PCS5)          THEN DispStop   "Require PCS rising edge to start cycle
+    ELSE                         Idle       "Go back to beginning
+
+
+" Following states for digital potentiometer
+
+STATE DigPotEna:            " Now that steadystate has been defined, can enable potentiometer CS
+
+    " Display
+    DISP  = 0;              " Disable display RS
+    DDIR  = 0;              " Direction irrelevant
+    DRW   = 0;              " Read/Write irrelevant
+    DISPE = 0;              " Display enable must deactivate before CS
+    " Digital pot
+    POT   = 1;              " Disable potentiometer
+
+    SRDY  = 0;              " SRDY ready now that we're done reading
+
+         IF (RESET)         THEN Idle       WITH POTUD = 0 "Reset, stop incrementing/decrementing
+    ELSE IF (PCS6 & A0)     THEN DigPotUp   WITH POTUD = 0 "Want to increment
+    ELSE IF (PCS6 & !A0)    THEN DigPotDown WITH POTUD = 1 "Want to decrement
+    ELSE                         Idle       WITH POTUD = 0 "Nothing to do
+
+
+
+STATE DigPotUp:             " Pulse a 1
+
+    " Display
+    DISP  = 0;              " Disable display RS
+    DDIR  = 0;              " Direction irrelevant
+    DRW   = 0;              " Read/Write irrelevant
+    DISPE = 0;              " Display enable must deactivate before CS
+    " Digital pot
+    POT   = 1;              " Disable potentiometer
+    POTUD = 1;              " Increment potentiometer resistance
+
+    SRDY = 0;               " SRDY ready now that we're done reading
+
+         IF (RESET)         THEN Idle          " Reset, start over
+    ELSE                         DigPotEna;    " Continue incrementing/decrementing
+
+
+STATE DigPotDown:           " Pulse a 0
+
+    " Display
+    DISP  = 0;              " Disable display RS
+    DDIR  = 0;              " Direction irrelevant
+    DRW   = 0;              " Read/Write irrelevant
+    DISPE = 0;              " Display enable must deactivate before CS
+    " Digital pot
+    POT   = 1;              " Disable potentiometer
+    POTUD = 0;              " Decrement potentiometer resistance
+
+    SRDY = 0;               " SRDY ready now that we're done reading
+
+         IF (RESET)         THEN Idle          " Reset, start over
+    ELSE                         DigPotEna;    " Continue incrementing/decrementing
+
+END
