@@ -1,2 +1,2 @@
 simcp.post1 -ini simcpls.ini -all simcp.post1
--cfg plsi.fdk "jukebox.lts" -map "Jukebox.lsi"
+-cfg oaipldtg.fdk "pldzero.lts" -map "Jukebox.lsi"

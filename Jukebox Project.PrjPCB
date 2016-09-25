@@ -37,23 +37,6 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
-DocumentPath=Schematics\Jukebox Processing.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=TPQNLUIN
-
-[Document2]
 DocumentPath=Libs\eecs52_Tim.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -70,7 +53,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=TRLQHKNE
 
-[Document3]
+[Document2]
 DocumentPath=Libs\eecs52_Tim.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -87,8 +70,42 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=PEBCKHPG
 
+[Document3]
+DocumentPath=Jukebox v2\Jukebox Memory.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=0
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=DLWUADIA
+
 [Document4]
-DocumentPath=Schematics\Jukebox Memory.SchDoc
+DocumentPath=Jukebox v2\Jukebox Peripherals.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=QELQMVWE
+
+[Document5]
+DocumentPath=Jukebox v2\Jukebox Power.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -102,10 +119,10 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=DLWUADIA
+DocumentUniqueId=RCUPPLDM
 
-[Document5]
-DocumentPath=Schematics\Jukebox Peripherals.SchDoc
+[Document6]
+DocumentPath=Jukebox v2\Jukebox Processing.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -119,10 +136,27 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=QELQMVWE
+DocumentUniqueId=TPQNLUIN
 
-[Document6]
-DocumentPath=Jukebox.PCBDOC
+[Document7]
+DocumentPath=Jukebox v2\Jukebox Schematic.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=4
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=FUFBOUGR
+
+[Document8]
+DocumentPath=Jukebox v2\Jukebox PCB.PCBDOC
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -138,163 +172,99 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=QXBRUHGL
 
-[Document7]
-DocumentPath=Schematics\Jukebox Schematic.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=5
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=FUFBOUGR
-
-[Document8]
-DocumentPath=Schematics\Jukebox Power.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=4
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=RCUPPLDM
-
-[Document9]
-DocumentPath=Jukebox.Cam
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document10]
-DocumentPath=Jukebox NC Drill.Cam
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
 [GeneratedDocument1]
 DocumentPath=Project Outputs for Jukebox Project\Design Rule Check - Jukebox.html
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.DRL
+DocumentPath=Project Outputs for Jukebox Project\Design Rule Check - Jukebox PCB.html
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.DRR
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.DRL
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.EXTREP
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GBL
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GBO
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GBS
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GKO
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM1
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM3
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM1
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM4
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM3
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM13
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM4
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM15
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM13
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GPB
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GM15
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GPT
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GPB
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GTL
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GPT
 DItemRevisionGUID=
 
 [GeneratedDocument17]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GTO
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument18]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GTP
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument19]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.GTS
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument20]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.LDP
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument21]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.REP
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument22]
-DocumentPath=Project Outputs for Jukebox Project\Jukebox.RUL
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.REP
 DItemRevisionGUID=
 
 [GeneratedDocument23]
+DocumentPath=Project Outputs for Jukebox Project\Jukebox.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument24]
 DocumentPath=Project Outputs for Jukebox Project\Jukebox.TXT
 DItemRevisionGUID=
 
@@ -444,10 +414,10 @@ OutputDefault12=0
 PageOptions12=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
 OutputType13=Schematic Print
 OutputName13=Schematic Prints
-OutputDocumentPath13=C:\Users\Tim\Desktop\Classes\eecs52\Schematics\Jukebox Peripherals.SchDoc
+OutputDocumentPath13=C:\Users\Tim\Desktop\Classes\eecs52\Schematics\Jukebox Schematic.SchDoc
 OutputVariantName13=
 OutputDefault13=0
-PageOptions13=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
+PageOptions13=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=0.72|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
 Configuration13_Name1=OutputConfigurationParameter1
 Configuration13_Item1=Record=SchPrintView|ShowNoERC=True|ShowParamSet=True|ShowProbe=True|ShowBlanket=True|NoERCSymbolsToShow="Thin Cross","Thick Cross","Small Cross",Checkbox,Triangle|ShowNote=True|ShowNoteCollapsed=True|ExpandDesignator=True|ExpandNetLabel=False|ExpandPort=False|ExpandSheetNum=False|ExpandDocNum=False|PrintArea=0|PrintAreaRect.X1=0|PrintAreaRect.Y1=0|PrintAreaRect.X2=0|PrintAreaRect.Y2=0
 OutputType14=SimView Print

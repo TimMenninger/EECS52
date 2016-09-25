@@ -12,56 +12,41 @@
       <connection id="TT6" conn.type="O">
         <conn.name id="TT7">clk</conn.name>
       </connection>
-      <connection id="TT37" conn.type="O">
-        <conn.name id="TT38">CPU_ALE</conn.name>
-      </connection>
       <connection id="TT18" conn.type="O">
-        <conn.name id="TT19">CPU_A7-0</conn.name>
-      </connection>
-      <connection id="TT94" conn.type="O">
-        <conn.name id="TT95">Latch_A7-0</conn.name>
-      </connection>
-      <connection id="TT28" conn.type="O">
-        <conn.name id="TT29">CPU_A15-8</conn.name>
-      </connection>
-      <connection id="TT105" conn.type="O">
-        <conn.name id="TT106">Buffer_A15-8</conn.name>
+        <conn.name id="TT19">CPU_AD7-0</conn.name>
       </connection>
       <connection id="TT51" conn.type="O">
-        <conn.name id="TT52">CPU_<not>PCS</not></conn.name>
+        <conn.name id="TT52">CPU_<not>PCS5</not></conn.name>
       </connection>
-      <connection id="TT132" conn.type="O">
-        <conn.name id="TT133">Buffer_<not>PCS</not></conn.name>
+      <connection id="TT195" conn.type="O">
+        <conn.name id="TT196">CPLD_SRDY</conn.name>
       </connection>
-      <connection id="TT180" conn.type="O">
-        <conn.name id="TT181">CPLD_<not>PCS</not></conn.name>
+      <connection id="TT148" conn.type="O">
+        <conn.name id="TT149">CPLD_DIR</conn.name>
       </connection>
-      <connection id="TT44" conn.type="O">
-        <conn.name id="TT45">CPU_<not>RD</not></conn.name>
+      <connection id="TT71" conn.type="O">
+        <conn.name id="TT72">CPLD_RS</conn.name>
       </connection>
-      <connection id="TT141" conn.type="O">
-        <conn.name id="TT142">Buffer_<not>RD</not></conn.name>
+      <connection id="TT135" conn.type="O">
+        <conn.name id="TT136">CPLD_R<not>W</not></conn.name>
       </connection>
-      <connection id="TT173" conn.type="O">
-        <conn.name id="TT174">CPLD_RD</conn.name>
+      <connection id="TT92" conn.type="O">
+        <conn.name id="TT123">CPLD_E</conn.name>
       </connection>
-      <connection id="TT189" conn.type="O">
-        <conn.name id="TT190">CPLD_E</conn.name>
+      <connection id="TT153" conn.type="O">
+        <conn.name id="TT154">Buffer_D7-0</conn.name>
       </connection>
-      <connection id="TT58" conn.type="O">
-        <conn.name id="TT59">CPU_<not>R</not></conn.name>
+      <connection id="TT214" conn.type="O">
+        <conn.name id="TT215">DispBuff_D7-0</conn.name>
       </connection>
-      <connection id="TT116" conn.type="O">
-        <conn.name id="TT117">CPU_<not>DEN</not></conn.name>
+      <connection id="TT197" conn.type="O">
+        <conn.name id="TT198">Display_Data Requirement</conn.name>
       </connection>
-      <connection id="TT216" conn.type="O">
-        <conn.name id="TT217">Display_Data</conn.name>
+      <connection id="TT515" conn.type="O">
+        <conn.name id="TT516">CPU_Data Requirement</conn.name>
       </connection>
-      <connection id="TT161" conn.type="O">
-        <conn.name id="TT162">Buffer_D7-0</conn.name>
-      </connection>
-      <connection id="TT64" conn.type="O">
-        <conn.name id="TT65">CPU_D7-0</conn.name>
+      <connection id="TT316" conn.type="O">
+        <conn.name id="TT317">Display_Data Valid</conn.name>
       </connection>
     </conn.source>
   </sources>
@@ -91,30 +76,29 @@
       </uncertainty.rising>
     </clock.info>
     <waveform id="TT8" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT73" driven="1" s="1" show.uncertainty="ALL" te="-1" tl="-1"/>
+      <e id="TT213" driven="1" s="0" show.uncertainty="ALL" te="-1" tl="-1"/>
       <e id="TT78" driven="1" s="0" show.uncertainty="ALL" te="41666" tl="41666"/>
-      <e id="TT123" driven="1" s="1" show.uncertainty="ALL" te="83332" tl="83332"/>
-      <e id="TT130" driven="1" s="1" show.uncertainty="ALL" te="124999" tl="124999"/>
-      <e id="TT84" driven="1" s="1" show.uncertainty="ALL" te="249998" tl="249998"/>
+      <e id="TT46" driven="1" s="1" show.uncertainty="ALL" te="83332" tl="83332"/>
+      <e id="TT325" driven="1" s="1" show.uncertainty="ALL" te="124999" tl="124999"/>
+      <e id="TT73" driven="1" s="0" show.uncertainty="ALL" te="249998" tl="249998">
+        <e.label label.type="text"/>
+      </e>
       <e id="TT86" driven="1" s="0" show.uncertainty="ALL" te="291665" tl="291665"/>
-      <e id="TT129" driven="1" s="0" show.uncertainty="ALL" te="333331" tl="333331"/>
-    </waveform>
-  </signal>
-  <signal id="TT40" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT37">CPU_ALE</conn.ptr>
-    <waveform id="TT39" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT41" driven="1" s="0" show.uncertainty="ALL"/>
-      <e id="TT127" driven="1" s="1" show.uncertainty="ALL" te="-25000"/>
-      <e id="TT42" driven="1" s="0" show.uncertainty="ALL" te="59484"/>
-      <e id="TT43" driven="1" s="1" show.uncertainty="ALL" te="312636"/>
+      <e id="TT45" driven="1" s="1" show.uncertainty="ALL" te="333331" tl="333331"/>
+      <e id="TT307" driven="1" s="1" show.uncertainty="ALL" te="374998" tl="374998"/>
     </waveform>
   </signal>
   <signal id="TT21" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT18">CPU_A7-0</conn.ptr>
+    <conn.ptr conn.id="TT18">CPU_AD7-0</conn.ptr>
     <waveform id="TT20" e.label.type="default" locked="0" show.uncertainty="ALL">
       <e id="TT22" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT26" driven="1" s="V" show.uncertainty="ALL" te="20000"/>
-      <e id="TT27" driven="1" s="X" show.uncertainty="ALL" te="99842"/>
+      <e id="TT26" driven="1" s="V" show.uncertainty="ALL" te="15000">
+        <e.label label.type="text">Address</e.label>
+      </e>
+      <e id="TT27" driven="1" s="V" show.uncertainty="ALL" te="110000">
+        <e.label label.type="text">Data</e.label>
+      </e>
+      <e id="TT90" driven="1" s="X" show.uncertainty="ALL" te="350000"/>
     </waveform>
     <width>
       <msb>
@@ -125,332 +109,305 @@
       </lsb>
     </width>
   </signal>
-  <signal id="TT97" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT94">Latch_A7-0</conn.ptr>
-    <waveform id="TT96" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT98" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT101" driven="1" s="V" show.uncertainty="ALL" te="70000"/>
-      <e id="TT102" driven="1" s="X" show.uncertainty="ALL" te="325639"/>
-    </waveform>
-    <width>
-      <msb>
-        <number id="TT99">7</number>
-      </msb>
-      <lsb>
-        <number id="TT100">0</number>
-      </lsb>
-    </width>
-  </signal>
-  <signal id="TT31" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT28">CPU_A15-8</conn.ptr>
-    <waveform id="TT30" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT32" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT35" driven="1" s="V" show.uncertainty="ALL" te="20000"/>
-      <e id="TT36" driven="1" s="X" show.uncertainty="ALL" te="350019"/>
-    </waveform>
-    <width>
-      <msb>
-        <number id="TT33">15</number>
-      </msb>
-      <lsb>
-        <number id="TT34">8</number>
-      </lsb>
-    </width>
-  </signal>
-  <signal id="TT108" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT105">Buffer_A15-8</conn.ptr>
-    <waveform id="TT107" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT109" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT112" driven="1" s="V" show.uncertainty="ALL" te="27122"/>
-      <e id="TT113" driven="1" s="X" show.uncertainty="ALL" te="358340"/>
-    </waveform>
-    <width>
-      <msb>
-        <number id="TT110">15</number>
-      </msb>
-      <lsb>
-        <number id="TT111">8</number>
-      </lsb>
-    </width>
-  </signal>
   <signal id="TT54" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT51">CPU_<not>PCS</not></conn.ptr>
+    <conn.ptr conn.id="TT51">CPU_<not>PCS5</not></conn.ptr>
     <waveform id="TT53" e.label.type="default" locked="0" show.uncertainty="ALL">
       <e id="TT55" driven="1" s="1" show.uncertainty="ALL"/>
-      <e id="TT56" driven="1" s="0" show.uncertainty="ALL" te="30000"/>
-      <e id="TT57" driven="1" s="1" show.uncertainty="ALL" te="310000"/>
+      <e id="TT56" driven="1" s="0" show.uncertainty="ALL" te="20000"/>
+      <e id="TT57" driven="1" s="1" show.uncertainty="ALL" te="395000"/>
     </waveform>
   </signal>
-  <signal id="TT135" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT132">Buffer_<not>PCS</not></conn.ptr>
-    <waveform id="TT134" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT136" driven="1" s="1" show.uncertainty="ALL"/>
-      <e id="TT137" driven="1" s="0" show.uncertainty="ALL" te="39909"/>
-      <e id="TT138" driven="1" s="1" show.uncertainty="ALL" te="320392"/>
+  <signal id="TT204" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT195">CPLD_SRDY</conn.ptr>
+    <waveform id="TT202" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT205" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT206" driven="1" s="0" show.uncertainty="ALL" te="55000"/>
+      <e id="TT222" driven="1" s="1" show.uncertainty="ALL" te="305000"/>
     </waveform>
   </signal>
-  <signal id="TT183" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT180">CPLD_<not>PCS</not></conn.ptr>
-    <waveform id="TT182" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT184" driven="1" s="1" show.uncertainty="ALL"/>
-      <e id="TT185" driven="1" s="0" show.uncertainty="ALL" te="64979"/>
-      <e id="TT186" driven="1" s="1" show.uncertainty="ALL" te="321543"/>
+  <signal id="TT151" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT148">CPLD_DIR</conn.ptr>
+    <waveform id="TT150" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT152" driven="1" s="0" show.uncertainty="ALL"/>
+      <e id="TT174" driven="1" s="1" show.uncertainty="ALL" te="55000"/>
+      <e id="TT175" driven="1" s="0" show.uncertainty="ALL" te="385000"/>
     </waveform>
   </signal>
-  <signal id="TT47" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT44">CPU_<not>RD</not></conn.ptr>
-    <waveform id="TT46" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT48" driven="1" s="1" show.uncertainty="ALL"/>
-      <e id="TT49" driven="1" s="0" show.uncertainty="ALL" te="100000"/>
-      <e id="TT50" driven="1" s="1" show.uncertainty="ALL" te="275000"/>
+  <signal id="TT82" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT71">CPLD_RS</conn.ptr>
+    <waveform id="TT79" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT83" driven="1" s="0" show.uncertainty="ALL"/>
+      <e id="TT88" driven="1" s="1" show.uncertainty="ALL" te="55000"/>
+      <e id="TT89" driven="1" locked="0" s="0" show.uncertainty="ALL" te="385000"/>
     </waveform>
   </signal>
-  <signal id="TT144" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT141">Buffer_<not>RD</not></conn.ptr>
-    <waveform id="TT143" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT145" driven="1" s="1" show.uncertainty="ALL"/>
-      <e id="TT146" driven="1" s="0" show.uncertainty="ALL" te="110030"/>
-      <e id="TT147" driven="1" s="1" show.uncertainty="ALL" te="280000"/>
+  <signal id="TT138" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT135">CPLD_R<not>W</not></conn.ptr>
+    <waveform id="TT137" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT139" driven="1" s="1" show.uncertainty="ALL"/>
+      <e id="TT140" driven="1" s="0" show.uncertainty="ALL" te="54795"/>
+      <e id="TT143" driven="1" s="1" show.uncertainty="ALL" te="385000"/>
     </waveform>
   </signal>
-  <signal id="TT176" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT173">CPLD_RD</conn.ptr>
-    <waveform id="TT175" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT177" driven="1" s="0" show.uncertainty="ALL"/>
-      <e id="TT178" driven="1" s="1" show.uncertainty="ALL" te="134989"/>
-      <e id="TT187" driven="1" s="0" show.uncertainty="ALL" te="280460"/>
+  <signal id="TT163" clock="0" falling.slope.degrees="60" rising.slope.degrees="60" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT92">CPLD_E</conn.ptr>
+    <waveform id="TT162" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT164" driven="1" s="0" show.uncertainty="ALL"/>
+      <e id="TT165" driven="1" s="1" show.uncertainty="ALL" te="135000"/>
+      <e id="TT194" driven="1" s="0" show.uncertainty="ALL" te="305000"/>
+      <e id="TT226" driven="1" s="X" show.uncertainty="ALL" te="495000"/>
     </waveform>
   </signal>
-  <signal id="TT192" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT189">CPLD_E</conn.ptr>
-    <waveform id="TT191" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT193" driven="1" s="0" show.uncertainty="ALL"/>
-      <e id="TT194" driven="1" s="1" show.uncertainty="ALL" te="147566"/>
-      <e id="TT225" driven="1" s="0" show.uncertainty="ALL" te="256145"/>
-    </waveform>
-  </signal>
-  <signal id="TT61" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT58">CPU_<not>R</not></conn.ptr>
-    <waveform id="TT60" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT62" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT172" driven="1" s="0" show.uncertainty="ALL" te="-20000"/>
-      <e id="TT63" driven="1" s="1" show.uncertainty="ALL" te="320000"/>
-    </waveform>
-  </signal>
-  <signal id="TT119" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT116">CPU_<not>DEN</not></conn.ptr>
-    <waveform id="TT118" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT120" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT131" driven="1" s="1" show.uncertainty="ALL" te="-20000"/>
-      <e id="TT121" driven="1" s="0" show.uncertainty="ALL" te="136428"/>
-      <e id="TT122" driven="1" s="1" show.uncertainty="ALL" te="278319"/>
-    </waveform>
-  </signal>
-  <signal id="TT219" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT216">Display_Data</conn.ptr>
-    <waveform id="TT218" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT220" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT223" driven="1" s="V" show.uncertainty="ALL" te="225000"/>
-      <e id="TT227" driven="1" s="X" show.uncertainty="ALL" te="314417"/>
+  <signal id="TT156" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT153">Buffer_D7-0</conn.ptr>
+    <waveform id="TT155" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT157" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT160" driven="1" s="V" show.uncertainty="ALL" te="120000"/>
+      <e id="TT161" driven="1" s="X" show.uncertainty="ALL" te="360000"/>
     </waveform>
     <width>
       <msb>
-        <number id="TT221">15</number>
+        <number id="TT158">7</number>
       </msb>
       <lsb>
-        <number id="TT222">0</number>
+        <number id="TT159">0</number>
       </lsb>
     </width>
   </signal>
-  <signal id="TT164" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT161">Buffer_D7-0</conn.ptr>
-    <waveform id="TT163" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT165" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT168" driven="1" s="V" show.uncertainty="ALL" te="230000"/>
-      <e id="TT169" driven="1" s="X" show.uncertainty="ALL" te="291106"/>
+  <signal id="TT217" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT214">DispBuff_D7-0</conn.ptr>
+    <waveform id="TT216" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT218" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT221" driven="1" s="V" show.uncertainty="ALL" te="131670"/>
+      <e id="TT227" driven="1" s="X" show.uncertainty="ALL" te="380000"/>
     </waveform>
     <width>
       <msb>
-        <number id="TT166">15</number>
+        <number id="TT219">7</number>
       </msb>
       <lsb>
-        <number id="TT167">0</number>
+        <number id="TT220">0</number>
       </lsb>
     </width>
   </signal>
-  <signal id="TT67" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT64">CPU_D7-0</conn.ptr>
-    <waveform id="TT66" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT68" driven="1" s="X" show.uncertainty="ALL"/>
-      <e id="TT71" driven="1" s="V" show.uncertainty="ALL" te="235000"/>
-      <e id="TT72" driven="1" s="X" show.uncertainty="ALL" te="265000"/>
+  <signal id="TT200" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT197">Display_Data Requirement</conn.ptr>
+    <waveform id="TT199" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT201" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT209" driven="1" s="V" show.uncertainty="ALL" te="255000"/>
+      <e id="TT210" driven="1" s="X" show.uncertainty="ALL" te="345000"/>
     </waveform>
     <width>
       <msb>
-        <number id="TT69">7</number>
+        <number id="TT207">7</number>
       </msb>
       <lsb>
-        <number id="TT70">0</number>
+        <number id="TT208">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <signal id="TT518" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT515">CPU_Data Requirement</conn.ptr>
+    <waveform id="TT517" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT519" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT527" driven="1" s="V" show.uncertainty="ALL" te="290000">
+        <e.label label.type="text"/>
+      </e>
+      <e id="TT528" driven="1" s="X" show.uncertainty="ALL" te="348488"/>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT525">7</number>
+      </msb>
+      <lsb>
+        <number id="TT526">0</number>
+      </lsb>
+    </width>
+  </signal>
+  <signal id="TT319" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
+    <conn.ptr conn.id="TT316">Display_Data Valid</conn.ptr>
+    <waveform id="TT318" e.label.type="default" locked="0" show.uncertainty="ALL">
+      <e id="TT320" driven="1" s="X" show.uncertainty="ALL"/>
+      <e id="TT323" driven="1" s="V" show.uncertainty="ALL" te="245000"/>
+      <e id="TT513" driven="1" s="X" show.uncertainty="ALL" te="343784"/>
+    </waveform>
+    <width>
+      <msb>
+        <number id="TT321">7</number>
+      </msb>
+      <lsb>
+        <number id="TT322">0</number>
       </lsb>
     </width>
   </signal>
   <edge.relationships>
-    <relationship id="TT74" containing.signal.ptr="TT40" show="1" slot="2" type="delay" user.created="0">
-      <two.edge source.e="TT78" target.e="TT42"/>
-      <relationship.label label.type="text">T<sub>CHLL</sub></relationship.label>
-    </relationship>
     <relationship id="TT76" containing.signal.ptr="TT21" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT73" target.e="TT26"/>
+      <two.edge source.e="TT213" target.e="TT26"/>
       <relationship.label label.type="text">T<sub>CLAV</sub></relationship.label>
-    </relationship>
-    <relationship id="TT77" containing.signal.ptr="TT31" show="1" slot="1" type="delay" user.created="1">
-      <two.edge source.e="TT73" target.e="TT35"/>
-      <relationship.label label.type="text">T<sub>CLAV</sub></relationship.label>
-    </relationship>
-    <relationship id="TT79" containing.signal.ptr="TT47" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT123" target.e="TT49"/>
-      <relationship.label label.type="text">T<sub>CLRL</sub></relationship.label>
     </relationship>
     <relationship id="TT80" containing.signal.ptr="TT54" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT73" target.e="TT56"/>
+      <two.edge source.e="TT213" target.e="TT56"/>
       <relationship.label label.type="text">T<sub>CLCSV</sub></relationship.label>
     </relationship>
-    <relationship id="TT82" containing.signal.ptr="TT47" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT84" target.e="TT50"/>
-      <relationship.label label.type="text">T<sub>CLRH</sub></relationship.label>
+    <relationship id="TT93" containing.signal.ptr="TT21" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT46" target.e="TT27"/>
+      <relationship.label label.type="text">T<sub>CLAX</sub></relationship.label>
     </relationship>
-    <relationship id="TT83" containing.signal.ptr="TT54" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT50" target.e="TT57"/>
-      <relationship.label label.type="text">T<sub>CXCSX</sub></relationship.label>
-    </relationship>
-    <relationship id="TT85" containing.signal.ptr="TT61" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT86" target.e="TT63"/>
-      <relationship.label label.type="text">T<sub>CHCTV</sub></relationship.label>
-    </relationship>
-    <relationship id="TT87" containing.signal.ptr="TT31" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT129" target.e="TT36"/>
+    <relationship id="TT177" containing.signal.ptr="TT21" show="1" slot="1" type="delay" user.created="1">
+      <two.edge source.e="TT45" target.e="TT90"/>
       <relationship.label label.type="text">T<sub>CLDOX</sub></relationship.label>
     </relationship>
-    <relationship id="TT88" containing.signal.ptr="TT47" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT50" target.e="TT43"/>
-      <relationship.label label.type="text">T<sub>RHLH</sub></relationship.label>
-    </relationship>
-    <relationship id="TT89" containing.signal.ptr="TT47" show="1" slot="2" type="measure" user.created="0">
-      <two.edge source.e="TT49" target.e="TT50"/>
-      <relationship.label label.type="text">T<sub>RLRH</sub></relationship.label>
-    </relationship>
-    <relationship id="TT91" containing.signal.ptr="TT67" show="1" slot="1" type="setup" user.created="0">
-      <two.edge source.e="TT71" target.e="TT84"/>
-      <relationship.label label.type="text">T<sub>DVCL</sub></relationship.label>
-    </relationship>
-    <relationship id="TT92" containing.signal.ptr="TT67" show="1" slot="1" type="hold" user.created="0">
-      <two.edge source.e="TT84" target.e="TT72"/>
-      <relationship.label label.type="text">T<sub>CLDX</sub></relationship.label>
-    </relationship>
-    <relationship id="TT93" containing.signal.ptr="TT21" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT123" target.e="TT27"/>
-      <relationship.label label.type="text">T<sub>CLAZ</sub></relationship.label>
-    </relationship>
-    <relationship id="TT103" containing.signal.ptr="TT97" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT42" target.e="TT101"/>
-      <relationship.label label.type="text">t<sub>PHL</sub></relationship.label>
-    </relationship>
-    <relationship id="TT104" containing.signal.ptr="TT97" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT43" target.e="TT102"/>
+    <relationship id="TT178" containing.signal.ptr="TT156" show="1" slot="2" type="delay" user.created="1">
+      <two.edge source.e="TT27" target.e="TT160"/>
       <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
     </relationship>
-    <relationship id="TT114" containing.signal.ptr="TT108" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT35" target.e="TT112"/>
-      <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
-    </relationship>
-    <relationship id="TT115" containing.signal.ptr="TT108" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT36" target.e="TT113"/>
+    <relationship id="TT179" containing.signal.ptr="TT156" show="1" slot="2" type="delay" user.created="0">
+      <two.edge source.e="TT90" target.e="TT161"/>
       <relationship.label label.type="text">t<sub>PHL</sub></relationship.label>
     </relationship>
-    <relationship id="TT124" containing.signal.ptr="TT119" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT130" target.e="TT121"/>
-      <relationship.label label.type="text">T<sub>CVCTV</sub></relationship.label>
+    <relationship id="TT25" containing.signal.ptr="TT54" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT307" target.e="TT57"/>
+      <relationship.label label.type="text">T<sub>CHCSX</sub></relationship.label>
     </relationship>
-    <relationship id="TT125" containing.signal.ptr="TT119" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT84" target.e="TT122"/>
-      <relationship.label label.type="text">T<sub>CVDEX</sub></relationship.label>
+    <relationship id="TT91" containing.signal.ptr="TT82" show="1" slot="1" type="delay" user.created="1">
+      <two.edge source.e="TT78" target.e="TT88"/>
+      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
     </relationship>
-    <relationship id="TT139" containing.signal.ptr="TT135" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT56" target.e="TT137"/>
-      <relationship.label label.type="text">t<sub>PHL</sub></relationship.label>
-    </relationship>
-    <relationship id="TT140" containing.signal.ptr="TT135" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT57" target.e="TT138"/>
-      <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
-    </relationship>
-    <relationship id="TT148" containing.signal.ptr="TT144" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT49" target.e="TT146"/>
-      <relationship.label label.type="text">t<sub>PHL</sub></relationship.label>
-    </relationship>
-    <relationship id="TT149" containing.signal.ptr="TT144" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT50" target.e="TT147"/>
-      <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
-    </relationship>
-    <relationship id="TT170" containing.signal.ptr="TT164" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT223" target.e="TT168"/>
-      <relationship.label label.type="text">t<sub>PZL</sub></relationship.label>
-    </relationship>
-    <relationship id="TT171" containing.signal.ptr="TT164" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT122" target.e="TT169"/>
-      <relationship.label label.type="text">t<sub>PHZ</sub></relationship.label>
-    </relationship>
-    <relationship id="TT128" containing.signal.ptr="TT40" show="1" slot="1" type="measure" user.created="0">
-      <two.edge source.e="TT127" target.e="TT42"/>
-      <relationship.label label.type="text">T<sub>LHLL</sub></relationship.label>
-    </relationship>
-    <relationship id="TT179" containing.signal.ptr="TT176" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT146" target.e="TT178"/>
-      <relationship.label label.type="text">t<sub>pd2</sub></relationship.label>
-    </relationship>
-    <relationship id="TT188" containing.signal.ptr="TT183" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT137" target.e="TT185"/>
-      <relationship.label label.type="text">t<sub>pd2</sub></relationship.label>
-    </relationship>
-    <relationship id="TT211" show="1" slot="0" tdml.cc.ptr="TT207" type="break" user.created="0">
+    <relationship id="TT186" show="1" slot="0" tdml.cc.ptr="TT182" type="break" user.created="0">
       <one.edge/>
       <relationship.label label.type="default"/>
     </relationship>
-    <relationship id="TT224" containing.signal.ptr="TT219" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT194" target.e="TT223"/>
-      <relationship.label label.type="text">T<sub>DDR</sub></relationship.label>
+    <relationship id="TT203" containing.signal.ptr="TT163" show="1" slot="1" type="delay" user.created="1">
+      <two.edge source.e="TT165" target.e="TT194"/>
+      <relationship.label label.type="text">T<sub>PW</sub></relationship.label>
     </relationship>
-    <relationship id="TT228" containing.signal.ptr="TT219" show="1" slot="1" type="hold" user.created="0">
-      <two.edge source.e="TT225" target.e="TT227"/>
+    <relationship id="TT211" containing.signal.ptr="TT200" show="1" slot="1" type="setup" user.created="0">
+      <two.edge source.e="TT209" target.e="TT45"/>
+      <relationship.label label.type="text">T<sub>DSW</sub></relationship.label>
+    </relationship>
+    <relationship id="TT212" containing.signal.ptr="TT200" show="1" slot="-1" type="hold" user.created="1">
+      <two.edge source.e="TT45" target.e="TT210"/>
       <relationship.label label.type="text">T<sub>H</sub></relationship.label>
     </relationship>
+    <relationship id="TT223" containing.signal.ptr="TT217" show="1" slot="1" type="delay" user.created="1">
+      <two.edge source.e="TT160" target.e="TT221"/>
+      <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
+    </relationship>
+    <relationship id="TT228" containing.signal.ptr="TT217" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT161" target.e="TT227"/>
+      <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
+    </relationship>
+    <relationship id="TT183" containing.signal.ptr="TT163" show="1" slot="2" type="delay" user.created="1">
+      <two.edge source.e="TT325" target.e="TT165"/>
+      <relationship.label label.type="text">t<sub>pd</sub>+t<sub>r</sub></relationship.label>
+    </relationship>
+    <relationship id="TT147" containing.signal.ptr="TT138" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT78" target.e="TT140"/>
+      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
+    </relationship>
+    <relationship id="TT176" containing.signal.ptr="TT151" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT78" target.e="TT174"/>
+      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
+    </relationship>
+    <relationship id="TT224" containing.signal.ptr="TT204" show="1" slot="1" type="delay" user.created="1">
+      <two.edge source.e="TT86" target.e="TT222"/>
+      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
+    </relationship>
+    <relationship id="TT312" containing.signal.ptr="TT163" show="1" slot="2" type="delay" user.created="0">
+      <two.edge source.e="TT86" target.e="TT194"/>
+      <relationship.label label.type="text">t<sub>pd</sub>+t<sub>f</sub></relationship.label>
+    </relationship>
+    <relationship id="TT313" containing.signal.ptr="TT82" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT307" target.e="TT89"/>
+      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
+    </relationship>
+    <relationship id="TT314" containing.signal.ptr="TT138" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT307" target.e="TT143"/>
+      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
+    </relationship>
+    <relationship id="TT315" containing.signal.ptr="TT151" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT307" target.e="TT175"/>
+      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
+    </relationship>
+    <relationship id="TT324" containing.signal.ptr="TT319" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT165" target.e="TT323"/>
+      <relationship.label label.type="text">t<sub>DDR</sub></relationship.label>
+    </relationship>
+    <relationship id="TT326" containing.signal.ptr="TT163" show="1" slot="1" type="hold" user.created="0">
+      <two.edge source.e="TT194" target.e="TT89"/>
+      <relationship.label label.type="text">t<sub>AH</sub></relationship.label>
+    </relationship>
+    <relationship id="TT327" containing.signal.ptr="TT204" show="1" slot="2" type="delay" user.created="1">
+      <two.edge source.e="TT206" target.e="TT222"/>
+      <relationship.label label.type="text">8 Clocks (held by CPLD)</relationship.label>
+    </relationship>
+    <relationship id="TT328" containing.signal.ptr="TT204" show="1" slot="1" type="delay" user.created="0">
+      <two.edge source.e="TT78" target.e="TT206"/>
+      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
+    </relationship>
+    <relationship id="TT514" containing.signal.ptr="TT319" show="1" slot="1" type="hold" user.created="0">
+      <two.edge source.e="TT194" target.e="TT513"/>
+      <relationship.label label.type="text">t<sub>H</sub></relationship.label>
+    </relationship>
+    <relationship id="TT529" containing.signal.ptr="TT518" show="1" slot="1" type="setup" user.created="0">
+      <two.edge source.e="TT527" target.e="TT45"/>
+      <relationship.label label.type="text">T<sub>DVCL</sub></relationship.label>
+    </relationship>
+    <relationship id="TT540" containing.signal.ptr="TT518" show="1" slot="1" type="hold" user.created="0">
+      <two.edge source.e="TT45" target.e="TT528"/>
+      <relationship.label label.type="text">T<sub>CLDX</sub></relationship.label>
+    </relationship>
   </edge.relationships>
+  <annotation signal.ptr="TT163" x.offset="350272" y.offset="-0.15">
+    <code.listing id="TT_1474780329669__0">
+      <line indent.level="0">E held low until busy flag cleared</line>
+    </code.listing>
+  </annotation>
   <view.group>
-    <view begin.time="0" end.time="410000"/>
+    <view begin.time="-140000" end.time="550000"/>
   </view.group>
   <cc.list>
-    <title id="TT195">General Data</title>
-    <tdml.cc id="TT196" show="1" static="1">
-      <parm id="P197">
-        <parm.symbol id="TT198">tb</parm.symbol>
-        <parm.desc id="TT199">to be defined</parm.desc>
+    <title id="TT169">General Data</title>
+    <tdml.cc id="TT170" show="1" static="1">
+      <parm id="P171">
+        <parm.symbol id="TT172">tb</parm.symbol>
+        <parm.desc id="TT173">to be defined</parm.desc>
       </parm>
-      <tdml.value id="TT201" value.type="MIN">
-        <number id="TT202">229314</number>
+    </tdml.cc>
+    <tdml.cc id="TT348" show="1" static="1">
+      <parm id="P349">
+        <parm.symbol id="TT350">tb<sub>3</sub></parm.symbol>
+        <parm.desc id="TT351">to be defined</parm.desc>
+      </parm>
+      <tdml.value id="TT353" value.type="MIN">
+        <number id="TT354">311250</number>
       </tdml.value>
-      <tdml.value id="TT203" value.type="MAX">
-        <number id="TT204">229314</number>
+      <tdml.value id="TT355" value.type="MAX">
+        <number id="TT356">311250</number>
       </tdml.value>
     </tdml.cc>
-    <tdml.cc id="TT207" show="1" static="1">
-      <parm id="P208">
-        <parm.symbol id="TT209">tb<sub>1</sub></parm.symbol>
-        <parm.desc id="TT210">to be defined</parm.desc>
+    <tdml.cc id="TT182" show="1" static="1">
+      <parm id="P183">
+        <parm.symbol id="TT184">tb<sub>1</sub></parm.symbol>
+        <parm.desc id="TT185">to be defined</parm.desc>
       </parm>
-      <tdml.value id="TT212" value.type="MIN">
-        <number id="TT213">217576</number>
+      <tdml.value id="TT187" value.type="MIN">
+        <number id="TT188">228844</number>
       </tdml.value>
-      <tdml.value id="TT214" value.type="MAX">
-        <number id="TT215">217576</number>
+      <tdml.value id="TT189" value.type="MAX">
+        <number id="TT190">228844</number>
+      </tdml.value>
+    </tdml.cc>
+    <tdml.cc id="TT229" show="1" static="1">
+      <parm id="P230">
+        <parm.symbol id="TT231">tb<sub>2</sub></parm.symbol>
+        <parm.desc id="TT232">to be defined</parm.desc>
+      </parm>
+      <tdml.value id="TT234" value.type="MIN">
+        <number id="TT235">477090</number>
+      </tdml.value>
+      <tdml.value id="TT236" value.type="MAX">
+        <number id="TT237">477090</number>
       </tdml.value>
     </tdml.cc>
   </cc.list>
