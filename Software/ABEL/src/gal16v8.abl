@@ -31,7 +31,7 @@ A0     pin    7;                "input   Address bit 0, used in display
 "      pin    9                  input   unused (I8)
 "GND   pin   10;                 supply  power ground
 "OE    pin   11;                 input   output enable to GAL16v8
-"      pin   12;                "unused  (I/O 8)
+"      pin   12;                 unused  (I/O 8)
 SRDY   pin   13  ISTYPE 'com';  "output  synchronous ready to 80C188
 DISP   pin   14  ISTYPE 'com';  "output  Register select to display
 DDIR   pin   15  ISTYPE 'com';  "output  Data direction for display
@@ -58,6 +58,13 @@ St2    pin       ISTYPE 'reg';  "output  state bit 2
 St3    pin       ISTYPE 'reg';  "output  state bit 3
 St4    pin       ISTYPE 'reg';  "output  state bit 4
 
+C0     pin       ISTYPE 'reg';  "counter bit
+C1     pin       ISTYPE 'reg';  "counter bit
+C2     pin       ISTYPE 'reg';  "counter bit
+C3     pin       ISTYPE 'reg';  "counter bit
+C4     pin       ISTYPE 'reg';  "counter bit
+C5     pin       ISTYPE 'reg';  "counter bit
+
 
 
 " Display, IDE, Digital Pot, MP3
@@ -76,13 +83,16 @@ DispWt4    =  [   1,   0,   1,   1,   0 ]; " wait state 4
 DispWt5    =  [   1,   0,   1,   0,   0 ]; " wait state 5
 DispWt6    =  [   1,   1,   1,   0,   0 ]; " wait state 6
 DispWt7    =  [   1,   1,   0,   0,   0 ]; " wait state 7
-DispStop   =  [   1,   1,   0,   0,   1 ]; " stops write cycle, CPU responsible for 1200 ns wait
+DispWt8    =  [   1,   1,   0,   0,   1 ]; " wait state 8
+DispRd     =  [   1,   1,   0,   1,   1 ]; " extra wait state when reading
+DispStop   =  [   1,   1,   0,   1,   0 ]; " stops write cycle, CPU responsible for 1200 ns wait
 
 " Digital potentiometer states
-DigPotEna  =  [   0,   0,   1,   0,   0 ]; " enables digital potentiometer/waits to do next pulse
-DigPotUp   =  [   0,   0,   1,   1,   0 ]; " pulses a 1 to the potentiometer data pin
-DigPotDown =  [   0,   0,   1,   0,   1 ]; " pulses a 0 to the potentiometer data pin
+PotLoop    =  [   0,   0,   1,   0,   0 ]; " enables digital potentiometer/waits to do next pulse
 
+
+" Counter
+Counter    =  [ C5, C4, C3, C2, C1, C0 ];  " counts state iterations for digital potentiometer
 
 
 EQUATIONS
@@ -101,6 +111,7 @@ POTUD.OE = 1;
 
 " clocks for the registered outputs
 StateBits.CLK  =  Clock;        " use the global clock pin
+Counter.CLK    =  Clock;
 
 
 
@@ -128,17 +139,14 @@ STATE  Idle:                " Wait idly with nothing enabled
     DDIR  = 0;              " Direction is irrelevant
     DRW   = 0;              " Read/Write is irrelevant
     DISPE = 0;              " Disable display
-    " Digital pot
-    POT   = 0;              " Disable potentiometer
-    POTUD = 0;              " Increment/decrement irrelevant
 
     SRDY = iSRDY;           " SRDY depends on signal from LSI1016
 
          IF (RESET)         THEN Idle      WITH { POT = 0; POTUD = 0 }    " stay here
     ELSE IF (!iSRDY)        THEN Idle      WITH { POT = 0; POTUD = 0 }    " stay here
     ELSE IF (PCS5)          THEN DispSt    WITH { POT = 0; POTUD = 0 }    " write/read to display
-    ELSE IF (PCS6)          THEN DigPotEna WITH { POT = 0; POTUD = !A0 }  " digital pot
-    ELSE                         Idle;     WITH { POT = 0; POTUD = 0 };   " stay here
+    ELSE IF (PCS6)          THEN PotLoop   WITH { POT = 0; POTUD = !A0 }  " digital pot
+    ELSE                         Idle      WITH { POT = 0; POTUD = 0 }   " stay here
 
 
 
@@ -342,9 +350,6 @@ STATE PotLoop:              " Loop that controls the potentiometer
     DDIR  = 0;              " Direction irrelevant
     DRW   = 0;              " Read/Write irrelevant
     DISPE = 0;              " Display enable must deactivate before CS
-    " Digital pot
-    POT   = 0;              " Disable potentiometer
-    POTUD = !A0;            " Up/down depends on address
 
     SRDY  = 0;              " SRDY ready now that we're done reading
 
@@ -360,7 +365,7 @@ STATE PotLoop:              " Loop that controls the potentiometer
     ELSE IF (C0 & C1 & C2 & C3 & C4 & C5)   THEN Idle    WITH { POT = 0; POTUD = 0 }     "Done 5us delay
     ELSE IF (!C0 & !C1 & !C2 & !POT)        THEN PotLoop WITH { POT = 1; POTUD = !A0 }   "Setup satisfied
     ELSE IF (!C0 & !C1 & !C2 & POT)         THEN PotLoop WITH { POT = 1; POTUD = A0 }    "Step pot
-    ELSE                                         Idle    WITH { POT = 0; POTUD = 0 };    "Nothing to do
+    ELSE                                         Idle    WITH { POT = 0; POTUD = 0 }     "Nothing to do
 
 
 
@@ -370,41 +375,44 @@ TEST_VECTORS
 
 " Writing to display RAM
   [   .C.,     1,     1,  .X.,  .X. ] -> [     1,     0,     0,     0,     0 ]; " reset
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; "   0ns: start cycle
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; "  83ns: wait state 1
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 167ns: wait state 2
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 250ns: wait state 3
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 333ns: wait state 4
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 417ns: wait state 5
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 500ns: wait state 6
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 583ns: wait state 7
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " start cycle
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; "   0ns: wait state 1
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; "  83ns: wait state 2
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 167ns: wait state 3
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 250ns: wait state 4
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 333ns: wait state 5
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 417ns: wait state 6
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 500ns: wait state 7
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 583ns: wait state 8
   [   .C.,     0,     0,    1,    0 ] -> [     1,     1,     1,     0,     0 ]; " SRDY high so CPU can finish write
   [   .C.,     0,     0,    1,    0 ] -> [     1,     1,     1,     0,     0 ]; " Stay in state until PCS goes inactive
   [   .C.,     0,     1,    1,    0 ] -> [     1,     0,     0,     0,     0 ]; " back to idle
 
 " Write command
   [   .C.,     1,     1,  .X.,  .X. ] -> [     1,     0,     0,     0,     0 ]; " reset
-  [   .C.,     0,     0,    0,    1 ] -> [     0,     0,     1,     0,     1 ]; "   0ns: start cycle
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; "  83ns: wait state 1
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 167ns: wait state 2
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 250ns: wait state 3
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 333ns: wait state 4
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 417ns: wait state 5
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 500ns: wait state 6
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 583ns: wait state 7
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     0 ]; " start cycle
+  [   .C.,     0,     0,    0,    1 ] -> [     0,     0,     1,     0,     1 ]; "   0ns: wait state 1
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; "  83ns: wait state 2
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 167ns: wait state 3
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 250ns: wait state 4
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 333ns: wait state 5
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 417ns: wait state 6
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 500ns: wait state 7
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 583ns: wait state 8
   [   .C.,     0,     0,    1,    1 ] -> [     1,     0,     1,     0,     0 ]; " SRDY high so CPU can finish write
   [   .C.,     0,     0,    0,    1 ] -> [     1,     0,     0,     0,     0 ]; " back to idle
 
 " Read busy flag
   [   .C.,     1,     1,  .X.,  .X. ] -> [     1,     0,     0,     0,     0 ]; " reset
-  [   .C.,     0,     0,    0,    1 ] -> [     0,     0,     1,     1,     1 ]; "   0ns: start cycle
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; "  83ns: wait state 1
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 167ns: wait state 2
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 250ns: wait state 3
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 333ns: wait state 4
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 417ns: wait state 5
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 500ns: wait state 6
-  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 583ns: wait state 7
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     0 ]; " start cycle
+  [   .C.,     0,     0,    0,    1 ] -> [     0,     0,     1,     1,     1 ]; "   0ns: wait state 1
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; "  83ns: wait state 2
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 167ns: wait state 3
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 250ns: wait state 4
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 333ns: wait state 5
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 417ns: wait state 6
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 500ns: wait state 7
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 583ns: wait state 8
   [   .C.,     0,     0,    1,    0 ] -> [     1,     0,     1,     1,     1 ]; " SRDY high so CPU can finish read
   [   .C.,     0,     0,    1,    0 ] -> [     1,     0,     1,     1,     0 ]; " enable disabled for display to finish
   [   .C.,     0,     0,    0,    0 ] -> [     1,     0,     0,     0,     0 ]; " back to idle
