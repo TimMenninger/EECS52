@@ -388,4 +388,12 @@ STATE DigPotDown:           " Pulse a 0
          IF (RESET)         THEN Idle          " Reset, start over
     ELSE                         DigPotEna;    " Continue incrementing/decrementing
 
+
+
+TEST_VECTORS
+( [ Clock, RESET,  PCS5,  DTR,   A0 ] -> [  SRDY,  DISP,  DDIR,  DRW,  DISPE ] )
+
+" Write cycle
+
+
 END
