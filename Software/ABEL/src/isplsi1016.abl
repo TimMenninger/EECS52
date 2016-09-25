@@ -55,7 +55,7 @@ Clock  pin   11;                "input   24 MHz clock
 "VCC   pin   12                  supply  power Vcc
 "ISPEN pin   13                  input   Tied high
 "      pin   14                  unused  (IN0/SDI)
-SRDY   pin   15  ISTYPE 'com';  "output  synchronous ready to 80C188
+SRDY   pin   15  ISTYPE 'reg';  "output  synchronous ready to 80C188
 A0     pin   16;                "input   LSB from address bus
 ALE    pin   17;                "input   Address latch enable (Active low from 80C188)
 DEN    pin   18;                "input   DEN signal (from 80C188)
@@ -71,8 +71,8 @@ MCS2   pin   27;                "input   DRAM access (Active low from 80C188)
 MCS3   pin   28;                "input   DRAM Refresh (Active low from 80C188)
 "      pin   29                  unused  (I/O 12)
 "      pin   30                  unused  (I/O 13)
-INT3   pin   31  ISTYPE 'com';  "output  Drives 80188 INT3 when ENC goes low
-INT0   pin   32  ISTYPE 'com';  "output  Drives 80188 INT0 when BTN goes low
+INT3   pin   31  ISTYPE 'reg';  "output  Drives 80188 INT3 when ENC goes low
+INT0   pin   32  ISTYPE 'reg';  "output  Drives 80188 INT0 when BTN goes low
 "      pin   33                  unused  (Y2/SCLK)
 "VCC   pin   34                  supply  power Vcc
 "RESET pin   35;                 input   Reset (active high from 80C188)
@@ -170,7 +170,7 @@ INT_Button     =  [    1,    0 ]; " button interrupt
 INT_Encoder    =  [    0,    1 ]; " encoder interrupt
 INT_Both       =  [    1,    1 ]; " both interrupts
 
-################################################
+"################################################
 "#
 "# SRDY State bits
 "#
@@ -214,6 +214,7 @@ SRDY.OE  = 1;
 " clocks for the registered outputs
 DRAM_bits.CLK  =  Clock;        " use the global clock pin
 INT_bits.CLK   =  Clock;        " use the global clock pin
+SRDY_bits.CLK  =  Clock;        " use the global clock pin
 StateBits.CLK  =  Clock;        " use the global clock pin
 iSRDY.CLK      =  Clock;        " use the global clock pin
 dSRDY.CLK      =  Clock;        " use the global clock pin
@@ -555,7 +556,7 @@ STATE INT_Both:                 " Drive both interrupts
 "#
 "#
 
-STATE_DIAGRAM SRDY_bit
+STATE_DIAGRAM SRDY_bits
 
 STATE S_is_RDY:                 " Assert SRDY
          IF (iSRDY & dSRDY)      THEN S_is_RDY           " Assert SRDY

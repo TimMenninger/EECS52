@@ -18,9 +18,6 @@
       <connection id="TT195" conn.type="O">
         <conn.name id="TT196">CPLD_SRDY</conn.name>
       </connection>
-      <connection id="TT148" conn.type="O">
-        <conn.name id="TT149">CPLD_DIR</conn.name>
-      </connection>
       <connection id="TT71" conn.type="O">
         <conn.name id="TT72">CPLD_RS</conn.name>
       </connection>
@@ -90,14 +87,6 @@
       <e id="TT205" driven="1" s="1" show.uncertainty="ALL"/>
       <e id="TT206" driven="1" s="0" show.uncertainty="ALL" te="55000"/>
       <e id="TT222" driven="1" s="1" show.uncertainty="ALL" te="305000"/>
-    </waveform>
-  </signal>
-  <signal id="TT151" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT148">CPLD_DIR</conn.ptr>
-    <waveform id="TT150" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT152" driven="1" s="0" show.uncertainty="ALL"/>
-      <e id="TT174" driven="1" s="1" show.uncertainty="ALL" te="55000"/>
-      <e id="TT175" driven="1" s="0" show.uncertainty="ALL" te="465000"/>
     </waveform>
   </signal>
   <signal id="TT82" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
@@ -188,10 +177,6 @@
       <two.edge source.e="TT78" target.e="TT140"/>
       <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
     </relationship>
-    <relationship id="TT176" containing.signal.ptr="TT151" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT78" target.e="TT174"/>
-      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
-    </relationship>
     <relationship id="TT224" containing.signal.ptr="TT204" show="1" slot="1" type="delay" user.created="1">
       <two.edge source.e="TT86" target.e="TT222"/>
       <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
@@ -206,10 +191,6 @@
     </relationship>
     <relationship id="TT314" containing.signal.ptr="TT138" show="1" slot="1" type="delay" user.created="0">
       <two.edge source.e="TT546" target.e="TT143"/>
-      <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
-    </relationship>
-    <relationship id="TT315" containing.signal.ptr="TT151" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT546" target.e="TT175"/>
       <relationship.label label.type="text">t<sub>pd</sub></relationship.label>
     </relationship>
     <relationship id="TT324" containing.signal.ptr="TT319" show="1" slot="1" type="delay" user.created="0">

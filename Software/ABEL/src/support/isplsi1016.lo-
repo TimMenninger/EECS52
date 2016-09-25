@@ -1,0 +1,46 @@
+ispEXPERT Compiler Release 2.0.00.17.20.15, May 20 2002 13:06:40
+
+Copyright (C) 1994-2000 by Lattice Semiconductor Corporation.
+All Rights Reserved.
+
+
+Design Process Management 
+
+Renaming existing log file to isplsi1016.lo-
+Renaming existing parameter file to isplsi1016.pa-
+Renaming existing rpt file to isplsi1016.rp-
+
+Preprocessing design 'isplsi1016'...
+
+
+PLA Reading and Translation 
+  
+Reading design 'isplsi1016'... 
+  
+Checking design rules... 
+31544 WARNING: Pin 'ALE' is declared but not used; pin 'ALE' is removed 
+31544 WARNING: Pin 'DEN' is declared but not used; pin 'DEN' is removed 
+31544 WARNING: Pin 'PCS2' is declared but not used; pin 'PCS2' is 
+      removed 
+31544 WARNING: Pin 'PCS3' is declared but not used; pin 'PCS3' is 
+      removed 
+31544 WARNING: Pin 'PCS4' is declared but not used; pin 'PCS4' is 
+      removed 
+31543 WARNING: Signal 'ALE' in attribute 'LOCK ALE' is not declared; 
+       attribute 'LOCK ALE' is ignored 
+31543 WARNING: Signal 'DEN' in attribute 'LOCK DEN' is not declared; 
+       attribute 'LOCK DEN' is ignored 
+31543 WARNING: Signal 'PCS2' in attribute 'LOCK PCS2' is not declared; 
+       attribute 'LOCK PCS2' is ignored 
+31543 WARNING: Signal 'PCS3' in attribute 'LOCK PCS3' is not declared; 
+       attribute 'LOCK PCS3' is ignored 
+31543 WARNING: Signal 'PCS4' in attribute 'LOCK PCS4' is not declared; 
+       attribute 'LOCK PCS4' is ignored 
+  
+Writing output files(ddf)... 
+  
+Writing output files(laf)... 
+  
+PLA reading and translation completed successfully 
+
+

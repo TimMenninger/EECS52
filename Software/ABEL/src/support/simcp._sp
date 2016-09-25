@@ -1,0 +1,2 @@
+simcp.post1 -ini simcpls.ini -all simcp.post1
+-cfg oaipldtg.fdk "gal16v8.lts" -map "Jukebox.lsi"
