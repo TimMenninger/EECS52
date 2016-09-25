@@ -31,12 +31,12 @@ A0     pin    7;                "input   Address bit 0, used in display
 "      pin    9                  input   unused (I8)
 "GND   pin   10;                 supply  power ground
 "OE    pin   11;                 input   output enable to GAL16v8
-"      pin   12;                 unused  (I/O 8)
+"      pin   12;                "unused  (I/O 8)
 SRDY   pin   13  ISTYPE 'com';  "output  synchronous ready to 80C188
 DISP   pin   14  ISTYPE 'com';  "output  Register select to display
 DDIR   pin   15  ISTYPE 'com';  "output  Data direction for display
 DRW    pin   16  ISTYPE 'com';  "output  R/W signal to display
-!DISPE pin   17  ISTYPE 'com';  "output  Enable signal to display
+DISPE  pin   17  ISTYPE 'com';  "output  Enable signal to display
 !POT   pin   18  ISTYPE 'com';  "output  Pot chip select
 POTUD  pin   19  ISTYPE 'com';  "output  Serial clock to MP3 decoder, U/D to digital pot
 "VCC   pin   20                  supply  power Vcc
@@ -76,7 +76,6 @@ DispWt4    =  [   1,   0,   1,   1,   0 ]; " wait state 4
 DispWt5    =  [   1,   0,   1,   0,   0 ]; " wait state 5
 DispWt6    =  [   1,   1,   1,   0,   0 ]; " wait state 6
 DispWt7    =  [   1,   1,   0,   0,   0 ]; " wait state 7
-DispRd     =  [   1,   1,   0,   1,   0 ]; " reading requires extra wait state
 DispStop   =  [   1,   1,   0,   0,   1 ]; " stops write cycle, CPU responsible for 1200 ns wait
 
 " Digital potentiometer states
@@ -135,12 +134,11 @@ STATE  Idle:                " Wait idly with nothing enabled
 
     SRDY = iSRDY;           " SRDY depends on signal from LSI1016
 
-         IF (RESET)         THEN Idle      WITH POTUD = 0  " stay here
-    ELSE IF (!iSRDY)        THEN Idle      WITH POTUD = 0  " stay here
-    ELSE IF (PCS5)          THEN DispSt    WITH POTUD = 0  " write/read to display
-    ELSE IF (PCS6 & A0)     THEN DigPotEna WITH POTUD = 0  " digital pot
-    ELSE IF (PCS6 & !A0)    THEN DigPotEna WITH POTUD = 1  " digital pot
-    ELSE                         Idle      WITH POTUD = 0; " stay here
+         IF (RESET)         THEN Idle      WITH { POT = 0; POTUD = 0 }    " stay here
+    ELSE IF (!iSRDY)        THEN Idle      WITH { POT = 0; POTUD = 0 }    " stay here
+    ELSE IF (PCS5)          THEN DispSt    WITH { POT = 0; POTUD = 0 }    " write/read to display
+    ELSE IF (PCS6)          THEN DigPotEna WITH { POT = 0; POTUD = !A0 }  " digital pot
+    ELSE                         Idle;     WITH { POT = 0; POTUD = 0 };   " stay here
 
 
 
@@ -279,6 +277,23 @@ STATE DispWt7:              " Continue waiting while display sets up
     SRDY = 0;               " SRDY not ready while displaying
 
          IF (RESET)         THEN Idle       "Reset, stop displaying.
+    ELSE                         DispWt8;   "Continue waiting
+
+
+STATE DispWt8:              " Continue waiting while display sets up
+
+    " Display
+    DISP  = DTR & !A0;      " !A0 implies its R/W, so check DTR
+    DRW   = !DTR & !A0;     " !A0 implies its R/W (0 otherwise), RW inverse of DTR
+    DDIR  = DTR;            " Data to/from display depends on action
+    DISPE = 1;              " Enable display data
+    " Digital pot
+    POT   = 0;              " Disable potentiometer
+    POTUD = 0;              " Increment/decrement irrelevant
+
+    SRDY = 0;               " SRDY not ready while displaying
+
+         IF (RESET)         THEN Idle       "Reset, stop displaying.
     ELSE IF (!DTR)          THEN DispRd     "Need extra wait state on reads
     ELSE                         DispStop;  "Done
 
@@ -320,7 +335,7 @@ STATE DispStop:             " Continue waiting while display sets up
 
 " Following states for digital potentiometer
 
-STATE DigPotEna:            " Now that steadystate has been defined, can enable potentiometer CS
+STATE PotLoop:              " Loop that controls the potentiometer
 
     " Display
     DISP  = 0;              " Disable display RS
@@ -328,56 +343,195 @@ STATE DigPotEna:            " Now that steadystate has been defined, can enable 
     DRW   = 0;              " Read/Write irrelevant
     DISPE = 0;              " Display enable must deactivate before CS
     " Digital pot
-    POT   = 1;              " Disable potentiometer
+    POT   = 0;              " Disable potentiometer
+    POTUD = !A0;            " Up/down depends on address
 
     SRDY  = 0;              " SRDY ready now that we're done reading
 
-         IF (RESET)         THEN Idle       WITH POTUD = 0 "Reset, stop incrementing/decrementing
-    ELSE IF (PCS6 & A0)     THEN DigPotUp   WITH POTUD = 0 "Want to increment
-    ELSE IF (PCS6 & !A0)    THEN DigPotDown WITH POTUD = 1 "Want to decrement
-    ELSE                         Idle       WITH POTUD = 0;"Nothing to do
+    " Update counter to count iterations
+    C5 = (!C5 & C4 & C3 & C2 & C1 & C0) # (C5 & !(C4 & C3 & C2 & C1 & C0));
+    C4 = (!C4 & C3 & C2 & C1 & C0) # (C4 & !(C3 & C2 & C1 & C0));
+    C3 = (!C3 & C2 & C1 & C0) # (C3 & !(C2 & C1 & C0));
+    C2 = (!C2 & C1 & C0) # (C2 & !(C1 & C0));
+    C1 = C1 $ C0;
+    C0 = !C0;
 
-
-
-STATE DigPotUp:             " Pulse a 1
-
-    " Display
-    DISP  = 0;              " Disable display RS
-    DDIR  = 0;              " Direction irrelevant
-    DRW   = 0;              " Read/Write irrelevant
-    DISPE = 0;              " Display enable must deactivate before CS
-    " Digital pot
-    POT   = 1;              " Disable potentiometer
-    POTUD = 1;              " Increment potentiometer resistance
-
-    SRDY = 0;               " SRDY ready now that we're done reading
-
-         IF (RESET)         THEN Idle          " Reset, start over
-    ELSE                         DigPotEna;    " Continue incrementing/decrementing
-
-
-STATE DigPotDown:           " Pulse a 0
-
-    " Display
-    DISP  = 0;              " Disable display RS
-    DDIR  = 0;              " Direction irrelevant
-    DRW   = 0;              " Read/Write irrelevant
-    DISPE = 0;              " Display enable must deactivate before CS
-    " Digital pot
-    POT   = 1;              " Disable potentiometer
-    POTUD = 0;              " Decrement potentiometer resistance
-
-    SRDY = 0;               " SRDY ready now that we're done reading
-
-         IF (RESET)         THEN Idle          " Reset, start over
-    ELSE                         DigPotEna;    " Continue incrementing/decrementing
+         IF (RESET)                         THEN Idle    WITH { POT = 0; POTUD = 0 }     "Reset
+    ELSE IF (C0 & C1 & C2 & C3 & C4 & C5)   THEN Idle    WITH { POT = 0; POTUD = 0 }     "Done 5us delay
+    ELSE IF (!C0 & !C1 & !C2 & !POT)        THEN PotLoop WITH { POT = 1; POTUD = !A0 }   "Setup satisfied
+    ELSE IF (!C0 & !C1 & !C2 & POT)         THEN PotLoop WITH { POT = 1; POTUD = A0 }    "Step pot
+    ELSE                                         Idle    WITH { POT = 0; POTUD = 0 };    "Nothing to do
 
 
 
 TEST_VECTORS
-( [ Clock, RESET,  PCS5,  DTR,   A0 ] -> [  SRDY,  DISP,  DDIR,  DRW,  DISPE ] )
+" Display
+( [ Clock, RESET,  PCS5,  DTR,   A0 ] -> [  SRDY,  DISP,  DDIR,   DRW, DISPE ] )
 
-" Write cycle
+" Writing to display RAM
+  [   .C.,     1,     1,  .X.,  .X. ] -> [     1,     0,     0,     0,     0 ]; " reset
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; "   0ns: start cycle
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; "  83ns: wait state 1
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 167ns: wait state 2
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 250ns: wait state 3
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 333ns: wait state 4
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 417ns: wait state 5
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 500ns: wait state 6
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     1,     1,     0,     1 ]; " 583ns: wait state 7
+  [   .C.,     0,     0,    1,    0 ] -> [     1,     1,     1,     0,     0 ]; " SRDY high so CPU can finish write
+  [   .C.,     0,     0,    1,    0 ] -> [     1,     1,     1,     0,     0 ]; " Stay in state until PCS goes inactive
+  [   .C.,     0,     1,    1,    0 ] -> [     1,     0,     0,     0,     0 ]; " back to idle
 
+" Write command
+  [   .C.,     1,     1,  .X.,  .X. ] -> [     1,     0,     0,     0,     0 ]; " reset
+  [   .C.,     0,     0,    0,    1 ] -> [     0,     0,     1,     0,     1 ]; "   0ns: start cycle
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; "  83ns: wait state 1
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 167ns: wait state 2
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 250ns: wait state 3
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 333ns: wait state 4
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 417ns: wait state 5
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 500ns: wait state 6
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     0,     1 ]; " 583ns: wait state 7
+  [   .C.,     0,     0,    1,    1 ] -> [     1,     0,     1,     0,     0 ]; " SRDY high so CPU can finish write
+  [   .C.,     0,     0,    0,    1 ] -> [     1,     0,     0,     0,     0 ]; " back to idle
+
+" Read busy flag
+  [   .C.,     1,     1,  .X.,  .X. ] -> [     1,     0,     0,     0,     0 ]; " reset
+  [   .C.,     0,     0,    0,    1 ] -> [     0,     0,     1,     1,     1 ]; "   0ns: start cycle
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; "  83ns: wait state 1
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 167ns: wait state 2
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 250ns: wait state 3
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 333ns: wait state 4
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 417ns: wait state 5
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 500ns: wait state 6
+  [   .C.,     0,     0,    1,    0 ] -> [     0,     0,     1,     1,     1 ]; " 583ns: wait state 7
+  [   .C.,     0,     0,    1,    0 ] -> [     1,     0,     1,     1,     1 ]; " SRDY high so CPU can finish read
+  [   .C.,     0,     0,    1,    0 ] -> [     1,     0,     1,     1,     0 ]; " enable disabled for display to finish
+  [   .C.,     0,     0,    0,    0 ] -> [     1,     0,     0,     0,     0 ]; " back to idle
+
+
+
+" Digital pot
+( [ Clock, RESET,  PCS6,   A0 ] -> [  SRDY,   POT, POTUD ] )
+
+" Increment
+  [   .C.,     1,     1,  .X. ] -> [     1,     1,     0 ]; " Reset
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     1,     0,     0 ]; " Back to idle
+
+" Decrement
+  [   .C.,     1,     1,  .X. ] -> [     1,     1,     0 ]; " Reset
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     0,    1 ] -> [     1,     0,     0 ]; " Back to idle
 
 END

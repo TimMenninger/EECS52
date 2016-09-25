@@ -153,17 +153,17 @@ DecideEncoderMotion:
 	AND		DI, STATE_MASK		;mask out bits that don't relate to current encoder state
 	SHL		AX, STATE_BITS		;shift last state so we can combine the two states
 	OR		DI, AX				;combine two states to use as table lookup
+    XOR     AX, AX              ;sending 0 to potentiometer
 
-	MOV		DX, POT_PORT		;port for digital potentiometer to change brightness
 	JMP		CS:EncoderFunctions[DI];handle function accordingly
 
 HandleClockwise:
-	MOV		AX, BRIGHT_UP		;value to send to digital pot to turn up brightness
+    MOV		DX, POT_PORT_UP		;port for digital potentiometer to change brightness
 	OUT		DX, AL				;turn up display brightness
 	JMP		EncoderHandled
 
 HandleCounterclockwise:
-	MOV		AX, BRIGHT_DOWN		;value to send to digital pot to turn down brightness
+    MOV		DX, POT_PORT_DOWN   ;port for digital potentiometer to change brightness
 	OUT		DX, AL				;turn down display brightness
 	JMP		EncoderHandled
 
