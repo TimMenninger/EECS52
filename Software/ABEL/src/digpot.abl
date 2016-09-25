@@ -1,0 +1,189 @@
+" Pins
+
+Clock  pin    1;                "input   24 MHz clock
+"      pin    2                  input   unused (I1)
+!PCS6  pin    3;                "input   PCS6 (active low from 80188, for pot)
+"      pin    4                  input   unused (I3)
+RESET  pin    5;                "input   Reset (active high from 80C188)
+"      pin    6                  input   unused (I5)
+A0     pin    7;                "input   Address bit 0, used in display
+"      pin    8                  input   unused (I7)
+"      pin    9                  input   unused (I8)
+"GND   pin   10;                 supply  power ground
+"OE    pin   11;                 input   output enable to GAL16v8
+"      pin   12;                 unused  (I/O 8)
+"      pin   13;                 unused  (I/O 7)
+"      pin   14;                 unused  (I/O 6)
+"      pin   15;                 unused  (I/O 5)
+"      pin   16;                 unused  (I/O 4)
+"      pin   17;                 unused  (I/O 3)
+!POT   pin   18  ISTYPE 'com';  "output  Pot chip select
+POTUD  pin   19  ISTYPE 'com';  "output  Serial clock to MP3 decoder, U/D to digital pot
+"VCC   pin   20                  supply  power Vcc
+
+
+" General purpose registers
+C0     pin       ISTYPE 'reg';  "counter bit
+C1     pin       ISTYPE 'reg';  "counter bit
+C2     pin       ISTYPE 'reg';  "counter bit
+C3     pin       ISTYPE 'reg';  "counter bit
+C4     pin       ISTYPE 'reg';  "counter bit
+C5     pin       ISTYPE 'reg';  "counter bit
+
+
+
+
+" Following states for digital potentiometer
+STATE Idle:                 " Do nothing
+    C5 = 0;
+    C4 = 0;
+    C3 = 0;
+    C2 = 0;
+    C1 = 0;
+    C0 = 0;
+
+         IF (RESET)         THEN Idle      WITH { POT = 0; POTUD = 0 }    " stay here
+    ELSE IF (PCS6)          THEN PotLoop   WITH { POT = 0; POTUD = !A0 }  " digital pot
+    ELSE                         Idle      WITH { POT = 0; POTUD = 0 }   " stay here
+
+STATE PotLoop:              " Loop that controls the potentiometer
+
+    " Update counter to count iterations
+    C5 = (!C5 & C4 & C3 & C2 & C1 & C0) # (C5 & !(C4 & C3 & C2 & C1 & C0));
+    C4 = (!C4 & C3 & C2 & C1 & C0) # (C4 & !(C3 & C2 & C1 & C0));
+    C3 = (!C3 & C2 & C1 & C0) # (C3 & !(C2 & C1 & C0));
+    C2 = (!C2 & C1 & C0) # (C2 & !(C1 & C0));
+    C1 = C1 $ C0;
+    C0 = !C0;
+
+         IF (RESET)                         THEN Idle    WITH { POT = 0; POTUD = 0 }     "Reset
+    ELSE IF (C0 & C1 & C2 & C3 & C4 & C5)   THEN Idle    WITH { POT = 0; POTUD = 0 }     "Done 5us delay
+    ELSE IF (!C0 & !C1 & !C2 & !POT)        THEN PotLoop WITH { POT = 1; POTUD = !A0 }   "Setup satisfied
+    ELSE IF (!C0 & !C1 & !C2 & POT)         THEN PotLoop WITH { POT = 1; POTUD = A0 }    "Step pot
+    ELSE                                         Idle    WITH { POT = 0; POTUD = 0 }     "Nothing to do
+
+
+" Digital pot
+( [ Clock, RESET,  PCS6,   A0 ] -> [  SRDY,   POT, POTUD ] )
+
+" Increment
+  [   .C.,     1,     0,  .X. ] -> [     1,     1,     0 ]; " Reset
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     0 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Do increment
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     1,     0,     0 ]; " Back to idle
+
+" Decrement
+  [   .C.,     1,     0,  .X. ] -> [     1,     1,     0 ]; " Reset
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     1,     1 ]; " Setup
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     1 ]; " Setup CS active
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Do decrement
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     0,     0,     0 ]; " Done
+  [   .C.,     0,     1,    1 ] -> [     1,     0,     0 ]; " Back to idle
+
+END
