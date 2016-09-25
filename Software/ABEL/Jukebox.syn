@@ -4,6 +4,8 @@ PROJECT Jukebox
 DESIGN jukebox Normal
 DEVKIT ispLSI1016-110LJ44
 ENTRY ABEL/Schematic
+MODULE display.abl
+MODSTYLE Display Normal
 MODULE jukebox.abl
 MODSTYLE Jukebox Normal
 SYNTHESIS_TOOL Synplify

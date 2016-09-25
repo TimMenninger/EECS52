@@ -31,7 +31,7 @@ A0     pin    7;                "input   Address bit 0, used in display
 "      pin    9                  input   unused (I8)
 "GND   pin   10;                 supply  power ground
 "OE    pin   11;                 input   output enable to GAL16v8
-"      pin   12;                "unused  (I/O 8)
+"      pin   12;                 unused  (I/O 8)
 SRDY   pin   13  ISTYPE 'com';  "output  synchronous ready to 80C188
 DISP   pin   14  ISTYPE 'com';  "output  Register select to display
 DDIR   pin   15  ISTYPE 'com';  "output  Data direction for display
@@ -76,6 +76,7 @@ DispWt4    =  [   1,   0,   1,   1,   0 ]; " wait state 4
 DispWt5    =  [   1,   0,   1,   0,   0 ]; " wait state 5
 DispWt6    =  [   1,   1,   1,   0,   0 ]; " wait state 6
 DispWt7    =  [   1,   1,   0,   0,   0 ]; " wait state 7
+DispRd     =  [   1,   1,   0,   1,   0 ]; " reading requires extra wait state
 DispStop   =  [   1,   1,   0,   0,   1 ]; " stops write cycle, CPU responsible for 1200 ns wait
 
 " Digital potentiometer states
@@ -139,7 +140,7 @@ STATE  Idle:                " Wait idly with nothing enabled
     ELSE IF (PCS5)          THEN DispSt    WITH POTUD = 0  " write/read to display
     ELSE IF (PCS6 & A0)     THEN DigPotEna WITH POTUD = 0  " digital pot
     ELSE IF (PCS6 & !A0)    THEN DigPotEna WITH POTUD = 1  " digital pot
-    ELSE                         Idle;     WITH POTUD = 0; " stay here
+    ELSE                         Idle      WITH POTUD = 0; " stay here
 
 
 
@@ -278,23 +279,6 @@ STATE DispWt7:              " Continue waiting while display sets up
     SRDY = 0;               " SRDY not ready while displaying
 
          IF (RESET)         THEN Idle       "Reset, stop displaying.
-    ELSE                         DispWt8;   "Continue waiting
-
-
-STATE DispWt8:              " Continue waiting while display sets up
-
-    " Display
-    DISP  = DTR & !A0;      " !A0 implies its R/W, so check DTR
-    DRW   = !DTR & !A0;     " !A0 implies its R/W (0 otherwise), RW inverse of DTR
-    DDIR  = DTR;            " Data to/from display depends on action
-    DISPE = 1;              " Enable display data
-    " Digital pot
-    POT   = 0;              " Disable potentiometer
-    POTUD = 0;              " Increment/decrement irrelevant
-
-    SRDY = 0;               " SRDY not ready while displaying
-
-         IF (RESET)         THEN Idle       "Reset, stop displaying.
     ELSE IF (!DTR)          THEN DispRd     "Need extra wait state on reads
     ELSE                         DispStop;  "Done
 
@@ -351,7 +335,7 @@ STATE DigPotEna:            " Now that steadystate has been defined, can enable 
          IF (RESET)         THEN Idle       WITH POTUD = 0 "Reset, stop incrementing/decrementing
     ELSE IF (PCS6 & A0)     THEN DigPotUp   WITH POTUD = 0 "Want to increment
     ELSE IF (PCS6 & !A0)    THEN DigPotDown WITH POTUD = 1 "Want to decrement
-    ELSE                         Idle;      WITH POTUD = 0 "Nothing to do
+    ELSE                         Idle       WITH POTUD = 0;"Nothing to do
 
 
 

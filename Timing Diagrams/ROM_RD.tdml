@@ -36,9 +36,6 @@
       <connection id="TT44" conn.type="O">
         <conn.name id="TT45">CPU_<not>RD</not></conn.name>
       </connection>
-      <connection id="TT141" conn.type="O">
-        <conn.name id="TT142">Buffer_<not>RD</not></conn.name>
-      </connection>
       <connection id="TT58" conn.type="O">
         <conn.name id="TT59">CPU_<not>R</not></conn.name>
       </connection>
@@ -183,16 +180,8 @@
     <conn.ptr conn.id="TT44">CPU_<not>RD</not></conn.ptr>
     <waveform id="TT46" e.label.type="default" locked="0" show.uncertainty="ALL">
       <e id="TT48" driven="1" s="1" show.uncertainty="ALL"/>
-      <e id="TT49" driven="1" s="0" show.uncertainty="ALL" te="115000"/>
+      <e id="TT49" driven="1" s="0" show.uncertainty="ALL" te="110000"/>
       <e id="TT50" driven="1" s="1" show.uncertainty="ALL" te="275000"/>
-    </waveform>
-  </signal>
-  <signal id="TT144" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
-    <conn.ptr conn.id="TT141">Buffer_<not>RD</not></conn.ptr>
-    <waveform id="TT143" e.label.type="default" locked="0" show.uncertainty="ALL">
-      <e id="TT145" driven="1" s="1" show.uncertainty="ALL"/>
-      <e id="TT146" driven="1" s="0" show.uncertainty="ALL" te="125000"/>
-      <e id="TT147" driven="1" s="1" show.uncertainty="ALL" te="280000"/>
     </waveform>
   </signal>
   <signal id="TT61" clock="0" show="1" show.grid="0" show.uncertainty="ALL">
@@ -283,7 +272,7 @@
       <two.edge source.e="TT81" target.e="TT50"/>
       <relationship.label label.type="text">T<sub>CLRH</sub></relationship.label>
     </relationship>
-    <relationship id="TT83" containing.signal.ptr="TT54" show="1" slot="1" type="delay" user.created="0">
+    <relationship id="TT83" containing.signal.ptr="TT47" show="1" slot="2" type="delay" user.created="0">
       <two.edge source.e="TT50" target.e="TT57"/>
       <relationship.label label.type="text">T<sub>CXCSX</sub></relationship.label>
     </relationship>
@@ -295,11 +284,11 @@
       <two.edge source.e="TT86" target.e="TT36"/>
       <relationship.label label.type="text">T<sub>CLDOX</sub></relationship.label>
     </relationship>
-    <relationship id="TT88" containing.signal.ptr="TT47" show="1" slot="1" type="delay" user.created="0">
+    <relationship id="TT88" containing.signal.ptr="TT47" show="1" slot="3" type="delay" user.created="0">
       <two.edge source.e="TT50" target.e="TT43"/>
       <relationship.label label.type="text">T<sub>RHLH</sub></relationship.label>
     </relationship>
-    <relationship id="TT89" containing.signal.ptr="TT47" show="1" slot="2" type="measure" user.created="0">
+    <relationship id="TT89" containing.signal.ptr="TT47" show="1" slot="2" type="delay" user.created="0">
       <two.edge source.e="TT49" target.e="TT50"/>
       <relationship.label label.type="text">T<sub>RLRH</sub></relationship.label>
     </relationship>
@@ -307,7 +296,7 @@
       <two.edge source.e="TT71" target.e="TT81"/>
       <relationship.label label.type="text">T<sub>DVCL</sub></relationship.label>
     </relationship>
-    <relationship id="TT92" containing.signal.ptr="TT67" show="1" slot="1" type="hold" user.created="0">
+    <relationship id="TT92" containing.signal.ptr="TT67" show="1" slot="2" type="hold" user.created="0">
       <two.edge source.e="TT81" target.e="TT72"/>
       <relationship.label label.type="text">T<sub>CLDX</sub></relationship.label>
     </relationship>
@@ -347,20 +336,8 @@
       <two.edge source.e="TT57" target.e="TT138"/>
       <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
     </relationship>
-    <relationship id="TT148" containing.signal.ptr="TT144" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT49" target.e="TT146"/>
-      <relationship.label label.type="text">t<sub>PHL</sub></relationship.label>
-    </relationship>
-    <relationship id="TT149" containing.signal.ptr="TT144" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT50" target.e="TT147"/>
-      <relationship.label label.type="text">t<sub>PLH</sub></relationship.label>
-    </relationship>
-    <relationship id="TT159" containing.signal.ptr="TT153" show="1" slot="1" type="hold" user.created="0">
-      <two.edge source.e="TT147" target.e="TT158"/>
-      <relationship.label label.type="text">t<sub>OH</sub></relationship.label>
-    </relationship>
     <relationship id="TT160" containing.signal.ptr="TT153" show="1" slot="1" type="delay" user.created="0">
-      <two.edge source.e="TT146" target.e="TT157"/>
+      <two.edge source.e="TT49" target.e="TT157"/>
       <relationship.label label.type="text">t<sub>OE</sub></relationship.label>
     </relationship>
     <relationship id="TT170" containing.signal.ptr="TT164" show="1" slot="1" type="delay" user.created="0">

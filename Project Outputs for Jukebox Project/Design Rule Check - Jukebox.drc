@@ -1,80 +1,80 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\Tim\Desktop\Classes\eecs52\Jukebox.PCBDOC
-Date     : 3/25/2016
-Time     : 11:47:06 PM
+Date     : 4/9/2016
+Time     : 11:32:26 AM
 
-Processing Rule : Hole Size Constraint (Min=1mil) (Max=200mil) (All)
-Rule Violations :0
-
-Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=7mil) (Max=30mil) (Preferred=30mil) (InNet('NetR45_1'))
-Rule Violations :0
-
-Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.9mil) (IsSMTPin),(IsFill)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.9mil) (IsSMTPin),(IsVia)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.8mil) (IsSMTPin),(IsSMTPin)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.9mil) (IsThruPin),(IsFill)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.9mil) (IsThruPin),(IsVia)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.8mil) (IsThruPin),(IsSMTPin)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.8mil) (IsThruPin),(IsThruPin)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.9mil) (IsWire),(IsSMTPin)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7.9mil) (IsWire),(IsThruPin)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=10mil) (Disabled)(All),(All)
-Rule Violations :0
-
-Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
-Rule Violations :0
-
-Processing Rule : Un-Routed Net Constraint ( (All) )
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=8mil) (Max=30mil) (Preferred=30mil) (InNet('AGND'))
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=8mil) (Max=30mil) (Preferred=30mil) (InNet('V3.3'))
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=8mil) (Max=30mil) (Preferred=30mil) (InNet('GND'))
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=8mil) (Max=30mil) (Preferred=30mil) (InNet('VCC'))
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=7mil) (Max=10mil) (Preferred=10mil) (All)
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=7mil) (All),(All)
+Processing Rule : Clearance Constraint (Gap=7mil) (HasFootprint('TSSOP56')),(All)
 Rule Violations :0
 
 Processing Rule : SMD Neck-Down Constraint (Percent=95%) (All)
 Rule Violations :0
 
-Processing Rule : Clearance Constraint (Gap=7mil) (HasFootprint('TSSOP56')),(All)
+Processing Rule : Clearance Constraint (Gap=7mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=7mil) (Max=10mil) (Preferred=10mil) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=8mil) (Max=30mil) (Preferred=30mil) (InNet('VCC'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=8mil) (Max=30mil) (Preferred=30mil) (InNet('GND'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=8mil) (Max=30mil) (Preferred=30mil) (InNet('V3.3'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=8mil) (Max=30mil) (Preferred=30mil) (InNet('AGND'))
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=10mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.9mil) (IsWire),(IsThruPin)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.9mil) (IsWire),(IsSMTPin)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.8mil) (IsThruPin),(IsThruPin)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.8mil) (IsThruPin),(IsSMTPin)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.9mil) (IsThruPin),(IsVia)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.9mil) (IsThruPin),(IsFill)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.8mil) (IsSMTPin),(IsSMTPin)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.9mil) (IsSMTPin),(IsVia)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.9mil) (IsSMTPin),(IsFill)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=7mil) (Max=30mil) (Preferred=30mil) (InNet('NetR45_1'))
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=200mil) (All)
 Rule Violations :0
 
 
 Violations Detected : 0
-Time Elapsed        : 00:00:10
+Time Elapsed        : 00:00:09
