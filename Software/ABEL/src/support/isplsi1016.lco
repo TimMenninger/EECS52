@@ -1,0 +1,118 @@
+[DEVICE]
+Family = plsi1k;
+PartNumber = ispLSI1016EA-125LJ44;
+PartType = ispLSI1016EA;
+Package = 44PLCC;
+Speed = 125;
+Operating_condition = COM;
+Default_Device_Io_Types = LVCMOS50,-;
+
+[REVISION]
+RCS = ;
+Parent = lc1k.lci;
+Design = isplsi1016;
+DATE = 09/25/2016;
+TIME = 15:42:26;
+Source_Format = ;
+Type = ;
+Pre_Fit_Time = ;
+
+[IGNORE ASSIGNMENTS]
+
+[CLEAR ASSIGNMENTS]
+
+[BACKANNOTATE ASSIGNMENTS]
+
+[GLOBAL CONSTRAINTS]
+Security = Off;
+PULLUP = Up;
+Y1_AS_RESET = On;
+ISP = On;
+ISP_EXCEPT_Y2 = Off;
+OPENDRAIN = Off;
+SLEWRATE = Off;
+
+[FITTER REPORT FORMAT]
+
+[LOCATION ASSIGNMENTS]
+MCS3 = pin, 28, -, -, -;
+MCS2 = pin, 27, -, -, -;
+MCS1 = pin, 26, -, -, -;
+MCS0 = pin, 25, -, -, -;
+ENC = pin, 38, -, -, -;
+DTR = pin, 19, -, -, -;
+CLOCK = pin, 11, -, -, -;
+BTN = pin, 37, -, -, -;
+A0 = pin, 16, -, -, -;
+ST3 = pin, 29, -, -, -;
+ST2 = pin, 20, -, -, -;
+ST1 = pin, 30, -, -, -;
+ST0 = pin, 17, -, -, -;
+SRDY = pin, 15, -, -, -;
+RAS = pin, 10, -, -, -;
+OE2 = pin, 43, -, -, -;
+OE1 = pin, 3, -, -, -;
+MUX = pin, 7, -, -, -;
+ISRDY = pin, 41, -, -, -;
+INT3 = pin, 31, -, -, -;
+INT0 = pin, 32, -, -, -;
+DSRDY = pin, 22, -, -, -;
+DRAM = pin, 8, -, -, -;
+DR1 = pin, 21, -, -, -;
+DR0 = pin, 18, -, -, -;
+DIR1 = pin, 44, -, -, -;
+DIOW = pin, 4, -, -, -;
+DIOR = pin, 5, -, -, -;
+CS0 = pin, 6, -, -, -;
+CLKBA = pin, 42, -, -, -;
+CAS = pin, 9, -, -, -;
+
+[PULLUP]
+Up = MCS3, MCS2, MCS1, MCS0, ENC, DTR, CLOCK, BTN, A0, ST3, ST2, ST1, ST0, SRDY, RAS, OE2, OE1, MUX, ISRDY, INT3, INT0, DSRDY, DRAM, DR1, DR0, DIR1, DIOW, DIOR, CS0, CLKBA, CAS; 
+
+[SLEWRATE]
+FAST = ST3, ST2, ST1, ST0, SRDY, RAS, OE2, OE1, MUX, ISRDY, INT3, INT0, DSRDY, DRAM, DR1, DR0, DIR1, DIOW, DIOR, CS0, CLKBA, CAS; 
+
+[IO TYPES]
+ST3 = LVCMOS33, pin, -, -;
+ST2 = LVCMOS33, pin, -, -;
+ST1 = LVCMOS33, pin, -, -;
+ST0 = LVCMOS33, pin, -, -;
+SRDY = LVCMOS33, pin, -, -;
+RAS = LVCMOS33, pin, -, -;
+OE2 = LVCMOS33, pin, -, -;
+OE1 = LVCMOS33, pin, -, -;
+MUX = LVCMOS33, pin, -, -;
+ISRDY = LVCMOS33, pin, -, -;
+INT3 = LVCMOS33, pin, -, -;
+INT0 = LVCMOS33, pin, -, -;
+DSRDY = LVCMOS33, pin, -, -;
+DRAM = LVCMOS33, pin, -, -;
+DR1 = LVCMOS33, pin, -, -;
+DR0 = LVCMOS33, pin, -, -;
+DIR1 = LVCMOS33, pin, -, -;
+DIOW = LVCMOS33, pin, -, -;
+DIOR = LVCMOS33, pin, -, -;
+CS0 = LVCMOS33, pin, -, -;
+CLKBA = LVCMOS33, pin, -, -;
+CAS = LVCMOS33, pin, -, -;
+
+[OSM Bypass]
+
+[CLK]
+CLK0 = CLOCKX; 
+
+[PTSABYPASS]
+Bypass = MUX_Q, OR_968, OR_1124, ISRDY_PIN, ST1_PIN, ST3_PIN; 
+
+[Fitter Results]
+I/O_Pin_Util = 93;
+I/O_Pin = 30;
+Logic_PT_Util = 15;
+Logic_PT = 50;
+Logic_MC_Util = 39;
+Logic_MC = 25;
+Occupied_PT_Util = 10;
+Occupied_PT = 34;
+GLB_input_Util = 23;
+GLB_input = 68;

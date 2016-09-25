@@ -1,0 +1,51 @@
+Setup and Hold Report:
+---------------------
+
+Design Name: ISPLSI1016
+Part Name: ispLSI1016EA-125LJ44
+
+  This report lists the setup/hold requirements for all the boundary
+  registers in the design
+
+
+Required Setup and Hold
+
+  Register Name         Data                Clock               Setup(ns)      Hold(ns)
+==-------------------------------------------------------------------------------------
+  GLB_DRAM_Q            MCS2                CLOCK               4.90           -1.10   
+  GLB_DRAM_Q            MCS3                CLOCK               4.90           -1.10   
+  GLB_DRAM_Q            DTR                 CLOCK               4.90           -1.10   
+  GLB_...art1 *1        MCS3                CLOCK               4.90           -1.10   
+  GLB_RAS_Q             MCS2                CLOCK               4.90           -1.10   
+  GLB_RAS_Q             MCS3                CLOCK               4.90           -1.10   
+  GLB_RAS_Q             DTR                 CLOCK               4.90           -1.10   
+  GLB_...art2 *2        MCS3                CLOCK               4.90           -1.10   
+  GLB_MUX_Q             MCS2                CLOCK               4.40           -0.60   
+  GLB_MUX_Q             MCS3                CLOCK               4.40           -0.60   
+  GLB_MUX_Q             DTR                 CLOCK               4.40           -0.60   
+  GLB_...art2 *3        MCS2                CLOCK               4.90           -1.10   
+  GLB_...art2 *3        MCS3                CLOCK               4.90           -1.10   
+  GLB_...art2 *3        DTR                 CLOCK               4.90           -1.10   
+  GLB_...art1 *4        MCS2                CLOCK               4.90           -1.10   
+  GLB_...art1 *4        MCS3                CLOCK               4.90           -1.10   
+  GLB_...art1 *4        DTR                 CLOCK               4.90           -1.10   
+  GLB_ST3_PIN           MCS0                CLOCK               4.40           -0.60   
+  GLB_ST3_PIN           MCS1                CLOCK               4.40           -0.60   
+  GLB_ST3_PIN           A0                  CLOCK               4.40           -0.60   
+  GLB_ST1_PIN           MCS0                CLOCK               4.40           -0.60   
+  GLB_ST1_PIN           A0                  CLOCK               4.40           -0.60   
+  GLB_ST2_PIN           MCS0                CLOCK               4.90           -1.10   
+  GLB_ST2_PIN           MCS1                CLOCK               4.90           -1.10   
+  GLB_ST2_PIN           A0                  CLOCK               4.90           -1.10   
+  GLB_INT3_Q            ENC                 CLOCK               4.80           -1.00   
+  GLB_INT0_Q            BTN                 CLOCK               4.80           -1.00   
+==-----------------------------------------------------------------------------------
+
+Index Name Table
+==----------------------------------------
+    *1  GLB_CAS_Q_part1
+    *2  GLB_CAS_Q_part2
+    *3  GLB_DR1_PIN_part2
+    *4  GLB_DR1_PIN_part1
+==----------------------------------------
+

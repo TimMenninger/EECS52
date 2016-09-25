@@ -1,0 +1,29 @@
+// PART: 	ispLSI1016EA-125LJ44
+// FORMAT: 	PINNAME		PINTYPE	LOCK	PULLUP	SLOWSLEW	OPENDRAIN	OUTDELAY	VOLTAGE	CRIT
+		OE1			-		3	-1		-1		-1		-1		-1		-1
+		DIOW			-		4	-1		-1		-1		-1		-1		-1
+		DIOR			-		5	-1		-1		-1		-1		-1		-1
+		CS0			-		6	-1		-1		-1		-1		-1		-1
+		MUX			-		7	-1		-1		-1		-1		-1		-1
+		DRAM			-		8	-1		-1		-1		-1		-1		-1
+		CAS			-		9	-1		-1		-1		-1		-1		-1
+		RAS			-		10	-1		-1		-1		-1		-1		-1
+		Clock			-		11	-1		-1		-1		-1		-1		-1
+		SRDY			-		15	-1		-1		-1		-1		-1		-1
+		A0			-		16	-1		-1		-1		-1		-1		-1
+		DTR			-		19	-1		-1		-1		-1		-1		-1
+		MCS0			-		25	-1		-1		-1		-1		-1		-1
+		MCS1			-		26	-1		-1		-1		-1		-1		-1
+		MCS2			-		27	-1		-1		-1		-1		-1		-1
+		MCS3			-		28	-1		-1		-1		-1		-1		-1
+		INT3			-		31	-1		-1		-1		-1		-1		-1
+		INT0			-		32	-1		-1		-1		-1		-1		-1
+		BTN			-		37	-1		-1		-1		-1		-1		-1
+		ENC			-		38	-1		-1		-1		-1		-1		-1
+		CLKBA			-		42	-1		-1		-1		-1		-1		-1
+		OE2			-		43	-1		-1		-1		-1		-1		-1
+		DIR1			-		44	-1		-1		-1		-1		-1		-1
+
+// FORMAT: 	NETNAME		CLK		PRESERVE	ECP	GROUP		XOR	ELP	ETP
+
+// FORMAT: 	SYMNAME		PROTECT	REGTYPE

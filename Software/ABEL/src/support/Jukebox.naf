@@ -1,0 +1,14 @@
+DISP		o
+DRW		o
+PCS5		i
+DTR		i
+SRDY		o
+RESET		i
+DISPE		o
+iSRDY		i
+Clock		i
+St0		o
+St1		o
+St2		o
+St3		o
+A0		i

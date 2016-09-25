@@ -1,0 +1,176 @@
+ispEXPERT Compiler Release 2.0.00.17.20.15, May 20 2002 13:06:40
+
+Copyright (C) 1994-2000 by Lattice Semiconductor Corporation.
+All Rights Reserved.
+
+
+Design Process Management 
+
+Renaming existing log file to isplsi1016.lo-
+Renaming existing rpt file to isplsi1016.rp-
+
+Preprocessing design 'isplsi1016'...
+
+Processing design 'isplsi1016'...
+
+
+Logical LAF Reading and Translation 
+  
+Reading file 'c:\users\tim\desktop\classes\eecs52\software\abel\src\sup-
+      port\isplsi1016.laf'... 
+  
+Checking design rules... 
+Selected part is 'ispLSI1016EA-125LJ44' 
+  
+Writing output files... 
+  
+Logical LAF reading and translation completed successfully 
+
+
+Synthesis and Partitioning 
+  
+Reading design 'isplsi1016'... 
+  
+Optimizing logic... 
+  
+Trying to move PT reset signal to global reset pin... 
+      PT reset signal cannot be moved to global reset pin because there 
+      exists no PT reset signal 
+      In order to move PT reset signal to global reset pin, the 
+      following conditions need to be satisfied: 
+      1. There exists at least one pin which drives all register's reset
+      signals 
+      2. This pin is unlocked 
+      3. This pin does not drive any data signals 
+      4. This pin can be disjointly decomposed with other pins, if any, 
+      which drive reset signals 
+  
+Partitioning logic into 16-input, 16-input with DIs, functions to 
+      minimize delay... 
+  
+Extracting LXOR2 gates to minimize delay... 
+  
+Packing functions into GLBs using 16 inputs and 4 outputs per GLB to 
+      minimize delay... 
+34545 WARNING: Net 'OR_968' drives IOCs locked to different megacells or
+      different tracks; input logic is duplicated for IOC 'OE1', new 
+      input net is 'OR_1124' 
+Constant GND drives pin 'DIR1' 
+34545 WARNING: Net 'GND_1126' drives IOCs locked to different megacells 
+      or different tracks; input logic is duplicated for IOC 'DIR1', 
+      new input net is 'GND_1127' 
+  
+Synthesis and partitioning statistics: 
+  
+Number of Macrocells is 22 
+Number of GLBs is 6 
+Number of product terms is 49 
+Maximum number of GLB levels is 1 
+Average number of inputs per GLB is 7.8 
+Average number of outputs per GLB is 3.7 
+Average number of product terms per GLB is 8.2 
+  
+Synthesis and partitioning completed successfully 
+
+
+Physical LAF Reading and Translation
+
+Reading design 'isplsi1016'...
+
+Writing output files...
+
+Physical LAF reading and translation completed successfully
+
+
+Placement and Routing
+
+Reading design 'isplsi1016'...
+
+Routing
+
+
+Writing output files...
+
+Placement and routing completed successfully
+
+
+Technology Remapping 
+  
+Reading design 'isplsi1016'... 
+  
+Remapping... 
+  
+Writing output files... 
+  
+Writing output lco files... 
+  
+Technology remapping completed successfully 
+
+
+Physical LAF Reading and Translation
+
+Reading design 'isplsi1016'...
+
+Writing output files...
+
+Physical LAF reading and translation completed successfully
+
+
+Fusemap Generation
+
+Reading design 'isplsi1016'...
+
+Writing output files...
+
+Fusemap generation completed successfully
+
+
+Simulation LAF Netlist Generation
+
+Reading design 'isplsi1016'...
+
+Writing output files...
+
+
+Information: Global reset (XRESET) is generated to reset all registers
+
+
+
+Simulation LAF netlist generation completed successfully
+
+
+Timing Analyzer 
+Reading design isplsi1016 .... 
+
+Evaluating maximum operating frequency...
+Evaluating setup and hold times...
+              
+Calculating  Tpd Path delays ...
+
+......................
+
+              
+     
+Timing analyzer completed successfully 
+
+
+
+Lattice Verilog netlist writer
+Copyright (c) 1993 - 2000 by Lattice Semiconductor Corporation.
+All Rights Reserved.
+
+writing verilog netlist ...
+
+Verilog netlist writer completed successfully.
+
+
+
+Lattice VHDL netlist writer
+Copyright (c) 1993 - 2000 by Lattice Semiconductor Corporation.
+All Rights Reserved.
+
+writing vhdl file ...
+VHDL netlist writer completed successfully.
+
+
+Design process management completed successfully

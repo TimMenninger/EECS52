@@ -1,0 +1,211 @@
+// Jed2vlog, ispLEVER version 2.00 
+// Header :
+//    File Name :
+//       gal16v8 
+//    Circuit Name :
+//       Jukebox 
+//    Last Update :
+//       Sun Sep 25 16:25:54 2016
+//    Device Information :
+//       PLD Type P16V8R
+//    Delay Model Selected :TYP
+//    Jedec Information :
+//	ispLEVER Classic 2.0.00.17.20.15 Lattice Semiconductor Corp.
+//	JEDEC file for: P16V8R V9.0
+//	Created on: Sun Sep 25 16:25:53 2016
+//	
+//	Jukebox CPLD
+//	
+// endHeader
+
+
+// Delay Assigments
+`timescale 1ns /100ps
+//----------------------------------------------------------------------//
+//                                                                      //
+//              MAIN PLD NETLIST MODULE                                 //
+//                                                                      //
+//----------------------------------------------------------------------//
+
+module Jukebox(Clock,iSRDY,PIN03,PCS5,RESET,DTR,A0,PIN08,PIN09,PIN10,PIN11,
+             St3,SRDY,DISP,St2,DRW,DISPE,St1,St0,PIN20);
+	inout St3, SRDY, DISP, St2, DRW, DISPE, St1, St0;
+	input Clock, iSRDY, PIN03, PCS5, RESET, DTR, A0, PIN08, PIN09, PIN10, PIN11
+             , PIN20;
+	supply0 GND;
+	supply1 PWR;
+
+//Pin Assignments:
+//        PIN01 = Clock;
+//        PIN02 = iSRDY;
+//        PIN04 = PCS5;
+//        PIN05 = RESET;
+//        PIN06 = DTR;
+//        PIN07 = A0;
+//        PIN12 = St3;
+//        PIN13 = SRDY;
+//        PIN14 = DISP;
+//        PIN15 = St2;
+//        PIN16 = DRW;
+//        PIN17 = DISPE;
+//        PIN18 = St1;
+//        PIN19 = St0;
+
+// Delay Parameters:
+//   TYP delay used
+parameter tpLH06 = 0:0:0;
+parameter tpHL06 = 0:0:0;
+parameter tpLH09 = 0:0:0;
+parameter tpHL09 = 0:0:0;
+parameter tpLH12 = 0:0:0;
+parameter tpHL12 = 0:0:0;
+parameter tpLH03 = 0:0:0;
+parameter tpHL03 = 0:0:0;
+parameter tpLH05 = 0:0:0;
+parameter tpHL05 = 0:0:0;
+parameter tpLH_inco_lump = 3:12:20;
+parameter tpHL_inco_lump = 3:12:20;
+parameter tpLH_oe = 18:18:18;
+parameter tpHL_oe = 18:18:18;
+parameter tpLH_oe_pterm = 18:18:18;
+parameter tpHL_oe_pterm = 18:18:18;
+parameter tpLH_fo_lump = 0:0:2;
+parameter tpHL_fo_lump = 0:0:2;
+
+//   Input Buffer:
+	andinv_Jukebox  CLOCK01( CLOCK01_o, CLOCK01_ob, Clock);
+	andinv_Jukebox  INBUF02( INBUF02_o, INBUF02_ob, iSRDY);
+	andinv_Jukebox  INBUF03( INBUF03_o, INBUF03_ob, PIN03);
+	andinv_Jukebox  INBUF04( INBUF04_o, INBUF04_ob, PCS5);
+	andinv_Jukebox  INBUF05( INBUF05_o, INBUF05_ob, RESET);
+	andinv_Jukebox  INBUF06( INBUF06_o, INBUF06_ob, DTR);
+	andinv_Jukebox  INBUF07( INBUF07_o, INBUF07_ob, A0);
+	andinv_Jukebox  INBUF08( INBUF08_o, INBUF08_ob, PIN08);
+	andinv_Jukebox  INBUF09( INBUF09_o, INBUF09_ob, PIN09);
+	andinv_Jukebox  #(tpLH_oe,tpHL_oe) ENABLE1( ENABLE1_o, ENABLE1_ob, PIN11);
+	andinv_Jukebox  INBUF13( INBUF13_o, INBUF13_ob, SRDY);
+	andinv_Jukebox  INBUF14( INBUF14_o, INBUF14_ob, DISP);
+	andinv_Jukebox  INBUF16( INBUF16_o, INBUF16_ob, DRW);
+	andinv_Jukebox  INBUF17( INBUF17_o, INBUF17_ob, DISPE);
+
+//   Product Terms (AND array):
+	and  #(tpLH03,tpHL03) PT000_0( PT000_0_o, NODE27_ob, INBUF05_ob, NODE24_ob, NODE21_o);
+	and  #(tpLH03,tpHL03) PT001_32( PT001_32_o, NODE28_o, NODE27_ob, INBUF05_ob, NODE24_ob);
+	and  #(tpLH03,tpHL03) PT002_64( PT002_64_o, INBUF02_o, NODE27_ob, INBUF04_ob, INBUF05_ob, NODE24_ob);
+	and  #(tpLH03,tpHL03) PT008_256( PT008_256_o, NODE27_o, INBUF05_ob, NODE24_ob);
+	and  #(tpLH03,tpHL03) PT009_288( PT009_288_o, NODE28_o, INBUF05_ob, NODE24_ob);
+	and  #(tpLH03,tpHL03) PT010_320( PT010_320_o, NODE28_ob, NODE27_o, INBUF04_ob, INBUF05_ob, NODE21_o);
+	and  #(tpLH03,tpHL03) PT017_544( PT017_544_o, NODE28_o, NODE24_o);
+	and  #(tpLH03,tpHL03) PT018_576( PT018_576_o, NODE27_ob, NODE24_ob, NODE21_ob);
+	and  #(tpLH03,tpHL03) PT019_608( PT019_608_o, NODE27_o, NODE24_o, NODE21_o);
+	and  #(tpLH03,tpHL03) PT025_800( PT025_800_o, NODE28_o, NODE24_o);
+	and  #(tpLH03,tpHL03) PT026_832( PT026_832_o, NODE28_ob, NODE27_ob, NODE24_ob, NODE21_ob);
+	and  #(tpLH03,tpHL03) PT027_864( PT027_864_o, INBUF06_o);
+	and  #(tpLH03,tpHL03) PT028_896( PT028_896_o, INBUF07_o);
+	and  #(tpLH03,tpHL03) PT032_1024( PT032_1024_o, NODE28_ob, INBUF05_ob, NODE24_o, NODE21_ob);
+	and  #(tpLH03,tpHL03) PT033_1056( PT033_1056_o, NODE28_ob, NODE27_o, INBUF05_ob, NODE21_ob);
+	and  #(tpLH03,tpHL03) PT034_1088( PT034_1088_o, NODE28_ob, NODE27_o, INBUF05_ob, NODE24_ob);
+	and  #(tpLH03,tpHL03) PT035_1120( PT035_1120_o, NODE28_ob, NODE27_o, INBUF04_ob, INBUF05_ob);
+	and  #(tpLH03,tpHL03) PT036_1152( PT036_1152_o, NODE27_o, INBUF05_ob, INBUF06_o, NODE24_ob, NODE21_o);
+	and  #(tpLH03,tpHL03) PT041_1312( PT041_1312_o, NODE28_o, NODE24_o);
+	and  #(tpLH03,tpHL03) PT042_1344( PT042_1344_o, NODE28_ob, NODE27_ob, NODE24_ob, NODE21_ob);
+	and  #(tpLH03,tpHL03) PT043_1376( PT043_1376_o, INBUF06_ob);
+	and  #(tpLH03,tpHL03) PT044_1408( PT044_1408_o, INBUF07_o);
+	and  #(tpLH03,tpHL03) PT049_1568( PT049_1568_o, NODE28_ob, NODE27_o, NODE21_o);
+	and  #(tpLH03,tpHL03) PT050_1600( PT050_1600_o, INBUF02_o, NODE28_ob, NODE27_ob, NODE24_ob, NODE21_ob);
+	and  #(tpLH03,tpHL03) PT056_1792( PT056_1792_o, INBUF05_ob, NODE24_ob, NODE21_o);
+	and  #(tpLH03,tpHL03) PT057_1824( PT057_1824_o, NODE28_ob, NODE27_ob, INBUF05_ob, NODE24_o);
+	and  #(tpLH03,tpHL03) PT058_1856( PT058_1856_o, NODE28_ob, INBUF04_ob, INBUF05_ob, NODE21_o);
+
+//   Sum Terms (OR arrray):
+	or  #(tpLH05,tpHL05) ST012( ST012_o, PT056_1792_o, PT057_1824_o, PT058_1856_o);
+	xor  #(tpLH06,tpHL06) XOR012( XOR012_o, ST012_o, PWR);
+	or  #(tpLH_inco_lump,tpHL_inco_lump) ST013( ST013_o, PT049_1568_o, PT050_1600_o);
+	xor  #(tpLH06,tpHL06) XOR013( XOR013_o, ST013_o, PWR);
+	or  #(tpLH_inco_lump,tpHL_inco_lump) ST014( ST014_o, PT041_1312_o, PT042_1344_o, PT043_1376_o, PT044_1408_o);
+	or  #(tpLH05,tpHL05) ST015( ST015_o, PT032_1024_o, PT033_1056_o, PT034_1088_o, PT035_1120_o, PT036_1152_o);
+	xor  #(tpLH06,tpHL06) XOR015( XOR015_o, ST015_o, PWR);
+	or  #(tpLH_inco_lump,tpHL_inco_lump) ST016( ST016_o, PT025_800_o, PT026_832_o, PT027_864_o, PT028_896_o);
+	or  #(tpLH_inco_lump,tpHL_inco_lump) ST017( ST017_o, PT017_544_o, PT018_576_o, PT019_608_o);
+	or  #(tpLH05,tpHL05) ST018( ST018_o, PT008_256_o, PT009_288_o, PT010_320_o);
+	xor  #(tpLH06,tpHL06) XOR018( XOR018_o, ST018_o, PWR);
+	or  #(tpLH05,tpHL05) ST019( ST019_o, PT000_0_o, PT001_32_o, PT002_64_o);
+	xor  #(tpLH06,tpHL06) XOR019( XOR019_o, ST019_o, PWR);
+
+//   Macro Cells:
+	dff_spar_Jukebox  OUTREG12( OUTREG12_o, OUTREG12_ob, XOR012_o, CLOCK01_o, GND, GND);
+	dff_spar_Jukebox  OUTREG15( OUTREG15_o, OUTREG15_ob, XOR015_o, CLOCK01_o, GND, GND);
+	dff_spar_Jukebox  OUTREG18( OUTREG18_o, OUTREG18_ob, XOR018_o, CLOCK01_o, GND, GND);
+	dff_spar_Jukebox  OUTREG19( OUTREG19_o, OUTREG19_ob, XOR019_o, CLOCK01_o, GND, GND);
+
+//   Feedback Node:
+	andinv_Jukebox  NODE21( NODE21_o, NODE21_ob, OUTREG12_ob);
+	andinv_Jukebox  NODE24( NODE24_o, NODE24_ob, OUTREG15_ob);
+	andinv_Jukebox  NODE27( NODE27_o, NODE27_ob, OUTREG18_ob);
+	andinv_Jukebox  NODE28( NODE28_o, NODE28_ob, OUTREG19_ob);
+
+//   Output Buffer:
+	notif1  #(tpLH_fo_lump,tpHL_fo_lump) OUTBUF12( St3, OUTREG12_o, ENABLE1_ob);
+	notif1  #(tpLH09,tpHL09) OUTBUF13( SRDY, XOR013_o, PWR);
+	notif1  #(tpLH09,tpHL09) OUTBUF14( DISP, ST014_o, PWR);
+	notif1  #(tpLH_fo_lump,tpHL_fo_lump) OUTBUF15( St2, OUTREG15_o, ENABLE1_ob);
+	notif1  #(tpLH09,tpHL09) OUTBUF16( DRW, ST016_o, PWR);
+	notif1  #(tpLH09,tpHL09) OUTBUF17( DISPE, ST017_o, PWR);
+	notif1  #(tpLH_fo_lump,tpHL_fo_lump) OUTBUF18( St1, OUTREG18_o, ENABLE1_ob);
+	notif1  #(tpLH_fo_lump,tpHL_fo_lump) OUTBUF19( St0, OUTREG19_o, ENABLE1_ob);
+endmodule
+/************************************************************************
+*                                                                       *
+*   MODULE: ANDINV                                                      *
+*     Input Buffer with dual outputs.                                   *
+*                                                                       *
+*************************************************************************/
+module andinv_Jukebox(out,outb,in);
+output out,outb;
+input  in;
+parameter tpLH_iob = 0:0:0; 
+parameter tpHL_iob = 0:0:0; 
+        
+   and #(tpLH_iob,tpHL_iob) n1(out,in);
+   not #(tpLH_iob,tpHL_iob) n2(outb,in);
+endmodule
+/************************************************************************
+*                                                                       *
+*   MODULE: DFF_SPAR :                                                     *
+*      Leading edge triggered DFF.                                      *
+*                                                                       *
+*************************************************************************/
+module dff_spar_Jukebox(q,qb,d,clk,pst_h,rst_h);
+   output q,qb;
+   input  d,clk,pst_h,rst_h;
+   wire   rst_pst;
+   reg    pst;
+initial
+   pst = 1'b0; 
+ 
+parameter pwrUpState = 0;
+parameter pwrUpDelay = 50;
+   dff_primitive_p0 DFF(q,data,clk,rst_h,pst);
+
+//  Leading edge triggered DFF 
+   or (data,d,pst_h);/* async preset gated with clock */
+ 
+   nand (qb,q);
+  
+   assign rst_pst = ~rst_h && ~pst_h;
+// Timing check
+specify
+specparam tpLH_co_lump = 2:7:11;
+specparam tpHL_co_lump = 2:7:11;
+specparam tpLH_ff_lump = 2:7:9;
+specparam tpHL_ff_lump = 2:7:9;
+specparam setup_ff_lump = 13:13:13;
+specparam hold_ff_lump = 0:0:0;
+specparam preset_ff_lump = 0:0:0;
+specparam reset_ff_lump = 0:0:0;
+   $setuphold(posedge clk &&& rst_pst, data &&& rst_pst, setup_ff_lump, hold_ff_lump);
+   (clk *> q) = (tpLH_ff_lump,tpHL_ff_lump);
+   (clk *> qb) = (tpLH_ff_lump,tpHL_ff_lump);
+endspecify
+endmodule
+//

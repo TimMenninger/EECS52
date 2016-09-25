@@ -1,0 +1,15 @@
+[NameRules]
+InstanceSeparator=^
+
+[Waves]
+Count=10
+Net0=CLOCK
+Net1=RESET
+Net2=PCS5
+Net3=DTR
+Net4=A0
+Net5=SRDY
+Net6=DISP
+Net7=DDIR
+Net8=DRW
+Net9=DISPE

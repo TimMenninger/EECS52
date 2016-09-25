@@ -1,0 +1,963 @@
+ispEXPERT Compiler Release 2.0.00.17.20.15, May 20 2002 13:06:40
+
+
+Design Parameters
+-----------------
+
+EFFORT:                         MEDIUM (2)
+IGNORE_FIXED_PIN:               OFF
+MAX_GLB_IN:                     16
+MAX_GLB_OUT:                    4
+OUTPUT_FORM:                    VERILOG, VHDL
+OS_VERSION:                     Windows NT 6.2
+PARAM_FILE:                     'c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ispxpert'
+PIN_FILE:                       'c:\users\tim\desktop\classes\eecs52\software\abel\src\support\isplsi1016.xpn'
+STRATEGY:                       DELAY
+TIMING_ANALYZER:                ON 
+USE_GLOBAL_RESET:               ON
+
+
+Design Specification
+--------------------
+
+Design:                         isplsi1016
+Part:                           ispLSI1016EA-125LJ44
+
+
+ISP:                            ON
+ISP_EXCEPT_Y2:                  OFF
+PULL:                           UP
+SECURITY:                       OFF
+Y1_AS_RESET:                    ON
+SLOWSLEW:                       OFF
+
+
+Number of Critical Pins:        0
+Number of Free Pins:            8
+Number of Locked Pins:          23
+Number of Reserved Pins:        0
+
+
+Input Pins
+
+    Pin Name                Pin Attribute
+
+        A0                      LOCK 16, PULLUP
+        BTN                     LOCK 37, PULLUP
+        CLOCK                   LOCK 11, PULLUP
+        DTR                     LOCK 19, PULLUP
+        ENC                     LOCK 38, PULLUP
+        MCS0                    LOCK 25, PULLUP
+        MCS1                    LOCK 26, PULLUP
+        MCS2                    LOCK 27, PULLUP
+        MCS3                    LOCK 28, PULLUP
+
+
+Output Pins
+
+    Pin Name                Pin Attribute
+
+        CAS                     LOCK 9, PULLUP
+        CLKBA                   LOCK 42, PULLUP
+        CS0                     LOCK 6, PULLUP
+        DIOR                    LOCK 5, PULLUP
+        DIOW                    LOCK 4, PULLUP
+        DIR1                    LOCK 44, PULLUP
+        DR0                     PULLUP
+        DR1                     PULLUP
+        DRAM                    LOCK 8, PULLUP
+        DSRDY                   PULLUP
+        INT0                    LOCK 32, PULLUP
+        INT3                    LOCK 31, PULLUP
+        ISRDY                   PULLUP
+        MUX                     LOCK 7, PULLUP
+        OE1                     LOCK 3, PULLUP
+        OE2                     LOCK 43, PULLUP
+        RAS                     LOCK 10, PULLUP
+        SRDY                    LOCK 15, PULLUP
+        ST0                     PULLUP
+        ST1                     PULLUP
+        ST2                     PULLUP
+        ST3                     PULLUP
+
+
+Pre-Route Design Statistics
+---------------------------
+
+Number of Macrocells:           22
+Number of GLBs:                 6
+Number of I/Os:                 30
+Number of Nets:                 30
+
+Number of Free Inputs:          0
+Number of Free Outputs:         8
+Number of Free Three-States:    0
+Number of Free Bidi's:          0
+
+Number of Locked Input IOCs:    8
+Number of Locked DIs:           0
+Number of Locked Outputs:       14
+Number of Locked Three-States:  0
+Number of Locked Bidi's:        0
+
+Number of CRIT Outputs:         0
+Number of Global OEs:           0
+Number of External Clocks:      1
+
+
+GLB Utilization (Out of 16):	37%
+I/O Utilization (Out of 33):	90%
+Net Utilization (Out of 97):	30%
+
+
+Nets with Fanout of  1:         12
+Nets with Fanout of  2:         6
+Nets with Fanout of  3:         7
+Nets with Fanout of  4:         1
+Nets with Fanout of  5:         4
+
+Average Fanout per Net:         2.30
+
+
+GLBs with  4 Input(s):          2
+GLBs with  8 Input(s):          1
+GLBs with 10 Input(s):          2
+GLBs with 11 Input(s):          1
+
+Average Inputs per GLB:         7.83
+
+
+GLBs with  3 Output(s):         2
+GLBs with  4 Output(s):         4
+
+Average Outputs per GLB:        3.67
+
+
+Number of GLB Registers:        15
+Number of IOC Registers:        0
+
+
+Post-Route Design Implementation
+--------------------------------
+
+Number of Macrocells:		22
+Number of GLBs:			11
+Number of IOCs:			30
+Number of DIs:			0
+Number of GLB Levels:		1
+
+
+GLB glb00, A3
+
+    11 Input(s)
+        (A0.O, A0X, I1), (BTN.O, BTNX, I0), (glb01_part3.O0, 
+        DSRDY_PIN_part2, I12), (ENC.O, ENCX, I5), (glb04_part2.O0, 
+        ISRDY_PIN, I4), (MCS0.O, MCS0X, I8), (MCS1.O, MCS1X, I9), 
+        (glb05.O2, ST0_PIN, I6), (glb05.O1, ST1_PIN, I14), (glb00.O1, 
+        ST2_PIN, I16), (glb05.O0, ST3_PIN, I15)
+    4 Output(s)
+        (ST2_PIN, O1), (SRDY_Q, O0), (INT3_Q, O2), (INT0_Q, O3)
+    8 Product Term(s)
+
+    Output ST2_PIN
+
+        8 Input(s)
+            ST3_PIN, DSRDY_PIN_part2, A0X, MCS1X, ST1_PIN, MCS0X,
+            ST2_PIN, ST0_PIN
+        6 Fanout(s)
+            glb00.I16, glb05.I13, glb04_part2.I2, glb03_part1.I2,
+            glb03_part2.I2, ST2.IR
+        5 Product Term(s)
+        1 GLB Level(s)
+
+        ST2_PIN.D = (ST0_PIN & ST3_PIN & !ST1_PIN
+            # ST2_PIN & ST3_PIN & !ST1_PIN
+            # MCS0X & ST2_PIN & ST3_PIN & !ST0_PIN
+            # A0X & MCS0X & ST2_PIN & !ST0_PIN & !ST1_PIN
+            # A0X & DSRDY_PIN_part2 & MCS1X & !ST0_PIN & !ST1_PIN
+            & !ST2_PIN & !ST3_PIN)
+        ST2_PIN.C = CLOCKX
+        ST2_PIN.R = 
+    Output SRDY_Q
+
+        2 Input(s)
+            DSRDY_PIN_part2, ISRDY_PIN
+        1 Fanout(s)
+            SRDY.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        SRDY_Q.D = DSRDY_PIN_part2 & ISRDY_PIN
+        SRDY_Q.C = CLOCKX
+        SRDY_Q.R = 
+    Output INT3_Q
+
+        1 Input(s)
+            ENCX
+        1 Fanout(s)
+            INT3.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        INT3_Q.D = !ENCX
+        INT3_Q.C = CLOCKX
+        INT3_Q.R = 
+    Output INT0_Q
+
+        1 Input(s)
+            BTNX
+        1 Fanout(s)
+            INT0.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        INT0_Q.D = !BTNX
+        INT0_Q.C = CLOCKX
+        INT0_Q.R = 
+
+GLB glb01_part1, B3
+
+    8 Input(s)
+        (glb01_part1.O0, CAS_Q_part2, I16), (glb01_part2.O3, 
+        DR0_PIN, I8), (glb01_part3.O1, DR1_PIN_part2, I2), (glb02.O1, 
+        DRAM_Q, I6), (glb04_part2.O0, ISRDY_PIN, I11), (MCS3.O, 
+        MCS3X, I4), (glb02.O0, MUX_Q, I7), (glb02.O3, RAS_Q, I15)
+    2 Output(s)
+        (CAS_Q_part2, O0), (CAS_Q_part1, O2)
+    7 Product Term(s)
+
+    Output CAS_Q_part2
+
+        8 Input(s)
+            CAS_Q_part2, DRAM_Q, MCS3X, ISRDY_PIN, DR0_PIN, RAS_Q, MUX_Q,
+            DR1_PIN_part2
+        4 Fanout(s)
+            glb01_part2.I12, glb01_part3.I12, glb02.I3, glb01_part1.I16
+        7 Product Term(s)
+        1 GLB Level(s)
+
+        CAS_Q_part2.D = (DRAM_Q & !DR1_PIN_part2 & !CAS_Q_part2 & !MUX_Q
+            & !RAS_Q
+            # DRAM_Q & !DR0_PIN & !CAS_Q_part2 & !MUX_Q & !RAS_Q
+            # CAS_Q_part2 & DRAM_Q & MCS3X & RAS_Q & !DR0_PIN & !MUX_Q
+            # CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q & RAS_Q & !DR0_PIN
+            & !MUX_Q
+            # CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q & MUX_Q & !DR0_PIN
+            & !RAS_Q
+            # CAS_Q_part2 & MUX_Q & !DR0_PIN & !DR1_PIN_part2 & !RAS_Q
+            & !DRAM_Q
+            # CAS_Q_part2 & DRAM_Q & RAS_Q & !DR0_PIN & !ISRDY_PIN
+            & !MUX_Q)
+        CAS_Q_part2.C = CLOCKX
+        CAS_Q_part2.R = 
+    Output CAS_Q_part1
+
+        8 Input(s)
+            CAS_Q_part2, DRAM_Q, MCS3X, ISRDY_PIN, DR0_PIN, RAS_Q, MUX_Q,
+            DR1_PIN_part2
+        1 Fanout(s)
+            CAS.IR
+        7 Product Term(s)
+        1 GLB Level(s)
+
+        CAS_Q_part1.D = (DRAM_Q & !DR1_PIN_part2 & !CAS_Q_part2 & !MUX_Q
+            & !RAS_Q
+            # DRAM_Q & !DR0_PIN & !CAS_Q_part2 & !MUX_Q & !RAS_Q
+            # CAS_Q_part2 & DRAM_Q & MCS3X & RAS_Q & !DR0_PIN & !MUX_Q
+            # CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q & RAS_Q & !DR0_PIN
+            & !MUX_Q
+            # CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q & MUX_Q & !DR0_PIN
+            & !RAS_Q
+            # CAS_Q_part2 & MUX_Q & !DR0_PIN & !DR1_PIN_part2 & !RAS_Q
+            & !DRAM_Q
+            # CAS_Q_part2 & DRAM_Q & RAS_Q & !DR0_PIN & !ISRDY_PIN
+            & !MUX_Q)
+        CAS_Q_part1.C = CLOCKX
+        CAS_Q_part1.R = 
+
+GLB glb01_part2, A1
+
+    6 Input(s)
+        (glb01_part1.O0, CAS_Q_part2, I12), (glb01_part2.O3, 
+        DR0_PIN, I17), (glb01_part3.O1, DR1_PIN_part2, I13), (glb02.O1, 
+        DRAM_Q, I9), (glb02.O0, MUX_Q, I8), (glb02.O3, RAS_Q, I11)
+    1 Output(s)
+        (DR0_PIN, O3)
+    1 Product Term(s)
+
+    Output DR0_PIN
+
+        6 Input(s)
+            CAS_Q_part2, DRAM_Q, DR0_PIN, RAS_Q, MUX_Q, DR1_PIN_part2
+        5 Fanout(s)
+            glb01_part2.I17, glb01_part3.I7, glb02.I8, glb01_part1.I8,
+            DR0.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        DR0_PIN.D = !DR0_PIN & !DR1_PIN_part2 & !CAS_Q_part2 & !MUX_Q
+            & !RAS_Q & !DRAM_Q
+        DR0_PIN.C = CLOCKX
+        DR0_PIN.R = 
+
+GLB glb01_part3, A7
+
+    10 Input(s)
+        (glb01_part1.O0, CAS_Q_part2, I12), (glb01_part2.O3, 
+        DR0_PIN, I7), (glb01_part3.O1, DR1_PIN_part2, I16), (glb02.O1, 
+        DRAM_Q, I9), (glb02.O0, MUX_Q, I8), (glb02.O3, RAS_Q, I0), 
+        (DTR.O, DTRX, I15), (glb04_part2.O0, ISRDY_PIN, I4), (MCS2.O, 
+        MCS2X, I10), (MCS3.O, MCS3X, I11)
+    4 Output(s)
+        (DSRDY_PIN_part2, O0), (DR1_PIN_part2, O1), 
+        (DR1_PIN_part1, O2), (DSRDY_PIN_part1, O3)
+    6 Product Term(s)
+
+    Output DSRDY_PIN_part2
+
+        6 Input(s)
+            CAS_Q_part2, DRAM_Q, DR0_PIN, RAS_Q, MUX_Q, DR1_PIN_part2
+        2 Fanout(s)
+            glb00.I12, glb05.I12
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        DSRDY_PIN_part2.D = CAS_Q_part2 & DRAM_Q & RAS_Q & !DR0_PIN
+            & !DR1_PIN_part2 & !MUX_Q
+        DSRDY_PIN_part2.C = CLOCKX
+        DSRDY_PIN_part2.R = 
+    Output DR1_PIN_part2
+
+        10 Input(s)
+            DTRX, CAS_Q_part2, DRAM_Q, MCS3X, ISRDY_PIN, DR0_PIN, RAS_Q,
+            MCS2X, MUX_Q, DR1_PIN_part2
+        4 Fanout(s)
+            glb01_part2.I13, glb01_part3.I16, glb02.I2, glb01_part1.I2
+        4 Product Term(s)
+        1 GLB Level(s)
+
+        DR1_PIN_part2.D = (CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q
+            & !DR0_PIN & !RAS_Q
+            # DR1_PIN_part2 & DRAM_Q & !DR0_PIN & !MUX_Q & !RAS_Q
+            # CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q & !DR0_PIN & !MUX_Q
+            & !DTRX & !MCS2X
+            # CAS_Q_part2 & DRAM_Q & ISRDY_PIN & MCS3X & RAS_Q & !DR0_PIN
+            & !MUX_Q & !DTRX & !MCS2X)
+        DR1_PIN_part2.C = CLOCKX
+        DR1_PIN_part2.R = 
+    Output DR1_PIN_part1
+
+        10 Input(s)
+            DTRX, CAS_Q_part2, DRAM_Q, MCS3X, ISRDY_PIN, DR0_PIN, RAS_Q,
+            MCS2X, MUX_Q, DR1_PIN_part2
+        1 Fanout(s)
+            DR1.IR
+        4 Product Term(s)
+        1 GLB Level(s)
+
+        DR1_PIN_part1.D = (CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q
+            & !DR0_PIN & !RAS_Q
+            # DR1_PIN_part2 & DRAM_Q & !DR0_PIN & !MUX_Q & !RAS_Q
+            # CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q & !DR0_PIN & !MUX_Q
+            & !DTRX & !MCS2X
+            # CAS_Q_part2 & DRAM_Q & ISRDY_PIN & MCS3X & RAS_Q & !DR0_PIN
+            & !MUX_Q & !DTRX & !MCS2X)
+        DR1_PIN_part1.C = CLOCKX
+        DR1_PIN_part1.R = 
+    Output DSRDY_PIN_part1
+
+        6 Input(s)
+            CAS_Q_part2, DRAM_Q, DR0_PIN, RAS_Q, MUX_Q, DR1_PIN_part2
+        1 Fanout(s)
+            DSRDY.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        DSRDY_PIN_part1.D = CAS_Q_part2 & DRAM_Q & RAS_Q & !DR0_PIN
+            & !DR1_PIN_part2 & !MUX_Q
+        DSRDY_PIN_part1.C = CLOCKX
+        DSRDY_PIN_part1.R = 
+
+GLB glb02, B2
+
+    10 Input(s)
+        (glb01_part1.O0, CAS_Q_part2, I3), (glb01_part2.O3, 
+        DR0_PIN, I8), (glb01_part3.O1, DR1_PIN_part2, I2), (glb02.O1, 
+        DRAM_Q, I16), (DTR.O, DTRX, I11), (glb04_part2.O0, 
+        ISRDY_PIN, I15), (MCS2.O, MCS2X, I5), (MCS3.O, MCS3X, I4), 
+        (glb02.O0, MUX_Q, I7), (glb02.O3, RAS_Q, I17)
+    3 Output(s)
+        (RAS_Q, O3), (MUX_Q, O0), (DRAM_Q, O1)
+    13 Product Term(s)
+
+    Output RAS_Q
+
+        10 Input(s)
+            DTRX, CAS_Q_part2, DRAM_Q, MCS3X, ISRDY_PIN, DR0_PIN, RAS_Q,
+            MCS2X, MUX_Q, DR1_PIN_part2
+        5 Fanout(s)
+            glb01_part2.I11, glb01_part3.I0, glb02.I17, glb01_part1.I15,
+            RAS.IR
+        5 Product Term(s)
+        1 GLB Level(s)
+
+        RAS_Q.D = (DRAM_Q & !DR0_PIN & !CAS_Q_part2 & !MUX_Q
+            # DRAM_Q & !DR1_PIN_part2 & !CAS_Q_part2 & !MUX_Q & !RAS_Q
+            # DR1_PIN_part2 & DRAM_Q & RAS_Q & !DR0_PIN & !MUX_Q & !DTRX
+            & !MCS2X
+            # DRAM_Q & ISRDY_PIN & MCS3X & RAS_Q & !DR0_PIN
+            & !DR1_PIN_part2 & !MUX_Q & !MCS2X)
+            $ DRAM_Q & RAS_Q & !DR0_PIN & !MUX_Q
+        RAS_Q.C = CLOCKX
+        RAS_Q.R = 
+    Output MUX_Q
+
+        10 Input(s)
+            DTRX, CAS_Q_part2, DRAM_Q, MCS3X, ISRDY_PIN, DR0_PIN, RAS_Q,
+            MCS2X, MUX_Q, DR1_PIN_part2
+        5 Fanout(s)
+            glb01_part2.I8, glb01_part3.I8, glb02.I7, glb01_part1.I7,
+            MUX.IR
+        2 Product Term(s)
+        1 GLB Level(s)
+
+        MUX_Q.D = CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q & RAS_Q & !DR0_PIN
+            & !MUX_Q & !DTRX & !MCS2X
+            # CAS_Q_part2 & DRAM_Q & ISRDY_PIN & MCS3X & RAS_Q & !DR0_PIN
+            & !DR1_PIN_part2 & !MUX_Q & !MCS2X
+        MUX_Q.C = CLOCKX
+        MUX_Q.R = 
+    Output DRAM_Q
+
+        10 Input(s)
+            DTRX, CAS_Q_part2, DRAM_Q, MCS3X, ISRDY_PIN, DR0_PIN, RAS_Q,
+            MCS2X, MUX_Q, DR1_PIN_part2
+        5 Fanout(s)
+            glb01_part2.I9, glb01_part3.I9, glb02.I16, glb01_part1.I6,
+            DRAM.IR
+        6 Product Term(s)
+        1 GLB Level(s)
+
+        DRAM_Q.D = (CAS_Q_part2 & DR1_PIN_part2 & DRAM_Q & !DR0_PIN
+            & !RAS_Q
+            # DR1_PIN_part2 & DRAM_Q & !DR0_PIN & !CAS_Q_part2 & !MUX_Q
+            # DR0_PIN & !DR1_PIN_part2 & !CAS_Q_part2 & !MUX_Q & !RAS_Q
+            & !DRAM_Q
+            # CAS_Q_part2 & DRAM_Q & DTRX & ISRDY_PIN & MCS3X & RAS_Q
+            & !DR0_PIN & !DR1_PIN_part2 & !MUX_Q & !MCS2X)
+            $ (DRAM_Q & RAS_Q & !DR0_PIN & !MUX_Q
+            # !DR1_PIN_part2 & !CAS_Q_part2 & !MUX_Q & !RAS_Q)
+        DRAM_Q.C = CLOCKX
+        DRAM_Q.R = 
+
+GLB glb03_part1, B1
+
+    4 Input(s)
+        (glb05.O2, ST0_PIN, I9), (glb05.O1, ST1_PIN, I10), (glb00.O1, 
+        ST2_PIN, I2), (glb05.O0, ST3_PIN, I11)
+    2 Output(s)
+        (OR_968, O3), (CLKBA_D, O1)
+    3 Product Term(s)
+
+    Output OR_968
+
+        4 Input(s)
+            ST3_PIN, ST1_PIN, ST2_PIN, ST0_PIN
+        1 Fanout(s)
+            CS0.IR
+        2 Product Term(s)
+        1 GLB Level(s)
+
+        OR_968 = ST3_PIN & !ST1_PIN
+            # ST2_PIN & ST3_PIN & !ST0_PIN
+
+    Output CLKBA_D
+
+        4 Input(s)
+            ST3_PIN, ST1_PIN, ST2_PIN, ST0_PIN
+        1 Fanout(s)
+            CLKBA.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        CLKBA_D = ST0_PIN & ST2_PIN & ST3_PIN & !ST1_PIN
+
+
+GLB glb03_part2, B4
+
+    4 Input(s)
+        (glb05.O2, ST0_PIN, I9), (glb05.O1, ST1_PIN, I10), (glb00.O1, 
+        ST2_PIN, I2), (glb05.O0, ST3_PIN, I11)
+    2 Output(s)
+        (OR_1124, O0), (AND_969, O2)
+    3 Product Term(s)
+
+    Output OR_1124
+
+        4 Input(s)
+            ST3_PIN, ST1_PIN, ST2_PIN, ST0_PIN
+        1 Fanout(s)
+            OE1.IR
+        2 Product Term(s)
+        1 GLB Level(s)
+
+        OR_1124 = ST3_PIN & !ST1_PIN
+            # ST2_PIN & ST3_PIN & !ST0_PIN
+
+    Output AND_969
+
+        4 Input(s)
+            ST3_PIN, ST1_PIN, ST2_PIN, ST0_PIN
+        1 Fanout(s)
+            OE2.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        AND_969 = ST2_PIN & !ST0_PIN & !ST1_PIN & !ST3_PIN
+
+
+GLB glb04_part1, B6
+
+    3 Input(s)
+        (glb05.O2, ST0_PIN, I9), (glb05.O1, ST1_PIN, I10), (glb05.O0, 
+        ST3_PIN, I11)
+    1 Output(s)
+        (DIOR_D, O2)
+    1 Product Term(s)
+
+    Output DIOR_D
+
+        3 Input(s)
+            ST3_PIN, ST1_PIN, ST0_PIN
+        1 Fanout(s)
+            DIOR.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        DIOR_D = ST0_PIN & ST3_PIN & !ST1_PIN
+
+
+GLB glb04_part2, B0
+
+    4 Input(s)
+        (glb05.O2, ST0_PIN, I9), (glb05.O1, ST1_PIN, I10), (glb00.O1, 
+        ST2_PIN, I2), (glb05.O0, ST3_PIN, I11)
+    2 Output(s)
+        (ISRDY_PIN, O0), (GND_1127, O3)
+    2 Product Term(s)
+
+    Output ISRDY_PIN
+
+        4 Input(s)
+            ST3_PIN, ST1_PIN, ST2_PIN, ST0_PIN
+        5 Fanout(s)
+            glb00.I4, glb01_part3.I4, glb02.I15, glb01_part1.I11,
+            ISRDY.IR
+        2 Product Term(s)
+        1 GLB Level(s)
+
+        ISRDY_PIN.D = ST1_PIN & ST2_PIN & ST3_PIN & !ST0_PIN
+            # !ST0_PIN & !ST1_PIN & !ST2_PIN & !ST3_PIN
+        ISRDY_PIN.C = CLOCKX
+        ISRDY_PIN.R = 
+    Output GND_1127
+
+        0 Input(s)
+        1 Fanout(s)
+            DIR1.IR
+        0 Product Term(s)
+        0 GLB Level(s)
+
+        GND_1127 = GND
+
+
+GLB glb04_part3, B7
+
+    0 Input(s)
+    1 Output(s)
+        (GND_1126, O1)
+    0 Product Term(s)
+
+    Output GND_1126
+
+        0 Input(s)
+        1 Fanout(s)
+            DIOW.IR
+        0 Product Term(s)
+        0 GLB Level(s)
+
+        GND_1126 = GND
+
+
+GLB glb05, A5
+
+    8 Input(s)
+        (A0.O, A0X, I1), (glb01_part3.O0, DSRDY_PIN_part2, I12), 
+        (MCS0.O, MCS0X, I8), (MCS1.O, MCS1X, I9), (glb05.O2, 
+        ST0_PIN, I16), (glb05.O1, ST1_PIN, I17), (glb00.O1, 
+        ST2_PIN, I13), (glb05.O0, ST3_PIN, I4)
+    3 Output(s)
+        (ST3_PIN, O0), (ST1_PIN, O1), (ST0_PIN, O2)
+    6 Product Term(s)
+
+    Output ST3_PIN
+
+        8 Input(s)
+            ST3_PIN, DSRDY_PIN_part2, A0X, MCS1X, ST1_PIN, MCS0X,
+            ST2_PIN, ST0_PIN
+        7 Fanout(s)
+            glb00.I15, glb05.I4, glb04_part2.I11, glb03_part1.I11,
+            glb03_part2.I11, glb04_part1.I11, ST3.IR
+        3 Product Term(s)
+        1 GLB Level(s)
+
+        ST3_PIN.D = ST3_PIN & !ST1_PIN
+            # MCS0X & ST2_PIN & ST3_PIN & !ST0_PIN & !A0X
+            # DSRDY_PIN_part2 & MCS1X & !ST0_PIN & !ST1_PIN & !ST2_PIN
+            & !A0X
+        ST3_PIN.C = CLOCKX
+        ST3_PIN.R = 
+    Output ST1_PIN
+
+        6 Input(s)
+            ST3_PIN, A0X, ST1_PIN, MCS0X, ST2_PIN, ST0_PIN
+        7 Fanout(s)
+            glb00.I14, glb05.I17, glb04_part2.I10, glb03_part1.I10,
+            glb03_part2.I10, glb04_part1.I10, ST1.IR
+        2 Product Term(s)
+        1 GLB Level(s)
+
+        ST1_PIN.D = ST2_PIN & ST3_PIN & !ST0_PIN & !ST1_PIN
+            # MCS0X & ST2_PIN & ST3_PIN & !ST0_PIN & !A0X
+        ST1_PIN.C = CLOCKX
+        ST1_PIN.R = 
+    Output ST0_PIN
+
+        3 Input(s)
+            ST3_PIN, ST1_PIN, ST2_PIN
+        7 Fanout(s)
+            glb00.I6, glb05.I16, glb04_part2.I9, glb03_part1.I9,
+            glb03_part2.I9, glb04_part1.I9, ST0.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        ST0_PIN.D = ST3_PIN & !ST1_PIN & !ST2_PIN
+        ST0_PIN.C = CLOCKX
+        ST0_PIN.R = 
+
+Input A0, IO1
+
+    Output A0X
+        2 Fanout(s)
+            glb00.I1, glb05.I1
+
+
+Input BTN, IO16
+
+    Output BTNX
+        1 Fanout(s)
+            glb00.I0
+
+
+Output CAS, IO30
+
+    Input (glb01_part1.O2, CAS_Q_part1)
+
+    CAS = CAS_Q_part1
+
+
+Output CLKBA, IO21
+
+    Input (glb03_part1.O1, CLKBA_D)
+
+    CLKBA = CLKBA_D
+
+
+Clock Input CLOCK, Y0
+
+    Output CLOCKX
+        7 Fanout(s)
+            glb01_part2.CLK0, glb00.CLK0, glb05.CLK0, glb01_part3.CLK0,
+            glb04_part2.CLK0, glb02.CLK0, glb01_part1.CLK0
+
+
+Output CS0, IO27
+
+    Input (glb03_part1.O3, OR_968)
+
+    CS0 = !OR_968
+
+
+Output DIOR, IO26
+
+    Input (glb04_part1.O2, DIOR_D)
+
+    DIOR = DIOR_D
+
+
+Output DIOW, IO25
+
+    Input (glb04_part3.O1, GND_1126)
+
+    DIOW = GND_1126
+
+
+Output DIR1, IO23
+
+    Input (glb04_part2.O3, GND_1127)
+
+    DIR1 = GND_1127
+
+
+Output DR0, IO3
+
+    Input (glb01_part2.O3, DR0_PIN)
+
+    DR0 = DR0_PIN
+
+
+Output DR1, IO6
+
+    Input (glb01_part3.O2, DR1_PIN_part1)
+
+    DR1 = DR1_PIN_part1
+
+
+Output DRAM, IO29
+
+    Input (glb02.O1, DRAM_Q)
+
+    DRAM = DRAM_Q
+
+
+Output DSRDY, IO7
+
+    Input (glb01_part3.O3, DSRDY_PIN_part1)
+
+    DSRDY = DSRDY_PIN_part1
+
+
+Input DTR, IO4
+
+    Output DTRX
+        2 Fanout(s)
+            glb01_part3.I15, glb02.I11
+
+
+Input ENC, IO17
+
+    Output ENCX
+        1 Fanout(s)
+            glb00.I5
+
+
+Output INT0, IO15
+
+    Input (glb00.O3, INT0_Q)
+
+    INT0 = INT0_Q
+
+
+Output INT3, IO14
+
+    Input (glb00.O2, INT3_Q)
+
+    INT3 = INT3_Q
+
+
+Output ISRDY, IO20
+
+    Input (glb04_part2.O0, ISRDY_PIN)
+
+    ISRDY = ISRDY_PIN
+
+
+Input MCS0, IO8
+
+    Output MCS0X
+        2 Fanout(s)
+            glb00.I8, glb05.I8
+
+
+Input MCS1, IO9
+
+    Output MCS1X
+        2 Fanout(s)
+            glb00.I9, glb05.I9
+
+
+Input MCS2, IO10
+
+    Output MCS2X
+        2 Fanout(s)
+            glb01_part3.I10, glb02.I5
+
+
+Input MCS3, IO11
+
+    Output MCS3X
+        3 Fanout(s)
+            glb01_part3.I11, glb02.I4, glb01_part1.I4
+
+
+Output MUX, IO28
+
+    Input (glb02.O0, MUX_Q)
+
+    MUX = MUX_Q
+
+
+Output OE1, IO24
+
+    Input (glb03_part2.O0, OR_1124)
+
+    OE1 = !OR_1124
+
+
+Output OE2, IO22
+
+    Input (glb03_part2.O2, AND_969)
+
+    OE2 = !AND_969
+
+
+Output RAS, IO31
+
+    Input (glb02.O3, RAS_Q)
+
+    RAS = RAS_Q
+
+
+Output SRDY, IO0
+
+    Input (glb00.O0, SRDY_Q)
+
+    SRDY = SRDY_Q
+
+
+Output ST0, IO2
+
+    Input (glb05.O2, ST0_PIN)
+
+    ST0 = ST0_PIN
+
+
+Output ST1, IO13
+
+    Input (glb05.O1, ST1_PIN)
+
+    ST1 = ST1_PIN
+
+
+Output ST2, IO5
+
+    Input (glb00.O1, ST2_PIN)
+
+    ST2 = ST2_PIN
+
+
+Output ST3, IO12
+
+    Input (glb05.O0, ST3_PIN)
+
+    ST3 = ST3_PIN
+
+
+Clock Assignments
+
+    Net Name		    Clock Assignment
+
+        CLOCKX                  External CLK0
+
+
+GLB and GLB Output Statistics
+
+    GLB Name, Location      GLB Statistics          GLB Output Statistics
+    GLB Output Name         Ins, Outs, PTs          Ins, FOs, PTs, Levels, PTSABP
+
+        glb00, A3               11,  4,  8          
+            INT0_Q                                       1,  1,  1,  1, 1PT 
+            INT3_Q                                       1,  1,  1,  1, 1PT 
+            SRDY_Q                                       2,  1,  1,  1, 1PT 
+            ST2_PIN                                      8,  6,  5,  1, -   
+
+        glb01_part1, B3          8,  2,  7          
+            CAS_Q_part1                                  8,  1,  7,  1, -   
+            CAS_Q_part2                                  8,  4,  7,  1, -   
+
+        glb01_part2, A1          6,  1,  1          
+            DR0_PIN                                      6,  5,  1,  1, 1PT 
+
+        glb01_part3, A7         10,  4,  6          
+            DR1_PIN_part1                               10,  1,  4,  1, -   
+            DR1_PIN_part2                               10,  4,  4,  1, -   
+            DSRDY_PIN_part1                              6,  1,  1,  1, 1PT 
+            DSRDY_PIN_part2                              6,  2,  1,  1, 1PT 
+
+        glb02, B2               10,  3, 13          
+            DRAM_Q                                      10,  5,  6,  1, -   
+            MUX_Q                                       10,  5,  2,  1, 4PT 
+            RAS_Q                                       10,  5,  5,  1, -   
+
+        glb03_part1, B1          4,  2,  3          
+            CLKBA_D                                      4,  1,  1,  1, 1PT 
+            OR_968                                       4,  1,  2,  1, 4PT 
+
+        glb03_part2, B4          4,  2,  3          
+            AND_969                                      4,  1,  1,  1, 1PT 
+            OR_1124                                      4,  1,  2,  1, 4PT 
+
+        glb04_part1, B6          3,  1,  1          
+            DIOR_D                                       3,  1,  1,  1, 1PT 
+
+        glb04_part2, B0          4,  2,  2          
+            GND_1127                                     0,  1,  0,  0, -   
+            ISRDY_PIN                                    4,  5,  2,  1, 4PT 
+
+        glb04_part3, B7          0,  1,  0          
+            GND_1126                                     0,  1,  0,  0, -   
+
+        glb05, A5                8,  3,  6          
+            ST0_PIN                                      3,  7,  1,  1, 1PT 
+            ST1_PIN                                      6,  7,  2,  1, 4PT 
+            ST3_PIN                                      8,  7,  3,  1, 4PT 
+
+
+Pin Assignments
+
+    Pin Name                Pin Assignment          Pin Type, Pin Attribute
+
+        OE1                     3                       Output, PULLUP
+        DIOW                    4                       Output, PULLUP
+        DIOR                    5                       Output, PULLUP
+        CS0                     6                       Output, PULLUP
+        MUX                     7                       Output, PULLUP
+        DRAM                    8                       Output, PULLUP
+        CAS                     9                       Output, PULLUP
+        RAS                     10                      Output, PULLUP
+        CLOCK                   11                      Clock Input, PULLUP
+        SRDY                    15                      Output, PULLUP
+        A0                      16                      Input, PULLUP
+        ST0                     17                      Output, PULLUP
+        DR0                     18                      Output, PULLUP
+        DTR                     19                      Input, PULLUP
+        ST2                     20                      Output, PULLUP
+        DR1                     21                      Output, PULLUP
+        DSRDY                   22                      Output, PULLUP
+        MCS0                    25                      Input, PULLUP
+        MCS1                    26                      Input, PULLUP
+        MCS2                    27                      Input, PULLUP
+        MCS3                    28                      Input, PULLUP
+        ST3                     29                      Output, PULLUP
+        ST1                     30                      Output, PULLUP
+        INT3                    31                      Output, PULLUP
+        INT0                    32                      Output, PULLUP
+        BTN                     37                      Input, PULLUP
+        ENC                     38                      Input, PULLUP
+        ISRDY                   41                      Output, PULLUP
+        CLKBA                   42                      Output, PULLUP
+        OE2                     43                      Output, PULLUP
+        DIR1                    44                      Output, PULLUP
+
+
+Design process management completed successfully
