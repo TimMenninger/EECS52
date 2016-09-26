@@ -1,0 +1,184 @@
+" Pins
+
+Clock  pin    1;                "input   24 MHz clock
+ENC    pin    2                 "input   Active low change signal from encoder
+BTN    pin    3;                "input   Active low change signal from buttons
+MCS3   pin    4                 "input   DRAM refresh (Active low from 80C188)
+MCS2   pin    5                 "input   DRAM access (Active low from 80C188)
+DTR    pin    6;                "input   DT/R signal (from 80C188)
+RESET  pin    7;                "input   Reset (active high from 80C188)
+"      pin    8                  input   unused (I7)
+"      pin    9                  input   unused (I8)
+"GND   pin   10;                 supply  power ground
+"OE    pin   11;                 input   output enable to GAL16v8
+"      pin   12;                 unused  (I/O 8)
+"      pin   13;                 unused  (I/O 7)
+MUX    pin   14  ISTYPE 'reg';  "output  MUX selector signal
+!DRAM  pin   15  ISTYPE 'reg';  "output  DRAM write enable signal
+!CAS   pin   16  ISTYPE 'reg';  "output  DRAM CAS signal
+!RAS   pin   17  ISTYPE 'reg';  "output  DRAM RAS signal
+!INT0  pin   18  ISTYPE 'reg';  "output  Drives 80188 INT0 when BTN goes low
+!INT3  pin   19  ISTYPE 'reg';  "output  Drives 80188 INT3 when ENC goes low
+"VCC   pin   20                  supply  power Vcc
+
+
+
+EQUATIONS
+
+" Interrupt outputs
+INT0.OE  = 1;
+INT3.OE  = 1;
+INT0     = BTN; " INT0 = !BTN (negated INT0 in definition)
+INT3     = ENC; " INT3 = !ENC (negated INT3 in definition)
+
+" DRAM outputs
+MUX.OE   = 1;
+DRAM.OE  = 1;
+CAS.OE   = 1;
+RAS.OE   = 1;
+
+
+"################################################
+"#
+"# DRAM State bits
+"#
+"#
+
+" No-output encoding:
+DRAM_bits      =  [ DR0, DR1, MUX, CAS, RAS, DRAM ]; " state bits for DRAM refresh state machine
+
+" Start state
+DRAM_Idle      =  [   0,   0,   0,   0,   0,    0 ]; " idle state (waiting for a cycle to start)
+
+" Refresh state machine
+DRAMRfshStart  =  [   0,   0,   0,   1,   0,    0 ]; " CAS-before-RAS; start CAS
+DRAMRfshFinish =  [   0,   0,   0,   1,   1,    0 ]; " RAS part of refresh
+
+" Read state machine
+DRAMReadStart  =  [   0,   1,   1,   0,   1,    0 ]; " Start read with MUX for row address
+DRAMReadRow    =  [   0,   1,   0,   0,   1,    0 ]; " Read row, change MUX for col address
+DRAMReadCol    =  [   0,   1,   0,   1,   1,    0 ]; " Read col
+DRAMReadWait   =  [   0,   1,   0,   0,   0,    0 ]; " Wait state after reading
+
+" Write state machine
+DRAMWriteStart =  [   0,   0,   1,   0,   1,    1 ]; " Start write with MUX for row address
+DRAMWriteRow   =  [   0,   0,   0,   0,   1,    1 ]; " Get row addr, change MUX for col addr
+DRAMWriteCol   =  [   0,   0,   0,   1,   1,    1 ]; " Get col addr
+DRAMWrite      =  [   1,   0,   0,   1,   1,    0 ]; " Clear WE to perform actual write
+
+
+
+
+"#############################################################################
+"#
+"# DRAM State Machine
+"#
+"#
+"#
+"#
+
+
+
+STATE_DIAGRAM  DRAM_bits        " a Mealy state machine
+
+
+STATE  DRAM_Idle:               " Wait idly with nothing enabled
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 1;                  " SRDY always 'ready' in this state
+
+         IF (!iSRDY)         THEN DRAM_Idle      " Don't enter state machine
+    ELSE IF (!MCS3)          THEN DRAMRfshStart  " Start refresh cycle
+    ELSE IF (!MCS2 & DTR)    THEN DRAMWriteStart " Start writing to DRAM
+    ELSE IF (!MCS2 & !DTR)   THEN DRAMReadStart  " Start reading from DRAM
+    ELSE                          DRAM_Idle;     " otherwise just stay here
+
+
+STATE DRAMRfshStart:            " Start refresh cycle
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMRfshFinish;    " Finish refresh cycle
+
+
+STATE DRAMRfshFinish:           " Finish refresh cycle
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAM_Idle;         " Done, can go back to idle
+
+STATE DRAMWriteStart:           " Starts access to DRAM with MUX set to transmit row
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMWriteRow;      " Get row address for read
+
+
+STATE DRAMWriteRow:             " Sets RAS and WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMWriteCol;      " Get column address for write
+
+
+STATE DRAMWriteCol:             " Sets CAS and WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMWrite;         " Clear WE which will perform write
+
+
+STATE DRAMWrite:                " Deactivates WE for write
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)                 THEN DRAM_Idle;         " Go to start state, done writing
+
+
+STATE DRAMReadStart:            " Starts access to DRAM with MUX set to transmit row
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMReadRow;       " Get row address for read
+
+
+
+STATE DRAMReadRow:              " Sets RAS for read
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMReadCol;       " Sets CAS for column addr
+
+
+STATE DRAMReadCol:              " Sets CAS for read
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+    " Always advance state. Reset will zero the state, which is idle
+         IF (1)         THEN DRAMReadWait;      " Wait state to satisfy read cycle time
+
+
+STATE DRAMReadWait:             " Wait to satisfy read cycle time
+
+    " No-output state encoding.  Must only set SRDY explicitly
+    dSRDY = 0;                  " SRDY not ready while refreshing
+
+         IF (!MCS2 & !DTR)      THEN DRAMReadStart      " Another read cycle
+    ELSE                             DRAM_Idle;         " Done reading

@@ -78,7 +78,7 @@ INT0   pin   32  ISTYPE 'reg';  "output  Drives 80188 INT0 when BTN goes low
 "RESET pin   35;                 input   Reset (active high from 80C188)
 "      pin   36                  unused  (IN2/MODE)
 BTN    pin   37;                "input   Active low change signal from buttons
-ENC       pin   38;                "input   Active low change signal from encoder
+ENC    pin   38;                "input   Active low change signal from encoder
 "MCLK   pin   39  ISTYPE 'com';  output  CLK signal to MP3 decoder
 "!XDCS  pin   40  ISTYPE 'com';  output  XDCS signal to MP3 decoder
 "!XCS   pin   41  ISTYPE 'com';  output  XCS signal to MP3 decoder
