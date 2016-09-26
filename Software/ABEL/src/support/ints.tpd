@@ -1,0 +1,17 @@
+Tpd Path Report:
+---------------
+
+Design Name: INTS
+Part Name: ispLSI1016EA-125LJ44
+  This report contains the path delays between the
+  primary inputs and primary outputs of the design
+  with no register in the path.
+
+Tpd Paths:
+
+  Source                   Destination              Path Delay
+  (Input)                  (Output)                   [ns]
+==------------------------------------------------------------------------------
+  ENC                      INT3                     9.80  
+  BTN                      INT0                     9.80  
+==----------------------------------------------------------------------------

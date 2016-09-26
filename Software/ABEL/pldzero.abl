@@ -1,0 +1,117 @@
+MODULE Jukebox
+
+TITLE 'Jukebox Display'
+
+
+" Jukebox Interface  DEVICE  'ISPLSI1016'
+
+
+" Description:  TODO
+"
+
+" Revision History:
+" 02/12/16      Created with functionality for 4x20 Display, IDE interface and
+"                   digital potentiometer.
+" 03/06/16      Added functionality for DRAM refresh, read and write
+" 04/25/16      Split into two PLD files.
+
+
+
+" Pins
+
+Clock  pin   1;                 "input   24 MHz clock
+iSRDY  pin   2;                 "input   SRDY from ispLSI1016E
+PCS6   pin   3;                 "input   PCS6 from 80C188 (active low) for potentiometer
+PCS5   pin   4;                 "input   PCS5 from 80C188 (active low) for display
+RESET  pin   5;                 "input   RESET signal from 80C188  
+DTR    pin   6;                 "input   DTR signal from 80C188
+"      pin   7                   unused
+"      pin   8                   unused
+"      pin   9                   unused
+"GND   pin   10                  power   Electrical Ground
+"!OE   pin   11                  input   Output enable for PLD
+"      pin   12                  unused
+UD     pin   13  ISTYPE 'com';  "output  U/D signal to digital potentiometer
+POTCS  pin   14  ISTYPE 'com';  "output  CS signal to digital potentiometer
+DISPE  pin   15  ISTYPE 'com';  "output  Enable to display
+DSPRW  pin   16  ISTYPE 'com';  "output  Read/Write to display
+DSPCS  pin   17  ISTYPE 'com';  "output  CS signal to display
+oSRDY  pin   18  ISTYPE 'com';  "output  SRDY to 80C188
+DSPDIR pin   19  ISTYPE 'com';  "output  Direction of data to/from display
+"VCC   pin   20                  power   5V Vcc power
+
+
+"Define state machine that is always in idle state.
+St0    pin       ISTYPE 'reg';  "always idle
+
+"Only one state bit (always idle)
+OnlyIdle = [St0];
+
+"Only state is idle
+Idle     =   [0];
+AlsoIdle =   [1];
+
+
+
+
+EQUATIONS
+
+"Equations
+UD.OE     = 1;
+POTCS.OE  = 1;
+DISPE.OE  = 1;
+DSPRW.OE  = 1;
+DSPDIR.OE = 1;
+DSPCS.OE  = 1;
+oSRDY.OE  = 1;
+
+
+"Clocks
+OnlyIdle.CLK = Clock;  "Global clock pin
+
+
+
+STATE_DIAGRAM OnlyIdle
+
+
+STATE AlsoIdle:
+	
+	
+    "Set all disabled values.
+    UD        = 0;
+    POTCS     = 1;
+    DISPE     = 0;
+    DSPRW     = 0;
+    DSPDIR    = 1;  "Don't want bus conflict, push data toward display
+    DSPCS     = 0;
+    oSRDY     = 1;  "Don't want to hold up CPU
+
+    IF (1)    THEN Idle;
+
+
+
+
+STATE Idle:
+	
+	
+    "Set all disabled values.
+    UD        = 0;
+    POTCS     = 1;
+    DISPE     = 0;
+    DSPRW     = 0;
+    DSPDIR    = 1;  "Don't want bus conflict, push data toward display
+    DSPCS     = 0;
+    oSRDY     = 1;  "Don't want to hold up CPU
+
+    IF (1)    THEN Idle;
+
+
+TEST_VECTORS
+
+([DTR] -> [UD, POTCS, DISPE, DSPRW, DSPDIR, DSPCS, oSRDY] )
+
+ [  0] -> [ 0,     1,     0,     0,      1,     0,     1];
+
+END
+
+

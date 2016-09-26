@@ -1,0 +1,25 @@
+ispEXPERT Compiler Release 2.0.00.17.20.15, May 20 2002 13:06:40
+
+Copyright (C) 1994-2000 by Lattice Semiconductor Corporation.
+All Rights Reserved.
+
+
+Design Process Management 
+
+
+Preprocessing design 'ints'...
+
+
+PLA Reading and Translation 
+  
+Reading design 'ints'... 
+  
+Checking design rules... 
+  
+Writing output files(ddf)... 
+  
+Writing output files(laf)... 
+  
+PLA reading and translation completed successfully 
+
+

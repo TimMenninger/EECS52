@@ -1,0 +1,40 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Fri May 20 05:29:46 2016
+#$ TITLE Jukebox Display
+#$ MODULE jukebox
+#$ JEDECFILE jukebox
+#$ PINS 14 Clock:1 iSRDY:2 PCS6:3 PCS5:4 RESET:5 DTR:6 UD:13 POTCS:14 DISPE:15 DSPRW:16 DSPCS:17 oSRDY:18 DSPDIR:19 St0
+
+.model jukebox
+.inputs Clock.BLIF
+.outputs UD POTCS DISPE DSPRW DSPCS oSRDY DSPDIR UD.OE POTCS.OE DISPE.OE \
+DSPRW.OE DSPDIR.OE DSPCS.OE oSRDY.OE St0.C St0.REG
+.names UD
+.names POTCS
+ 1
+.names DISPE
+.names DSPRW
+.names DSPCS
+.names oSRDY
+ 1
+.names DSPDIR
+ 1
+.names UD.OE
+ 1
+.names POTCS.OE
+ 1
+.names DISPE.OE
+ 1
+.names DSPRW.OE
+ 1
+.names DSPDIR.OE
+ 1
+.names DSPCS.OE
+ 1
+.names oSRDY.OE
+ 1
+.names St0.REG
+.names Clock.BLIF St0.C
+1 1
+0 0
+.end

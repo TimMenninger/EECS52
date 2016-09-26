@@ -1,0 +1,13 @@
+//Design Name: ints
+//START
+
+//DESTINATION NODES
+INT0 [out]
+INT3 [out]
+
+//SOURCE NODES;
+
+ENC [in]
+BTN [in]
+
+//END

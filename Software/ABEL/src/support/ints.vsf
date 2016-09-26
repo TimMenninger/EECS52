@@ -1,0 +1,217 @@
+(DELAYFILE
+  (SDFVERSION "2.1")
+  (DESIGN "ints")
+  (DATE "Sun Sep 25 19:08:17 2016")
+  (VENDOR "Lattice Semiconductor Inc.")
+  (PROGRAM "SDFWRITER")
+  (VERSION "v2.0")
+  (DIVIDER .)
+  (VOLTAGE 5:5:5)
+  (PROCESS "worst")
+  (TEMPERATURE 25:25:25)
+  (TIMESCALE 100ps)
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_P4)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (19:0:19) (19:0:19))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_P0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (19:0:19) (19:0:19))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_G1)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (0:0:0) (0:0:0))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_G0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (0:0:0) (0:0:0))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_P0_xa)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (5:0:5) (5:0:5))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_BUF_673)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (12:0:12) (12:0:12))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_P4_xa)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (5:0:5) (5:0:5))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_BUF_675)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (12:0:12) (12:0:12))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN14)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (9:0:9) (9:0:9))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GLB_A6_IN15)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (9:0:9) (9:0:9))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_A6_X3O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGXOR2")
+    (INSTANCE GLB_A6_X2O)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A1 Z0 (3:0:3) (3:0:3))
+       )
+       (ABSOLUTE
+         (IOPATH A0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO30_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXIN")
+    (INSTANCE IOC_IO31_IBUFO)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH XI0 Z0 (3:0:3) (3:0:3))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_INT3)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE IOC_IO10_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (4:0:4) (4:0:4))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PXOUT")
+    (INSTANCE IOC_INT0)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 XO0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGINVI")
+    (INSTANCE IOC_IO11_OBUFI)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 ZN0 (4:0:4) (4:0:4))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_BUF_675_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_BUF_673_iomux)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (13:0:13) (13:0:13))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_BTNX_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+  (CELL
+    (CELLTYPE "PGBUFI")
+    (INSTANCE GRP_ENCX_grp)
+    (DELAY
+       (ABSOLUTE
+         (IOPATH A0 Z0 (17:0:17) (17:0:17))
+       )
+    )
+  )
+)

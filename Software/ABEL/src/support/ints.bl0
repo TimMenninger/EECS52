@@ -1,0 +1,19 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Sun Sep 25 19:08:08 2016
+#$ TITLE interrupts
+#$ MODULE ints
+#$ JEDECFILE ints
+#$ PINS 4 BTN:10 ENC:9 INT0:28 INT3:27
+
+.model ints
+.inputs BTN.BLIF ENC.BLIF
+.outputs INT0 INT3 INT0.OE INT3.OE
+.names BTN.BLIF INT0
+0 1
+.names ENC.BLIF INT3
+0 1
+.names INT0.OE
+ 1
+.names INT3.OE
+ 1
+.end

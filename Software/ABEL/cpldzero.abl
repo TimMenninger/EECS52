@@ -1,0 +1,127 @@
+MODULE CPLDzero
+
+TITLE 'Jukebox CPLD'
+
+
+" Pins
+
+"GND   pin   1;                  supply  power ground
+"      pin   2;                  input   unused (IN3) tied high
+PCS4   pin   3;                 "input   CPU PCS4: MP3
+PCS3   pin   4;                 "input   CPU PCS3: MP3 SCI
+OE2   pin   5   ISTYPE 'com';  "output  IDE 2OE active Low  
+PCS2   pin   6;                 "input   CPU PCS2: MPE SDI
+A0     pin   7;                 "input   Latched A0 from CPU
+CLKBA  pin   8   ISTYPE 'com';  "output  IDE 2CLKBA signal
+OE1   pin   9   ISTYPE 'com';  "output  IDE 1OE active Low
+IDEDIR pin   10  ISTYPE 'com';  "output  IDE 1DIR
+Clock  pin   11;                "input   24 MHz clock
+"VCC   pin   12                  supply  power Vcc
+"ISPEN pin   13                  input   Tied high
+"      pin   14                          unused (IN0/SDI) tied high
+DIOR   pin   15  ISTYPE 'com';  "output  DIOR signal to IDE
+"      pin   16                          unused (I/O12) tied low
+CS0   pin   17  ISTYPE 'com';  "output  IDE CS0 signal
+MUX    pin   18  ISTYPE 'reg, buffer';  "output  MUX selector signal
+CAS   pin   19  ISTYPE 'reg, buffer';  "output  DRAM CAS signal
+DRAM  pin   20  ISTYPE 'reg, buffer';  "output  DRAM write enable signal
+DIOW   pin   21  ISTYPE 'com';  "output  DIOW signal to IDE
+RAS   pin   22  ISTYPE 'reg, buffer';  "output  DRAM RAS signal
+"GND   pin   23                  supply  power ground
+"      pin   24                          unused (IN1/SD0) tied high
+"      pin   25                          unused (I/O16) tied low
+"      pin   26                          unused (I/O15) tied low
+"      pin   27                          unused (I/O17) tied low
+"      pin   28                          unused (I/O13) tied low
+"      pin   29                          unused (I/O14) tied low
+XDCS  pin   30  ISTYPE 'com';  "output  XDCS to MP3 active low
+MP3CLK pin   31  ISTYPE 'com';  "output  Clock signal to MP3
+XCS   pin   32  ISTYPE 'com';  "output  XCS to MP3 active low
+"      pin   33                  unused  (Y2/SCLK) tied high
+"VCC   pin   34                  supply  power Vcc
+"RESET pin   35;                 input   Reset (active high from 80C188)
+ALE    pin   37;                "input   ALE from CPU
+MCS3   pin   38;                "input   DRAM refresh active low
+DEN    pin   39;                "input   DEN from CPU
+DTR    pin   40;                "input   DTR from CPU
+SRDY   pin   41  ISTYPE 'com';  "output  SRDY out to other PLD
+MCS1   pin   42;                "input   DRAM access
+MCS0   pin   43;                "input   IDE access
+MCS2   pin   44;                "input   DRAM access
+
+
+
+St0    pin       ISTYPE 'reg, buffer';  "output  state bit 0
+
+
+
+" Display, IDE, Digital Pot, MP3
+
+OnlyIdle   =  [ St0, MUX, CAS, DRAM, RAS ]; " state bits
+
+" Start state
+Idle       =  [   0,   0,   0,    0,   0 ]; " idle state (waiting for a cycle to start)
+AlsoIdle   =  [   1,   0,   0,    0,   0 ]; " idle state (waiting for a cycle to start)
+
+
+
+
+
+EQUATIONS
+
+
+" Output enables - enable the used outputs (registered outputs enabled by OE pin)
+OE2.OE      = 1;
+OE1.OE      = 1;
+CLKBA.OE    = 1;
+IDEDIR.OE   = 1;
+DIOR.OE     = 1;
+CS0.OE      = 1;
+DIOW.OE     = 1;
+XCS.OE      = 1;
+XDCS.OE     = 1;
+SRDY.OE     = 1;
+
+
+OnlyIdle.CLK = Clock;
+
+
+
+
+STATE_DIAGRAM OnlyIdle
+
+
+STATE Idle:
+    OE2     = 1;
+    OE1     = 1;
+    CLKBA   = 0;
+    IDEDIR  = 0;
+    DIOR    = 0;
+    CS0     = 1;
+    DIOW    = 0;
+    XCS     = 1;
+    XDCS    = 1;
+    SRDY    = 1;
+
+    IF (1)  THEN Idle;
+
+
+STATE AlsoIdle:
+    OE2     = 1;
+    OE1     = 1;
+    CLKBA   = 0;
+    IDEDIR  = 0;
+    DIOR    = 0;
+    CS0     = 1;
+    DIOW    = 0;
+    XCS     = 1;
+    XDCS    = 1;
+    SRDY    = 1;
+
+    IF (1)  THEN Idle;
+
+
+
+
+END 
+

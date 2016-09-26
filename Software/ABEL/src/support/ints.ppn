@@ -1,0 +1,17 @@
+// 
+// Software Version 8.2
+// Targeted Device : ispLSI1016EA-125LJ44
+// Platform : Windows NT 6.2
+// Date : Sun Sep 25 19:08:16 2016
+// Elapsed Time : 00:00:00
+// 
+                     ENC         IN          9
+                     BTN         IN         10
+                     VCC        SYS         12
+                   VCCIO        SYS         13
+                     GND        SYS         23
+                    INT3        OUT         27
+                    INT0        OUT         28
+                     VCC        SYS         34
+                   RESET        SYS         35
+                     GND        SYS          1

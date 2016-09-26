@@ -1,0 +1,17 @@
+1 2.0.00.17.20.15
+-i c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ints.laf -if laf -p ispLSI1016EA-125LJ44 -of vhdl -of verilog -s d -e 2 -z -m 16 -n 4 -ta on -y c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ints.xpn -r c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ispxpert.par 
+c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ispxpert.par 1474855693 Sun Sep 25 19:08:13 2016
+ints.ppn 1474855696 Sun Sep 25 19:08:16 2016
+ints.fxp 1474855696 Sun Sep 25 19:08:16 2016
+c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ints.laf 1474855689 Sun Sep 25 19:08:09 2016
+>  c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ints.xpn
+// PART: 	ispLSI1016EA-125LJ44
+// FORMAT: 	PINNAME		PINTYPE	LOCK	PULLUP	SLOWSLEW	OPENDRAIN	OUTDELAY	VOLTAGE	CRIT
+		BTN			-		10	-1		-1		-1		-1		-1		-1
+		ENC			-		9	-1		-1		-1		-1		-1		-1
+		INT0			-		28	-1		-1		-1		-1		-1		-1
+		INT3			-		27	-1		-1		-1		-1		-1		-1
+
+// FORMAT: 	NETNAME		CLK		PRESERVE	ECP	GROUP		XOR	ELP	ETP
+
+// FORMAT: 	SYMNAME		PROTECT	REGTYPE

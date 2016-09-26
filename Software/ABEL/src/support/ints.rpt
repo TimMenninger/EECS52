@@ -1,0 +1,194 @@
+ispEXPERT Compiler Release 2.0.00.17.20.15, May 20 2002 13:06:40
+
+
+Design Parameters
+-----------------
+
+EFFORT:                         MEDIUM (2)
+IGNORE_FIXED_PIN:               OFF
+MAX_GLB_IN:                     16
+MAX_GLB_OUT:                    4
+OUTPUT_FORM:                    VERILOG, VHDL
+OS_VERSION:                     Windows NT 6.2
+PARAM_FILE:                     'c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ispxpert'
+PIN_FILE:                       'c:\users\tim\desktop\classes\eecs52\software\abel\src\support\ints.xpn'
+STRATEGY:                       DELAY
+TIMING_ANALYZER:                ON 
+USE_GLOBAL_RESET:               ON
+
+
+Design Specification
+--------------------
+
+Design:                         ints
+Part:                           ispLSI1016EA-125LJ44
+
+
+ISP:                            ON
+ISP_EXCEPT_Y2:                  OFF
+PULL:                           UP
+SECURITY:                       OFF
+Y1_AS_RESET:                    ON
+SLOWSLEW:                       OFF
+
+
+Number of Critical Pins:        0
+Number of Free Pins:            0
+Number of Locked Pins:          4
+Number of Reserved Pins:        0
+
+
+Input Pins
+
+    Pin Name                Pin Attribute
+
+        BTN                     LOCK 10, PULLUP
+        ENC                     LOCK 9, PULLUP
+
+
+Output Pins
+
+    Pin Name                Pin Attribute
+
+        INT0                    LOCK 28, PULLUP
+        INT3                    LOCK 27, PULLUP
+
+
+Pre-Route Design Statistics
+---------------------------
+
+Number of Macrocells:           2
+Number of GLBs:                 1
+Number of I/Os:                 4
+Number of Nets:                 4
+
+Number of Free Inputs:          0
+Number of Free Outputs:         0
+Number of Free Three-States:    0
+Number of Free Bidi's:          0
+
+Number of Locked Input IOCs:    2
+Number of Locked DIs:           0
+Number of Locked Outputs:       2
+Number of Locked Three-States:  0
+Number of Locked Bidi's:        0
+
+Number of CRIT Outputs:         0
+Number of Global OEs:           0
+Number of External Clocks:      0
+
+
+GLB Utilization (Out of 16):	6%
+I/O Utilization (Out of 33):	12%
+Net Utilization (Out of 97):	4%
+
+
+Nets with Fanout of  1:         4
+
+Average Fanout per Net:         1.00
+
+
+GLBs with  2 Input(s):          1
+
+Average Inputs per GLB:         2.00
+
+
+GLBs with  2 Output(s):         1
+
+Average Outputs per GLB:        2.00
+
+
+Number of GLB Registers:        0
+Number of IOC Registers:        0
+
+
+Post-Route Design Implementation
+--------------------------------
+
+Number of Macrocells:		2
+Number of GLBs:			1
+Number of IOCs:			4
+Number of DIs:			0
+Number of GLB Levels:		1
+
+
+GLB glb00, A6
+
+    2 Input(s)
+        (BTN.O, BTNX, I15), (ENC.O, ENCX, I14)
+    2 Output(s)
+        (BUF_675, O2), (BUF_673, O3)
+    2 Product Term(s)
+
+    Output BUF_675
+
+        1 Input(s)
+            ENCX
+        1 Fanout(s)
+            INT3.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        BUF_675 = ENCX
+
+    Output BUF_673
+
+        1 Input(s)
+            BTNX
+        1 Fanout(s)
+            INT0.IR
+        1 Product Term(s)
+        1 GLB Level(s)
+
+        BUF_673 = BTNX
+
+
+Input BTN, IO31
+
+    Output BTNX
+        1 Fanout(s)
+            glb00.I15
+
+
+Input ENC, IO30
+
+    Output ENCX
+        1 Fanout(s)
+            glb00.I14
+
+
+Output INT0, IO11
+
+    Input (glb00.O3, BUF_673)
+
+    INT0 = !BUF_673
+
+
+Output INT3, IO10
+
+    Input (glb00.O2, BUF_675)
+
+    INT3 = !BUF_675
+
+
+GLB and GLB Output Statistics
+
+    GLB Name, Location      GLB Statistics          GLB Output Statistics
+    GLB Output Name         Ins, Outs, PTs          Ins, FOs, PTs, Levels, PTSABP
+
+        glb00, A6                2,  2,  2          
+            BUF_673                                      1,  1,  1,  1, 1PT 
+            BUF_675                                      1,  1,  1,  1, 1PT 
+
+
+Pin Assignments
+
+    Pin Name                Pin Assignment          Pin Type, Pin Attribute
+
+        ENC                     9                       Input, PULLUP
+        BTN                     10                      Input, PULLUP
+        INT3                    27                      Output, PULLUP
+        INT0                    28                      Output, PULLUP
+
+
+Design process management completed successfully

@@ -1,0 +1,4 @@
+BTN		i
+ENC		i
+INT0		o
+INT3		o

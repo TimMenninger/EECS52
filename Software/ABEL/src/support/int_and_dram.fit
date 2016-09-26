@@ -1,0 +1,25 @@
+Warning 4034: Unable to preserve preassignments - performing second pass without preassignments.
+Warning 4074: Signal MUX cannot be assigned (to pin 14) because
+		   the enable equation polarity does not match enable on pin 14.
+
+Note 4059: Signal DRAM cannot be assigned (to pin 14) because
+		   there are too many terms for output DRAM pin 14.
+Warning 4074: Signal DRAM cannot be assigned (to pin 14) because
+		   the enable equation polarity does not match enable on pin 14.
+
+Warning 4074: Signal CAS cannot be assigned (to pin 14) because
+		   the enable equation polarity does not match enable on pin 14.
+
+Warning 4074: Signal RAS cannot be assigned (to pin 14) because
+		   the enable equation polarity does not match enable on pin 14.
+
+Note 4046: Signal DR1 (which has no OE) has been 
+assigned to pin 15 (which has pin OE).
+Note 4046: Signal DR0 (which has no OE) has been 
+assigned to pin 14 (which has pin OE).
+$DEVICE          P16V8R  nofit 
+$PINS   11  DR1:15   DR0:14   INT3:13   INT0:12   DTR:7   MCS2:6   MCS3:5   
+RESET:4   Clock:1   ENC:3   BTN:2   
+$UNASSIGNED    4  RAS   CAS   DRAM   MUX   
+--------------------------------------------------------------
+

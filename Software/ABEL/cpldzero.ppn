@@ -1,0 +1,29 @@
+// 
+// Software Version 8.2
+// Targeted Device : ispLSI1016EA-125LJ44
+// Platform : Windows NT 6.2
+// Date : Fri May 20 05:28:35 2016
+// Elapsed Time : 00:00:01
+// 
+                   CLKBA        OUT          8
+                     OE1        OUT          9
+                  IDEDIR        OUT         10
+                   CLOCK         IN         11
+                     VCC        SYS         12
+                   VCCIO        SYS         13
+                    DIOR        OUT         15
+                     CS0        OUT         17
+                     MUX        OUT         18
+                     CAS        OUT         19
+                    DRAM        OUT         20
+                    DIOW        OUT         21
+                     RAS        OUT         22
+                     GND        SYS         23
+                     ST0        OUT         28
+                    XDCS        OUT         30
+                     XCS        OUT         32
+                     VCC        SYS         34
+                   RESET        SYS         35
+                    SRDY        OUT         41
+                     GND        SYS          1
+                     OE2        OUT          5

@@ -1,0 +1,47 @@
+//Design Name: cpldzero
+//START
+
+//DESTINATION NODES
+GLB_DEF_734.D0 [reg]
+GLB_DEF_734.CLK [reg]
+GLB_DEF_737.D0 [reg]
+GLB_DEF_737.CLK [reg]
+GLB_DEF_747.D0 [reg]
+GLB_DEF_747.CLK [reg]
+GLB_DEF_740.D0 [reg]
+GLB_DEF_740.CLK [reg]
+GLB_DEF_743.D0 [reg]
+GLB_DEF_743.CLK [reg]
+GLB_CAS_PIN_part1.D0 [reg]
+GLB_CAS_PIN_part1.CLK [reg]
+GLB_CAS_PIN_part2.D0 [reg]
+GLB_CAS_PIN_part2.CLK [reg]
+OE1 [out]
+OE2 [out]
+DIOR [out]
+CAS [out]
+IDEDIR [out]
+SRDY [out]
+MUX [out]
+DIOW [out]
+DRAM [out]
+XCS [out]
+RAS [out]
+CS0 [out]
+CLKBA [out]
+XDCS [out]
+ST0 [out]
+
+//SOURCE NODES;
+
+XRESET [in]
+CLOCK [in]
+GLB_CAS_PIN_part2.Q0 [reg]
+GLB_CAS_PIN_part1.Q0 [reg]
+GLB_DEF_743.Q0 [reg]
+GLB_DEF_740.Q0 [reg]
+GLB_DEF_747.Q0 [reg]
+GLB_DEF_737.Q0 [reg]
+GLB_DEF_734.Q0 [reg]
+
+//END

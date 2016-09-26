@@ -1,0 +1,69 @@
+[DEVICE]
+Family = plsi1k;
+PartNumber = ispLSI1016EA-125LJ44;
+PartType = ispLSI1016EA;
+Package = 44PLCC;
+Speed = 125;
+Operating_condition = COM;
+Default_Device_Io_Types = LVCMOS50,-;
+
+[REVISION]
+RCS = ;
+Parent = lc1k.lci;
+Design = ints;
+DATE = 09/25/2016;
+TIME = 19:08:16;
+Source_Format = ;
+Type = ;
+Pre_Fit_Time = ;
+
+[IGNORE ASSIGNMENTS]
+
+[CLEAR ASSIGNMENTS]
+
+[BACKANNOTATE ASSIGNMENTS]
+
+[GLOBAL CONSTRAINTS]
+Security = Off;
+PULLUP = Up;
+Y1_AS_RESET = On;
+ISP = On;
+ISP_EXCEPT_Y2 = Off;
+OPENDRAIN = Off;
+SLEWRATE = Off;
+
+[FITTER REPORT FORMAT]
+
+[LOCATION ASSIGNMENTS]
+ENC = pin, 9, -, -, -;
+BTN = pin, 10, -, -, -;
+INT3 = pin, 27, -, -, -;
+INT0 = pin, 28, -, -, -;
+
+[PULLUP]
+Up = ENC, BTN, INT3, INT0; 
+
+[SLEWRATE]
+FAST = INT3, INT0; 
+
+[IO TYPES]
+INT3 = LVCMOS33, pin, -, -;
+INT0 = LVCMOS33, pin, -, -;
+
+[OSM Bypass]
+
+[CLK]
+
+[PTSABYPASS]
+
+[Fitter Results]
+I/O_Pin_Util = 12;
+I/O_Pin = 4;
+Logic_PT_Util = 0;
+Logic_PT = 2;
+Logic_MC_Util = 3;
+Logic_MC = 2;
+Occupied_PT_Util = 0;
+Occupied_PT = 2;
+GLB_input_Util = 0;
+GLB_input = 2;

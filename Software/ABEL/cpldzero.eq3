@@ -1,0 +1,196 @@
+ispLEVER Classic 2.0.00.17.20.15 Linked Equations File
+Copyright(C), 1992-2015, Lattice Semiconductor Corp.
+All Rights Reserved.
+
+Design cpldzero created Thu Apr 28 12:50:21 2016
+
+Title: Jukebox CPLD
+
+ P-Terms   Fan-in  Fan-out  Type  Name (attributes)
+---------  ------  -------  ----  -----------------
+   1          0        1    Pin   OE2 
+   1          0        1    Pin   OE2.OE 
+   0/1        0        1    Pin   CLKBA 
+   1          0        1    Pin   CLKBA.OE 
+   1          0        1    Pin   OE1 
+   1          0        1    Pin   OE1.OE 
+   0/1        0        1    Pin   IDEDIR 
+   1          0        1    Pin   IDEDIR.OE 
+   0/1        0        1    Pin   DIOR 
+   1          0        1    Pin   DIOR.OE 
+   1          0        1    Pin   CS0 
+   1          0        1    Pin   CS0.OE 
+   5/1        5        1    Pin   MUX.D 
+   1/1        1        1    Pin   MUX.C 
+   1/5        5        1    Pin   CAS.D 
+   1/1        1        1    Pin   CAS.C 
+   1/5        5        1    Pin   DRAM.D 
+   1/1        1        1    Pin   DRAM.C 
+   0/1        0        1    Pin   DIOW 
+   1          0        1    Pin   DIOW.OE 
+   1/5        5        1    Pin   RAS.D 
+   1/1        1        1    Pin   RAS.C 
+   1          0        1    Pin   XDCS 
+   1          0        1    Pin   XDCS.OE 
+   1          0        1    Pin   XCS 
+   1          0        1    Pin   XCS.OE 
+   1/5        5        1    Pin   SRDY 
+   1          0        1    Pin   SRDY.OE 
+   5/1        5        1    Pin   St0.D 
+   1/1        1        1    Pin   St0.C 
+=========
+  34/31         Best P-Term Total: 26
+                       Total Pins: 28
+                      Total Nodes: 0
+            Average P-Term/Output: 0
+
+
+Equations:
+
+OE2 = (1);
+
+OE2.OE = (1);
+
+CLKBA = (0);
+
+CLKBA.OE = (1);
+
+OE1 = (1);
+
+OE1.OE = (1);
+
+IDEDIR = (0);
+
+IDEDIR.OE = (1);
+
+DIOR = (0);
+
+DIOR.OE = (1);
+
+CS0 = (1);
+
+CS0.OE = (1);
+
+MUX.D = (St0.Q
+     # MUX.Q
+     # !CAS.Q
+     # !DRAM.Q
+     # !RAS.Q);
+
+MUX.C = (Clock);
+
+CAS.D = (!St0.Q & !MUX.Q & CAS.Q & DRAM.Q & RAS.Q);
+
+CAS.C = (Clock);
+
+DRAM.D = (!St0.Q & !MUX.Q & CAS.Q & DRAM.Q & RAS.Q);
+
+DRAM.C = (Clock);
+
+DIOW = (0);
+
+DIOW.OE = (1);
+
+RAS.D = (!St0.Q & !MUX.Q & CAS.Q & DRAM.Q & RAS.Q);
+
+RAS.C = (Clock);
+
+XDCS = (1);
+
+XDCS.OE = (1);
+
+XCS = (1);
+
+XCS.OE = (1);
+
+SRDY = (!St0.Q & !MUX.Q & CAS.Q & DRAM.Q & RAS.Q);
+
+SRDY.OE = (1);
+
+St0.D = (St0.Q
+     # MUX.Q
+     # !CAS.Q
+     # !DRAM.Q
+     # !RAS.Q);
+
+St0.C = (Clock);
+
+
+Reverse-Polarity Equations:
+
+!OE2 = (0);
+
+!OE2.OE = (0);
+
+!CLKBA = (1);
+
+!CLKBA.OE = (0);
+
+!OE1 = (0);
+
+!OE1.OE = (0);
+
+!IDEDIR = (1);
+
+!IDEDIR.OE = (0);
+
+!DIOR = (1);
+
+!DIOR.OE = (0);
+
+!CS0 = (0);
+
+!CS0.OE = (0);
+
+!MUX.D = (!St0.Q & !MUX.Q & CAS.Q & DRAM.Q & RAS.Q);
+
+!MUX.C = (!Clock);
+
+!CAS.D = (St0.Q
+     # MUX.Q
+     # !CAS.Q
+     # !DRAM.Q
+     # !RAS.Q);
+
+!CAS.C = (!Clock);
+
+!DRAM.D = (St0.Q
+     # MUX.Q
+     # !CAS.Q
+     # !DRAM.Q
+     # !RAS.Q);
+
+!DRAM.C = (!Clock);
+
+!DIOW = (1);
+
+!DIOW.OE = (0);
+
+!RAS.D = (St0.Q
+     # MUX.Q
+     # !CAS.Q
+     # !DRAM.Q
+     # !RAS.Q);
+
+!RAS.C = (!Clock);
+
+!XDCS = (0);
+
+!XDCS.OE = (0);
+
+!XCS = (0);
+
+!XCS.OE = (0);
+
+!SRDY = (St0.Q
+     # MUX.Q
+     # !CAS.Q
+     # !DRAM.Q
+     # !RAS.Q);
+
+!SRDY.OE = (0);
+
+!St0.D = (!St0.Q & !MUX.Q & CAS.Q & DRAM.Q & RAS.Q);
+
+!St0.C = (!Clock);
+

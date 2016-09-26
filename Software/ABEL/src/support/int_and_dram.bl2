@@ -1,0 +1,135 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Sun Sep 25 18:26:38 2016
+#$ MODULE INT_DRAM
+#$ JEDECFILE int_dram
+#$ PINS 15 Clock:1 ENC:2 BTN:3 MCS3:4 MCS2:5 DTR:6 RESET:7 MUX:14 DRAM:15 CAS:16 RAS:17 INT0:18 INT3:19 DR0 DR1
+
+.model int_dram
+.inputs BTN.BLIF ENC.BLIF Clock.BLIF DR0.FB DR1.FB MUX.FB CAS.FB RAS.FB DRAM.FB \
+RESET.BLIF MCS3.BLIF MCS2.BLIF DTR.BLIF
+.outputs INT0 INT3 INT0.OE INT3.OE MUX.OE DRAM.OE CAS.OE RAS.OE DR0.C DR1.C \
+MUX.C CAS.C RAS.C DRAM.C DRAM.REG RAS.REG CAS.REG MUX.REG DR1.REG DR0.REG
+.names BTN.BLIF INT0
+0 1
+1 0
+.names ENC.BLIF INT3
+0 1
+1 0
+.names INT0.OE
+.names INT3.OE
+.names MUX.OE
+.names DRAM.OE
+.names CAS.OE
+.names RAS.OE
+.names DR0.FB DR1.FB MUX.FB CAS.FB RAS.FB DRAM.FB RESET.BLIF MCS3.BLIF \
+MCS2.BLIF DTR.BLIF DRAM.REG
+0-01111--- 1
+0-0111-0-- 1
+0-0001---- 1
+0-0111--1- 1
+0-0111---0 1
+01-101---- 1
+-00001---- 1
+00000----- 1
+0101-1---- 1
+0000-1---- 1
+-0-1--0101 0
+-0-10----- 0
+-1-01----- 0
+--10------ 0
+--1-1----- 0
+-1---0---- 0
+11-------- 0
+----10---- 0
+1----0---- 0
+1---1----- 0
+.names DR0.FB DR1.FB MUX.FB CAS.FB RAS.FB DRAM.FB RESET.BLIF MCS3.BLIF \
+MCS2.BLIF DTR.BLIF RAS.REG
+000111-0-- 1
+0001111--- 1
+0-0111--1- 1
+-00001---- 1
+010111---1 1
+0-0001---- 1
+-0--1-010- 0
+-1--1---00 0
+1---1----- 0
+---01----- 0
+11-------- 0
+---10----- 0
+-----0---- 0
+--1------- 0
+.names DR0.FB DR1.FB MUX.FB CAS.FB RAS.FB DRAM.FB RESET.BLIF MCS3.BLIF CAS.REG
+001100-- 1
+0-01111- 1
+010111-- 1
+011101-- 1
+-00001-- 1
+0-0111-1 1
+0-0001-- 1
+-0--1-00 0
+-01--1-- 0
+--0--0-- 0
+1--1---- 0
+--010--- 0
+-1---0-- 0
+11------ 0
+--10---- 0
+---01--- 0
+--1-1--- 0
+.names DR0.FB DR1.FB MUX.FB CAS.FB RAS.FB DRAM.FB RESET.BLIF MCS3.BLIF \
+MCS2.BLIF DTR.BLIF MUX.REG
+000111010- 1
+010111--00 1
+-0-----0-- 0
+-0----1--- 0
+--------1- 0
+-----0---- 0
+----0----- 0
+---0------ 0
+--1------- 0
+1--------- 0
+-1-------1 0
+.names DR0.FB DR1.FB MUX.FB CAS.FB RAS.FB DRAM.FB RESET.BLIF MCS3.BLIF \
+MCS2.BLIF DTR.BLIF DR1.REG
+0-01110100 1
+0101-1--00 1
+01-101---- 1
+010-01---- 1
+--10------ 0
+----1---1- 0
+---01----- 0
+--1-1----- 0
+-0-----0-- 0
+-0----1--- 0
+-0--0----- 0
+-----0---- 0
+1--------- 0
+----1----1 0
+.names DR0.FB DR1.FB MUX.FB CAS.FB RAS.FB DRAM.FB DR0.REG
+000000 1
+----1- 0
+---1-- 0
+--1--- 0
+-1---- 0
+1----- 0
+-----1 0
+.names Clock.BLIF DR0.C
+1 1
+0 0
+.names Clock.BLIF DR1.C
+1 1
+0 0
+.names Clock.BLIF MUX.C
+1 1
+0 0
+.names Clock.BLIF CAS.C
+1 1
+0 0
+.names Clock.BLIF RAS.C
+1 1
+0 0
+.names Clock.BLIF DRAM.C
+1 1
+0 0
+.end

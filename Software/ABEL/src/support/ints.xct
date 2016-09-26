@@ -1,0 +1,14 @@
+[Compiler Settings]
+Strategy = Delay
+Maximum GLB Inputs = 16
+Maximum GLB Outputs = 4
+Carry Pin Direction = FALSE
+Perform Timing Analysis = TRUE
+Ignore Reserved Pins = FALSE
+Minimize GLB Levels For All Paths = FALSE
+Case Sensitive = FALSE
+Effort = Mid
+Use Global Reset = TRUE
+UES Use Checksum as default = FALSE
+Parameter File = ints.par
+XPN File = ints.xpn

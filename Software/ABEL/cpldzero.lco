@@ -1,0 +1,95 @@
+[DEVICE]
+Family = plsi1k;
+PartNumber = ispLSI1016EA-125LJ44;
+PartType = ispLSI1016EA;
+Package = 44PLCC;
+Speed = 125;
+Operating_condition = COM;
+Default_Device_Io_Types = LVCMOS50,-;
+
+[REVISION]
+RCS = ;
+Parent = lc1k.lci;
+Design = cpldzero;
+DATE = 05/20/2016;
+TIME = 05:28:36;
+Source_Format = ;
+Type = ;
+Pre_Fit_Time = ;
+
+[IGNORE ASSIGNMENTS]
+
+[CLEAR ASSIGNMENTS]
+
+[BACKANNOTATE ASSIGNMENTS]
+
+[GLOBAL CONSTRAINTS]
+Security = Off;
+PULLUP = Up;
+Y1_AS_RESET = On;
+ISP = On;
+ISP_EXCEPT_Y2 = Off;
+OPENDRAIN = Off;
+SLEWRATE = Off;
+
+[FITTER REPORT FORMAT]
+
+[LOCATION ASSIGNMENTS]
+CLOCK = pin, 11, -, -, -;
+XDCS = pin, 30, -, -, -;
+XCS = pin, 32, -, -, -;
+ST0 = pin, 28, -, -, -;
+SRDY = pin, 41, -, -, -;
+RAS = pin, 22, -, -, -;
+OE2 = pin, 5, -, -, -;
+OE1 = pin, 9, -, -, -;
+MUX = pin, 18, -, -, -;
+IDEDIR = pin, 10, -, -, -;
+DRAM = pin, 20, -, -, -;
+DIOW = pin, 21, -, -, -;
+DIOR = pin, 15, -, -, -;
+CS0 = pin, 17, -, -, -;
+CLKBA = pin, 8, -, -, -;
+CAS = pin, 19, -, -, -;
+
+[PULLUP]
+Up = CLOCK, XDCS, XCS, ST0, SRDY, RAS, OE2, OE1, MUX, IDEDIR, DRAM, DIOW, DIOR, CS0, CLKBA, CAS; 
+
+[SLEWRATE]
+FAST = XDCS, XCS, ST0, SRDY, RAS, OE2, OE1, MUX, IDEDIR, DRAM, DIOW, DIOR, CS0, CLKBA, CAS; 
+
+[IO TYPES]
+XDCS = LVCMOS33, pin, -, -;
+XCS = LVCMOS33, pin, -, -;
+ST0 = LVCMOS33, pin, -, -;
+SRDY = LVCMOS33, pin, -, -;
+RAS = LVCMOS33, pin, -, -;
+OE2 = LVCMOS33, pin, -, -;
+OE1 = LVCMOS33, pin, -, -;
+MUX = LVCMOS33, pin, -, -;
+IDEDIR = LVCMOS33, pin, -, -;
+DRAM = LVCMOS33, pin, -, -;
+DIOW = LVCMOS33, pin, -, -;
+DIOR = LVCMOS33, pin, -, -;
+CS0 = LVCMOS33, pin, -, -;
+CLKBA = LVCMOS33, pin, -, -;
+CAS = LVCMOS33, pin, -, -;
+
+[OSM Bypass]
+
+[CLK]
+CLK0 = CLOCKX; 
+
+[PTSABYPASS]
+
+[Fitter Results]
+I/O_Pin_Util = 46;
+I/O_Pin = 15;
+Logic_PT_Util = 2;
+Logic_PT = 7;
+Logic_MC_Util = 17;
+Logic_MC = 11;
+Occupied_PT_Util = 2;
+Occupied_PT = 7;
+GLB_input_Util = 1;
+GLB_input = 3;

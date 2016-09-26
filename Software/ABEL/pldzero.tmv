@@ -1,0 +1,8 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ MODULE jukebox
+#$ TITLE Jukebox Display
+S8;
+DTR -> UD POTCS DISPE DSPRW DSPDIR DSPCS oSRDY 
+$
+0->0100101;
+$

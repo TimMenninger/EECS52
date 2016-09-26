@@ -1,0 +1,170 @@
+// Jed2vlog, ispLEVER version 2.00 
+// Header :
+//    File Name :
+//       pldzero 
+//    Circuit Name :
+//       Jukebox 
+//    Last Update :
+//       Thu Apr 28 17:37:16 2016
+//    Device Information :
+//       PLD Type P16V8R
+//    Delay Model Selected :TYP
+//    Jedec Information :
+//	ispLEVER Classic 2.0.00.17.20.15 Lattice Semiconductor Corp.
+//	JEDEC file for: P16V8R V9.0
+//	Created on: Thu Apr 28 17:36:03 2016
+//	
+//	Jukebox Display
+//	
+// endHeader
+
+
+// Delay Assigments
+`timescale 1ns /100ps
+//----------------------------------------------------------------------//
+//                                                                      //
+//              MAIN PLD NETLIST MODULE                                 //
+//                                                                      //
+//----------------------------------------------------------------------//
+
+module Jukebox(Clock,iSRDY,PCS6,PCS5,RESET,DTR,PIN07,PIN08,PIN09,PIN10,PIN11,
+             St0,UD,POTCS,DISPE,DSPRW,DSPCS,oSRDY,DSPDIR,PIN20);
+	inout St0, UD, POTCS, DISPE, DSPRW, DSPCS, oSRDY, DSPDIR;
+	input Clock, iSRDY, PCS6, PCS5, RESET, DTR, PIN07, PIN08, PIN09, PIN10
+             , PIN11, PIN20;
+	supply0 GND;
+	supply1 PWR;
+
+//Pin Assignments:
+//        PIN01 = Clock;
+//        PIN02 = iSRDY;
+//        PIN03 = PCS6;
+//        PIN04 = PCS5;
+//        PIN05 = RESET;
+//        PIN06 = DTR;
+//        PIN12 = St0;
+//        PIN13 = UD;
+//        PIN14 = POTCS;
+//        PIN15 = DISPE;
+//        PIN16 = DSPRW;
+//        PIN17 = DSPCS;
+//        PIN18 = oSRDY;
+//        PIN19 = DSPDIR;
+
+// Delay Parameters:
+//   TYP delay used
+parameter tpLH06 = 0:0:0;
+parameter tpHL06 = 0:0:0;
+parameter tpLH09 = 0:0:0;
+parameter tpHL09 = 0:0:0;
+parameter tpLH12 = 0:0:0;
+parameter tpHL12 = 0:0:0;
+parameter tpLH03 = 0:0:0;
+parameter tpHL03 = 0:0:0;
+parameter tpLH05 = 0:0:0;
+parameter tpHL05 = 0:0:0;
+parameter tpLH_inco_lump = 3:14:25;
+parameter tpHL_inco_lump = 3:14:25;
+parameter tpLH_oe = 20:20:20;
+parameter tpHL_oe = 20:20:20;
+parameter tpLH_oe_pterm = 20:20:20;
+parameter tpHL_oe_pterm = 20:20:20;
+parameter tpLH_fo_lump = 0:0:2;
+parameter tpHL_fo_lump = 0:0:2;
+
+//   Input Buffer:
+	andinv_Jukebox  CLOCK01( CLOCK01_o, CLOCK01_ob, Clock);
+	andinv_Jukebox  INBUF02( INBUF02_o, INBUF02_ob, iSRDY);
+	andinv_Jukebox  INBUF03( INBUF03_o, INBUF03_ob, PCS6);
+	andinv_Jukebox  INBUF04( INBUF04_o, INBUF04_ob, PCS5);
+	andinv_Jukebox  INBUF05( INBUF05_o, INBUF05_ob, RESET);
+	andinv_Jukebox  INBUF06( INBUF06_o, INBUF06_ob, DTR);
+	andinv_Jukebox  INBUF07( INBUF07_o, INBUF07_ob, PIN07);
+	andinv_Jukebox  INBUF08( INBUF08_o, INBUF08_ob, PIN08);
+	andinv_Jukebox  INBUF09( INBUF09_o, INBUF09_ob, PIN09);
+	andinv_Jukebox  #(tpLH_oe,tpHL_oe) ENABLE1( ENABLE1_o, ENABLE1_ob, PIN11);
+	andinv_Jukebox  INBUF13( INBUF13_o, INBUF13_ob, UD);
+	andinv_Jukebox  INBUF14( INBUF14_o, INBUF14_ob, POTCS);
+	andinv_Jukebox  INBUF15( INBUF15_o, INBUF15_ob, DISPE);
+	andinv_Jukebox  INBUF16( INBUF16_o, INBUF16_ob, DSPRW);
+	andinv_Jukebox  INBUF17( INBUF17_o, INBUF17_ob, DSPCS);
+	andinv_Jukebox  INBUF18( INBUF18_o, INBUF18_ob, oSRDY);
+	andinv_Jukebox  INBUF19( INBUF19_o, INBUF19_ob, DSPDIR);
+
+//   Product Terms (AND array):
+
+//   Sum Terms (OR arrray):
+	or  #(tpLH05,tpHL05) ST012( ST012_o, GND);
+	xor  #(tpLH06,tpHL06) XOR012( XOR012_o, ST012_o, PWR);
+
+//   Macro Cells:
+	dff_spar_Jukebox  OUTREG12( OUTREG12_o, OUTREG12_ob, XOR012_o, CLOCK01_o, GND, GND);
+
+//   Feedback Node:
+	andinv_Jukebox  NODE21( NODE21_o, NODE21_ob, OUTREG12_ob);
+
+//   Output Buffer:
+	notif1  #(tpLH_fo_lump,tpHL_fo_lump) OUTBUF12( St0, OUTREG12_o, ENABLE1_ob);
+	notif1  #(tpLH09,tpHL09) OUTBUF13( UD, GND, PWR);
+	notif1  #(tpLH09,tpHL09) OUTBUF14( POTCS, GND, PWR);
+	notif1  #(tpLH09,tpHL09) OUTBUF15( DISPE, GND, PWR);
+	notif1  #(tpLH09,tpHL09) OUTBUF16( DSPRW, GND, PWR);
+	notif1  #(tpLH09,tpHL09) OUTBUF17( DSPCS, GND, PWR);
+	notif1  #(tpLH09,tpHL09) OUTBUF18( oSRDY, GND, PWR);
+	notif1  #(tpLH09,tpHL09) OUTBUF19( DSPDIR, GND, PWR);
+endmodule
+/************************************************************************
+*                                                                       *
+*   MODULE: ANDINV                                                      *
+*     Input Buffer with dual outputs.                                   *
+*                                                                       *
+*************************************************************************/
+module andinv_Jukebox(out,outb,in);
+output out,outb;
+input  in;
+parameter tpLH_iob = 0:0:0; 
+parameter tpHL_iob = 0:0:0; 
+        
+   and #(tpLH_iob,tpHL_iob) n1(out,in);
+   not #(tpLH_iob,tpHL_iob) n2(outb,in);
+endmodule
+/************************************************************************
+*                                                                       *
+*   MODULE: DFF_SPAR :                                                     *
+*      Leading edge triggered DFF.                                      *
+*                                                                       *
+*************************************************************************/
+module dff_spar_Jukebox(q,qb,d,clk,pst_h,rst_h);
+   output q,qb;
+   input  d,clk,pst_h,rst_h;
+   wire   rst_pst;
+   reg    pst;
+initial
+   pst = 1'b0; 
+ 
+parameter pwrUpState = 0;
+parameter pwrUpDelay = 50;
+   dff_primitive_p0 DFF(q,data,clk,rst_h,pst);
+
+//  Leading edge triggered DFF 
+   or (data,d,pst_h);/* async preset gated with clock */
+ 
+   nand (qb,q);
+  
+   assign rst_pst = ~rst_h && ~pst_h;
+// Timing check
+specify
+specparam tpLH_co_lump = 2:7:12;
+specparam tpHL_co_lump = 2:7:12;
+specparam tpLH_ff_lump = 2:7:10;
+specparam tpHL_ff_lump = 2:7:10;
+specparam setup_ff_lump = 15:15:15;
+specparam hold_ff_lump = 0:0:0;
+specparam preset_ff_lump = 0:0:0;
+specparam reset_ff_lump = 0:0:0;
+   $setuphold(posedge clk &&& rst_pst, data &&& rst_pst, setup_ff_lump, hold_ff_lump);
+   (clk *> q) = (tpLH_ff_lump,tpHL_ff_lump);
+   (clk *> qb) = (tpLH_ff_lump,tpHL_ff_lump);
+endspecify
+endmodule
+//

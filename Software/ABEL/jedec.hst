@@ -1,0 +1,74 @@
+;Simulate ispLEVER Classic 2.0.00.17.20.15  Date: Thu Apr 28 17:38:30 2016
+[Times]
+Units=0
+Decimals=0
+
+[StateTables]
+TableCount=1
+Table0=ABEL
+
+[ABEL]
+StateCount=8 
+Level0=0
+ Color0=4
+ Code0=0
+ Name0=Low, input
+Level1=1
+ Color1=4
+ Code1=1
+ Name1=High, input
+Level2=2
+ Color2=1
+ Code2=X
+ Name2=Don't Care
+Level3=2
+ Color3=2
+ Code3=Z
+ Name3=Hi-Z
+Level4=0
+ Color4=4
+ Code4=L
+ Name4=Low, output
+Level5=1
+ Color5=4
+ Code5=H
+ Name5=High,output
+Level6=3
+ Color6=4
+ Code6=C
+ Name6=Clock
+Level7=3
+ Color7=4
+ Code7=K
+ Name7=Klunk
+
+[NameRules]
+Language=
+LeadingInstancePrefix=No
+RootNets=NoPrefix
+InstanceSeparator=.
+NetSeparator=.
+BusParentheses=[:]
+
+[Names]
+Namecount=28
+1=L 0 Clock
+2=L 0 iSRDY
+3=L 0 PCS6
+4=L 0 PCS5
+5=L 0 RESET
+6=L 0 DTR
+12=L 0 St0
+13=L 0 UD
+14=L 0 POTCS
+15=L 0 DISPE
+16=L 0 DSPRW
+17=L 0 DSPCS
+18=L 0 oSRDY
+19=L 0 DSPDIR
+
+[Data]
+0=Time 0
+1=L 1 0  2 0  3 0  4 0  5 0  6 0  7 0  8 0  9 0  10 0  11 0  12 5  13 4  14 5  15 4  16 4  17 4  18 5  19 5  20 0  21 1  
+2=L 22 0  23 0  24 0  25 0  26 0  27 0  28 0  
+3=Time 101

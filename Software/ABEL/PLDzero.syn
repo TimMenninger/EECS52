@@ -1,0 +1,11 @@
+JDF B
+// Created by Version 2.0 
+PROJECT PLDzero
+DESIGN pldzero Normal
+DEVKIT GAL16V8D-25LP
+ENTRY ABEL/Schematic
+MODULE pldzero.abl
+MODSTYLE PLDzero Normal
+SYNTHESIS_TOOL Synplify
+SIMULATOR_TOOL ActiveHDL
+TOPMODULE PLDzero

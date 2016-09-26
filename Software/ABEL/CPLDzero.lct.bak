@@ -1,0 +1,77 @@
+
+[Device]
+Family = plsi1k;
+PartNumber = ispLSI1016-80LJ44;
+Package = 44PLCC;
+PartType = ispLSI1016;
+Speed = 80;
+Operating_condition = COM;
+Status = Obsolete;
+
+[Revision]
+Parent = lc1k.lci;
+DATE = 04/28/2016;
+TIME = 13:59:41;
+Source_Format = ABEL_Schematic;
+Synthesis = Synplify;
+
+[Ignore Assignments]
+
+[Clear Assignments]
+
+[Backannotate Assignments]
+
+[Global Constraints]
+
+[Location Assignments]
+layer = OFF;
+OE2 = pin, 5, -, -;
+CLKBA = pin, 8, -, -;
+OE1 = pin, 9, -, -;
+IDEDIR = pin, 10, -, -;
+Clock = pin, 11, -, -;
+DIOR = pin, 15, -, -;
+CS0 = pin, 17, -, -;
+MUX = pin, 18, -, -;
+CAS = pin, 19, -, -;
+DRAM = pin, 20, -, -;
+DIOW = pin, 21, -, -;
+RAS = pin, 22, -, -;
+XDCS = pin, 30, -, -;
+XCS = pin, 32, -, -;
+SRDY = pin, 41, -, -;
+
+[Group Assignments]
+layer = OFF;
+
+[Resource Reservations]
+layer = OFF;
+
+[Fitter Report Format]
+
+[Power]
+
+[Source Constraint Option]
+
+[Fast Bypass]
+
+[OSM Bypass]
+
+[Input Registers]
+
+[Netlist/Delay Format]
+
+[IO Types]
+layer = OFF;
+
+[Pullup]
+
+[Slewrate]
+
+[Region]
+
+[Timing Constraints]
+
+[HSI Attributes]
+
+[Input Delay]

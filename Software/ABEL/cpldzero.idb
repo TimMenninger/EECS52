@@ -1,0 +1,28 @@
+1 2.0.00.17.20.15
+-i c:\users\tim\desktop\classes\eecs52\software\abel\cpldzero.laf -if laf -p ispLSI1016EA-125LJ44 -of vhdl -of verilog -s d -e 2 -z -m 16 -n 4 -ta on -y c:\users\tim\desktop\classes\eecs52\software\abel\CPLDzero.xpn -r c:\users\tim\desktop\classes\eecs52\software\abel\ispxpert.par 
+c:\users\tim\desktop\classes\eecs52\software\abel\ispxpert.par 1463747306 Fri May 20 05:28:26 2016
+cpldzero.ppn 1463747315 Fri May 20 05:28:35 2016
+cpldzero.fxp 1463747315 Fri May 20 05:28:35 2016
+c:\users\tim\desktop\classes\eecs52\software\abel\cpldzero.laf 1463747305 Fri May 20 05:28:25 2016
+>  c:\users\tim\desktop\classes\eecs52\software\abel\CPLDzero.xpn
+// PART: 	ispLSI1016EA-125LJ44
+// FORMAT: 	PINNAME		PINTYPE	LOCK	PULLUP	SLOWSLEW	OPENDRAIN	OUTDELAY	VOLTAGE	CRIT
+		OE2			-		5	-1		-1		-1		-1		-1		-1
+		CLKBA			-		8	-1		-1		-1		-1		-1		-1
+		OE1			-		9	-1		-1		-1		-1		-1		-1
+		IDEDIR		-		10	-1		-1		-1		-1		-1		-1
+		Clock			-		11	-1		-1		-1		-1		-1		-1
+		DIOR			-		15	-1		-1		-1		-1		-1		-1
+		CS0			-		17	-1		-1		-1		-1		-1		-1
+		MUX			-		18	-1		-1		-1		-1		-1		-1
+		CAS			-		19	-1		-1		-1		-1		-1		-1
+		DRAM			-		20	-1		-1		-1		-1		-1		-1
+		DIOW			-		21	-1		-1		-1		-1		-1		-1
+		RAS			-		22	-1		-1		-1		-1		-1		-1
+		XDCS			-		30	-1		-1		-1		-1		-1		-1
+		XCS			-		32	-1		-1		-1		-1		-1		-1
+		SRDY			-		41	-1		-1		-1		-1		-1		-1
+
+// FORMAT: 	NETNAME		CLK		PRESERVE	ECP	GROUP		XOR	ELP	ETP
+
+// FORMAT: 	SYMNAME		PROTECT	REGTYPE

@@ -1,0 +1,36 @@
+// Verilog Netlist created  by Lattice Semiconductor Corp. 
+// All Rights reserved.
+// date     : Sun Sep 25 19:08:17 2016
+`timescale 10 ps / 10 ps 
+module ints(
+	INT3, INT0, ENC, BTN);
+
+	output INT3;
+	output INT0;
+	input ENC;
+	input BTN;
+
+	supply0 GND;
+PGBUFI GLB_A6_P4 (.Z0(A6_P4), .A0(A6_IN14));
+PGBUFI GLB_A6_P0 (.Z0(A6_P0), .A0(A6_IN15));
+PGBUFI GLB_A6_G1 (.Z0(A6_G1), .A0(GND));
+PGBUFI GLB_A6_G0 (.Z0(A6_G0), .A0(GND));
+PGBUFI GLB_A6_P0_xa (.Z0(A6_P0_xa), .A0(A6_P0));
+PGBUFI GLB_BUF_673 (.Z0(BUF_673), .A0(A6_X3O));
+PGBUFI GLB_A6_P4_xa (.Z0(A6_P4_xa), .A0(A6_P4));
+PGBUFI GLB_BUF_675 (.Z0(BUF_675), .A0(A6_X2O));
+PGBUFI GLB_A6_IN14 (.Z0(A6_IN14), .A0(ENCX_grp));
+PGBUFI GLB_A6_IN15 (.Z0(A6_IN15), .A0(BTNX_grp));
+PGXOR2 GLB_A6_X3O (.Z0(A6_X3O), .A1(A6_P0_xa), .A0(A6_G0));
+PGXOR2 GLB_A6_X2O (.Z0(A6_X2O), .A1(A6_P4_xa), .A0(A6_G1));
+PXIN IOC_IO30_IBUFO (.Z0(IO30_IBUFO), .XI0(ENC));
+PXIN IOC_IO31_IBUFO (.Z0(IO31_IBUFO), .XI0(BTN));
+PXOUT IOC_INT3 (.XO0(INT3), .A0(IO10_OBUFI));
+PGINVI IOC_IO10_OBUFI (.ZN0(IO10_OBUFI), .A0(BUF_675_iomux));
+PXOUT IOC_INT0 (.XO0(INT0), .A0(IO11_OBUFI));
+PGINVI IOC_IO11_OBUFI (.ZN0(IO11_OBUFI), .A0(BUF_673_iomux));
+PGBUFI GRP_BUF_675_iomux (.Z0(BUF_675_iomux), .A0(BUF_675));
+PGBUFI GRP_BUF_673_iomux (.Z0(BUF_673_iomux), .A0(BUF_673));
+PGBUFI GRP_BTNX_grp (.Z0(BTNX_grp), .A0(IO31_IBUFO));
+PGBUFI GRP_ENCX_grp (.Z0(ENCX_grp), .A0(IO30_IBUFO));
+endmodule

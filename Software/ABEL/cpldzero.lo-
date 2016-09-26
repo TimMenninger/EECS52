@@ -1,0 +1,72 @@
+ispEXPERT Compiler Release 2.0.00.17.20.15, May 20 2002 13:06:40
+
+Copyright (C) 1994-2000 by Lattice Semiconductor Corporation.
+All Rights Reserved.
+
+
+Design Process Management 
+
+Renaming existing log file to cpldzero.lo-
+Renaming existing parameter file to cpldzero.pa-
+Renaming existing rpt file to cpldzero.rp-
+
+Preprocessing design 'cpldzero'...
+
+
+PLA Reading and Translation 
+  
+Reading design 'cpldzero'... 
+  
+Checking design rules... 
+31544 WARNING: Pin 'PCS4' is declared but not used; pin 'PCS4' is 
+      removed 
+31544 WARNING: Pin 'PCS3' is declared but not used; pin 'PCS3' is 
+      removed 
+31544 WARNING: Pin 'PCS2' is declared but not used; pin 'PCS2' is 
+      removed 
+31544 WARNING: Pin 'A0' is declared but not used; pin 'A0' is removed 
+31544 WARNING: Pin 'MP3CLK' is declared but not used; pin 'MP3CLK' is 
+      removed 
+31544 WARNING: Pin 'ALE' is declared but not used; pin 'ALE' is removed 
+31544 WARNING: Pin 'MCS3' is declared but not used; pin 'MCS3' is 
+      removed 
+31544 WARNING: Pin 'DEN' is declared but not used; pin 'DEN' is removed 
+31544 WARNING: Pin 'DTR' is declared but not used; pin 'DTR' is removed 
+31544 WARNING: Pin 'MCS1' is declared but not used; pin 'MCS1' is 
+      removed 
+31544 WARNING: Pin 'MCS0' is declared but not used; pin 'MCS0' is 
+      removed 
+31544 WARNING: Pin 'MCS2' is declared but not used; pin 'MCS2' is 
+      removed 
+31543 WARNING: Signal 'PCS4' in attribute 'LOCK PCS4' is not declared; 
+       attribute 'LOCK PCS4' is ignored 
+31543 WARNING: Signal 'PCS3' in attribute 'LOCK PCS3' is not declared; 
+       attribute 'LOCK PCS3' is ignored 
+31543 WARNING: Signal 'PCS2' in attribute 'LOCK PCS2' is not declared; 
+       attribute 'LOCK PCS2' is ignored 
+31543 WARNING: Signal 'A0' in attribute 'LOCK A0' is not declared; 
+       attribute 'LOCK A0' is ignored 
+31543 WARNING: Signal 'MP3CLK' in attribute 'LOCK MP3CLK' is not 
+      declared;  attribute 'LOCK MP3CLK' is ignored 
+31543 WARNING: Signal 'ALE' in attribute 'LOCK ALE' is not declared; 
+       attribute 'LOCK ALE' is ignored 
+31543 WARNING: Signal 'MCS3' in attribute 'LOCK MCS3' is not declared; 
+       attribute 'LOCK MCS3' is ignored 
+31543 WARNING: Signal 'DEN' in attribute 'LOCK DEN' is not declared; 
+       attribute 'LOCK DEN' is ignored 
+31543 WARNING: Signal 'DTR' in attribute 'LOCK DTR' is not declared; 
+       attribute 'LOCK DTR' is ignored 
+31543 WARNING: Signal 'MCS1' in attribute 'LOCK MCS1' is not declared; 
+       attribute 'LOCK MCS1' is ignored 
+31543 WARNING: Signal 'MCS0' in attribute 'LOCK MCS0' is not declared; 
+       attribute 'LOCK MCS0' is ignored 
+31543 WARNING: Signal 'MCS2' in attribute 'LOCK MCS2' is not declared; 
+       attribute 'LOCK MCS2' is ignored 
+  
+Writing output files(ddf)... 
+  
+Writing output files(laf)... 
+  
+PLA reading and translation completed successfully 
+
+
