@@ -156,8 +156,6 @@ InstallINTHandlers  ENDP
 InitIVT				PROC    NEAR
 			   		PUBLIC  InitIVT
 
-	XOR		CX, CX			;Will be iteration counter
-
 InitINT0Vector:
 	MOV     DX, INT0Cntrl	 ;setup the INT0 interrupt control register
 	MOV     AX, INT0CtrlrCVal;set up priority

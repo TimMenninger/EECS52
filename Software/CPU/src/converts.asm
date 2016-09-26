@@ -45,7 +45,7 @@ CODE	SEGMENT PUBLIC 'CODE'
         ASSUME  CS:CGROUP
 
 
-$INCLUDE (CONVERTS.INC)					;constants related to Dec2String and Hex2String
+$INCLUDE (src\converts.inc) ;constants related to Dec2String and Hex2String
 
 
 

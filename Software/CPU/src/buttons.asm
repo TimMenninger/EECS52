@@ -51,6 +51,7 @@ CODE    SEGMENT PUBLIC 'CODE'
 
 
 $INCLUDE(src\buttons.inc)           ;Constants related to buttons
+$INCLUDE(src\intrpts.inc)           ;Constants for the interrupts buttons drive
 $INCLUDE(src\queues.inc)            ;Contains the queue struct used for buttons
 
 
@@ -201,6 +202,9 @@ EnqueueButtonCode:              ;Enqueues the button code corresponding to iter
     LOOP    CheckButton		    ;Check next button
 
 DoneButtonHandler:              ;Wrap up process
+	MOV     DX, INTCtrlrEOI     ;EOI control register address
+	MOV     AX, ButtonEOI       ;End of interrupt value
+	OUT     DX, AX			    ;write end of interrupt
     POPA                        ;Restore registers
     IRET
 

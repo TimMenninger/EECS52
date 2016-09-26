@@ -55,6 +55,9 @@ JUKEOBJS= buttons.obj \
 		  irqvects.obj \
           ivt.obj \
           queues.obj \
+          converts.obj \
+          display.obj \
+          timers.obj \
 		  main.obj
 
 
@@ -66,18 +69,21 @@ JUKEOBJS= buttons.obj \
 LNKOBJS1= $(OBJDIR)\encoder.obj, \
           $(OBJDIR)\queues.obj, \
           $(OBJDIR)\buttons.obj, \
-          $(OBJDIR)\lib188.obj, \
-		  $(OBJDIR)\simide.obj, \
-		  $(OBJDIR)\fatutil.obj
-LNKOBJS2= $(OBJDIR)\keyupdat.obj, \
+          $(OBJDIR)\converts.obj, \
+          $(OBJDIR)\display.obj, \
+          $(OBJDIR)\lib188.obj
+LNKOBJS2= $(OBJDIR)\simide.obj, \
+		  $(OBJDIR)\fatutil.obj, \
+          $(OBJDIR)\keyupdat.obj, \
           $(OBJDIR)\trakutil.obj, \
-		  $(OBJDIR)\ffrev.obj, \
-          $(OBJDIR)\playmp3.obj, \
-		  $(OBJDIR)\stubfncs.obj
-LNKOBJS3= $(OBJDIR)\mainloop.obj, \
+          $(OBJDIR)\ffrev.obj
+LNKOBJS3= $(OBJDIR)\playmp3.obj, \
+		  $(OBJDIR)\stubfncs.obj, \
+          $(OBJDIR)\mainloop.obj, \
           $(OBJDIR)\chipslct.obj, \
-          $(OBJDIR)\irqvects.obj, \
-          $(OBJDIR)\ivt.obj, \
+          $(OBJDIR)\irqvects.obj
+LNKOBJS4= $(OBJDIR)\ivt.obj, \
+          $(OBJDIR)\timers.obj, \
           $(OBJDIR)\main.obj
 # ROMOBJS= c0smrom.obj $(SYSOBJS)
 
@@ -89,12 +95,10 @@ juke: $(JUKEOBJS) $(GLENOBJS)
 	$(LINK) $(LNKOBJS1) to $(EXENAME)1.lnk
 	$(LINK) $(EXENAME)1.lnk, $(LNKOBJS2) to $(EXENAME)2.lnk
 	$(LINK) $(EXENAME)2.lnk, $(LNKOBJS3) to $(EXENAME)3.lnk
-    $(LINK) $(EXENAME)3.lnk, $(GLENDIR)\ic86.lib to $(EXENAME).lnk
+    $(LINK) $(EXENAME)3.lnk, $(LNKOBJS4) to $(EXENAME)4.lnk
+    $(LINK) $(EXENAME)4.lnk, $(GLENDIR)\ic86.lib to $(EXENAME).lnk
 	$(LOC) $(EXENAME).lnk $(LOCFLAGS)
-    del $(EXENAME).lnk
-    del $(EXENAME)1.lnk
-    del $(EXENAME)2.lnk
-    del $(EXENAME)3.lnk
+    make organize
 
 
 # Target for building ROM version of code
@@ -169,13 +173,16 @@ lib188.obj	 : $(GLENDIR)\lib188.asm
 
 # Targets for Jukebox Code (Created by me)
 
-irqvects.obj : $(SRCDIR)\irqvects.asm $(SRCDIR)\irqvects.inc
+irqvects.obj : $(SRCDIR)\irqvects.asm $(SRCDIR)\intrpts.inc
 	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
 
 chipslct.obj : $(SRCDIR)\chipslct.asm $(SRCDIR)\chipslct.inc
 	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
 
-ivt.obj      : $(SRCDIR)\ivt.asm $(SRCDIR)\ivt.inc
+ivt.obj      : $(SRCDIR)\ivt.asm $(SRCDIR)\intrpts.inc
+	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
+
+timers.obj   : $(SRCDIR)\timers.asm $(SRCDIR)\intrpts.inc
 	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
 
 queues.obj   : $(SRCDIR)\queues.asm $(SRCDIR)\queues.inc
@@ -185,6 +192,12 @@ buttons.obj  : $(SRCDIR)\buttons.asm $(SRCDIR)\buttons.inc
 	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
 
 encoder.obj  : $(SRCDIR)\encoder.asm $(SRCDIR)\encoder.inc
+	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
+
+converts.obj : $(SRCDIR)\converts.asm $(SRCDIR)\converts.inc
+	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
+
+display.obj  : $(SRCDIR)\display.asm $(SRCDIR)\display.inc
 	$(ASM) $(SRCDIR)\$(@,.obj=.asm) $(ASMFLAGS) object($(OBJDIR)\$@)
 
 main.obj	 : $(SRCDIR)\main.asm

@@ -91,6 +91,7 @@ int  getkey()
 
 /* display functions  */
 
+/*
 void  display_time(unsigned int t)
 {
     return;
@@ -110,7 +111,7 @@ void  display_artist(const char far *a)
 {
     return;
 }
-
+*/
 
 
 /* IDE interface function */

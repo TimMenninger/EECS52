@@ -39,6 +39,7 @@ CODE    SEGMENT PUBLIC 'CODE'
 
 
 $INCLUDE(src\encoder.inc)           ;Constants related to buttons
+$INCLUDE(src\intrpts.inc)           ;Constants used for encoder interrupts
 
 ;
 ;InitEncoder
@@ -83,6 +84,7 @@ ReadInitialState:
 	XOR		AX, AX				;clear high byte because reading only byte
 	IN		AL, DX				;read encoder state
 	MOV		EncoderState, AL	;store encoder state
+    RET
 
 InitEncoder		ENDP
 
@@ -168,6 +170,9 @@ HandleCounterclockwise:
 	JMP		EncoderHandled
 
 EncoderHandled:
+	MOV     DX, INTCtrlrEOI     ;EOI control register address
+	MOV     AX, EncoderEOI      ;End of interrupt value
+	OUT     DX, AX			    ;write end of interrupt
 	POPA
 	IRET
 

@@ -74,11 +74,15 @@ CODE    SEGMENT  WORD  PUBLIC  'CODE'
 		EXTRN	InitIVT:NEAR			;Initializes interrupt vector table
 		EXTRN	InitButtons:NEAR		;Initializes buttonpress queue
 		EXTRN	InitEncoder:NEAR		;Initializes encoder state variable
+        EXTRN   InitDisplay:NEAR        ;Clears display
+        EXTRN   InitTimer:NEAR          ;Initializes timer
         EXTRN	main:NEAR				;Main loop provided by Glen
 
 
 Start:
 
+        CLI
+        
         MOV     AX, DGROUP              ;initialize the stack pointer
         MOV     SS, AX
         MOV     SP, OFFSET(TopOfStack)
@@ -89,8 +93,12 @@ Start:
         CALL    InitCS                  ;initialize chip selects
         CALL    InitIRQ                 ;initialize and clear IRQ vectors
 		CALL	InitIVT					;Initializes interrupt vector table
+        CALL    InitTimer               ;Initializes timer 0
 		CALL	InitButtons				;Initializes buttonpress queue
 		CALL	InitEncoder				;Initializes encoder state variable
+        CALL    InitDisplay             ;Clears display and local cache
+        
+        STI
 
         CALL    main					;call main loop provided by Glen
 

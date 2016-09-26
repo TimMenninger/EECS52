@@ -39,6 +39,8 @@ CODE    SEGMENT PUBLIC 'CODE'
 
         ASSUME  CS:CGROUP, DS:DGROUP
 
+        EXTRN   Dec2String:NEAR  ;Converts int to decimal representation of string
+
 
 
 $INCLUDE(src\display.inc)           ;Constants related to buttons
@@ -105,27 +107,29 @@ ClearDisplay:
 	OUT		DX, AL					;clear display (utilizes CPLD)
 
 SendSpecialCharacters:				;puts special characters in display's CGRAM
+    MOV     DL, PIXEL_HEIGHT        ;used as offset scalar, needs to be in reg for MUL
+    
 	LEA		SI, RightFacingTriangle	;get pixel value table to load into CGRAM
 	MOV		AX, RF_TRI_IDX			;get the index of character
-	MUL		PIXEL_HEIGHT			;scale offset according to character size
+	MUL		DL			            ;scale offset according to character size
 	MOV		BX, AX					;put offset in BX for argument
 	CALL	InitSpecialCharacter	;place the character in CGRAM
 
 	LEA		SI, LeftFacingTriangle	;get pixel value table to load into CGRAM
 	MOV		AX, LF_TRI_IDX			;get the index of character
-	MUL		PIXEL_HEIGHT			;scale offset according to character size
+	MUL		DL			            ;scale offset according to character size
 	MOV		BX, AX					;put offset in BX for argument
 	CALL	InitSpecialCharacter	;place the character in CGRAM
 
 	LEA		SI, Square				;get pixel value table to load into CGRAM
 	MOV		AX, SQUARE_IDX			;get the index of character
-	MUL		PIXEL_HEIGHT			;scale offset according to character size
+	MUL		DL			            ;scale offset according to character size
 	MOV		BX, AX					;put offset in BX for argument
 	CALL	InitSpecialCharacter	;place the character in CGRAM
 
 	LEA		SI, Bars				;get pixel value table to load into CGRAM
 	MOV		AX, BARS_IDX			;get the index of character
-	MUL		PIXEL_HEIGHT			;scale offset according to character size
+	MUL		DL			            ;scale offset according to character size
 	MOV		BX, AX					;put offset in BX for argument
 	CALL	InitSpecialCharacter	;place the character in CGRAM
 
@@ -174,10 +178,12 @@ InitDisplay      ENDP
 BlockDisplay	PROC		NEAR
 				PUBLIC		BlockDisplay
 
-	PUSH	AX
+	RET
+    PUSH	AX
 
 WaitForDoneLoop:					;loops until display not busy
-	IN		AL, CMD_DISPLAY_PORT	;read display register containing busy flag
+    MOV     DX, CMD_DISPLAY_PORT    ;prepare to read from display
+	IN		AX, DX                  ;read display register containing busy flag
 	TEST	AL, BUSY_FLAG_MASK		;set zero flag if not busy
 	JNZ		WaitForDoneLoop			;loop while still waiting for not busy
 
@@ -231,9 +237,10 @@ PlaceCharacter	PROC		NEAR
 
 SetDDRAMAddress:					;tell display data will be a character to display
 	MOV		BX, [BP+6]				;get character location from argument list
-	MOV		DX, CharOffsetTable[BX]	;get address offset for char location
-	MOV		AX, DDRAM_BASE_ADDR		;base address of display's character DDRAM
-	OR		AX, DX					;combine base address and location offset
+    LEA     SI, CharOffsetTable     ;using address/offset because asm86 is being weird
+    XOR     AX, AX                  ;clear AX to cast byte to word
+    MOV     AL, BYTE PTR [SI+BX]    ;get location offset
+	ADD		AX, DDRAM_BASE_ADDR		;combine offset and base address of display DDRAM
 
 	MOV		DX, CMD_DISPLAY_PORT	;address to send command to display
 	CALL	BlockDisplay			;wait until display not busy
@@ -241,7 +248,7 @@ SetDDRAMAddress:					;tell display data will be a character to display
 
 SendCharacter:
 	MOV		AX, [BP+4]				;get character from arguments
-	MOV		Displaying[BX], AX		;put the new character in the table
+	MOV		Displaying[BX], AL		;put the new character in the table
 	MOV		DX, DISPLAY_PORT		;get address of display to send character
 	CALL	BlockDisplay			;block until character successfully sent
 	OUT		DX, AX					;send character
@@ -316,7 +323,9 @@ PutCharacter:
 	CMP		DX, 0					;when null reached, string is done
 	JZ		StringPlaced			;done when null reached
 
-	MOV		AX, Displaying[SI]		;get character currently on display
+
+    XOR     AX, AX                  ;clear high byte before writing low byte
+	MOV		AL, Displaying[SI]		;get character currently on display
 	CMP		AX, DX					;check whether next character is already there
 	JZ		PutCharacter			;skip character if already there
 
@@ -416,7 +425,7 @@ display_time	PROC		NEAR
 	MOV		BP, SP					;store original stack pointer
 
 	PUSH	SI						;save callee-saved register
-	LEA		SI, Title				;get address of buffer to fill it
+	LEA		SI, Song				;get address of buffer to fill it
 
 RemoveTenthOfSecond:
 	MOV		AX, 10					;remove tenths from time
@@ -438,7 +447,7 @@ BuildTimeString:
 	CALL	Dec2String				;load seconds string into time buffer
 
 	SUB		SI, TIME_SIZE-DEC2STR_CHARS;move SI back to beginning of buffer
-	MOV		SI[COLON_IDX], ':'		;put colon into time buffer
+	MOV		BYTE PTR [SI+COLON_IDX], ':';put colon into time buffer
 
 	POP		AX						;restore minutes value
 	CALL	Dec2String				;place minutes string into time buffer
@@ -449,10 +458,10 @@ RemoveLeadingZeroes:
 	CMP		BX, MINUTE_SIZE-1		;don't want to remove last zero if minutes were zero
 	JZ		DoneTimeString
 
-	CMP		SI[BX], '0'				;if leading zero, replace with space
+	CMP		BYTE PTR [SI+BX], '0'   ;if leading zero, replace with space
 	JNZ		DoneTimeString			;if not a zero, no more leading zeroes
 
-	MOV		SI[BX], ' '				;clear the buffer character
+	MOV		BYTE PTR [SI+BX], ' '   ;clear the buffer character
 	INC		BX
 	JMP		RemoveLeadingZeroes
 
@@ -469,7 +478,7 @@ display_time	ENDP
 display_status	PROC		NEAR
 				PUBLIC		display_status
 
-	NOP
+	RET
 
 display_status	ENDP
 
@@ -478,7 +487,7 @@ display_status	ENDP
 display_title	PROC		NEAR
 				PUBLIC		display_title
 
-	NOP
+	RET
 
 display_title	ENDP
 
@@ -487,7 +496,7 @@ display_title	ENDP
 display_artist	PROC		NEAR
 				PUBLIC		display_artist
 
-	NOP
+	RET
 
 display_artist	ENDP
 
@@ -685,7 +694,7 @@ CODE    ENDS
 DATA    SEGMENT PUBLIC  'DATA'
 
     Displaying	DB	DISPLAY_SIZE	DUP(?) 	;array of characters being displayed
-	Title		DB	TITLE_SIZE		DUP(?)	;buffer for writing song title
+	Song		DB	TITLE_SIZE		DUP(?)	;buffer for writing song title
 	Artist		DB	ARTIST_SIZE		DUP(?)	;buffer for writing artist
 	Time		DB	TIME_SIZE		DUP(?)	;buffer for writing time
 	Status		DB	STATUS_SIZE		DUP(?)	;buffer for displaying status
