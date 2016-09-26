@@ -1,4 +1,5 @@
 BTN		i
 ENC		i
+Clock		i
 INT0		o
 INT3		o

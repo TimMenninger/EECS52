@@ -236,3 +236,131 @@ if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj i
 
 ########## Tcl recorder end at 09/25/16 19:08:08 ###########
 
+
+########## Tcl recorder starts at 09/25/16 20:39:00 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"ints.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 09/25/16 20:39:00 ###########
+
+
+########## Tcl recorder starts at 09/25/16 20:39:24 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"ints.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 09/25/16 20:39:24 ###########
+
+
+########## Tcl recorder starts at 09/25/16 20:39:48 ##########
+
+# Commands to make the Process: 
+# Hierarchy
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"ints.abl\" -ojhd only -def _PLSI_ _LATTICE_  -err automake.err"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 09/25/16 20:39:48 ###########
+
+
+########## Tcl recorder starts at 09/25/16 20:39:51 ##########
+
+# Commands to make the Process: 
+# Fit Design
+if [runCmd "\"$cpld_bin/ahdl2blf\" \"ints.abl\" -mod ints -ojhd compile -prj ints -def _PLSI_ _LATTICE_  -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" \"ints.bl0\" -red bypin choose -collapse -pterms 8 -family -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblflink\" \"ints.bl1\" -o \"ints.bl2\" -omod ints -propadd -family PLSI -ues ints.ues -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/iblifopt\" ints.bl2 -red bypin choose -sweep -collapse all -pterms 8 -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/idiofft\" -i ints.bl3 -o ints.tt2 -propadd -idev PLSI -dev pla_basic -pla -err automake.err "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i ints.tt2 -if pla -p ispLSI1016EA-125LJ44 -pre "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$install_dir/ispcomp/bin/impsrclever\" -prj ints -log ints.irs "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/syndpm\" -i ints.laf -if laf -p ispLSI1016EA-125LJ44 -pd \"$proj_dir\"  -of vhdl -of verilog"] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+if [runCmd "\"$cpld_bin/synsvf\" -exe \"$install_dir/ispvmsystem/ispufw\" -prj ints -if ints.jed -j2s -log ints.svl "] {
+	return
+} else {
+	vwait done
+	if [checkResult $done] {
+		return
+	}
+}
+
+########## Tcl recorder end at 09/25/16 20:39:52 ###########
+

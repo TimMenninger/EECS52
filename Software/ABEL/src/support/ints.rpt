@@ -34,7 +34,7 @@ SLOWSLEW:                       OFF
 
 Number of Critical Pins:        0
 Number of Free Pins:            0
-Number of Locked Pins:          4
+Number of Locked Pins:          5
 Number of Reserved Pins:        0
 
 
@@ -43,6 +43,7 @@ Input Pins
     Pin Name                Pin Attribute
 
         BTN                     LOCK 10, PULLUP
+        CLOCK                   LOCK 11, PULLUP
         ENC                     LOCK 9, PULLUP
 
 
@@ -75,7 +76,7 @@ Number of Locked Bidi's:        0
 
 Number of CRIT Outputs:         0
 Number of Global OEs:           0
-Number of External Clocks:      0
+Number of External Clocks:      1
 
 
 GLB Utilization (Out of 16):	6%
@@ -98,7 +99,7 @@ GLBs with  2 Output(s):         1
 Average Outputs per GLB:        2.00
 
 
-Number of GLB Registers:        0
+Number of GLB Registers:        2
 Number of IOC Registers:        0
 
 
@@ -117,10 +118,10 @@ GLB glb00, A6
     2 Input(s)
         (BTN.O, BTNX, I15), (ENC.O, ENCX, I14)
     2 Output(s)
-        (BUF_675, O2), (BUF_673, O3)
+        (INT3_Q, O2), (INT0_Q, O3)
     2 Product Term(s)
 
-    Output BUF_675
+    Output INT3_Q
 
         1 Input(s)
             ENCX
@@ -129,9 +130,10 @@ GLB glb00, A6
         1 Product Term(s)
         1 GLB Level(s)
 
-        BUF_675 = ENCX
-
-    Output BUF_673
+        INT3_Q.D = !ENCX
+        INT3_Q.C = CLOCKX
+        INT3_Q.R = 
+    Output INT0_Q
 
         1 Input(s)
             BTNX
@@ -140,14 +142,22 @@ GLB glb00, A6
         1 Product Term(s)
         1 GLB Level(s)
 
-        BUF_673 = BTNX
-
+        INT0_Q.D = !BTNX
+        INT0_Q.C = CLOCKX
+        INT0_Q.R = 
 
 Input BTN, IO31
 
     Output BTNX
         1 Fanout(s)
             glb00.I15
+
+
+Clock Input CLOCK, Y0
+
+    Output CLOCKX
+        1 Fanout(s)
+            glb00.CLK0
 
 
 Input ENC, IO30
@@ -159,16 +169,23 @@ Input ENC, IO30
 
 Output INT0, IO11
 
-    Input (glb00.O3, BUF_673)
+    Input (glb00.O3, INT0_Q)
 
-    INT0 = !BUF_673
+    INT0 = INT0_Q
 
 
 Output INT3, IO10
 
-    Input (glb00.O2, BUF_675)
+    Input (glb00.O2, INT3_Q)
 
-    INT3 = !BUF_675
+    INT3 = INT3_Q
+
+
+Clock Assignments
+
+    Net Name		    Clock Assignment
+
+        CLOCKX                  External CLK0
 
 
 GLB and GLB Output Statistics
@@ -177,8 +194,8 @@ GLB and GLB Output Statistics
     GLB Output Name         Ins, Outs, PTs          Ins, FOs, PTs, Levels, PTSABP
 
         glb00, A6                2,  2,  2          
-            BUF_673                                      1,  1,  1,  1, 1PT 
-            BUF_675                                      1,  1,  1,  1, 1PT 
+            INT0_Q                                       1,  1,  1,  1, 1PT 
+            INT3_Q                                       1,  1,  1,  1, 1PT 
 
 
 Pin Assignments
@@ -187,6 +204,7 @@ Pin Assignments
 
         ENC                     9                       Input, PULLUP
         BTN                     10                      Input, PULLUP
+        CLOCK                   11                      Clock Input, PULLUP
         INT3                    27                      Output, PULLUP
         INT0                    28                      Output, PULLUP
 

@@ -80,7 +80,6 @@ Placement and Routing
 Reading design 'ints'...
 
 Routing
-.
 
 
 Writing output files...
@@ -125,18 +124,25 @@ Reading design 'ints'...
 
 Writing output files...
 
+
+Information: Global reset (XRESET) is generated to reset all registers
+
+
+
 Simulation LAF netlist generation completed successfully
 
 
 Timing Analyzer 
 Reading design ints .... 
 
-43001 WARNING: Design has no register
-
+Evaluating maximum operating frequency...
+Evaluating setup and hold times...
+              
 Calculating  Tpd Path delays ...
 
 ..
 
+     
 Timing analyzer completed successfully 
 
 

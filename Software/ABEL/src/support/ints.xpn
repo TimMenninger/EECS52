@@ -2,6 +2,7 @@
 // FORMAT: 	PINNAME		PINTYPE	LOCK	PULLUP	SLOWSLEW	OPENDRAIN	OUTDELAY	VOLTAGE	CRIT
 		BTN			-		10	-1		-1		-1		-1		-1		-1
 		ENC			-		9	-1		-1		-1		-1		-1		-1
+		Clock			-		11	-1		-1		-1		-1		-1		-1
 		INT0			-		28	-1		-1		-1		-1		-1		-1
 		INT3			-		27	-1		-1		-1		-1		-1		-1
 

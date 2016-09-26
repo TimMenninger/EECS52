@@ -12,7 +12,7 @@ RCS = ;
 Parent = lc1k.lci;
 Design = ints;
 DATE = 09/25/2016;
-TIME = 19:08:16;
+TIME = 20:40:00;
 Source_Format = ;
 Type = ;
 Pre_Fit_Time = ;
@@ -36,12 +36,13 @@ SLEWRATE = Off;
 
 [LOCATION ASSIGNMENTS]
 ENC = pin, 9, -, -, -;
+CLOCK = pin, 11, -, -, -;
 BTN = pin, 10, -, -, -;
 INT3 = pin, 27, -, -, -;
 INT0 = pin, 28, -, -, -;
 
 [PULLUP]
-Up = ENC, BTN, INT3, INT0; 
+Up = ENC, CLOCK, BTN, INT3, INT0; 
 
 [SLEWRATE]
 FAST = INT3, INT0; 
@@ -53,6 +54,7 @@ INT0 = LVCMOS33, pin, -, -;
 [OSM Bypass]
 
 [CLK]
+CLK0 = CLOCKX; 
 
 [PTSABYPASS]
 

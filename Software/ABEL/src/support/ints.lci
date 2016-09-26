@@ -27,6 +27,7 @@ Synthesis = Synplify;
 layer = OFF;
 BTN = pin, 10, -, -;
 ENC = pin, 9, -, -;
+Clock = pin, 11, -, -;
 INT0 = pin, 28, -, -;
 INT3 = pin, 27, -, -;
 
