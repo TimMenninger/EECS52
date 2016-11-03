@@ -1,5 +1,0 @@
--devfile "C:/ispLEVER_Classic2_0/ispcpld/data/lc1k/lea1016_44j.dev"
--lci cpldzero.lct
--touch cpldzero.irs
--src cpldzero.tt2
--type PLA

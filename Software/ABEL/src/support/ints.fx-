@@ -1,6 +1,0 @@
-16 No_Buf -ns
-GLB 0 glb00 -1 -1 6    -1 -1 BUF_675 BUF_673     NULL
-CT_IO Loc_10 INT3
-CT_IO Loc_11 INT0
-CT_IO Loc_30 ENC
-CT_IO Loc_31 BTN

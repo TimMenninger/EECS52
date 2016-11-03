@@ -1,5 +1,0 @@
-InFile:gal16v8.psl
-DBaseFile: C:\ispLEVER_Classic2_0\ispcpld\lib5\devices\Lattice.tim
-Outfile: -o gal16v8.tim
-Partname:$PARTNAME LAT GAL16V8D-20QPI GAL P16V8
-Size:38
